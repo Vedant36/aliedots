@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+import sys
+import os
+import subprocess as sb
+import re
+
+md_dir='/home/vedant36/Documents/textfiles/'
+def asd(filename=None, head=None):    
+  if filename is None: filename=sys.argv[1].split('.')[0]
+  if head is None: head=sys.argv[2]
+  with open(md_dir+filename+'.md', 'r') as fp:
+    data=fp.read().split('\n')
+    start,end=0,0
+    print(start,end)
+    for n,i in enumerate(data):
+      val0=re.search('^# ', i)
+      if val0 is not None:
+        # print(n, data[n])
+        if start:
+          end=n
+          break
+        val=re.search(i, head, re.IGNORECASE)
+        print(val, i, head)
+        if val is not None:
+          start=n
+          continue
+    return '\n'.join(data[start+1:end])
+print(asd('ideas','ideas'))
