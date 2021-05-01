@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# script to extract data from markdown files easily
 import sys
 import os
 import subprocess as sb

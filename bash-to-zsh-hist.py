@@ -7,7 +7,6 @@
 import sys
 import time
 
-
 def main():
     timestamp = None
     for line in sys.stdin.readlines():
@@ -20,7 +19,6 @@ def main():
         else:
             sys.stdout.write(': %s:0;%s\n' % (timestamp or time.time(), line))
             timestamp = None
-
 
 if __name__ == '__main__':
     main()

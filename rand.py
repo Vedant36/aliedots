@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# roll a random number n times
+# rand range [number of rolls]
 from random import randint
 from sys import argv
 
