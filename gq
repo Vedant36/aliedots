@@ -12,8 +12,5 @@ repos='
 [ ! -z "$1" ] && cd $1 && repos=$(ls -A) && dir="$(pwd)/"
 for i in $repos;
 do
-  if [ -d "$dir$i" ] && cd "$dir$i";then
-    status=$(git status)
-    [ $(git status -s | wc -l) -gt 0 ] && echo -n "\033[0;35m$i\033[0m " && git status -sb  2>/dev/null &&  cd ../
-  fi
+  [ -d "$dir$i" ] && cd "$dir$i" && [ $(git status -s | wc -l) -gt 0 ] && echo -n "\033[0;35m$i\033[0m " && git status -sb  2>/dev/null &&  cd ../
 done
