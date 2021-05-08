@@ -1,0 +1,2 @@
+#!/bin/sh
+cd /home/vedant36/Documents/textfiles && nvim -p _todo.md _data.md _sites.md
