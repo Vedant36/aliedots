@@ -11,7 +11,7 @@ then
 fi
 
 # realize word count
-printf "%-14s%s\n" "Word" "Count"
+printf "%-18s%s\n" "Word" "Count"
 
 cat $1 | tr 'A-Z' 'a-z' | \
 egrep -o "\b[[:alpha:]]+\b" | \

@@ -1,5 +1,5 @@
 #!/bin/sh
-# script to inform of changes and untracked files in the local repositories
+# script to inform of changes and untracked files in the local repos
 # the predefined variable repos is used if a directory is not given
 
 repos='
@@ -9,12 +9,14 @@ repos='
 /home/vedant36/Documents/Python
 /home/vedant36/Documents/textfiles
 /home/vedant36/Documents/Vedant36.github.io
-/home/vedant36/Downloads/dotfiles'
+/home/vedant36/Documents/dotfiles'
 
 main(){
   [ ! -z "$1" ] && cd $1 && repos=$(ls -A) && dir="$(pwd)/"
   for i in $repos; do
-    [ -d "$dir$i/.git" ] && cd "$dir$i" && [ $(git status -s | wc -l) -gt 0 ] && echo -n "\033[0;35m$i\033[0m " && git status -sb 2>/dev/null &&  cd ../
+    [ -d "$dir$i/.git" ] && cd "$dir$i" && [ $(git status -s | wc -l) -gt 0 ] && \
+		echo -n "\033[0;35m$i\033[0m " && git status -sb 2>/dev/null &&  cd ../
   done
 }
 main
+return 0
