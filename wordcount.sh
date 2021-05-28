@@ -4,11 +4,7 @@
 # usage: word count
 
 # handle position arguments
-if [ $# -ne 1 ]
-then
-    echo "Usage: $0 filename"
-    exit -1
-fi
+[ $# -ne 1 ] && echo "Usage: $0 filename [number_lines]" && exit -1
 
 # realize word count
 printf "%-18s%s\n" "Word" "Count"

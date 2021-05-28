@@ -12,11 +12,12 @@ repos='
 /home/vedant36/Documents/dotfiles'
 
 main(){
-  [ ! -z "$1" ] && cd $1 && repos=$(ls -A) && dir="$(pwd)/"
-  for i in $repos; do
-    [ -d "$dir$i/.git" ] && cd "$dir$i" && [ $(git status -s | wc -l) -gt 0 ] && \
-		echo -n "\033[0;35m$i\033[0m " && git status -sb 2>/dev/null &&  cd ../
-  done
+	local all=1
+	[ ! -z "$1" ] && cd $1 && repos=$(ls -A) && dir="$(pwd)/"
+	for i in $repos; do
+		[ -d "$dir$i/.git" ] && cd "$dir$i" && [ $(git status -s | wc -l) -gt 0 ] && \
+		echo -n "\033[0;35m$i\033[0m " && git status -sb 2>/dev/null &&  cd ../ && all=0
+	done
+	return $all
 }
-main
-return 0
+main || echo "\033[0;32mAll repos are synced!\033[0m"

@@ -3,14 +3,13 @@
 import json
 import xmltodict
 import sys
+
 with open(sys.argv[1], "r") as xmlfileObj:
-    #converting xml data to dictionary
-    data_dict = xmltodict.parse(xmlfileObj.read())
-    xmlfileObj.close()
-    #creating JSON object using dictionary object  
-    jsonObj= json.dumps(data_dict)
-   
-    #storing json data to json file
-    with open(sys.argv[1][:-4]+'.json', "w") as jsonfileObj:
-        jsonfileObj.write(jsonObj)
-        jsonfileObj.close()
+	#converting xml data to dictionary
+	data_dict = xmltodict.parse(xmlfileObj.read())
+	#creating JSON object using dictionary object  
+	jsonObj= json.dumps(data_dict)
+
+	#storing json data to json file
+	with open(sys.argv[1].rstrip('.xml') +'.json', "w") as jsonfileObj:
+		jsonfileObj.write(jsonObj)
