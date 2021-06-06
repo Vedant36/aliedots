@@ -1,0 +1,75 @@
+# Vedant36's zsh aliases
+# color hmmmmmm
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+# imp
+alias bat=batcat # debian specific
+alias dot='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
+alias gh='git add . && git commit -a && git push'
+l() { ls -alpshF $@ | ccze -A; }
+la() { ls -A $@ | ccze -A; }
+alias p='ipython --autocall=2'
+alias path='echo $PATH | tr -s ":" "\n"'
+alias pn='ping 1.1.1.1'
+alias v=nvim
+# Global
+alias -g noerr='2>/dev/null'
+alias -g A='| awk'
+alias -g C='| ccze -A'
+alias -g CU='| cut'
+# alias -g D='| dc'
+# alias -g E='| echo'
+# alias -g E='| envsubst'
+alias -g F='| fzf' # 129
+alias -g G='| rg' # 154 # is need for a seperate on for rg -v # 27
+alias -g H='| xxd' # 26
+alias -g J='| jq' # 26
+alias -g L='| less +F'
+alias -g N='| nl'
+alias -g O='| sort' # 13
+alias -g P='| pee'
+alias -g S='| sed' # 32
+alias -g T='| tr' # 36
+alias -g V='| nvim' # 114
+alias -g W='| wc -l' # 22
+alias -g WR='| wc' # 6
+alias -g X='| xargs' # 60
+alias -g Y='| py -l' # 17
+alias -g Z='| tail'
+# xsel/xclip
+alias xip='xsel -ip'
+alias xop='xsel -op'
+alias xib='xsel -ib'
+alias xob='xsel -ob'
+# apt (to be changed to pacman later ig)
+alias a='sudo apt update && [ $(apt list --upgradable 2>/dev/null | wc -l) -gt 1 ] && sudo apt upgrade -y && sudo apt autoremove -y'
+alias aa='sudo apt autoremove -y'
+alias aud='sudo apt update'
+alias aug='sudo apt upgrade -y'
+alias ai='sudo apt install -y'
+alias al='apt list'
+alias ap='sudo apt purge -y'
+alias aq='apt search'
+alias as='apt show'
+# alias aw='ai $(al 2>/dev/null | sed 1d | cut -d/ -f1 | uniq | fzf --preview "apt show {} 2>/dev/null" --height 100%)'
+# changing directory conveniences
+alias cb='cd ~/.local/bin'
+alias cv='cd ~/dox/dotfiles'
+alias cl='cd ~/dox/CPlus'
+alias ct='cd ~/dox/textfiles/'
+alias cy='cd ~/dox/Python'
+alias cx='cd ~/dox'
+# vim editing files
+alias va='nvim ~/.config/zsh/.zshaliases'
+alias ve='nvim ~/.config/zsh/.zshenv'
+alias vf='nvim ~/.config/zsh/.zshfunctions'
+alias vh='nvim $HISTFILE'
+alias vs='nvim ~/dl/tocopy/installs.sh'
+alias vn='nvim ~/.config/nvim/init.vim'
+vv(){ nvim $1_$(date '+%F_%H%M%S') }
+alias vx='nvim ~/.Xresources'
+alias vz='nvim ${ZDOTDIR:-$HOME}/.zshrc'
+# windscribe
+alias ws='sudo windscribe start && windscribe connect'
+alias wd='windscribe disconnect && sudo windscribe stop'

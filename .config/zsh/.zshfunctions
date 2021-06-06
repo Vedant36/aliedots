@@ -1,0 +1,53 @@
+# Vedant36's zsh functions
+# f(file manager): ranger wrapper from arch wiki
+f(){
+	if [[ -z "$RANGER_LEVEL" ]];then
+		ranger "$@"
+	else
+		exit
+	fi
+}
+# to pass a arg from stdin to multiple functions
+# filter() { for i in $@; do; $i -; done; }
+# ce(command explorer?): command to find useful stuff about some function/binary
+# ce() {
+#   cli=$(compgen -c | sort -u | fzf --preview "echo {} | pee which echo 'type -a' echo whatis" --height 100%)
+# }
+# es(explore securely) function to view files securely
+es(){(
+	set -e
+	cd $HOME/dox
+	local SE=sec
+	gpg -d ${SE}.tar.gpg>${SE}.tar && rm ${SE}.tar.gpg
+	tar xf ${SE}.tar && rm ${SE}.tar
+	ranger $SE
+	tar c ${SE} | gpg -r "Vedant Neema" -e>${SE}.tar.gpg
+	rm -rf $SE
+)}
+# package manager wrappers
+pkgsize(){for i in $@;do;echo $i: $(($(apt-cache --no-all-versions show $i|grep -Po '(?<=^Size: ).*([0-9]+)')/1024.))kb;done;}
+# Better script for apt installer wrapper
+aw() {
+	pak=$(apt list 2>/dev/null | sed 1d | fzf --preview "apt show \$(echo {} |  cut -d/ -f1) 2>/dev/null" --height 100%)
+	# add functionality to run in background
+	[ -z "$pak" ] || sudo apt install -y --fix-missing `echo $pak | cut -d/ -f1 | tr '\n' ' '`
+}
+ax() {
+	pak=$(apt list --installed 2>/dev/null | sed 1d | fzf --preview "apt show \$(echo {} |  cut -d/ -f1) 2>/dev/null" --height 100%)
+	[ -z "$pak" ] || ( sudo apt purge -y `echo $pak | cut -d/ -f1 | tr '\n' ' '` && \
+		echo -n "want to autoremove?" && read -qs && sudo apt autoremove -y )
+}
+# extract directory
+exdir(){
+  for i in $@;do
+    [[ -d $i ]] && mv $i/*(D) . && rmdir $i
+  done
+}
+# # troll rm version
+# rm(){
+#   if [[ $@ = '-rf qwe' ]];then
+#     mpv 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' 2>/dev/null 1>/dev/null
+#   else
+#     /bin/rm $@ 
+#   fi
+# }

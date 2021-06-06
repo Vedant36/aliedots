@@ -1,0 +1,50 @@
+shell S
+shell tar xf %s
+open_with 
+open_with 1
+shell gpg 
+shell `
+open_with nvim
+shell sha256sum %s && read
+touch config.sh
+touch dot2.sh
+rename config.sh
+rename dot2.zsh
+rename config.zsh
+rename list.txtk
+mkdir archdots
+rename aliedots
+touch .gitignore
+shell dot add
+shell dot add %s
+do
+mkdir 
+shell git clone https://github.com/Vedant36/aliedots
+shell git clone --seperate-git-dir=aliedots https://github.com/Vedant36/aliedots temp/
+shell    git clone --separate-git-dir=~/Documents/aliedots https://github.com/Vedant36/aliedots temp
+shell    git clone https://github.com/Vedant36/aliedots
+open_with sh
+set preview_images false
+shell 
+shell git add .config/zsh/.zsh*
+shell git add ../../.config/zsh/.zsh*
+shell nvim .gitignore
+shell x
+shell git clone https://github.com/Vedant36/dotfiles
+filter lin
+filter _
+bulkrename 
+filter 
+mkdir tmp
+mkdir public
+mkdir templates
+mkdir desktop
+rename dox
+rename dl
+rename melum
+rename pix
+rename vids
+filter bad guy
+rename playlists.xml
+rename rhythmdb.xml
+delete

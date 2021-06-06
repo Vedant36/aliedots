@@ -1,0 +1,240 @@
+! Vedant36 Xresources
+! Themes
+! ! timpope
+! *background:   #000000
+! *foreground:   #aaaaaa
+! *color0:  #000000
+! *color1:  #aa0000
+! *color2:  #00aa00
+! *color3:  #aa5522
+! *color4:  #0000ee
+! *color5:  #aa00aa
+! *color6:  #00aaaa
+! *color7:  #aaaaaa
+! *color8:  #555555
+! *color9:  #ff4444
+! *color10: #44ff44
+! *color11: #ffff00
+! *color12: #5c5cff
+! *color13: #ff00ff
+! *color14: #00ffff
+! *color15: #ffffff
+! ! *colorBD: #ffffff
+! ! gruvbox
+! ! hard contrast: *background: #1d2021
+! *background: #282828
+! ! soft contrast: *background: #32302f
+! *foreground: #ebdbb2
+! ! Black + DarkGrey
+! *color0:  #282828
+! *color8:  #928374
+! ! DarkRed + Red
+! *color1:  #cc241d
+! *color9:  #fb4934
+! ! DarkGreen + Green
+! *color2:  #98971a
+! *color10: #b8bb26
+! ! DarkYellow + Yellow
+! *color3:  #d79921
+! *color11: #fabd2f
+! ! DarkBlue + Blue
+! *color4:  #458588
+! *color12: #83a598
+! ! DarkMagenta + Magenta
+! *color5:  #b16286
+! *color13: #d3869b
+! ! DarkCyan + Cyan
+! *color6:  #689d6a
+! *color14: #8ec07c
+! ! LightGrey + White
+! *color7:  #a89984
+! *color15: #ebdbb2
+! ! Nord Theme
+! #define nord0 #2E3440
+! #define nord1 #3B4252
+! #define nord2 #434C5E
+! #define nord3 #4C566A
+! #define nord4 #D8DEE9
+! #define nord5 #E5E9F0
+! #define nord6 #ECEFF4
+! #define nord7 #8FBCBB
+! #define nord8 #88C0D0
+! #define nord9 #81A1C1
+! #define nord10 #5E81AC
+! #define nord11 #BF616A
+! #define nord12 #D08770
+! #define nord13 #EBCB8B
+! #define nord14 #A3BE8C
+! #define nord15 #B48EAD
+
+! *.foreground:   nord4
+! *.background:   nord0
+! *.cursorColor:  nord4
+! ! *fading: 5
+! *fadeColor: nord3
+
+! *.color0: nord1
+! *.color1: nord11
+! *.color2: nord14
+! *.color3: nord13
+! *.color4: nord9
+! *.color5: nord15
+! *.color6: nord8
+! *.color7: nord5
+! *.color8: nord3
+! *.color9: nord11
+! *.color10: nord14
+! *.color11: nord13
+! *.color12: nord9
+! *.color13: nord15
+! *.color14: nord7
+! *.color15: nord6
+
+! Theme - Tokyo-Night
+! general
+*foreground: #a9b1d6
+*background: #1a1b26
+*cursorColor: #a9b1d6
+! terminal padding color
+*borderColor: #1a1b26
+! black
+*color0: #1a1b26
+*color8: #4e5173
+! red
+*color1: #F7768E
+*color9: #F7768E
+! green
+*color2: #9ECE6A
+*color10: #9ECE6A
+! yellow
+*color3: #E0AF68
+*color11: #E0AF68
+! blue
+*color4: #7AA2F7
+*color12: #7AA2F7
+! magenta
+*color5: #9a7ecc
+*color13: #9a7ecc
+! cyan
+*color6: #4abaaf
+*color14: #4abaaf
+! white
+*color7: #acb0d0
+*color15: #acb0d0
+
+! ! Theme - Monokai
+! ! special
+! *.foreground:   #f8f8f2
+! *.background:   #272822
+! *.cursorColor:  #f8f8f2
+
+! ! black
+! *.color0:       #272822
+! *.color8:       #75715e
+
+! ! red
+! *.color1:       #f92672
+! *.color9:       #f92672
+
+! ! green
+! *.color2:       #a6e22e
+! *.color10:      #a6e22e
+
+! ! yellow
+! *.color3:       #f4bf75
+! *.color11:      #f4bf75
+
+! ! blue
+! *.color4:       #66d9ef
+! *.color12:      #66d9ef
+
+! ! magenta
+! *.color5:       #ae81ff
+! *.color13:      #ae81ff
+
+! ! cyan
+! *.color6:       #a1efe4
+! *.color14:      #a1efe4
+
+! ! white
+! *.color7:       #f8f8f2
+! *.color15:      #f9f8f5
+
+
+! Appearence
+*.fading: 5
+*.alpha: 0.97
+*.font:           xft:Iosevka Term:style=Regular:     size=10
+*.boldFont:       xft:Iosevka Term:style=Bold:        size=10
+*.italicFont:     xft:Iosevka Term:style=Italic:      size=10
+*.boldItalicFont: xft:Iosevka Term:style=Bold Italic: size=10
+*.letterSpace: 0
+*.lineSpace: 0
+*.geometry: 137x30
+*.loginShell: true
+*.scrollTtyKeypress: true
+*.scrollTtyOutput: false
+*.scrollWithBuffer: true
+*.skipScroll: false
+*.internalBorder: 0
+*.cursorBlink: false
+*.cursorUnderline: false
+*.saveLines: 200000
+*.scrollBar: false
+*.borderLess: true
+! *.depth: 32
+! Common Keybinds for Navigations
+*.keysym.Meta-k:		command:\033]720;1\007
+*.keysym.Meta-j:		command:\033]721;1\007
+*.keysym.Control-Left:			\033[1;5D
+*.keysym.Shift-Control-Left:	\033[1;6D
+*.keysym.Control-Right:			\033[1;5C
+*.keysym.Shift-Control-Right:	\033[1;6C
+*.keysym.Control-Up:			\033[1;5A
+*.keysym.Shift-Control-Up:		\033[1;6A
+*.keysym.Control-Down:			\033[1;5B
+*.keysym.Shift-Control-Down:	\033[1;6B
+! 2 https://stackoverflow.com/questions/16359878/how-to-map-shift-enter#answer-42461580
+*.keysym.S-Return:     \033[13;2u
+*.keysym.C-Return:     \033[13;5u
+! URxvt Specific
+! Copy Paste & Other Extensions
+URxvt.perl-lib: /home/vedant36/.config/urxvt-perls/
+URxvt.perl-ext-common: default,keyboard-select,selection-to-clipboard,matcher
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keyboard-select.clipboard: true
+URxvt.keysym.M-u: matcher:last
+URxvt.keysym.M-i: matcher:list
+URxvt.matcher.button: 1
+URxvt.matcher.launcher: /usr/bin/brave-browser-stable
+URxvt.iso14755:         false
+URxvt.iso14755_52:      false
+! rofi
+! rofi.fake-transparency:              true
+rofi.font: Futura 11
+rofi.modi: window,run,ssh,windowcd,drun,combi,keys
+! rofi -show combi -combi-modi drun,run
+rofi.matching: fuzzy
+rofi.lines: 20
+rofi.eh: 1
+rofi.combi-modi: drun,run
+rofi.run-shell-command: kitty -1 ranger
+rofi.case-sensitive: false
+! rofi.padding: 200
+! rofi.fullscreen: true
+rofi.bw: 0
+! rofi.separator-style: none ! depracated
+! rofi.hide-scrollbar: true
+
+! !                  'background', 'border', 'separator'
+! rofi.color-window: argb:e82d303b, #7c8389, #1d1f21
+! ! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
+! rofi.color-normal: argb:031d1f21, #f3f4f5, argb:031d1f21, argb:031d1f21, #9575cd 
+! rofi.color-urgent: argb:031d1f21, #f3f4f5, argb:bc303541, argb:031d1f21, #9575cd
+! rofi.color-active: argb:031d1f21, #f3f4f5, argb:031d1f21, argb:031d1f21, #9575cd
+! st
+st.alpha: 1
+st.alphaOffset: 0.3
+st.font: Iosevka Term
+st.borderpx: 0

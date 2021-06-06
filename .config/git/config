@@ -1,0 +1,9 @@
+[user]
+	email = vedantneema@gmail.com
+	name = Vedant36
+[core]
+	pager = nvim -R
+[color]
+	pager = no
+[credential]
+	helper = cache

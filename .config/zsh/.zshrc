@@ -1,0 +1,138 @@
+# Vedant36's .zshrc
+[[ "$-" != *i* ]] && return # if aint runnin interactively dont do anything
+# # timing code to be used with sort_timings.zsh
+# zmodload zsh/datetime
+# setopt PROMPT_SUBST
+# PS4='+$EPOCHREALTIME %N:%i> '
+# logfile=$(mktemp /tmp/zsh_profile.XXXXXXXX)
+# echo "Logging to $logfile"
+# exec 3>&2 2>$logfile
+# setopt XTRACE
+# tab-complete
+export ENABLE_CORRECTION="true"
+export CASE_SENSITIVE="false"
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zmodload zsh/complist
+compinit -u
+_comp_options+=(globdots)
+autoload -U bashcompinit && bashcompinit # support bash completions
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
+# # Change cursor shape for different vi modes.
+# function zle-keymap-select {
+#   if [[ ${KEYMAP} == vicmd ]] ||
+#      [[ $1 = 'block' ]]; then
+#     echo -ne '\e[1 q'
+#   elif [[ ${KEYMAP} == main ]] ||
+#        [[ ${KEYMAP} == viins ]] ||
+#        [[ ${KEYMAP} = '' ]] ||
+#        [[ $1 = 'beam' ]]; then
+#     echo -ne '\e[5 q'
+#   fi
+# }
+# zle -N zle-keymap-select
+# zle-line-init() {
+#     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+#     echo -ne "\e[5 q"
+# }
+# zle -N zle-line-init
+# echo -ne '\e[5 q' # Use beam shape cursor on startup.
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+# keybinds
+bindkey '^[OA' up-line-or-search
+bindkey '^[OB' down-line-or-search
+bindkey '^[^M' self-insert-unmeta # to insert a new line without executing command
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey "^[[7~"   beginning-of-line
+bindkey "^[[8~"   end-of-line
+bindkey -s "^[#" "^[OH: ^M"
+bindkey -s "^Z" "^Ufg^M"
+# https://unix.stackexchange.com/questions/25765/pasting-from-clipboard-to-vi-enabled-zsh-or-bash-shell
+vi-append-x-selection () { RBUFFER=$(xsel -o -p </dev/null)$RBUFFER; }
+zle -N vi-append-x-selection
+bindkey -a '^X' vi-append-x-selection
+vi-yank-x-selection () { print -rn -- $CUTBUFFER | xsel -i -p; }
+zle -N vi-yank-x-selection
+bindkey -a '^Y' vi-yank-x-selection
+
+# history settings
+export HISTSIZE=100000      # Nearly infinite history; essential to building a cli 'library' to use with fzf/etc
+export SAVEHIST=100000
+setopt share_history        # share it across sessions
+setopt extended_history     # add timestamps to history
+setopt hist_ignore_all_dups # don't record dupes in history
+setopt hist_ignore_space    # remove command line from history list when first character on the line is a space
+setopt hist_reduce_blanks   # remove superflous blanks
+setopt hist_no_store
+
+# sourcings(7) fastest to slowest
+. ${ZDOTDIR-~}/.zshaliases
+. ${ZDOTDIR-~}/.zshfunctions
+. /etc/zsh_command_not_found
+. /usr/share/doc/fzf/examples/key-bindings.zsh
+. /usr/share/doc/fzf/examples/completion.zsh
+export ZSH_PLUGINS=${ZDOTDIR-~}/plugins
+. $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
+. $ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null # colors commands and hex color codes
+# setopts
+autoload colors && colors
+setopt auto_cd              # type bare dir name and cd to it e.g. `$ /`
+setopt complete_in_word     # don't move cursor to end of line on completion
+setopt interactive_comments # allow comments even in interactive shells.
+unsetopt beep               # don't bloody beep
+unsetopt bg_nice            # don't re-nice bg procs to lower priority
+unsetopt correct            # don't autocorrect spelling for args
+unsetopt correct_all        # don't autocorrect spelling for args
+# unsetopt flow_control       # disable ^S/^Q flow control
+unsetopt hup                # don't send the HUP signal to running jobs when the shell exits.
+unsetopt list_beep          # don't beep on ambiguous completions
+unsetopt local_options      # allow funcs to have their own setopts (i.e. don't change globally)
+unsetopt local_traps        # allow funcs to have their own signal trap opts (i.e. don't change globally)
+typeset -U PATH             # remove duplicate paths
+
+# prompt
+# Todo: custom git info script(put on rprompt)
+# errcode="%(?..%K{red}%F{black} %? %f%k%F{red}%K{magenta}%f)"
+# dir="%K{blue} %F{black}%(4~|…/%3~|%~) %f%k%F{blue}%f "
+preexec() {
+  ini=$(($(date +%s%0N)/1000000))
+  # echo -ne '\e[5 q'
+}
+
+precmd() {
+  print -n "\e]0;$(print -P $HOST: zsh '(%~)')\a"
+  if [ $ini ]; then
+    now=$(($(date +%s%0N)/1000000))
+    # total="%K{magenta} %F{black}$(($now-$ini))ms %k%F{magenta}%K{blue}%f"
+    total=$(($now-$ini))"ms"
+    unset ini now
+  else
+  fi
+  # export PROMPT="${errcode}${total}${dir}"
+  export RPROMPT="%(?..%F{red}[%?]%f) %F{cyan}${total}%f"
+  # export RPROMPT="%(?..%F{red}[%?]%f)%F{cyan}"$total"%f"
+  # export RPROMPT="%(?..%F{red}[%?]%f) %F{magenta}%(4~|…/%3~|%~)%f %F{cyan}"$total"%f"
+}
+[[ $SHLVL -gt 2 ]] && shlvl=$(printf "%.s*" {3..$SHLVL}) # shows the recursion level of the shell
+export PROMPT=" %F{green}$shlvl%f%F{magenta}%~%f%F{blue}>%f "
+# echo -e "\033[0;32m$(fortune -a | sed 's/^/\t/')\033[0m"
+
+# # from :2,7
+# unsetopt XTRACE
+# exec 2>&3 3>&-
