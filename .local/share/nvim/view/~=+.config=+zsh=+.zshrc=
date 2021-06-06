@@ -2,16 +2,16 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
-xmap <buffer>  hs <Plug>(GitGutterStageHunk)
-nmap <buffer>  hs <Plug>(GitGutterStageHunk)
-nmap <buffer>  hu <Plug>(GitGutterUndoHunk)
 nmap <buffer>  hp <Plug>(GitGutterPreviewHunk)
+nmap <buffer>  hu <Plug>(GitGutterUndoHunk)
+nmap <buffer>  hs <Plug>(GitGutterStageHunk)
+xmap <buffer>  hs <Plug>(GitGutterStageHunk)
 nmap <buffer> [c <Plug>(GitGutterPrevHunk)
 nmap <buffer> ]c <Plug>(GitGutterNextHunk)
-omap <buffer> ac <Plug>(GitGutterTextObjectOuterPending)
 xmap <buffer> ac <Plug>(GitGutterTextObjectOuterVisual)
-omap <buffer> ic <Plug>(GitGutterTextObjectInnerPending)
+omap <buffer> ac <Plug>(GitGutterTextObjectOuterPending)
 xmap <buffer> ic <Plug>(GitGutterTextObjectInnerVisual)
+omap <buffer> ic <Plug>(GitGutterTextObjectInnerPending)
 let &cpo=s:cpo_save
 unlet s:cpo_save
 setlocal keymap=
@@ -135,22 +135,20 @@ silent! normal! zE
 22,55fold
 56,73fold
 74,83fold
-84,92fold
-93,108fold
-109,135fold
-136,138fold
+84,94fold
+95,110fold
+111,137fold
+138,140fold
 22
 normal! zo
 22
 normal! zc
-84
-normal! zo
-let s:l = 92 - ((91 * winheight(0) + 30) / 61)
+let s:l = 91 - ((90 * winheight(0) + 30) / 61)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-92
-normal! 0
+91
+normal! 01|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

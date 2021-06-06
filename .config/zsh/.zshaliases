@@ -7,6 +7,7 @@ alias egrep='egrep --color=auto'
 alias bat=batcat # debian specific
 alias dot='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
 alias gh='git add . && git commit -a && git push'
+alias dh='dot commit -a && dot push'
 l() { ls -alpshF $@ | ccze -A; }
 la() { ls -A $@ | ccze -A; }
 alias p='ipython --autocall=2'

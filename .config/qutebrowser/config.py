@@ -29,6 +29,8 @@ c.downloads.remove_finished = 0
 
 c.editor.command = ['nvim', '{file}', '-c', 'norm {line}G{column0}l']
 
+c.fonts.web.size.default = 15
+
 c.scrolling.bar = 'when-searching'
 c.scrolling.smooth = True
 

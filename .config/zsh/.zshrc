@@ -88,7 +88,9 @@ setopt hist_no_store
 . /usr/share/doc/fzf/examples/key-bindings.zsh
 . /usr/share/doc/fzf/examples/completion.zsh
 export ZSH_PLUGINS=${ZDOTDIR-~}/plugins
+# url: https://github.com/zsh-users/zsh-autosuggestions
 . $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
+# url: https://github.com/zdharma/fast-syntax-highlighting
 . $ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null # colors commands and hex color codes
 # setopts
 autoload colors && colors

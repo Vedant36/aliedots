@@ -1,4 +1,3 @@
-shell S
 shell tar xf %s
 open_with 
 open_with 1
@@ -48,3 +47,4 @@ filter bad guy
 rename playlists.xml
 rename rhythmdb.xml
 delete
+mkdir minecraft
