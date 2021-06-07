@@ -1,0 +1,1 @@
+git --git-dir=$HOME/dox/aliedots --work-tree=$HOME $@
