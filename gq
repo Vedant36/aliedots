@@ -4,12 +4,9 @@
 
 repos='
 /home/vedant36/.local/bin
-/home/vedant36/Documents/CPlus
-/home/vedant36/Documents/datasets
-/home/vedant36/Documents/Python
-/home/vedant36/Documents/textfiles
-/home/vedant36/Documents/Vedant36.github.io
-/home/vedant36/Documents/dotfiles'
+/home/vedant36/dox/CPlus
+/home/vedant36/dox/Python
+/home/vedant36/dox/textfiles'
 
 main(){
 	local all=1
@@ -18,6 +15,9 @@ main(){
 		[ -d "$dir$i/.git" ] && cd "$dir$i" && [ $(git status -s | wc -l) -gt 0 ] && \
 		echo -n "\033[0;35m$i\033[0m " && git status -sb 2>/dev/null &&  cd ../ && all=0
 	done
+	[ -z $1 ] && [ $(git --git-dir=$HOME/dox/aliedots --work-tree=$HOME status -s | wc -l) -gt 0 ] \
+		&& echo -n "\033[0;35m$HOME/dox/aliedots\033[0m " \
+		&& git --git-dir=$HOME/dox/aliedots --work-tree=$HOME status -sb 2>/dev/null && all=0
 	return $all
 }
 main || echo "\033[0;32mAll repos are synced!\033[0m"
