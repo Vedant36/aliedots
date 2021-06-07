@@ -1,20 +1,10 @@
-shell gpg 
-shell `
-open_with nvim
-shell sha256sum %s && read
-touch config.sh
-touch dot2.sh
-rename config.sh
-rename dot2.zsh
 rename config.zsh
 rename list.txtk
 mkdir archdots
 rename aliedots
 touch .gitignore
 shell dot add
-shell dot add %s
 do
-mkdir 
 shell git clone https://github.com/Vedant36/aliedots
 shell git clone --seperate-git-dir=aliedots https://github.com/Vedant36/aliedots temp/
 shell    git clone --separate-git-dir=~/Documents/aliedots https://github.com/Vedant36/aliedots temp
@@ -44,7 +34,17 @@ rename playlists.xml
 rename rhythmdb.xml
 rename wallpapers
 find 3125
-delete
 open_with sh
 mkdir asd
 trash
+find qu
+open_with 
+mkdir 
+shell nvim README.md
+shell nvim 
+shell diff %s | nvim
+shell nvim dot
+shell dot add %s
+shell sed 's#Music/#melum/#' %s
+shell sed -i 's#Music/#melum/#' %s
+delete

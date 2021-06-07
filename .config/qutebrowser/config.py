@@ -30,6 +30,7 @@ c.downloads.remove_finished = 0
 c.editor.command = ['nvim', '{file}', '-c', 'norm {line}G{column0}l']
 
 c.fonts.web.size.default = 15
+c.fonts.default_family = 'Futura'
 
 c.scrolling.bar = 'when-searching'
 c.scrolling.smooth = True
@@ -38,6 +39,9 @@ c.statusbar.hide = False
 
 c.tabs.background = True
 c.tabs.show = 'multiple'
+c.tabs.show_switching_delay = 500
+
+c.window.hide_decoration = True
 
 c.url.searchengines = {
 		'DEFAULT': 'https://duckduckgo.com/?q={}',
@@ -54,5 +58,11 @@ c.bindings.commands = {
 			"!" : "set-cmd-text :open !",
 			",M": "hint links spawn mpv {hint-url}",
 			",m": "spawn mpv {url}",
+			",s": "config-cycle statusbar.hide",
+			",t": "config-cycle tabs.show multiple switching",
+			"ef": "fake-key f",
+			"ei": "fake-key i",
+			"<tab>": "tab-next",
+			"<shift-tab>": "tab-prev",
 		}
 	}

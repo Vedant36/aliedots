@@ -6,7 +6,9 @@
 
 config_version: 2
 settings:
-  content.private_browsing:
+  content.register_protocol_handler:
+    https://mail.google.com?extsrc=mailto&url=%25s: true
+  statusbar.hide:
     global: false
-  fonts.web.size.default:
-    global: 15
+  tabs.show:
+    global: multiple
