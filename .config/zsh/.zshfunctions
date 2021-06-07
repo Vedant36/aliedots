@@ -1,5 +1,5 @@
 # Vedant36's zsh functions
-# f(file manager): ranger wrapper from arch wiki
+# f(file manager): ranger wrapper from arch wiki {{{1
 f(){
 	if [[ -z "$RANGER_LEVEL" ]];then
 		ranger "$@"
@@ -7,13 +7,13 @@ f(){
 		exit
 	fi
 }
-# to pass a arg from stdin to multiple functions
+# to pass a arg from stdin to multiple functions {{{1
 # filter() { for i in $@; do; $i -; done; }
-# ce(command explorer?): command to find useful stuff about some function/binary
+# ce(command explorer?): command to find useful stuff about some function/binary {{{1
 # ce() {
 #   cli=$(compgen -c | sort -u | fzf --preview "echo {} | pee which echo 'type -a' echo whatis" --height 100%)
 # }
-# es(explore securely) function to view files securely
+# es(explore securely) function to view files securely {{{1
 es(){(
 	set -e
 	cd $HOME/dox
@@ -24,7 +24,7 @@ es(){(
 	tar c ${SE} | gpg -r "Vedant Neema" -e>${SE}.tar.gpg
 	rm -rf $SE
 )}
-# package manager wrappers
+# package manager wrappers {{{1
 pkgsize(){for i in $@;do;echo $i: $(($(apt-cache --no-all-versions show $i|grep -Po '(?<=^Size: ).*([0-9]+)')/1024.))kb;done;}
 # Better script for apt installer wrapper
 aw() {
@@ -37,13 +37,13 @@ ax() {
 	[ -z "$pak" ] || ( sudo apt purge -y `echo $pak | cut -d/ -f1 | tr '\n' ' '` && \
 		echo -n "want to autoremove?" && read -qs && sudo apt autoremove -y )
 }
-# extract directory
+# extract directory {{{1
 exdir(){
   for i in $@;do
     [[ -d $i ]] && mv $i/*(D) . && rmdir $i
   done
 }
-# # troll rm version
+# # troll rm version {{{1
 # rm(){
 #   if [[ $@ = '-rf qwe' ]];then
 #     mpv 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' 2>/dev/null 1>/dev/null

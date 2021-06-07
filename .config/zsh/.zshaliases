@@ -1,9 +1,9 @@
 # Vedant36's zsh aliases
-# color hmmmmmm
+# color hmmmmmm {{{1
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
-# imp
+# imp {{{1
 alias bat=batcat # debian specific
 # alias dot='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
 alias gh='git add . && git commit -a && git push'
@@ -14,7 +14,7 @@ alias p='ipython --autocall=2'
 alias path='echo $PATH | tr -s ":" "\n"'
 alias pn='ping 1.1.1.1'
 alias v=nvim
-# Global
+# Global {{{1
 alias -g noerr='2>/dev/null'
 alias -g A='| awk'
 alias -g C='| ccze -A'
@@ -38,12 +38,12 @@ alias -g WR='| wc' # 6
 alias -g X='| xargs' # 60
 alias -g Y='| py -l' # 17
 alias -g Z='| tail'
-# xsel/xclip
+# xsel/xclip {{{1
 alias xip='xsel -ip'
 alias xop='xsel -op'
 alias xib='xsel -ib'
 alias xob='xsel -ob'
-# apt (to be changed to pacman later ig)
+# apt (to be changed to pacman later ig) {{{1
 alias a='sudo apt update && [ $(apt list --upgradable 2>/dev/null | wc -l) -gt 1 ] && sudo apt upgrade -y && sudo apt autoremove -y'
 alias aa='sudo apt autoremove -y'
 alias aud='sudo apt update'
@@ -54,14 +54,14 @@ alias ap='sudo apt purge -y'
 alias aq='apt search'
 alias as='apt show'
 # alias aw='ai $(al 2>/dev/null | sed 1d | cut -d/ -f1 | uniq | fzf --preview "apt show {} 2>/dev/null" --height 100%)'
-# changing directory conveniences
+# changing directory conveniences {{{1
 alias cb='cd ~/.local/bin'
 alias cv='cd ~/dox/dotfiles'
 alias cl='cd ~/dox/CPlus'
 alias ct='cd ~/dox/textfiles/'
 alias cy='cd ~/dox/Python'
 alias cx='cd ~/dox'
-# vim editing files
+# vim editing files {{{1
 alias va='nvim ~/.config/zsh/.zshaliases'
 alias ve='nvim ~/.config/zsh/.zshenv'
 alias vf='nvim ~/.config/zsh/.zshfunctions'
@@ -71,6 +71,6 @@ alias vn='nvim ~/.config/nvim/init.vim'
 vv(){ nvim $1_$(date '+%F_%H%M%S') }
 alias vx='nvim ~/.Xresources'
 alias vz='nvim ${ZDOTDIR:-$HOME}/.zshrc'
-# windscribe
+# windscribe {{{1
 alias ws='sudo windscribe start && windscribe connect'
 alias wd='windscribe disconnect && sudo windscribe stop'

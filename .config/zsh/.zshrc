@@ -1,6 +1,6 @@
 # Vedant36's .zshrc
 [[ "$-" != *i* ]] && return # if aint runnin interactively dont do anything
-# # timing code to be used with sort_timings.zsh
+# # timing code to be used with sort_timings.zsh {{{1
 # zmodload zsh/datetime
 # setopt PROMPT_SUBST
 # PS4='+$EPOCHREALTIME %N:%i> '
@@ -8,7 +8,7 @@
 # echo "Logging to $logfile"
 # exec 3>&2 2>$logfile
 # setopt XTRACE
-# tab-complete
+# tab-complete {{{1
 export ENABLE_CORRECTION="true"
 export CASE_SENSITIVE="false"
 autoload -Uz compinit
@@ -18,18 +18,17 @@ zmodload zsh/complist
 compinit -u
 _comp_options+=(globdots)
 autoload -U bashcompinit && bashcompinit # support bash completions
-
-# vi mode
+# vi mode {{{1
 bindkey -v
 export KEYTIMEOUT=1
-# Use vim keys in tab complete menu:
+# Use vim keys in tab complete menu: {{{2
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# # Change cursor shape for different vi modes.
+# # Change cursor shape for different vi modes. {{{2
 # function zle-keymap-select {
 #   if [[ ${KEYMAP} == vicmd ]] ||
 #      [[ $1 = 'block' ]]; then
@@ -48,12 +47,11 @@ bindkey -v '^?' backward-delete-char
 # }
 # zle -N zle-line-init
 # echo -ne '\e[5 q' # Use beam shape cursor on startup.
-
-# Edit line in vim with ctrl-e:
+# Edit line in vim with ctrl-e: {{{2
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# keybinds
+# keybinds {{{1
 bindkey '^[OA' up-line-or-search
 bindkey '^[OB' down-line-or-search
 bindkey '^[^M' self-insert-unmeta # to insert a new line without executing command
@@ -71,7 +69,7 @@ vi-yank-x-selection () { print -rn -- $CUTBUFFER | xsel -i -p; }
 zle -N vi-yank-x-selection
 bindkey -a '^Y' vi-yank-x-selection
 
-# history settings
+# history settings {{{1
 export HISTSIZE=100000      # Nearly infinite history; essential to building a cli 'library' to use with fzf/etc
 export SAVEHIST=100000
 setopt share_history        # share it across sessions
@@ -81,7 +79,7 @@ setopt hist_ignore_space    # remove command line from history list when first c
 setopt hist_reduce_blanks   # remove superflous blanks
 setopt hist_no_store
 
-# sourcings(7) fastest to slowest
+# sourcings(7) fastest to slowest {{{1
 . ${ZDOTDIR-~}/.zshaliases
 . ${ZDOTDIR-~}/.zshfunctions
 . /etc/zsh_command_not_found
@@ -92,7 +90,7 @@ export ZSH_PLUGINS=${ZDOTDIR-~}/plugins
 . $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 # url: https://github.com/zdharma/fast-syntax-highlighting
 . $ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null # colors commands and hex color codes
-# setopts
+# setopts {{{1
 autoload colors && colors
 setopt auto_cd              # type bare dir name and cd to it e.g. `$ /`
 setopt complete_in_word     # don't move cursor to end of line on completion
@@ -108,7 +106,7 @@ unsetopt local_options      # allow funcs to have their own setopts (i.e. don't 
 unsetopt local_traps        # allow funcs to have their own signal trap opts (i.e. don't change globally)
 typeset -U PATH             # remove duplicate paths
 
-# prompt
+# prompt {{{1
 # Todo: custom git info script(put on rprompt)
 # errcode="%(?..%K{red}%F{black} %? %f%k%F{red}%K{magenta}%f)"
 # dir="%K{blue} %F{black}%(4~|…/%3~|%~) %f%k%F{blue}%f "
@@ -135,6 +133,6 @@ precmd() {
 export PROMPT=" %F{green}$shlvl%f%F{magenta}%~%f%F{blue}>%f "
 # echo -e "\033[0;32m$(fortune -a | sed 's/^/\t/')\033[0m"
 
-# # from :2,7
+# # from :2,7 {{{1
 # unsetopt XTRACE
 # exec 2>&3 3>&-

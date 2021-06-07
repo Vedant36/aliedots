@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-# settings
+# settings {{{1
 export skip_global_compinit=1
 export PATH="$HOME/anaconda3/bin:$PATH:$HOME/.local/bin"
 export REPOS="$HOME/dox/{textfiles,CPlus,Python,dotfiles,datasets}"
@@ -18,18 +18,18 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
-# XDG HOME dirs
+# XDG HOME dirs {{{1
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
-# ~ Cleanup
+# ~ Cleanup {{{1
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export HISTFILE=$XDG_DATA_HOME/zsh/.zsh_history
 export LESSHISTFILE=$XDG_DATA_HOME/lesshst
 export ELINKS_CONFDIR=$XDG_CONFIG_HOME/elinks
 export __GL_SHADER_DISK_CACHE_PATH=$XDG_CONFIG_HOME/nv
 export IPYTHONDIR=$XDG_CONFIG_HOME/ipython
-# fzf
+# fzf {{{1
 export FZF_{DEFAULT,CTRL_T}_COMMAND='find . -path "*/.git" -prune -o -path "*/.cache" -prune -o -print 2>/dev/null | sed 1d'
 export FZF_ALT_C_COMMAND='find . -type d -a \( -path "*/.git" -prune -o -path "*/.cache" -prune -o -print \) 2>/dev/null | sed 1d'
 export FZF_DEFAULT_OPTS="-m --reverse --tiebreak=begin --info=inline --bind 'ctrl-space:execute(nvim {}),ctrl-y:execute-silent(echo {} | xsel -ib)+abort' 2>/dev/null"

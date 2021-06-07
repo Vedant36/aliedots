@@ -1,5 +1,5 @@
 " vim settings
-" .vimrc
+" .vimrc {{{1
 scriptencoding utf-8
 set encoding=utf-8
 set history=500
@@ -28,6 +28,7 @@ set omnifunc=syntaxcomplete#Complete
 set completeopt+=menuone
 set shortmess+=c " Shut off completion messages
 set noexpandtab noshiftround " to check if tab is better
+set foldmethod=marker
 if !($TERM == 'rxvt-unicode-256color')
 	set termguicolors
 endif
@@ -40,13 +41,13 @@ filetype on
 filetype plugin indent on
 let $PAGER=''
 let $FZF_DEFAULT_COMMAND = 'find . -path "*/.git" -prune -o -path "*/.cache" -prune -o -print 2>/dev/null | sed 1d'
-" global variables
+" global variables {{{1
 let g:netrw_banner=0
 " let g:netrw_list_hide=netrw_gitignore#Hide()
-" abbreviates
+" abbreviates {{{1
 ab intlctl Vedant36 is not a intellectual
 ab coke cocain
-" autocmd
+" autocmd {{{1
 au bufnewfile,bufread *.log* setf logtalk
 au bufnewfile,bufread *.conf* setf cfg
 au bufnewfile,bufread .zsh* setf zsh
@@ -71,19 +72,13 @@ augroup custom_filetype
 	au filetype vim nn <leader>1 oPlug ''<esc>h
 	au filetype xdefaults setlocal commentstring=!\ %s
 augroup END
-augroup remember_folds
-	au!
-	au bufunload	.zsh*,init.vim,.Xresources norm zM
-	au bufwritepost	.zsh*,init.vim,.Xresources mkview
-	au bufreadpost	.zsh*,init.vim,.Xresources silent! loadview
-augroup END
 
-" keybinds ∑ { n ∈ ▲ } 🅇(n) ○-> Ⓨ[n] ▢△◈
-" uncategorized
+" keybinds ∑ { n ∈ ▲ } 🅇(n) ○-> Ⓨ[n] ▢△◈ {{{1
+" uncategorized {{{2
 tno <c-a> <C-\><C-N>
 nn <leader>y "*yiw
 nn Y y$
-"  leaderbinds
+"  leaderbinds {{{2
 nn <leader>a gg"*yG``
 nn <leader>e :echo<space>
 nn <leader>h :h<space>
@@ -101,7 +96,7 @@ nn <silent> <leader>p "*
 vn <silent> <leader>p "*
 nn <silent> <leader>q @q
 nn <silent> <leader>w :w<cr>
-" <f>unction keybinds
+" <f>unction keybinds {{{2
 nn <silent> <F3> :so $MYVIMRC<cr>
 ino <silent> <F3> <esc>:so $MYVIMRC<cr>gi
 nn <silent> <F5> :w!<cr>
@@ -110,12 +105,12 @@ nn <silent> <F6> :set invspell<cr>
 ino <silent> <F6> <C-O>:set invspell<cr>
 nn <silent> <F7> :!./'%'<cr>
 nn <silent><F9> :bufdo e!<cr>
-" inoremaps
+" inoremaps {{{2
 imap jk <esc>
 imap kj <esc>
 ino <m-b> <C-Left>
 ino <m-f> <C-Right>
-" buffer/tab switching
+" buffer/tab switching {{{2
 nm <silent> <m-1> <Plug>lightline#bufferline#go(1)
 nm <silent> <m-2> <Plug>lightline#bufferline#go(2)
 nm <silent> <m-3> <Plug>lightline#bufferline#go(3)
@@ -128,7 +123,7 @@ nm <silent> <m-9> <Plug>lightline#bufferline#go(9)
 nn <silent> <m-0> :bl<cr>
 nn <silent> <tab> :bn<cr>
 nn <silent> <s-tab> :bp<cr>
-" quick move between most used files
+" quick move between most used files {{{2
 nn <silent> <leader>ox :e ~/.Xresources<cr>
 nn <silent> <leader>on :e ~/.config/nvim/init.vim<cr>
 nn <silent> <leader>oa :e ~/.config/zsh/.zshaliases<cr>
@@ -139,7 +134,7 @@ nn <silent> <leader>oh :e $HISTFILE<cr>
 nn <silent> <leader>ol :e ~/dox/Cplus/c/begin.c<cr>
 nn <silent> <leader>oy :e ~/dox/Python/platformer_2/Plat.py<cr>
 nn <silent> <leader>ov :e ~/dl/dotfiles/dot.sh<cr>
-" sus
+" sus {{{2
 nn <C-s> :echo  " ⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢊⠘⡮⣣⠪⠢⡑⡌\n
 				\ ⠀⠀⠀⠟⠝⠈⠀⠀⠀⠡⠀⠠⢈⠠⢐⢠⢂⢔⣐⢄⡂⢔⠀⡁⢉⠸⢨⢑⠕⡌\n
 				\ ⠀⠀⡀⠁⠀⠀⠀⡀⢂⠡⠈⡔⣕⢮⣳⢯⣿⣻⣟⣯⣯⢷⣫⣆⡂⠀⠀⢐⠑⡌\n
@@ -161,7 +156,7 @@ nn <C-s> :echo  " ⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀�
 				\ ⠁⡂⠔⡁⡢⠣⢀⠢⠀⠅⠱⡐⡱⡘⡔⡕⡕⣲⡹⣎⡮⡏⡑⢜⢼⡱⢩⣗⣯⣟\n
 				\ ⢀⢂⢑⠀⡂⡃⠅⠊⢄⢑⠠⠑⢕⢕⢝⢮⢺⢕⢟⢮⢊⢢⢱⢄⠃⣇⣞⢞⣞⢾\n
 				\ ⢀⠢⡑⡀⢂⢊⠠⠁⡂⡐⠀⠅⡈⠪⠪⠪⠣⠫⠑⡁⢔⠕⣜⣜⢦⡰⡎⡯⡾⡽"<cr>
-" categorized but less so misc
+" categorized but less so misc {{{2
 nn ; :
 nn : ;
 vn ; :
@@ -181,14 +176,14 @@ nn <M-n> ddp
 nn <silent> <C-j> <C-w>w
 nn <silent> <C-k> <C-w>W
 nn <expr><silent> cot ':<c-u>set tabstop='.v:count1.'<cr>'
-
-" Custom plugins
-" ranger
+" }}}1
+" Custom plugins {{{1
+" ranger {{{2
 " nn <expr> <leader>y :term ranger --chosefile
 " fun customRanger()
 " 	let l:files = 
 " endfun
-" HexMode from vimwiki
+" HexMode from vimwiki {{{2
 nn <silent> <F10> :Hexmode<CR>
 ino <silent> <F10> <Esc>:Hexmode<CR>
 vn <silent> <F10> :<C-U>Hexmode<CR>
@@ -230,7 +225,7 @@ function ToggleHex()
 	let &l:modifiable = l:oldmodifiable
 endfunction
 
-" " custom start page
+" " custom start page {{{2
 " fun! Start()
 "	 " Don't run if: we have commandline arguments, we don't have an empty buffer, if we've not invoked as vim or gvim, or if we'e start ino insert mode
 "	 if argc() || line2byte('$') != -1 || v:progname !~? '^[-gmnq]\=vim\=x\=\%[\.exe]$' || &insertmode
@@ -255,7 +250,7 @@ endfunction
 
 " " Run after doing all the startup stuff
 " autocmd VimEnter * call Start()
-" " alternate start page
+" " alternate start page {{{2
 " fun! Start()
 " 	enew
 " 	setlocal bufhidden=wipe buftype=nofile nobuflisted nocursorcolumn nocursorline nolist nonumber noswapfile norelativenumber
@@ -263,10 +258,10 @@ endfunction
 " 	nn i :enew<cr>
 " endfun
 " au BufNewFile * call Start()
-
-" useful commands
+" }}}1
+" useful commands {{{1
 " :w !diff % - " to view diff with the original file
-" .nvimrc
+" .nvimrc {{{1
 if has('nvim')
 	set inccommand=split
 	augroup LuaHighlight
@@ -275,11 +270,11 @@ if has('nvim')
 	augroup END
 endif
 
-" plugins
+" plugins {{{1
 " if empty(glob("${XDG_DATA_HOME-$HOME/.local/share}/nvim/site/autoload"))
 try
 	" throw 'no'
-	" plugin calls
+	" plugin calls {{{2
 	call plug#begin()
 	Plug 'itchyny/lightline.vim'
 	Plug 'tpope/vim-commentary'
@@ -304,7 +299,7 @@ try
 	Plug 'morhetz/gruvbox'
 	call plug#end()
 
-	" plugin config
+	" plugin config {{{2
 	" settings/variables
 	let g:lightline#bufferline#enable_nerdfont = 1
 	let g:lightline#bufferline#show_number = 2
@@ -364,6 +359,7 @@ try
 		" \ 'subseparator': { 'left': '\ue0b9', 'right': '\ue0b9' }
 		" \ 'tabline_separator': { 'left': '\ue0bc', 'right': '\ue0ba' }
 		" \ 'tabline_subseparator': { 'left': '\ue0bb', 'right': '\ue0bb' }
+	" }}}2
 catch /^no/
 	echo "alskdjalksdjlkasjdlkajsdlk"
 catch //

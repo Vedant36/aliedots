@@ -4,8 +4,9 @@ mkdir archdots
 rename aliedots
 touch .gitignore
 shell dot add
+shell dot add %s
 do
-shell git clone https://github.com/Vedant36/aliedots
+mkdir 
 shell git clone --seperate-git-dir=aliedots https://github.com/Vedant36/aliedots temp/
 shell    git clone --separate-git-dir=~/Documents/aliedots https://github.com/Vedant36/aliedots temp
 shell    git clone https://github.com/Vedant36/aliedots
@@ -18,7 +19,6 @@ shell x
 shell git clone https://github.com/Vedant36/dotfiles
 filter lin
 filter _
-bulkrename 
 filter 
 mkdir tmp
 mkdir public
@@ -38,13 +38,13 @@ open_with sh
 mkdir asd
 trash
 find qu
-open_with 
-mkdir 
-shell nvim README.md
-shell nvim 
-shell diff %s | nvim
-shell nvim dot
-shell dot add %s
-shell sed 's#Music/#melum/#' %s
-shell sed -i 's#Music/#melum/#' %s
+shell git clone https://github.com/Vedant36/aliedots
+shell dot rm %s
+shell dot rm -f %s
+shell dot rm --cached %s
+find tra
+mkdir The GodFather
+mkdir Criminal Minds
+mkdir Horror
 delete
+bulkrename 
