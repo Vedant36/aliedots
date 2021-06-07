@@ -119,5 +119,9 @@
     <location>file:///home/vedant36/melum/Lord%20Huron%20-%20The%20Night%20We%20Met.mp3</location>
     <location>file:///home/vedant36/melum/Five%20Feet%20Apart%20-%20Don't%20Give%20Up%20On%20Me.mp3</location>
   </playlist>
-  <playlist name="Play Queue" show-browser="false" browser-position="180" search-type="search-match" type="queue"/>
+  <playlist name="Play Queue (3)" show-browser="false" browser-position="180" search-type="search-match" type="queue">
+    <location>file:///home/vedant36/melum/SHY%20Martin%20-%20Feelings.mp3</location>
+    <location>file:///home/vedant36/melum/Ellise%20-%20Feeling%20Something%20Bad....mp3</location>
+    <location>file:///home/vedant36/melum/Jessie%20Murph%20-%20Look%20Who's%20Cryin'%20Now.mp3</location>
+  </playlist>
 </rhythmdb-playlists>

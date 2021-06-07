@@ -1,6 +1,3 @@
-shell tar xf %s
-open_with 
-open_with 1
 shell gpg 
 shell `
 open_with nvim
@@ -22,7 +19,6 @@ shell git clone https://github.com/Vedant36/aliedots
 shell git clone --seperate-git-dir=aliedots https://github.com/Vedant36/aliedots temp/
 shell    git clone --separate-git-dir=~/Documents/aliedots https://github.com/Vedant36/aliedots temp
 shell    git clone https://github.com/Vedant36/aliedots
-open_with sh
 set preview_images false
 shell 
 shell git add .config/zsh/.zsh*
@@ -46,5 +42,9 @@ rename vids
 filter bad guy
 rename playlists.xml
 rename rhythmdb.xml
+rename wallpapers
+find 3125
 delete
-mkdir minecraft
+open_with sh
+mkdir asd
+trash

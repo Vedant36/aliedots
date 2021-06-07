@@ -3,8 +3,8 @@
 21 xfce-keyboard-settings.desktop
 19 minecraft.desktop
 15 rxvt-unicode.desktop
+10 thunar.desktop
 9 xfce-wm-settings.desktop
-9 thunar.desktop
 8 xfce-mouse-settings.desktop
 7 pavucontrol.desktop
 6 brave-browser.desktop
@@ -13,13 +13,13 @@
 3 xfce-session-settings.desktop
 3 transmission-gtk.desktop
 3 xfce-settings-manager.desktop
+3 timeshift-gtk.desktop
+3 xfce4-appfinder.desktop
 2 spotify.desktop
 2 start-tor-browser.desktop
 1 kitty.desktop
 1 panel-preferences.desktop
 1 xfce4-notifyd-config.desktop
 1 xsensors.desktop
-0 timeshift-gtk.desktop
 0 mintsources.desktop
 0 mpv.desktop
-0 stopwatch.desktop
