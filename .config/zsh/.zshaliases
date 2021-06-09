@@ -8,7 +8,7 @@ alias bat=batcat # debian specific
 # alias dot='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
 alias gh='git add . && git commit -a && git push'
 alias dh='dot commit -a && dot push'
-l() { ls -alpshF $@ | ccze -A; }
+alias l='ls -alpshF'
 la() { ls -A $@ | ccze -A; }
 alias p='ipython --autocall=2'
 alias path='echo $PATH | tr -s ":" "\n"'

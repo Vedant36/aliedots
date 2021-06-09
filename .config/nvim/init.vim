@@ -67,6 +67,7 @@ augroup custom_filetype
 	au filetype markdown nn zq :vimgrep /^#\+ .*.*/ %<Left><Left><Left><Left><Left>
 	au filetype markdown setlocal commentstring=<!--\ %s\ -->
 	au filetype netrw setl bufhidden=wipe
+	au filetype netrw nno l <cr> | nno h -
 	au filetype python setl noet ts=4
 	au filetype upstart setlocal commentstring=#\ %s
 	au filetype vim nn <leader>1 oPlug ''<esc>h
@@ -106,8 +107,10 @@ ino <silent> <F6> <C-O>:set invspell<cr>
 nn <silent> <F7> :!./'%'<cr>
 nn <silent><F9> :bufdo e!<cr>
 " inoremaps {{{2
-imap jk <esc>
-imap kj <esc>
+ino jk <esc>
+ino kj <esc>
+ino <c-f> <c-x><c-f>
+ino <m-tab> <c-f>
 ino <m-b> <C-Left>
 ino <m-f> <C-Right>
 " buffer/tab switching {{{2
@@ -273,7 +276,6 @@ endif
 " plugins {{{1
 " if empty(glob("${XDG_DATA_HOME-$HOME/.local/share}/nvim/site/autoload"))
 try
-	" throw 'no'
 	" plugin calls {{{2
 	call plug#begin()
 	Plug 'itchyny/lightline.vim'
@@ -298,73 +300,68 @@ try
 	Plug 'ghifarit53/tokyonight-vim'
 	Plug 'morhetz/gruvbox'
 	call plug#end()
-
-	" plugin config {{{2
-	" settings/variables
-	let g:lightline#bufferline#enable_nerdfont = 1
-	let g:lightline#bufferline#show_number = 2
-	" let g:lightline#bufferline#unicode_symbols = 1
-	let g:lightline#bufferline#min_buffer_count = 2
-
-	let g:bufferline_rotate = 2
-
-	let g:vim_markdown_folding_style_pythonic = 1
-	let g:markdown_fenced_languages = [ 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'js=javascript', 'ts=typescript', 'py=python' ]
-
-	let g:tokyonight_style = 'storm' " available: night, storm
-	let g:tokyonight_enable_italic = 1
-	let g:tokyonight_transparent_background = 1
-	let g:palenight_terminal_italics=1
-	let g:gruvbox_italic = 1
-	let g:material_terminal_italics = 1
-	let g:material_theme_style = 'darker' " default, palenight, ocean, lighter, and darker
-	" let g:material_style = 'moonlight'
-	colorscheme palenight
-	au BufEnter * silent! lcd %:p:h " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file that works with plugins
-	" keybinds
-	nn <c-p> :Files<cr>
-	nmap <leader>i <Plug>CommentaryLine
-	nmap <leader>u <Plug>Commentary<Plug>Commentary
-	vmap <leader>i <Plug>Commentary
-	" lightline config
-	let g:lightline = {
-		\ 'colorscheme': 'palenight',
-		\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-		\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
-		\ 'active': {
-		\ 	 'left': [ [ 'mode', 'paste' ], [ 'filename', 'modified' ] ],
-		\ 	 'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'charvaluehex', 'filetype', 'linecount', 'fileinfo' ] ]
-		\ },
-		\ 'inactive': {
-		\ 	 'left': [ [ 'filename' , 'modified', 'fileformat' ]],
-		\ 	 'right': [ [ 'lineinfo' ] ]
-		\ },
-		\ 'component': {
-		\ 	 'charvaluehex': '%b 0x%B',
-		\ 	 'fileinfo': '%{&ff}[%{&fenc!=#""?&fenc:&enc}]',
-		\ 	 'linecount': '%L'
-		\ },
-		\ 'tabline': {
-		\   'left': [ ['buffers'] ],
-		\   'right': [ ['close'] ]
-		\ },
-		\ 'component_expand': {
-		\   'buffers': 'lightline#bufferline#buffers'
-		\ },
-		\ 'component_type': {
-		\   'buffers': 'tabsel'
-		\ }
-		\ }
-		" \ 'separator': { 'left': '\ue0b8', 'right': '\ue0be' }
-		" \ 'subseparator': { 'left': '\ue0b9', 'right': '\ue0b9' }
-		" \ 'tabline_separator': { 'left': '\ue0bc', 'right': '\ue0ba' }
-		" \ 'tabline_subseparator': { 'left': '\ue0bb', 'right': '\ue0bb' }
 	" }}}2
-catch /^no/
-	echo "alskdjalksdjlkasjdlkajsdlk"
 catch //
-	!sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
-		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-	PlugInstall
+	" !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	" PlugInstall
 endtry
+" plugin config 
+" settings/variables {{{2
+let g:lightline#bufferline#enable_nerdfont = 1
+let g:lightline#bufferline#show_number = 2
+" let g:lightline#bufferline#unicode_symbols = 1
+let g:lightline#bufferline#min_buffer_count = 2
 
+let g:bufferline_rotate = 2
+
+let g:vim_markdown_folding_style_pythonic = 1
+let g:markdown_fenced_languages = [ 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'js=javascript', 'ts=typescript', 'py=python' ]
+
+let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_enable_italic = 1
+let g:tokyonight_transparent_background = 1
+let g:palenight_terminal_italics=1
+let g:gruvbox_italic = 1
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'darker' " default, palenight, ocean, lighter, and darker
+" let g:material_style = 'moonlight'
+colorscheme palenight
+au BufEnter * silent! lcd %:p:h " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file that works with plugins
+" keybinds {{{2
+nn <c-p> :Files<cr>
+nmap <leader>i <Plug>CommentaryLine
+nmap <leader>u <Plug>Commentary<Plug>Commentary
+vmap <leader>i <Plug>Commentary
+" lightline config {{{2
+let g:lightline = {
+	\ 'colorscheme': 'palenight',
+	\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+	\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+	\ 'active': {
+	\ 	 'left': [ [ 'mode', 'paste' ], [ 'filename', 'modified' ] ],
+	\ 	 'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'charvaluehex', 'filetype', 'linecount', 'fileinfo' ] ]
+	\ },
+	\ 'inactive': {
+	\ 	 'left': [ [ 'filename' , 'modified', 'fileformat' ]],
+	\ 	 'right': [ [ 'lineinfo' ] ]
+	\ },
+	\ 'component': {
+	\ 	 'charvaluehex': '%b 0x%B',
+	\ 	 'fileinfo': '%{&ff}[%{&fenc!=#""?&fenc:&enc}]',
+	\ 	 'linecount': '%L'
+	\ },
+	\ 'tabline': {
+	\   'left': [ ['buffers'] ],
+	\   'right': [ ['close'] ]
+	\ },
+	\ 'component_expand': {
+	\   'buffers': 'lightline#bufferline#buffers'
+	\ },
+	\ 'component_type': {
+	\   'buffers': 'tabsel'
+	\ }
+	\ }
+	" \ 'separator': { 'left': '\ue0b8', 'right': '\ue0be' }
+	" \ 'subseparator': { 'left': '\ue0b9', 'right': '\ue0b9' }
+	" \ 'tabline_separator': { 'left': '\ue0bc', 'right': '\ue0ba' }
+	" \ 'tabline_subseparator': { 'left': '\ue0bb', 'right': '\ue0bb' }

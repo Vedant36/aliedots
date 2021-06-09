@@ -1,12 +1,15 @@
 # Documentation:
 #   qute://help/configuring.html
 #   qute://help/settings.html
+config.load_autoconfig(False)
 
 c.backend = 'webengine'
 
 c.auto_save.session = True
 
-c.colors.webpage.bg = 'black'
+c.colors.webpage.bg = 'grey'
+c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
+c.colors.webpage.darkmode.enabled = True
 
 c.content.autoplay = False
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
@@ -23,6 +26,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 c.content.private_browsing = False
 c.content.user_stylesheets = ['~/.local/share/qutebrowser/fix-tooltips.qss']
 c.content.cookies.accept = 'no-3rdparty'
+c.content.notifications.enabled = False
 
 c.downloads.location.suggestion = 'both'
 c.downloads.remove_finished = 0
@@ -35,11 +39,10 @@ c.fonts.default_family = 'Futura'
 c.scrolling.bar = 'when-searching'
 c.scrolling.smooth = True
 
-c.statusbar.hide = False
-
 c.tabs.background = True
 c.tabs.show = 'multiple'
 c.tabs.show_switching_delay = 500
+c.window.transparent = True
 
 c.window.hide_decoration = True
 
@@ -58,10 +61,11 @@ c.bindings.commands = {
 			"!" : "set-cmd-text :open !",
 			",M": "hint links spawn mpv {hint-url}",
 			",m": "spawn mpv {url}",
-			",s": "config-cycle statusbar.hide",
+			",s": "config-cycle statusbar.show always never",
 			",t": "config-cycle tabs.show multiple switching",
 			"ef": "fake-key f",
 			"ei": "fake-key i",
+			"ys": "set-cmd-text -s :jseval document.getElementsByTagName('video')[0].playbackRate =",
 			"<tab>": "tab-next",
 			"<shift-tab>": "tab-prev",
 		}

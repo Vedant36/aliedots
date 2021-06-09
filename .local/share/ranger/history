@@ -1,50 +1,50 @@
-shell dot add
-shell dot add %s
-do
-mkdir 
-shell git clone --seperate-git-dir=aliedots https://github.com/Vedant36/aliedots temp/
-shell    git clone --separate-git-dir=~/Documents/aliedots https://github.com/Vedant36/aliedots temp
-shell    git clone https://github.com/Vedant36/aliedots
-set preview_images false
-shell 
-shell git add .config/zsh/.zsh*
-shell git add ../../.config/zsh/.zsh*
-shell nvim .gitignore
-shell x
-filter lin
-filter _
-filter 
-mkdir tmp
-mkdir public
-mkdir templates
-mkdir desktop
-rename dox
-rename dl
-rename melum
-rename pix
-rename vids
-filter bad guy
-rename playlists.xml
-rename rhythmdb.xml
-rename wallpapers
-find 3125
-open_with sh
-mkdir asd
-trash
-find qu
-shell git clone https://github.com/Vedant36/aliedots
-shell dot rm %s
-shell dot rm -f %s
-find tra
-mkdir The GodFather
-mkdir Criminal Minds
-mkdir Horror
-bulkrename 
-shell dot rm --cached %s
-shell dot rm --cached -rf %s
-shell r rm -rf %s
-open_with r rm -rf
-open_with r 
-rename dotfiles_
 shell git clone https://github.com/Vedant36/dotfiles
+mkdir dox
+shell git clone https://github.com/Vedant36/textfiles
+shell git clone https://github.com/Vedant36/scripts bin
+mkdir plugins
+mkdir opt
+shell git clone https://git.suckless.org/dwm
+shell git clone https://git.suckless.org/dmenu
+find fz
+shell cp /etc/xdg/reflector/ .
+shell cp -r /etc/xdg/reflector/ .
+shell dot add %s
+mkdir q
+mkdir melum
+mkdir pix
+mkdir dl
+mkdir vids
+mkdir var
+mkdir log
+rename cache
+shell git clone gl:CPlus
+shell git init --bare --git-dir asd
+shell git init --bare --seperate-git-dir asd
+shell git init --bare --separate-git-dir asd
+shell git init --bare
+rename archbtw.png
+filter pass
+mkdir udev
+mkdir rules
+shell cp /etc/udev/rules.d/* .
+rename rules.d
+rename .pkisjdakjsd
+mkdir tmp
+mkdir desktop
+mkdir templates
+mkdir public
+linemode 
+linemode sizemtime
+
+mkdir patches
+shell sudo make clean install
+rename config.h
+shell cp /etc/pacman.conf .
+shell 
+find udev
+find ude
 delete
+mkdir lib
+mkdir vn36/wrappers
+rename aliedots

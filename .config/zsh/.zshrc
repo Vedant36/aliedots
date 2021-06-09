@@ -28,32 +28,35 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# # Change cursor shape for different vi modes. {{{2
-# function zle-keymap-select {
-#   if [[ ${KEYMAP} == vicmd ]] ||
-#      [[ $1 = 'block' ]]; then
-#     echo -ne '\e[1 q'
-#   elif [[ ${KEYMAP} == main ]] ||
-#        [[ ${KEYMAP} == viins ]] ||
-#        [[ ${KEYMAP} = '' ]] ||
-#        [[ $1 = 'beam' ]]; then
-#     echo -ne '\e[5 q'
-#   fi
-# }
-# zle -N zle-keymap-select
-# zle-line-init() {
-#     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-#     echo -ne "\e[5 q"
-# }
-# zle -N zle-line-init
-# echo -ne '\e[5 q' # Use beam shape cursor on startup.
+# Change cursor shape for different vi modes. {{{2
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
 # Edit line in vim with ctrl-e: {{{2
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # keybinds {{{1
-bindkey '^[OA' up-line-or-search
-bindkey '^[OB' down-line-or-search
+bindkey '^[[3~' delete-char
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
 bindkey '^[^M' self-insert-unmeta # to insert a new line without executing command
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
@@ -83,8 +86,8 @@ setopt hist_no_store
 . ${ZDOTDIR-~}/.zshaliases
 . ${ZDOTDIR-~}/.zshfunctions
 . /etc/zsh_command_not_found
-. /usr/share/doc/fzf/examples/key-bindings.zsh
-. /usr/share/doc/fzf/examples/completion.zsh
+. /usr/share/fzf/key-bindings.zsh
+. /usr/share/fzf/completion.zsh
 export ZSH_PLUGINS=${ZDOTDIR-~}/plugins
 # url: https://github.com/zsh-users/zsh-autosuggestions
 . $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -112,7 +115,7 @@ typeset -U PATH             # remove duplicate paths
 # dir="%K{blue} %F{black}%(4~|…/%3~|%~) %f%k%F{blue}%f "
 preexec() {
   ini=$(($(date +%s%0N)/1000000))
-  # echo -ne '\e[5 q'
+  echo -ne '\e[5 q'
 }
 
 precmd() {
@@ -129,8 +132,8 @@ precmd() {
   # export RPROMPT="%(?..%F{red}[%?]%f)%F{cyan}"$total"%f"
   # export RPROMPT="%(?..%F{red}[%?]%f) %F{magenta}%(4~|…/%3~|%~)%f %F{cyan}"$total"%f"
 }
-[[ $SHLVL -gt 2 ]] && shlvl=$(printf "%.s*" {3..$SHLVL}) # shows the recursion level of the shell
-export PROMPT=" %F{green}$shlvl%f%F{magenta}%~%f%F{blue}>%f "
+[[ $SHLVL -gt 3 ]] && shlvl=$(printf "%.s*" {4..$SHLVL}) # shows the recursion level of the shell
+export PROMPT=" %F{green}$shlvl%f%F{magenta}%~%f %F{blue}>%f "
 # echo -e "\033[0;32m$(fortune -a | sed 's/^/\t/')\033[0m"
 
 # # from :2,7 {{{1

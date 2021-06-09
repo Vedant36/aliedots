@@ -18,14 +18,16 @@ unset f
 
 # custom config
 # basic stuff
-set r rate 250 200
+xset r rate 200 200
+xset m 4 0
 setxkbmap -option "ctrl:nocaps"
 xsetroot -cursor_name left_ptr
-type unclutter>/dev/null && unclutter -idle 1 -root -jitter 40
+# type unclutter>/dev/null && unclutter -idle 1 -root -jitter 40
 
 # startup programs
-artha &
-#feh --no-fehbg --bg-scale "$HOME/dl/pexels-carlos-oliva-3586966.jpg"
-#picom -f &
-#exec dwm
+#artha &
+feh --no-fehbg --bg-scale "$HOME/pix/ddwstdk-7fba4c5a-6ba8-47c0-a5c6-ba0cc2cd0e75.jpg"
+picom -f &
+while true;do;xsetroot -name "$(acpi -b | grep -Po '[0-9]+(?=%)')% | $(date)" && sleep 1;done &
+exec dwm
 

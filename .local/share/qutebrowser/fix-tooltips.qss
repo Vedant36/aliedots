@@ -1,3 +1,4 @@
+/* https://wiki.archlinux.org/title/Qutebrowser#Unreadable_tooltips */
 QToolTip {
 	background-color: palette(highlight);
 	border: 2px solid palette(highlight);
