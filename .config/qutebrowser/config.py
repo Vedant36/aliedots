@@ -39,6 +39,8 @@ c.fonts.default_family = 'Futura'
 c.scrolling.bar = 'when-searching'
 c.scrolling.smooth = True
 
+c.session.lazy_restore = True
+
 c.tabs.background = True
 c.tabs.show = 'multiple'
 c.tabs.show_switching_delay = 500

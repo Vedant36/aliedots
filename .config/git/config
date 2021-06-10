@@ -11,7 +11,7 @@
 	insteadOf = "gh:"
 [url "https://github.com/Vedant36/"]
 	insteadOf = "gl:"
-[url "https://git.suckless.com/"]
+[url "https://git.suckless.org/"]
 	insteadOf = "sl:"
 [url "https://aur.archlinux.org/"]
 	  insteadOf = "aur:"

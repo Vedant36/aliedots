@@ -85,7 +85,6 @@ setopt hist_no_store
 # sourcings(7) fastest to slowest {{{1
 . ${ZDOTDIR-~}/.zshaliases
 . ${ZDOTDIR-~}/.zshfunctions
-. /etc/zsh_command_not_found
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
 export ZSH_PLUGINS=${ZDOTDIR-~}/plugins
@@ -133,7 +132,7 @@ precmd() {
   # export RPROMPT="%(?..%F{red}[%?]%f) %F{magenta}%(4~|…/%3~|%~)%f %F{cyan}"$total"%f"
 }
 [[ $SHLVL -gt 3 ]] && shlvl=$(printf "%.s*" {4..$SHLVL}) # shows the recursion level of the shell
-export PROMPT=" %F{green}$shlvl%f%F{magenta}%~%f %F{blue}>%f "
+export PROMPT=" %F{green}$shlvl%f%F{magenta}%~%f%F{blue}>%f "
 # echo -e "\033[0;32m$(fortune -a | sed 's/^/\t/')\033[0m"
 
 # # from :2,7 {{{1

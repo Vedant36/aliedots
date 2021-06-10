@@ -1,3 +1,4 @@
+rename dotfiles_
 shell git clone https://github.com/Vedant36/dotfiles
 mkdir dox
 shell git clone https://github.com/Vedant36/textfiles
@@ -37,14 +38,30 @@ mkdir public
 linemode 
 linemode sizemtime
 
-mkdir patches
-shell sudo make clean install
-rename config.h
 shell cp /etc/pacman.conf .
 shell 
 find udev
 find ude
+find xd
+mkdir xdg/reflector/
+shell git diff
+shell unexpand -t4
+shell unexpand -t4 %s
+rename x2j
+open_with sh
+find q
+mkdir patches
+rename config.h
+rename slock_
+shell git clone sl:slock
+rename slock
+find x1
+mkdir X11
+mkdir xorg.conf.d
+mkdir 20-amdgpu.conf
+shell nvim 
+cp /etc/X11/xorg.conf.d/* .
+shell cp /etc/X11/xorg.conf.d/* .
+shell sudo make clean install
 delete
-mkdir lib
-mkdir vn36/wrappers
-rename aliedots
+shell dot diff

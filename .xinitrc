@@ -28,6 +28,9 @@ xsetroot -cursor_name left_ptr
 #artha &
 feh --no-fehbg --bg-scale "$HOME/pix/ddwstdk-7fba4c5a-6ba8-47c0-a5c6-ba0cc2cd0e75.jpg"
 picom -f &
-while true;do;xsetroot -name "$(acpi -b | grep -Po '[0-9]+(?=%)')% | $(date)" && sleep 1;done &
+while true;do
+	xsetroot -name "$(acpi -b | grep -Po '[0-9]+(?=%)')% | $(date '+%a %F %H:%M')"
+	sleep 1m
+done &
 exec dwm
 

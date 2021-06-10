@@ -25,17 +25,9 @@ es(){(
 	rm -rf $SE
 )}
 # package manager wrappers {{{1
-pkgsize(){for i in $@;do;echo $i: $(($(apt-cache --no-all-versions show $i|grep -Po '(?<=^Size: ).*([0-9]+)')/1024.))kb;done;}
-# Better script for apt installer wrapper
-aw() {
-	pak=$(apt list 2>/dev/null | sed 1d | fzf --preview "apt show \$(echo {} |  cut -d/ -f1) 2>/dev/null" --height 100%)
-	# add functionality to run in background
-	[ -z "$pak" ] || sudo apt install -y --fix-missing `echo $pak | cut -d/ -f1 | tr '\n' ' '`
-}
-ax() {
-	pak=$(apt list --installed 2>/dev/null | sed 1d | fzf --preview "apt show \$(echo {} |  cut -d/ -f1) 2>/dev/null" --height 100%)
-	[ -z "$pak" ] || ( sudo apt purge -y `echo $pak | cut -d/ -f1 | tr '\n' ' '` && \
-		echo -n "want to autoremove?" && read -qs && sudo apt autoremove -y )
+px() {
+	pak=$($PM -Qn | fzf -n1 --preview "$PM -Qi {1}" --height 100%)
+	[ "$pak" ] && $PM -Rns ${pak% *}
 }
 # extract directory {{{1
 exdir(){

@@ -8,7 +8,7 @@ set path+=**
 " set mouse=a
 set autoread
 set nomodeline modelines=0
-set tabstop=4 softtabstop=4 shiftwidth=4 autoindent nojoinspaces
+set tabstop=4 softtabstop=4 shiftwidth=4 noautoindent nojoinspaces
 set colorcolumn=
 set list " lcs=tab:❯\ ,trail:-,nbsp:+
 set listchars=tab:→\ ,eol:\ ,trail:·
@@ -57,6 +57,7 @@ au bufwritepost ~/.Xresources silent !xrdb ~/.Xresources
 " au TextChanged,TextChangedI <buffer> silent write
 augroup custom_filetype
 	au!
+	au filetype diff set noreadonly | setl readonly
 	au filetype help nn <buffer><silent> q :bd<cr>
 	au filetype man nn <buffer><silent> ]] :call search('^\S')<cr>
 	au filetype man nn <buffer><silent> [[ :call search('^\S','b')<cr>
@@ -104,7 +105,7 @@ nn <silent> <F5> :w!<cr>
 ino <silent> <F5> <esc>:w!<cr>gi
 nn <silent> <F6> :set invspell<cr>
 ino <silent> <F6> <C-O>:set invspell<cr>
-nn <silent> <F7> :!./'%'<cr>
+nn <silent> <F7> :!./%:S<cr>
 nn <silent><F9> :bufdo e!<cr>
 " inoremaps {{{2
 ino jk <esc>

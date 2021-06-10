@@ -4,6 +4,8 @@ export skip_global_compinit=1
 export PATH="$HOME/anaconda3/bin:$PATH:$HOME/.local/bin"
 export REPOS="$HOME/dox/{textfiles,CPlus,Python,dotfiles,datasets}"
 export BROWSER="qutebrowser"
+export PM=yay # package manager
+alias dot='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
 
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -11,7 +13,7 @@ export VISUAL="nvim"
 # export PAGER="nvim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
 #     -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
 #     -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -"
-export PAGER="nvim -c -"
+export PAGER="nvim -"
 export MANPAGER="nvim -c 'set ft=man' -"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
@@ -23,10 +25,11 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
 # ~ Cleanup {{{1
+export PYTHONSTARTUP=$HOME/.local/bin/startup.py
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 export HISTFILE=$XDG_DATA_HOME/zsh/.zsh_history
 export LESSHISTFILE=$XDG_DATA_HOME/lesshst
-export ELINKS_CONFDIR=$XDG_CONFIG_HOME/elinks
+# export ELINKS_CONFDIR=$XDG_CONFIG_HOME/elinks
 export __GL_SHADER_DISK_CACHE_PATH=$XDG_CONFIG_HOME/nv
 export IPYTHONDIR=$XDG_CONFIG_HOME/ipython
 # fzf {{{1
