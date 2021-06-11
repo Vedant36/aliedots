@@ -22,18 +22,20 @@ export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 # XDG HOME dirs {{{1
 export XDG_CONFIG_HOME=$HOME/.config
-export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
 # ~ Cleanup {{{1
 export PYTHONSTARTUP=$HOME/.local/bin/startup.py
 # export IPYTHONDIR=$XDG_CONFIG_HOME/ipython
 export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgreprc
+export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv
+[[ ! -d $XDG_CACHE_HOME/nv ]] && mkdir $XDG_CACHE_HOME/nv
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 [[ ! -d $XDG_DATA_HOME/gnupg ]] && mkdir -m700 $XDG_DATA_HOME/gnupg 
 export HISTFILE=$XDG_DATA_HOME/zsh/.zsh_history
 export LESSHISTFILE=$XDG_DATA_HOME/lesshst
-export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv
-[[ ! -d $XDG_CACHE_HOME/nv ]] && mkdir $XDG_CACHE_HOME/nv
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 # fzf {{{1
 export FZF_{DEFAULT,CTRL_T}_COMMAND='find . -path "*/.git" -prune -o -path "*/.cache" -prune -o -print 2>/dev/null | sed 1d'
 export FZF_ALT_C_COMMAND='find . -type d -a \( -path "*/.git" -prune -o -path "*/.cache" -prune -o -print \) 2>/dev/null | sed 1d'

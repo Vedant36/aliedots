@@ -1,0 +1,3 @@
+*/10 * * * * /home/vn36/.local/bin/bat_alert.sh
+*/20 * * * * /home/vn36/.local/bin/bat_log.sh
+

@@ -66,10 +66,11 @@ c.bindings.commands = {
 	"normal": {
 		"ef": "fake-key f",
 		"ei": "fake-key i",
+		"et": "edit-text",
 		"H" : "fake-key <left>",
 		"h" : "tab-prev",
 		"J" : "back",
-		# ",j": "config-cycle content.javascript.enabled",
+		# ",j": "config-cycle content.javascript.enabled", # tsh
 		"K" : "forward",
 		"L" : "fake-key <right>",
 		"l" : "tab-next",

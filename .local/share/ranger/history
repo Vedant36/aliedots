@@ -38,7 +38,6 @@ linemode
 linemode sizemtime
 
 shell cp /etc/pacman.conf .
-shell 
 find udev
 find ude
 find xd
@@ -47,6 +46,7 @@ shell git diff
 shell unexpand -t4
 shell unexpand -t4 %s
 rename x2j
+find q
 mkdir patches
 rename config.h
 rename slock_
@@ -71,12 +71,20 @@ find zs
 open_with 1
 shell %s
 shell ./%s
-open_with 
-shell sudo make clean install
 shell nvim ripgreprc
-shell dot add %s
 search 
 rename .zcompdump
-find q
+mkdir 
+touch private-config.py
+open_with 
+rename bright
+shell dot add %s
+shell 
+shell dot mv .local/etc/*
+shell dot mv .local/etc/* .config/root
 delete
-rename inputrc
+shell sudo make clean install
+shell sudo make -j12 clean install
+rename xinitrc
+rename .xinitrc
+shell dot mv .xinitrc .config/X11/xinitrc

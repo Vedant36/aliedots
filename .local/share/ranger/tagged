@@ -1,7 +1,9 @@
-A:/home/vn36/.Xresources
 A:/home/vn36/.cache/rofi-3.runcache
 A:/home/vn36/.cache/rofi3.druncache
 A:/home/vn36/.config/MediaHuman/YouTube to MP3.conf
+A:/home/vn36/.config/X11/Xresources
+A:/home/vn36/.config/X11/xinitrc
+A:/home/vn36/.config/X11/xserverrc
 A:/home/vn36/.config/artha.conf
 A:/home/vn36/.config/artha.log
 A:/home/vn36/.config/betterlockscreenrc
@@ -28,19 +30,22 @@ A:/home/vn36/.config/ranger/plugins/ranger_devicons/devicons.py
 A:/home/vn36/.config/ranger/rc.conf
 A:/home/vn36/.config/ranger/rifle.conf
 A:/home/vn36/.config/ripgreprc
+A:/home/vn36/.config/root/X11/xorg.conf.d/20-amdgpu.conf
+A:/home/vn36/.config/root/asound.conf
+A:/home/vn36/.config/root/cron.allow
+A:/home/vn36/.config/root/crontab
+A:/home/vn36/.config/root/default/grub
+A:/home/vn36/.config/root/pacman.conf
+A:/home/vn36/.config/root/sysctl.d
+A:/home/vn36/.config/root/tlp.conf
+A:/home/vn36/.config/root/udev/rules.d/backlight.rules
+A:/home/vn36/.config/root/xdg/reflector/reflector.conf
 A:/home/vn36/.config/user-dirs.dirs
 A:/home/vn36/.config/vn36.conf
 A:/home/vn36/.config/zsh/.zshaliases
 A:/home/vn36/.config/zsh/.zshenv
 A:/home/vn36/.config/zsh/.zshfunctions
 A:/home/vn36/.config/zsh/.zshrc
-A:/home/vn36/.local/etc/X11/xorg.conf.d/20-amdgpu.conf
-A:/home/vn36/.local/etc/asound.conf
-A:/home/vn36/.local/etc/default/grub
-A:/home/vn36/.local/etc/pacman.conf
-A:/home/vn36/.local/etc/tlp.conf
-A:/home/vn36/.local/etc/udev/rules.d/backlight.rules
-A:/home/vn36/.local/etc/xdg/reflector/reflector.conf
 A:/home/vn36/.local/share/qutebrowser/fix-tooltips.qss
 A:/home/vn36/.local/share/ranger/bookmarks
 A:/home/vn36/.local/share/ranger/history
@@ -48,6 +53,4 @@ A:/home/vn36/.local/share/ranger/tagged
 A:/home/vn36/.local/share/rhythmbox/playlists.xml
 A:/home/vn36/.local/share/rhythmbox/rhythmdb.xml
 A:/home/vn36/.local/share/zsh/.zsh_history
-A:/home/vn36/.xinitrc
 A:/home/vn36/.zshenv
-A:/home/vn36/.config/X11/Xresources

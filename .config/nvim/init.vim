@@ -59,7 +59,7 @@ au bufwritepost ~/.Xresources silent !xrdb ~/.Xresources
 " au TextChanged,TextChangedI <buffer> silent write
 augroup custom_filetype
 	au!
-	au filetype diff set noreadonly | setl readonly
+	au filetype diff set noreadonly | setl readonly foldmethod=manual
 	au filetype help nn <buffer><silent> q :bd<cr>
 	au filetype man nn <buffer><silent> ]] :call search('^\S')<cr>
 	au filetype man nn <buffer><silent> [[ :call search('^\S','b')<cr>

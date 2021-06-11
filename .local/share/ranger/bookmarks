@@ -1,7 +1,15 @@
-':/etc
-h:/media/vedant36/Seagate Expansion Drive/36Vedant
-c:/home/vedant36/.config
-z:/home/vedant36/.config/zsh
-m:/home/vedant36/.local/opt/TLauncher-2.75
-t:/home/vedant36/dox/dotfiles
-n:/home/vedant36/.config/nvim
+':/home/vn36/.local/share/ranger
+c:/home/vn36/.config
+n:/home/vn36/.config/nvim
+z:/home/vn36/.config/zsh
+k:/home/vn36/.config/kitty
+f:/home/vn36/.config/ranger
+q:/home/vn36/.config/qutebrowser
+d:/home/vn36/dox
+l:/home/vn36/dl
+p:/home/vn36/pix
+m:/home/vn36/melum
+v:/home/vn36/vids
+t:/home/vn36/.local/opt/TLauncher-2.75
+h:/media/vn36/Seagate Expansion Drive/36Vedant
+x:/home/vn36/.config/X11

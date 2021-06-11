@@ -11,6 +11,7 @@ alias dh='dot commit -a && dot push'
 alias l='ls -alpshF'
 la() { ls -A $@ | ccze -A; }
 # alias p='ipython --autocall=2'
+alias x='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1'
 alias y='python'
 alias path='echo $PATH | tr -s ":" "\n"'
 alias pn='ping 1.1.1.1'
@@ -36,7 +37,7 @@ alias -g T='| tr' # 36
 alias -g V='| nvim' # 114
 alias -g W='| wc -l' # 22
 alias -g WR='| wc' # 6
-alias -g X='| xargs' # 60
+alias -g X='| xargs' # 60 overrides /bin/X
 alias -g Y='| py -l' # 17
 alias -g Z='| tail'
 # xsel/xclip {{{1
