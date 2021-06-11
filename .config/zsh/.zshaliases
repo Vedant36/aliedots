@@ -47,7 +47,7 @@ alias xob='xsel -ob'
 # pacman aliases {{{1
 alias p='yay'
 # alias pl='apt list'
-alias ps='yay -Rcns'
+alias pp='yay -Rcns'
 # alias pq='apt search'
 alias pi='yay -Qi'
 # changing directory conveniences {{{1

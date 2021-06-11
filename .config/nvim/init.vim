@@ -7,9 +7,11 @@ set nocompatible
 set path+=**
 " set mouse=a
 set autoread
-set nomodeline modelines=0
+set modelines=1
 set tabstop=4 softtabstop=4 shiftwidth=4 noautoindent nojoinspaces
 set colorcolumn=
+set cursorline
+set scrolloff=5
 set list " lcs=tab:❯\ ,trail:-,nbsp:+
 set listchars=tab:→\ ,eol:\ ,trail:·
 set splitbelow splitright
@@ -21,7 +23,7 @@ set nrformats=alpha,bin,hex,octal
 set title lazyredraw noshowmode hidden
 set autochdir
 set numberwidth=4
-set grepprg=rg\ --color=never
+set grepprg=rg\ --vimgrep
 set fileformats=unix,dos,mac
 set showtabline=2
 set omnifunc=syntaxcomplete#Complete
@@ -64,14 +66,14 @@ augroup custom_filetype
 	au filetype man set nobuflisted
 	au filetype markdown nn j gj
 	au filetype markdown nn k gk
-	au filetype markdown nn <leader>1 A)<esc>I[](<esc>hi
+	au filetype markdown nn <buffer> <leader>1 A)<esc>I[](<esc>hi
 	au filetype markdown nn zq :vimgrep /^#\+ .*.*/ %<Left><Left><Left><Left><Left>
 	au filetype markdown setlocal commentstring=<!--\ %s\ -->
 	au filetype netrw setl bufhidden=wipe
 	au filetype netrw nno l <cr> | nno h -
 	au filetype python setl noet ts=4
 	au filetype upstart setlocal commentstring=#\ %s
-	au filetype vim nn <leader>1 oPlug ''<esc>h
+	au filetype vim nn <buffer> <leader>1 oPlug ''<esc>h
 	au filetype xdefaults setlocal commentstring=!\ %s
 augroup END
 

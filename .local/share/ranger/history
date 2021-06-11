@@ -10,7 +10,6 @@ shell git clone https://git.suckless.org/dmenu
 find fz
 shell cp /etc/xdg/reflector/ .
 shell cp -r /etc/xdg/reflector/ .
-shell dot add %s
 mkdir q
 mkdir melum
 mkdir pix
@@ -48,8 +47,6 @@ shell git diff
 shell unexpand -t4
 shell unexpand -t4 %s
 rename x2j
-open_with sh
-find q
 mkdir patches
 rename config.h
 rename slock_
@@ -62,6 +59,24 @@ mkdir 20-amdgpu.conf
 shell nvim 
 cp /etc/X11/xorg.conf.d/* .
 shell cp /etc/X11/xorg.conf.d/* .
-shell sudo make clean install
-delete
 shell dot diff
+rename .cache
+shell touch 
+shell nvim test
+shell git pull
+open_with sh
+open_with nvim
+find zsh
+find zs
+open_with 1
+shell %s
+shell ./%s
+open_with 
+shell sudo make clean install
+shell nvim ripgreprc
+shell dot add %s
+search 
+rename .zcompdump
+find q
+delete
+rename inputrc

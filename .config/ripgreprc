@@ -1,0 +1,6 @@
+-j12
+
+--glob
+!git/*
+
+--smart-case

@@ -17,7 +17,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 zmodload zsh/complist
 compinit -u
 _comp_options+=(globdots)
-autoload -U bashcompinit && bashcompinit # support bash completions
+autoload -U bashcompinit && bashcompinit # support bash-completions
 # vi mode {{{1
 bindkey -v
 export KEYTIMEOUT=1
