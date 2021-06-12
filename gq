@@ -1,23 +1,25 @@
 #!/bin/sh
-# script to inform of changes and untracked files in the local repos
-# the predefined variable repos is used if a directory is not given
+# script to inform of changes and untracked files in the local repos the
+# predefined variable repos is used if a directory is not given
 
 repos='
-/home/vedant36/.local/bin
-/home/vedant36/dox/CPlus
-/home/vedant36/dox/Python
-/home/vedant36/dox/textfiles'
+$HOME/.local/bin
+$HOME/dox/CPlus
+$HOME/dox/Python
+$HOME/dox/textfiles'
 
 main(){
 	all=1
 	[ "$1" ] && cd "$1" && repos=$(ls -A) && dir="$(pwd)/"
-	for i in $repos; do
-		[ -d "$dir$i/.git" ] && cd "$dir$i" && [ "$(git status -s | wc -l)" -gt 0 ] && \
-		echo "\033[0;35m$i\033[0m " && git status -sb 2>/dev/null &&  cd ../ && all=0
+	for i in `echo $repos | envsubst`; do
+		[ -d "$dir$i/.git" ] && cd "$dir$i" && \
+			[ `git status -s | wc -l` -gt 0 ] && \
+			echo -ne "\033[0;35m$i\033[0m " && \
+			git status -sb 2>/dev/null && cd ../ && all=0
 	done
-	[ -z "$1" ] && [ "$(git --git-dir="$HOME"/dox/aliedots --work-tree="$HOME" status -s | wc -l)" -gt 0 ] \
-		&& echo "\033[0;35m$HOME/dox/aliedots\033[0m " \
-		&& git --git-dir="$HOME/dox/aliedots" --work-tree="$HOME" status -sb 2>/dev/null && all=0
+	[ -z "$1" ] && [ `dot status -s | wc -l` -gt 0 ] && cd ~ && \
+		echo -ne "\033[0;35m$HOME/dox/aliedots\033[0m " && \
+		dot status -sb 2>/dev/null && all=0
 	return $all
 }
 main "$1" || echo "\033[0;32mAll repos are synced!\033[0m"

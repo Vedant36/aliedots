@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+BACKLIGHT="/sys/class/backlight/*"
+if [ -z $1 ]; then
+	echo "Argument Needed!"
+else
+	max_brightness=$(cat $BACKLIGHT/max_brightness)
+	bright=$(($1 * "$max_brightness" / 100))
+	if tee $BACKLIGHT/brightness 2>/dev/null<<<"$bright"; then
+		echo "Success!"
+	else
+		echo "Invalid Number!"
+	fi
+fi
