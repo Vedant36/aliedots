@@ -1,6 +1,3 @@
-rename dotfiles_
-shell git clone https://github.com/Vedant36/dotfiles
-mkdir dox
 shell git clone https://github.com/Vedant36/textfiles
 shell git clone https://github.com/Vedant36/scripts bin
 mkdir plugins
@@ -36,7 +33,6 @@ mkdir templates
 mkdir public
 linemode 
 linemode sizemtime
-
 shell cp /etc/pacman.conf .
 find udev
 find ude
@@ -47,8 +43,6 @@ shell unexpand -t4
 shell unexpand -t4 %s
 rename x2j
 find q
-mkdir patches
-rename config.h
 rename slock_
 shell git clone sl:slock
 rename slock
@@ -68,7 +62,6 @@ open_with sh
 open_with nvim
 find zsh
 find zs
-open_with 1
 shell %s
 shell ./%s
 shell nvim ripgreprc
@@ -76,15 +69,32 @@ search
 rename .zcompdump
 mkdir 
 touch private-config.py
-open_with 
 rename bright
-shell dot add %s
 shell 
 shell dot mv .local/etc/*
 shell dot mv .local/etc/* .config/root
-delete
 shell sudo make clean install
-shell sudo make -j12 clean install
 rename xinitrc
 rename .xinitrc
 shell dot mv .xinitrc .config/X11/xinitrc
+find 
+open_with 1
+open_with 2
+open_with feh --conversion-timeout 1
+open_with sudo 
+mkdir patches
+shell patch -p1 <../patches/st*
+open_with 
+shell sudo make -j12 clean install
+open_with vim
+b
+
+shell sudo rm %s
+rename config.h
+shell dot add %s
+mkdir git-shell-commands
+shell nvim add
+mkdir help
+delete
+shell nvim help
+shell nvim dot

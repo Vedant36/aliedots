@@ -31,7 +31,7 @@ c.content.notifications.enabled = False
 c.downloads.location.suggestion = 'both'
 c.downloads.remove_finished = 0
 
-c.editor.command = ['nvim', '-c', 'norm {line}G{column0}l', '{file}']
+c.editor.command = [ 'kitty', '-1', 'nvim', '-c', 'norm {line}G{column0}l', '{file}']
 
 c.fonts.web.size.default = 15
 c.fonts.default_family = 'Futura'
@@ -70,7 +70,6 @@ c.bindings.commands = {
 		"H" : "fake-key <left>",
 		"h" : "tab-prev",
 		"J" : "back",
-		# ",j": "config-cycle content.javascript.enabled", # tsh
 		"K" : "forward",
 		"L" : "fake-key <right>",
 		"l" : "tab-next",

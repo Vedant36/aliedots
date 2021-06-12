@@ -9,8 +9,7 @@ set path+=**
 set autoread
 set modelines=1
 set tabstop=4 softtabstop=4 shiftwidth=4 noautoindent nojoinspaces
-set colorcolumn=
-set cursorline
+set colorcolumn=80 cursorline
 set scrolloff=5
 set list " lcs=tab:❯\ ,trail:-,nbsp:+
 set listchars=tab:→\ ,eol:\ ,trail:·
@@ -56,6 +55,7 @@ au bufnewfile,bufread .zsh* setf zsh
 au termopen term://* setf terminal
 " au bufnewfile,bufread *man* setf man " doesn't work
 au bufwritepost ~/.Xresources silent !xrdb ~/.Xresources
+au bufnewfile,bufread config.h nn <F7> term sudo make -j12 clean install
 " au TextChanged,TextChangedI <buffer> silent write
 augroup custom_filetype
 	au!
@@ -173,7 +173,7 @@ nn N NzzNn
 nn zuj zjk
 vn zp zdgvzf
 
-nn ZA :wqa<cr>
+nn ZA :xa<cr>
 nn ZX :qa<cr>
 nn ZS :w !echo \| dmenu \| sudo -S tee %<cr>
 
@@ -328,7 +328,7 @@ let g:gruvbox_italic = 1
 let g:material_terminal_italics = 1
 let g:material_theme_style = 'darker' " default, palenight, ocean, lighter, and darker
 " let g:material_style = 'moonlight'
-colorscheme palenight
+colorscheme gruvbox
 au BufEnter * silent! lcd %:p:h " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file that works with plugins
 " keybinds {{{2
 nn <c-p> :Files<cr>
@@ -337,7 +337,7 @@ nmap <leader>u <Plug>Commentary<Plug>Commentary
 vmap <leader>i <Plug>Commentary
 " lightline config {{{2
 let g:lightline = {
-	\ 'colorscheme': 'palenight',
+	\ 'colorscheme': 'gruvbox',
 	\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
 	\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
 	\ 'active': {

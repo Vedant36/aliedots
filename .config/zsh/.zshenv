@@ -5,7 +5,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export REPOS="$HOME/dox/{textfiles,CPlus,Python,dotfiles,datasets}"
 export BROWSER="qutebrowser"
 export PM=yay # package manager
-alias dot='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
 
 export EDITOR="nvim"
 export VISUAL="nvim"

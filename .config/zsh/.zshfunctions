@@ -24,7 +24,7 @@ es(){(
 	tar c ${SE} | gpg -r "Vedant Neema" -e>${SE}.tar.gpg
 	rm -rf $SE
 )}
-# package manager wrappers {{{1
+# px: package manager wrapper(s) {{{1
 px() {
 	pak=$($PM -Qn | fzf -n1 --preview "$PM -Qi {1}" --height 100%)
 	[ "$pak" ] && $PM -Rns ${pak% *}

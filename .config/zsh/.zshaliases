@@ -4,18 +4,15 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 # imp {{{1
-alias bat=batcat # debian specific
 # alias dot='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
 alias gh='git add . && git commit -a && git push'
 alias dh='dot commit -a && dot push'
 alias l='ls -alpshF'
-la() { ls -A $@ | ccze -A; }
-# alias p='ipython --autocall=2'
-alias x='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1'
+alias v=nvim
+alias x='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1 2>~/.local/var/log/x.log'
 alias y='python'
 alias path='echo $PATH | tr -s ":" "\n"'
 alias pn='ping 1.1.1.1'
-alias v=nvim
 # Global {{{1
 alias -g noerr='2>/dev/null'
 alias -g A='| awk'
@@ -46,11 +43,10 @@ alias xop='xsel -op'
 alias xib='xsel -ib'
 alias xob='xsel -ob'
 # pacman aliases {{{1
-alias p='yay'
-# alias pl='apt list'
-alias pp='yay -Rcns'
-# alias pq='apt search'
-alias pi='yay -Qi'
+alias p=$PM
+alias pf='$PM -F'
+alias pp='$PM -Rcns'
+alias pi='$PM -Qi'
 # changing directory conveniences {{{1
 alias cb='cd ~/.local/bin'
 alias cv='cd ~/dox/dotfiles'
