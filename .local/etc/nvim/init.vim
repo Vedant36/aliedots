@@ -1,9 +1,10 @@
-" vim settings
-" .vimrc {{{1
+" Vedant36's [n]vimrc
+" .vimrc settings {{{1
 scriptencoding utf-8
 set encoding=utf-8
 set history=500
 set nocompatible
+set pastetoggle=<F10>
 set path+=**
 " set mouse=a
 set autoread
@@ -29,14 +30,14 @@ set omnifunc=syntaxcomplete#Complete
 set completeopt+=menuone
 set shortmess+=c " Shut off completion messages
 set noexpandtab noshiftround " to check if tab is better
-set foldmethod=marker
+set foldmethod=marker fillchars=fold:-
 if !($TERM == 'rxvt-unicode-256color')
 	set termguicolors
 endif
 " if has('termguicolors')
 " 	set termguicolors
 " endif
-let mapleader = "\<Space>"
+let mapleader = "\<space>"
 let maplocalleader = "\\"
 filetype on
 filetype plugin indent on
@@ -45,55 +46,27 @@ let $FZF_DEFAULT_COMMAND = 'find . -path "*/.git" -prune -o -path "*/.cache" -pr
 " global variables {{{1
 let g:netrw_banner=0
 " let g:netrw_list_hide=netrw_gitignore#Hide()
+let python_space_error_highlight = 1
 " abbreviates {{{1
 ab intlctl Vedant36 is not a intellectual
 ab coke cocain
-" autocmd {{{1
-au bufnewfile,bufread *.log* setf logtalk
-au bufnewfile,bufread *.conf* setf cfg
-au bufnewfile,bufread .zsh* setf zsh
-au termopen term://* setf terminal
-" au bufnewfile,bufread *man* setf man " doesn't work
-au bufwritepost ~/.Xresources silent !xrdb ~/.Xresources
-au bufnewfile,bufread config.h nn <F7> term sudo make -j12 clean install
-" au TextChanged,TextChangedI <buffer> silent write
-augroup custom_filetype
-	au!
-	au filetype diff set noreadonly | setl readonly foldmethod=manual
-	au filetype help nn <buffer><silent> q :bd<cr>
-	au filetype man nn <buffer><silent> ]] :call search('^\S')<cr>
-	au filetype man nn <buffer><silent> [[ :call search('^\S','b')<cr>
-	au filetype man set nobuflisted
-	au filetype markdown nn j gj
-	au filetype markdown nn k gk
-	au filetype markdown nn <buffer> <leader>1 A)<esc>I[](<esc>hi
-	au filetype markdown nn zq :vimgrep /^#\+ .*.*/ %<Left><Left><Left><Left><Left>
-	au filetype markdown setlocal commentstring=<!--\ %s\ -->
-	au filetype netrw setl bufhidden=wipe
-	au filetype netrw nno l <cr> | nno h -
-	au filetype python setl noet ts=4
-	au filetype upstart setlocal commentstring=#\ %s
-	au filetype vim nn <buffer> <leader>1 oPlug ''<esc>h
-	au filetype xdefaults setlocal commentstring=!\ %s
-augroup END
-
 " keybinds ∑ { n ∈ ▲ } 🅇(n) ○-> Ⓨ[n] ▢△◈ {{{1
 " uncategorized {{{2
 tno <c-a> <C-\><C-N>
 nn <leader>y "*yiw
 nn Y y$
+nn <space> za
+vn <space> zf
 "  leaderbinds {{{2
 nn <leader>a gg"*yG``
 nn <leader>e :echo<space>
 nn <leader>h :h<space>
-nn <leader>l $
 nn <leader><leader> <C-^>
 nn <leader>r :sp\| terminal<cr>i
 nn <leader>s :%s/
 nn <silent> <leader>b :ls<cr>:b<space>
 nn <silent> <leader>c "+
 vn <silent> <leader>c "+
-nn <silent> <leader>d yyp
 nn <silent> <leader>d yyp
 nn <silent> <leader>n :E<cr>
 nn <silent> <leader>p "*
@@ -112,8 +85,9 @@ nn <silent><F9> :bufdo e!<cr>
 " inoremaps {{{2
 ino jk <esc>
 ino kj <esc>
-ino <c-f> <c-x><c-f>
 ino <m-tab> <c-f>
+ino <c-b> <Left>
+ino <c-f> <Right>
 ino <m-b> <C-Left>
 ino <m-f> <C-Right>
 " buffer/tab switching {{{2
@@ -130,14 +104,14 @@ nn <silent> <m-0> :bl<cr>
 nn <silent> <tab> :bn<cr>
 nn <silent> <s-tab> :bp<cr>
 " quick move between most used files {{{2
-nn <silent> <leader>ox :e ~/.Xresources<cr>
-nn <silent> <leader>on :e ~/.config/nvim/init.vim<cr>
-nn <silent> <leader>oa :e ~/.config/zsh/.zshaliases<cr>
-nn <silent> <leader>oe :e ~/.config/zsh/.zshenv<cr>
-nn <silent> <leader>of :e ~/.config/zsh/.zshfunctions<cr>
-nn <silent> <leader>oz :e ~/.config/zsh/.zshrc<cr>
+nn <silent> <leader>ox :e $XDG_CONFIG_HOME/X11/.Xresources<cr>
+nn <silent> <leader>on :e $XDG_CONFIG_HOME/nvim/init.vim<cr>
+nn <silent> <leader>oa :e $XDG_CONFIG_HOME/zsh/.zshaliases<cr>
+nn <silent> <leader>oe :e $XDG_CONFIG_HOME/zsh/.zshenv<cr>
+nn <silent> <leader>of :e $XDG_CONFIG_HOME/zsh/.zshfunctions<cr>
+nn <silent> <leader>oz :e $XDG_CONFIG_HOME/zsh/.zshrc<cr>
 nn <silent> <leader>oh :e $HISTFILE<cr>
-nn <silent> <leader>ol :e ~/dox/Cplus/c/begin.c<cr>
+nn <silent> <leader>ol :e ~/dox/CPlus/c/begin.c<cr>
 nn <silent> <leader>oy :e ~/dox/Python/platformer_2/Plat.py<cr>
 nn <silent> <leader>ov :e ~/dl/dotfiles/dot.sh<cr>
 " sus {{{2
@@ -183,15 +157,112 @@ nn <silent> <C-j> <C-w>w
 nn <silent> <C-k> <C-w>W
 nn <expr><silent> cot ':<c-u>set tabstop='.v:count1.'<cr>'
 " }}}1
+" autocmd {{{1
+au bufnewfile,bufread *.log* setf logtalk
+au bufnewfile,bufread *.conf* setf cfg
+au bufnewfile,bufread .zsh* setf zsh
+au termopen term://* setf terminal
+" au bufnewfile,bufread *man* setf man " doesn't work
+au bufwritepost ~/.Xresources silent !xrdb ~/.Xresources
+au bufnewfile,bufread config.h nn <F7> :term sudo make -j12 clean install<cr>
+" au TextChanged,TextChangedI <buffer> silent write
+augroup custom_filetype
+	au!
+	au filetype diff set noreadonly | setl readonly foldmethod=manual
+	au filetype help nn <buffer><silent> q :bd<cr>
+	au filetype man nn <buffer><silent> ]] :call search('^\S')<cr>
+	au filetype man nn <buffer><silent> [[ :call search('^\S','b')<cr>
+	au filetype man set nobuflisted
+	au filetype markdown nn j gj
+	au filetype markdown nn k gk
+	au filetype markdown nn <buffer> <leader>1 A)<esc>I[](<esc>hi
+	au filetype markdown nn zq :vimgrep /^#\+ .*.*/ %<Left><Left><Left><Left><Left>
+	au filetype markdown setl cc=
+	au filetype markdown setlocal commentstring=<!--\ %s\ -->
+	au filetype netrw setl bufhidden=wipe
+	au filetype netrw nno l <cr> | nno h -
+	au filetype python setl noet ts=4
+	au filetype upstart setlocal commentstring=#\ %s
+	au filetype vim nn <buffer> <leader>1 oPlug ''<esc>h
+	au filetype xdefaults setlocal commentstring=!\ %s
+augroup END
+
 " Custom plugins {{{1
+" Neat foldtext {{{2
+" Credit: https://dhruvasagar.com/2013/03/28/vim-better-foldtext https://www.reddit.com/r/vim/comments/fzcz5b
+function! NeatFoldText()
+	" let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+	let line = trim(getline(v:foldstart),substitute(&commentstring,'%s','','').&foldmarker.1234567890.' 	:')
+	let lines_count_text = '> ' . printf("%10s", (v:foldend - v:foldstart + 1) . ' lines') . ' <'
+	let foldchar = matchstr(&fillchars, 'fold:\zs.')
+	let foldtextstart = strpart(repeat(' ', v:foldlevel * 2 + indent(v:foldstart)/2 - 3) . ' ' . line . ' <', 0, (winwidth(0)*2)/3)
+	let foldtextend = lines_count_text . repeat(foldchar, 8)
+	let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+	return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+set foldtext=NeatFoldText()
+
+" better indent folding https://learnvimscriptthehardway.stevelosh.com/chapters/49.html {{{2
+au filetype python setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
+" function! NextNonBlankLine(lnum)
+" 	let numlines = line('$')
+" 	let current = a:lnum + 1
+
+" 	while current <= numlines
+" 		if getline(current) =~? '\v\S'
+" 			return current
+" 		endif
+
+" 		let current += 1
+" 	endwhile
+
+" 	return -2
+" endfunction
+function! IndentLevel(lnum)
+	return indent(a:lnum) / &shiftwidth
+endfunction
+function! BetterIndent(lnum)
+    if getline(a:lnum) =~? '\v^\s*$'
+        return '-1'
+    endif
+	if getline(a:lnum) =~ '\v^\s*}$'
+		return '-1'
+		" return IndentLevel(a:lnum-1)
+	endif
+
+    let this_indent = IndentLevel(a:lnum)
+    let next_indent = IndentLevel(a:lnum+1)
+    " let next_indent = IndentLevel(NextNonBlankLine(a:lnum))
+
+    if next_indent == this_indent
+        return this_indent
+    elseif next_indent < this_indent
+        return this_indent
+    elseif next_indent > this_indent
+        return '>' . next_indent
+    endif
+endfunction
+
+" folding for diff from vimwiki https://vim.fandom.com/wiki/Folding_for_diff_files {{{2
+au filetype diff setl foldmethod=expr foldexpr=DiffFold(v:lnum)
+function! DiffFold(lnum)
+  let line = getline(a:lnum)
+  if line =~ '^\(diff\|---\|+++\|@@\) '
+    return 1
+  elseif line[0] =~ '[-+ ]'
+    return 2
+  else
+    return 0
+  endif
+endfunction
 " ranger {{{2
 " nn <expr> <leader>y :term ranger --chosefile
 " fun customRanger()
 " 	let l:files = 
 " endfun
-" HexMode from vimwiki {{{2
+" HexMode from vimwiki https://vim.fandom.com/wiki/Improved_hex_editing {{{2
 nn <silent> <F10> :Hexmode<CR>
-ino <silent> <F10> <Esc>:Hexmode<CR>
+" ino <silent> <F10> <Esc>:Hexmode<CR>
 vn <silent> <F10> :<C-U>Hexmode<CR>
 " ex command for toggling hex mode - define mapping if desired
 command! -bar Hexmode call ToggleHex()
@@ -267,6 +338,7 @@ endfunction
 " }}}1
 " useful commands {{{1
 " :w !diff % - " to view diff with the original file
+" :w ++enc=utf-8 " to write to file in utf-8 to solve CONVERSION ERROR
 " .nvimrc {{{1
 if has('nvim')
 	set inccommand=split

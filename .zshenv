@@ -1,2 +1,2 @@
-ZDOTDIR=$HOME/.config/zsh
+ZDOTDIR=$HOME/.local/etc/zsh
 . $ZDOTDIR/.zshenv

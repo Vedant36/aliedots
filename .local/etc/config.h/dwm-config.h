@@ -58,26 +58,27 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "20", NULL };
 static const char *termcmd[]  = { "kitty", "-1", NULL };
-static const char *fmcmd[]  = { "kitty", "-1", "ranger", NULL };
-static const char *browsercmd[]  = { "qutebrowser", NULL };
-static const char *privatebrowsercmd[]  = { "qutebrowser", "--set", "content.private_browsing", "true", "--config-py", "$HOME/.config/qutebrowser/config.py", NULL };
-static const char *lockcmd[]  = { "betterlockscreen", "-s", "blur", NULL };
-static const char *textfilescmd[]  = { "kitty", "-1", "dumb", NULL };
+static const char *fmcmd[] = { "kitty", "-1", "ranger", NULL };
+static const char *browsercmd[] = { "qutebrowser", NULL };
+static const char *privatebrowsercmd[] = { "qutebrowser", "--set", "content.private_browsing", "true", "--config-py", "$HOME/.config/qutebrowser/config.py", NULL };
+static const char *lockcmd[] = { "betterlockscreen", "-s", "blur", NULL };
+static const char *textfilescmd[] = { "kitty", "-1", "dumb", NULL };
 
 static Key keys[] = {
 	/* modifier					key				function		argument */
-	{ MODKEY,					XK_p,			funspawn,		{.v = dmenucmd } },
-	{ MODKEY,					XK_q,			funspawn,		{.v = termcmd } },
-	{ MODKEY,					XK_s,			funspawn,		{.v = textfilescmd } },
-	{ MODKEY,					XK_a,			funspawn,		{.v = fmcmd } },
-	{ MODKEY,					XK_w,			funspawn,		{.v = browsercmd } },
-	{ MODKEY|ShiftMask,			XK_w,			funspawn,		{.v = privatebrowsercmd } },
-	{ MODKEY|ShiftMask,			XK_s,			funspawn,		{.v = lockcmd } },
-	{ MODKEY,					XK_b,			funtogglebar,	{0} },
-	{ MODKEY,					XK_j,			funfocusstack,	{.i = +1 } },
-	{ MODKEY,					XK_k,			funfocusstack,	{.i = -1 } },
-	{ MODKEY,					XK_Add,			funincnmaster,	{.i = +1 } },
-	{ MODKEY,					XK_Subtract,	incnmaster,		{.i = -1 } },
+	{ MODKEY,					XK_p,			spawn,			{.v = dmenucmd } },
+	{ MODKEY,					XK_q,			spawn,			{.v = termcmd } },
+	{ MODKEY,					XK_s,			spawn,			{.v = textfilescmd } },
+	{ MODKEY,					XK_a,			spawn,			{.v = fmcmd } },
+	{ MODKEY,					XK_w,			spawn,			{.v = browsercmd } },
+	{ MODKEY|ShiftMask,			XK_w,			spawn,			{.v = privatebrowsercmd } },
+	{ MODKEY|ShiftMask,			XK_s,			spawn,			{.v = lockcmd } },
+	{ MODKEY,					XK_v,			spawn,			SHCMD("kitty -1 nvim") },
+	{ MODKEY,					XK_b,			togglebar,		{0} },
+	{ MODKEY,					XK_j,			focusstack,		{.i = +1 } },
+	{ MODKEY,					XK_k,			focusstack,		{.i = -1 } },
+	{ MODKEY,					XK_KP_Add,		incnmaster,		{.i = +1 } },
+	{ MODKEY,					XK_KP_Subtract,	incnmaster,		{.i = -1 } },
 	{ MODKEY,					XK_h,			setmfact,		{.f = -0.05} },
 	{ MODKEY,					XK_l,			setmfact,		{.f = +0.05} },
 	{ MODKEY,					XK_Return,		zoom,			{0} },

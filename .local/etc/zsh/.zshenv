@@ -20,8 +20,8 @@ export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 # XDG HOME dirs {{{1
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.local/etc
+export XDG_CACHE_HOME=$HOME/.local/var/cache
 export XDG_DATA_HOME=$HOME/.local/share
 # ~ Cleanup {{{1
 export PYTHONSTARTUP=$HOME/.local/bin/startup.py
@@ -34,6 +34,8 @@ export GNUPGHOME=$XDG_DATA_HOME/gnupg
 [[ ! -d $XDG_DATA_HOME/gnupg ]] && mkdir -m700 $XDG_DATA_HOME/gnupg 
 export HISTFILE=$XDG_DATA_HOME/zsh/.zsh_history
 export LESSHISTFILE=$XDG_DATA_HOME/lesshst
+export PULSE_COOKIE=$XDG_DATA_HOME/pulse/cookie
+[[ ! -d $XDG_DATA_HOME/pulse ]] && mkdir $XDG_DATA_HOME/pulse
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 # fzf {{{1
 export FZF_{DEFAULT,CTRL_T}_COMMAND='find . -path "*/.git" -prune -o -path "*/.cache" -prune -o -print 2>/dev/null | sed 1d'
