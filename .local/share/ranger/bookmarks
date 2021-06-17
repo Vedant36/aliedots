@@ -1,18 +1,18 @@
-':/home/vn36
-b:/home/vn36/.local/bin
-d:/home/vn36/dox
-e:/home/vn36/.local/etc
-f:/home/vn36/.local/etc/ranger
-h:/media/vn36/Seagate Expansion Drive/36Vedant
-k:/home/vn36/.local/etc/kitty
+':/home/vn36/.local/etc/root/udev/rules.d
 l:/home/vn36/.local
+j:/home/vn36/dl
+d:/home/vn36/dox
 m:/home/vn36/melum
-n:/home/vn36/.local/etc/nvim
-o:/home/vn36/.local/opt
 p:/home/vn36/pix
-q:/home/vn36/.local/etc/qutebrowser
-s:/home/vn36/.local/share
-t:/home/vn36/dl
 v:/home/vn36/vids
+b:/home/vn36/.local/.scripts
+e:/home/vn36/.local/etc
 x:/home/vn36/.local/etc/X11
+k:/home/vn36/.local/etc/kitty
+n:/home/vn36/.local/etc/nvim
+q:/home/vn36/.local/etc/qutebrowser
+f:/home/vn36/.local/etc/ranger
 z:/home/vn36/.local/etc/zsh
+o:/home/vn36/.local/opt/dwm
+s:/home/vn36/.local/share
+h:/media/vn36/Seagate Expansion Drive/36Vedant

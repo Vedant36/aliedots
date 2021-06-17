@@ -1,1 +1,1 @@
-ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="acpi_video0", GROUP="vn36", MODE="0664"
+ACTION=="change", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl1", GROUP="vn36", MODE="0664"

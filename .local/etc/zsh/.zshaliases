@@ -6,7 +6,7 @@ alias egrep='egrep --color=auto'
 # imp {{{1
 # alias dot='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
 alias gh='git add . && git commit -a && git push'
-alias dh='dot commit -a && dot push'
+alias ah='ad commit -a && ad push'
 alias l='ls -alpshF'
 alias v=nvim
 alias x='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1 2>&1 | tee ~/.local/var/log/x.log'

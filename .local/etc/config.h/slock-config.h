@@ -10,7 +10,7 @@ static const char *colorname[NUMCOLS] = {
 };
 
 /* treat a cleared input like a wrong password (color) */
-static const int failonclear = 1;
+static const int failonclear = 0;
 
 /* insert grid pattern with scale 1:1, the size can be changed with logosize */
 static const int logosize = 75;

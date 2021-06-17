@@ -1,14 +1,12 @@
+default/grub
 modprobe.d/bbswitch.conf
 modprobe.d/blacklist.conf
 modules-load.d/bbswitch.conf
+sysctl.d/99-swappiness.conf
 udev/rules.d/backlight.rules
 X11/xorg.conf.d/20-amdgpu.conf
 xdg/reflector/reflector.conf
 asound.conf
 cron.allow
-crontab
-default/grub
 pacman.conf
-sysctl.d
 tlp.conf
-

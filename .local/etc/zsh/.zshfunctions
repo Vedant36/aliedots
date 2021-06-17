@@ -2,7 +2,8 @@
 # f(file manager): ranger wrapper from arch wiki {{{1
 f(){
 	if [[ -z "$RANGER_LEVEL" ]];then
-		ranger "$@"
+		ranger $(pwd)
+		# ranger "$@"
 	else
 		exit
 	fi

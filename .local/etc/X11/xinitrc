@@ -15,19 +15,40 @@ unset f
 
 # custom config
 # basic stuff
-xset r rate 200 200
-xset m 4 0
 setxkbmap -option "ctrl:nocaps"
 xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
 xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group
-xsetroot -cursor_name coffee_mug
+xset m 4 0
+xsetroot -cursor_name xterm
+xset r rate 200 200
 
 # startup programs
 #type unclutter>/dev/null && unclutter -idle 1 -root -jitter 40
 #artha &
+feh --no-fehbg --bg-fill "/home/vn36/pix/20210603_094247re.jpg"
 dunst &
-feh --no-fehbg --bg-scale "$HOME/pix/ddwstdk-7fba4c5a-6ba8-47c0-a5c6-ba0cc2cd0e75.jpg"
 picom -f &
-bar.sh &
-exec dwm
+while xsetroot -name "$(bar.sh)"
+do
+	sleep 1m
+done &
+
+# exec dwm
+# relaunch DWM if the binary changes, otherwise bail
+csum=""
+new_csum=$(sha1sum $(which dwm))
+while true
+do
+	echo $new_csum >> $HOME/.local/var/log/dwm.log
+	# exec dwm
+	if [ "$csum" != "$new_csum" ]
+	then
+		csum=$new_csum
+		exec dwm
+	else
+		exit 0
+	fi
+	new_csum=$(sha1sum $(which dwm))
+	sleep 0.5
+done
 

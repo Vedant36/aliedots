@@ -2,17 +2,17 @@
 
 insidecolor=a9b1d6ff
 ringcolor=ffffffff
-keyhlcolor=d23c3dff
-bshlcolor=d23c3dff
-separatorcolor=00000000
-insidevercolor=00000000
-insidewrongcolor=d23c3dff
+keyhlcolor=9ece6aee
+bshlcolor=9ece6aee
+separatorcolor=15161eee
+insidevercolor=15161eee
+insidewrongcolor=9ece6aee
 ringvercolor=ffffffff
 ringwrongcolor=ffffffff
 verifcolor=ffffffff
 timecolor=ffffffff
 datecolor=ffffffff
-loginbox=93ce6a66
+loginbox=7aa2f733
 font="iosevka term"
 locktext='Type password to unlock...'
 lock_timeout=5

@@ -28,14 +28,19 @@ c.content.private_browsing = False
 c.content.user_stylesheets = ['~/.local/share/qutebrowser/fix-tooltips.qss']
 c.content.cookies.accept = 'no-3rdparty'
 c.content.notifications.enabled = False
+c.content.fullscreen.window = True
 
 c.downloads.location.suggestion = 'both'
 c.downloads.remove_finished = 0
 
 c.editor.command = [ 'kitty', '-1', 'nvim', '-c', 'norm {line}G{column0}l', '{file}']
 
-c.fonts.web.size.default = 15
+c.fonts.web.size.default = 14
 c.fonts.default_family = 'Futura'
+c.fonts.web.family.serif = 'Helvetica'
+c.fonts.web.family.sans_serif = 'Futura'
+c.fonts.web.family.standard = 'Futura'
+c.fonts.web.family.fixed = 'Iosevka Term'
 
 c.hints.border = '0px'
 c.hints.chars = 'abcdefghijklmnopqrstuvwxyz'
@@ -58,6 +63,8 @@ c.url.searchengines = {
 	'4': 'https://4chan.org/{}',
 	'a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}',
 	'g': 'https://www.google.com/search?hl=en&q={}',
+	'h': 'https://github.com/{}',
+	'm': 'https://linux.die.net/man/1/{}', # man pages
 	'p': 'https://thepiratebay.org/search.php?q={}',
 	'w': 'https://web.archive.org/web/*/{}',
 	'y': 'https://www.youtube.com/results?search_query={}',
@@ -65,10 +72,11 @@ c.url.searchengines = {
 
 c.bindings.commands = {
 	"normal": {
-		"A" : "set-cmd-text :open {url-pretty}",
+		"A" : "set-cmd-text :open {url:pretty}",
 		"ef": "fake-key f",
 		"ei": "fake-key i",
 		"et": "edit-text",
+		"e<space>": "fake-key <esc>",
 		"H" : "fake-key <left>",
 		"h" : "tab-prev",
 		"J" : "back",
@@ -84,5 +92,8 @@ c.bindings.commands = {
 		",t": "config-cycle tabs.show multiple never",
 		",w": "open https://web.archive.org/*/{url}",
 		",y": "set-cmd-text -s :jseval document.getElementsByTagName('video')[0].playbackRate =",
+	},
+	"insert": {
+		"jk": "mode-enter normal",
 	}
 }

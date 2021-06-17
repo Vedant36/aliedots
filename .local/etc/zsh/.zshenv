@@ -1,7 +1,8 @@
 #!/usr/bin/env zsh
 # settings {{{1
 export skip_global_compinit=1
-export PATH="$HOME/.local/bin:$PATH"
+export SCRIPTS=$HOME/.local/.scripts
+export PATH="$SCRIPTS:$HOME/.local/bin:$PATH"
 export REPOS="$HOME/dox/{textfiles,CPlus,Python,dotfiles,datasets}"
 export BROWSER="qutebrowser"
 export PM=yay # package manager
@@ -23,6 +24,7 @@ export LANGUAGE='en_US.UTF-8'
 export XDG_CONFIG_HOME=$HOME/.local/etc
 export XDG_CACHE_HOME=$HOME/.local/var/cache
 export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/var/lib
 # ~ Cleanup {{{1
 export PYTHONSTARTUP=$HOME/.local/bin/startup.py
 # export IPYTHONDIR=$XDG_CONFIG_HOME/ipython

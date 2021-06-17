@@ -52,11 +52,11 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # keybinds {{{1
-bindkey '^[[3~' delete-char
+bindkey '^[[3~' delete-char # why the ack cant terminals interpret what a delete is
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
+bindkey '^P' up-line-or-search
+bindkey '^N' down-line-or-search
 bindkey '^[^M' self-insert-unmeta # to insert a new line without executing command
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
@@ -64,6 +64,11 @@ bindkey "^[[7~"   beginning-of-line
 bindkey "^[[8~"   end-of-line
 bindkey -s "^[#" "^[OH: ^M"
 bindkey -s "^Z" "^Ufg^M"
+# readline keybinds
+bindkey '^F' forward-char
+bindkey '^B' backward-char
+bindkey '^[f' forward-word
+bindkey '^[b' backward-word
 # https://unix.stackexchange.com/questions/25765/pasting-from-clipboard-to-vi-enabled-zsh-or-bash-shell
 vi-append-x-selection () { RBUFFER=$(xsel -o -p </dev/null)$RBUFFER; }
 zle -N vi-append-x-selection

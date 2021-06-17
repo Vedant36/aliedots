@@ -35,10 +35,8 @@ A:/home/vn36/.local/etc/root/.root-tracker
 A:/home/vn36/.local/etc/root/X11/xorg.conf.d/20-amdgpu.conf
 A:/home/vn36/.local/etc/root/asound.conf
 A:/home/vn36/.local/etc/root/cron.allow
-A:/home/vn36/.local/etc/root/crontab
 A:/home/vn36/.local/etc/root/default/grub
 A:/home/vn36/.local/etc/root/pacman.conf
-A:/home/vn36/.local/etc/root/sysctl.d
 A:/home/vn36/.local/etc/root/tlp.conf
 A:/home/vn36/.local/etc/root/udev/rules.d/backlight.rules
 A:/home/vn36/.local/etc/root/xdg/reflector/reflector.conf
@@ -57,3 +55,5 @@ A:/home/vn36/.zshenv
 
 A:/home/vn36/.local/etc/config.h/dwm-config.mk
 A:/home/vn36/.local/etc/neofetch/config.conf
+A:/home/vn36/.local/etc/root/crontab
+A:/home/vn36/.local/etc/crontab

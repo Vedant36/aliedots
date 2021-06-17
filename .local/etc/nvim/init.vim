@@ -31,6 +31,7 @@ set completeopt+=menuone
 set shortmess+=c " Shut off completion messages
 set noexpandtab noshiftround " to check if tab is better
 set foldmethod=marker fillchars=fold:-
+set browsedir=~/dox/
 if !($TERM == 'rxvt-unicode-256color')
 	set termguicolors
 endif
@@ -44,6 +45,7 @@ filetype plugin indent on
 let $PAGER=''
 let $FZF_DEFAULT_COMMAND = 'find . -path "*/.git" -prune -o -path "*/.cache" -prune -o -print 2>/dev/null | sed 1d'
 " global variables {{{1
+let g:diff_translations = 0
 let g:netrw_banner=0
 " let g:netrw_list_hide=netrw_gitignore#Hide()
 let python_space_error_highlight = 1
@@ -52,8 +54,10 @@ ab intlctl Vedant36 is not a intellectual
 ab coke cocain
 " keybinds ∑ { n ∈ ▲ } 🅇(n) ○-> Ⓨ[n] ▢△◈ {{{1
 " uncategorized {{{2
+nn Q gq
 tno <c-a> <C-\><C-N>
 nn <leader>y "*yiw
+" nn q; q:
 nn Y y$
 nn <space> za
 vn <space> zf
@@ -67,6 +71,7 @@ nn <leader>s :%s/
 nn <silent> <leader>b :ls<cr>:b<space>
 nn <silent> <leader>c "+
 vn <silent> <leader>c "+
+nn <expr> <leader>g ":vimgrep /" . expand("<cword>") . "/j ** <bar> cw<cr>"
 nn <silent> <leader>d yyp
 nn <silent> <leader>n :E<cr>
 nn <silent> <leader>p "*
@@ -86,6 +91,7 @@ nn <silent><F9> :bufdo e!<cr>
 ino jk <esc>
 ino kj <esc>
 ino <m-tab> <c-f>
+" readline keybinds
 ino <c-b> <Left>
 ino <c-f> <Right>
 ino <m-b> <C-Left>
@@ -104,7 +110,7 @@ nn <silent> <m-0> :bl<cr>
 nn <silent> <tab> :bn<cr>
 nn <silent> <s-tab> :bp<cr>
 " quick move between most used files {{{2
-nn <silent> <leader>ox :e $XDG_CONFIG_HOME/X11/.Xresources<cr>
+nn <silent> <leader>ox :e $XDG_CONFIG_HOME/X11/Xresources<cr>
 nn <silent> <leader>on :e $XDG_CONFIG_HOME/nvim/init.vim<cr>
 nn <silent> <leader>oa :e $XDG_CONFIG_HOME/zsh/.zshaliases<cr>
 nn <silent> <leader>oe :e $XDG_CONFIG_HOME/zsh/.zshenv<cr>
@@ -137,6 +143,9 @@ nn <C-s> :echo  " ⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀�
 				\ ⢀⢂⢑⠀⡂⡃⠅⠊⢄⢑⠠⠑⢕⢕⢝⢮⢺⢕⢟⢮⢊⢢⢱⢄⠃⣇⣞⢞⣞⢾\n
 				\ ⢀⠢⡑⡀⢂⢊⠠⠁⡂⡐⠀⠅⡈⠪⠪⠪⠣⠫⠑⡁⢔⠕⣜⣜⢦⡰⡎⡯⡾⡽"<cr>
 " categorized but less so misc {{{2
+nn [j <c-o>
+nn ]j <c-i>
+
 nn ; :
 nn : ;
 vn ; :
@@ -151,8 +160,6 @@ nn ZA :xa<cr>
 nn ZX :qa<cr>
 nn ZS :w !echo \| dmenu \| sudo -S tee %<cr>
 
-nn <M-m> ddkP
-nn <M-n> ddp
 nn <silent> <C-j> <C-w>w
 nn <silent> <C-k> <C-w>W
 nn <expr><silent> cot ':<c-u>set tabstop='.v:count1.'<cr>'
@@ -164,11 +171,11 @@ au bufnewfile,bufread .zsh* setf zsh
 au termopen term://* setf terminal
 " au bufnewfile,bufread *man* setf man " doesn't work
 au bufwritepost ~/.Xresources silent !xrdb ~/.Xresources
-au bufnewfile,bufread config.h nn <F7> :term sudo make -j12 clean install<cr>
+au bufwritepost config.h :make PREFIX=$HOME/.local clean install
 " au TextChanged,TextChangedI <buffer> silent write
 augroup custom_filetype
 	au!
-	au filetype diff set noreadonly | setl readonly foldmethod=manual
+	au filetype diff if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
 	au filetype help nn <buffer><silent> q :bd<cr>
 	au filetype man nn <buffer><silent> ]] :call search('^\S')<cr>
 	au filetype man nn <buffer><silent> [[ :call search('^\S','b')<cr>
@@ -192,7 +199,7 @@ augroup END
 " Credit: https://dhruvasagar.com/2013/03/28/vim-better-foldtext https://www.reddit.com/r/vim/comments/fzcz5b
 function! NeatFoldText()
 	" let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
-	let line = trim(getline(v:foldstart),substitute(&commentstring,'%s','','').&foldmarker.1234567890.' 	:')
+	let line = trim(getline(v:foldstart),substitute(&commentstring,'%s','','').&foldmarker.1234567890.' 	:-;')
 	let lines_count_text = '> ' . printf("%10s", (v:foldend - v:foldstart + 1) . ' lines') . ' <'
 	let foldchar = matchstr(&fillchars, 'fold:\zs.')
 	let foldtextstart = strpart(repeat(' ', v:foldlevel * 2 + indent(v:foldstart)/2 - 3) . ' ' . line . ' <', 0, (winwidth(0)*2)/3)
@@ -226,8 +233,8 @@ function! BetterIndent(lnum)
         return '-1'
     endif
 	if getline(a:lnum) =~ '\v^\s*}$'
-		return '-1'
-		" return IndentLevel(a:lnum-1)
+		" return '-1'
+		return IndentLevel(a:lnum-1)
 	endif
 
     let this_indent = IndentLevel(a:lnum)
@@ -339,26 +346,21 @@ endfunction
 " useful commands {{{1
 " :w !diff % - " to view diff with the original file
 " :w ++enc=utf-8 " to write to file in utf-8 to solve CONVERSION ERROR
-" .nvimrc {{{1
-if has('nvim')
-	set inccommand=split
-	augroup LuaHighlight
-		autocmd!
-		autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
-	augroup END
-endif
-
 " plugins {{{1
 " if empty(glob("${XDG_DATA_HOME-$HOME/.local/share}/nvim/site/autoload"))
 try
 	" plugin calls {{{2
 	call plug#begin()
 	Plug 'itchyny/lightline.vim'
+	Plug 'mengelbrecht/lightline-bufferline'
+	Plug 'lambdalisue/nerdfont.vim'
+	" Plug 'hoob3rt/lualine.nvim'
+	" Plug 'kyazdani42/nvim-web-devicons'
+
 	Plug 'tpope/vim-commentary'
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
 	Plug 'plasticboy/vim-markdown'
-	Plug 'mengelbrecht/lightline-bufferline'
 	Plug 'francoiscabrol/ranger.vim'
 	" Plug 'bling/vim-bufferline'
 	" Plug 'tpope/vim-vinegar'
@@ -366,13 +368,14 @@ try
 	" Plug 'neoclide/coc.nvim', {'branch': 'release'} " comlpetion engine
 	" Plug 'fabi1cazenave/suckless.vim' " epic winow management
 	Plug 'norcalli/nvim-colorizer.lua' " Faster but requires tru color
-	Plug 'lambdalisue/nerdfont.vim'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'tpope/vim-unimpaired'
 
 	" Themes
 	Plug 'drewtempelmeyer/palenight.vim'
-	Plug 'ghifarit53/tokyonight-vim'
+	Plug 'folke/tokyonight.nvim'
+	Plug 'fioncat/vim-oceanicnext'
+	" Plug 'ghifarit53/tokyonight-vim'
 	Plug 'morhetz/gruvbox'
 	call plug#end()
 	" }}}2
@@ -394,14 +397,14 @@ let g:markdown_fenced_languages = [ 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosin
 
 let g:tokyonight_style = 'storm' " available: night, storm
 let g:tokyonight_enable_italic = 1
-let g:tokyonight_transparent_background = 1
+" let g:tokyonight_transparent_background = 1
 let g:palenight_terminal_italics=1
 let g:gruvbox_italic = 1
 let g:material_terminal_italics = 1
 let g:material_theme_style = 'darker' " default, palenight, ocean, lighter, and darker
 " let g:material_style = 'moonlight'
-colorscheme gruvbox
-au BufEnter * silent! lcd %:p:h " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file that works with plugins
+colorscheme palenight
+" au BufEnter * silent! lcd %:p:h " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file that works with plugins
 " keybinds {{{2
 nn <c-p> :Files<cr>
 nmap <leader>i <Plug>CommentaryLine
@@ -409,9 +412,9 @@ nmap <leader>u <Plug>Commentary<Plug>Commentary
 vmap <leader>i <Plug>Commentary
 " lightline config {{{2
 let g:lightline = {
-	\ 'colorscheme': 'gruvbox',
-	\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-	\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+	\ 'colorscheme': colors_name,
+	\ 'separator': { 'left': '', 'right': '' },
+	\ 'subseparator': { 'left': '', 'right': '' },
 	\ 'active': {
 	\ 	 'left': [ [ 'mode', 'paste' ], [ 'filename', 'modified' ] ],
 	\ 	 'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'charvaluehex', 'filetype', 'linecount', 'fileinfo' ] ]
@@ -440,3 +443,15 @@ let g:lightline = {
 	" \ 'subseparator': { 'left': '\ue0b9', 'right': '\ue0b9' }
 	" \ 'tabline_separator': { 'left': '\ue0bc', 'right': '\ue0ba' }
 	" \ 'tabline_subseparator': { 'left': '\ue0bb', 'right': '\ue0bb' }
+" }}}1
+" .nvimrc {{{1
+if has('nvim')
+	set inccommand=split
+	augroup LuaHighlight
+		autocmd!
+		autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+	augroup END
+	" luafile $XDG_CONFIG_HOME/nvim/script.lua
+endif
+" }}}1
+
