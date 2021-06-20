@@ -29,6 +29,7 @@ set showtabline=2
 set omnifunc=syntaxcomplete#Complete
 set completeopt+=menuone
 set shortmess+=c " Shut off completion messages
+set sessionoptions=buffers,curdir,folds,tabpages,globals
 set noexpandtab noshiftround " to check if tab is better
 set foldmethod=marker fillchars=fold:-
 set browsedir=~/dox/
@@ -71,7 +72,7 @@ nn <leader>s :%s/
 nn <silent> <leader>b :ls<cr>:b<space>
 nn <silent> <leader>c "+
 vn <silent> <leader>c "+
-nn <expr> <leader>g ":vimgrep /" . expand("<cword>") . "/j ** <bar> cw<cr>"
+nn <expr> <leader>g ":vimgrep /\\\<" . expand("<cword>") . "\\\>/j ** <bar> cw<cr>"
 nn <silent> <leader>d yyp
 nn <silent> <leader>n :E<cr>
 nn <silent> <leader>p "*
@@ -110,7 +111,7 @@ nn <silent> <m-0> :bl<cr>
 nn <silent> <tab> :bn<cr>
 nn <silent> <s-tab> :bp<cr>
 " quick move between most used files {{{2
-nn <silent> <leader>ox :e $XDG_CONFIG_HOME/X11/Xresources<cr>
+nn <silent> <leader>ox :e $XDG_CONFIG_HOME/X11/xinitrc<cr>
 nn <silent> <leader>on :e $XDG_CONFIG_HOME/nvim/init.vim<cr>
 nn <silent> <leader>oa :e $XDG_CONFIG_HOME/zsh/.zshaliases<cr>
 nn <silent> <leader>oe :e $XDG_CONFIG_HOME/zsh/.zshenv<cr>
@@ -158,7 +159,7 @@ vn zp zdgvzf
 
 nn ZA :xa<cr>
 nn ZX :qa<cr>
-nn ZS :w !echo \| dmenu \| sudo -S tee %<cr>
+nn ZS :w !echo <bar> dmenu <bar> sudo -S tee %<cr>
 
 nn <silent> <C-j> <C-w>w
 nn <silent> <C-k> <C-w>W
@@ -175,7 +176,7 @@ au bufwritepost config.h :make PREFIX=$HOME/.local clean install
 " au TextChanged,TextChangedI <buffer> silent write
 augroup custom_filetype
 	au!
-	au filetype diff if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
+	au filetype diff,man if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
 	au filetype help nn <buffer><silent> q :bd<cr>
 	au filetype man nn <buffer><silent> ]] :call search('^\S')<cr>
 	au filetype man nn <buffer><silent> [[ :call search('^\S','b')<cr>
@@ -373,9 +374,9 @@ try
 
 	" Themes
 	Plug 'drewtempelmeyer/palenight.vim'
-	Plug 'folke/tokyonight.nvim'
+	" Plug 'folke/tokyonight.nvim'
 	Plug 'fioncat/vim-oceanicnext'
-	" Plug 'ghifarit53/tokyonight-vim'
+	Plug 'ghifarit53/tokyonight-vim'
 	Plug 'morhetz/gruvbox'
 	call plug#end()
 	" }}}2

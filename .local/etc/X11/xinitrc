@@ -1,12 +1,10 @@
 #!/bin/sh
 
 # builtin default config
-# sysresources=/etc/X11/xinit/.Xresources
-# sysmodmap=/etc/X11/xinit/.Xmodmap
-# [ -f "$userresources" ] && xrdb -merge "$userresources"
-# [ -f "$usermodmap" ] && xmodmap "$usermodmap"
-# merge in defaults and keymaps
-[ -f $sysresources ] && xrdb -load ${XDG_CONFIG_HOME-$HOME/.config/X11}/Xresources
+userresources=$XDG_CONFIG_HOME/X11/Xresources
+# usermodmap=$XDG_CONFIG_HOME/X11/Xmodmap
+[ -f $userresources ] && xrdb $userresources
+# [ -f $usermodmap ] && xmodmap $usermodmap
 # start some nice programs
 [ -d /etc/X11/xinit/xinitrc.d ] && for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
 	[ -x "$f" ] && . "$f"
@@ -14,18 +12,20 @@ done
 unset f
 
 # custom config
-# basic stuff
-setxkbmap -option "ctrl:nocaps"
-xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
-xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group
-xset m 4 0
-xsetroot -cursor_name xterm
+# keyboard
+setxkbmap -option altwin:swap_alt_win -option ctrl:nocaps
+# for another mod key
+# clear mod3
+# keysym F8 = Hyper_R
 xset r rate 200 200
+# pointer(s)
+xset m 4 0
+# xsetroot -cursor_name left_ptr
 
 # startup programs
 #type unclutter>/dev/null && unclutter -idle 1 -root -jitter 40
 #artha &
-feh --no-fehbg --bg-fill "/home/vn36/pix/20210603_094247re.jpg"
+feh --no-fehbg --bg-fill "$HOME/pix/wallpapers/animebuilders-re.jpg"
 dunst &
 picom -f &
 while xsetroot -name "$(bar.sh)"
@@ -33,22 +33,5 @@ do
 	sleep 1m
 done &
 
-# exec dwm
-# relaunch DWM if the binary changes, otherwise bail
-csum=""
-new_csum=$(sha1sum $(which dwm))
-while true
-do
-	echo $new_csum >> $HOME/.local/var/log/dwm.log
-	# exec dwm
-	if [ "$csum" != "$new_csum" ]
-	then
-		csum=$new_csum
-		exec dwm
-	else
-		exit 0
-	fi
-	new_csum=$(sha1sum $(which dwm))
-	sleep 0.5
-done
+exec dwm &>$HOME/.local/var/log/dwm.log
 

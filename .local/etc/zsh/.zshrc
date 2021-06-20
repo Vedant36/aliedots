@@ -54,7 +54,9 @@ bindkey '^e' edit-command-line
 # keybinds {{{1
 bindkey '^[[3~' delete-char # why the ack cant terminals interpret what a delete is
 bindkey '^[[H' beginning-of-line
+bindkey '^[[1~' beginning-of-line
 bindkey '^[[F' end-of-line
+bindkey '^[[4~' end-of-line
 bindkey '^P' up-line-or-search
 bindkey '^N' down-line-or-search
 bindkey '^[^M' self-insert-unmeta # to insert a new line without executing command
@@ -64,6 +66,7 @@ bindkey "^[[7~"   beginning-of-line
 bindkey "^[[8~"   end-of-line
 bindkey -s "^[#" "^[OH: ^M"
 bindkey -s "^Z" "^Ufg^M"
+bindkey -s "^S" ""
 # readline keybinds
 bindkey '^F' forward-char
 bindkey '^B' backward-char
@@ -137,7 +140,7 @@ precmd() {
   # export RPROMPT="%(?..%F{red}[%?]%f)%F{cyan}"$total"%f"
   # export RPROMPT="%(?..%F{red}[%?]%f) %F{magenta}%(4~|…/%3~|%~)%f %F{cyan}"$total"%f"
 }
-[[ $SHLVL -gt 3 ]] && shlvl=$(printf "%.s*" {4..$SHLVL}) # shows the recursion level of the shell
+# [[ $SHLVL -gt 3 ]] && shlvl=$(printf "%.s*" {4..$SHLVL}) # shows the recursion level of the shell
 export PROMPT=" %F{green}$shlvl%f%F{magenta}%~%f%F{blue}>%f "
 # echo -e "\033[0;32m$(fortune -a | sed 's/^/\t/')\033[0m"
 
