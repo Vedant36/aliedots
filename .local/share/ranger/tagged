@@ -7,7 +7,6 @@ A:/home/vn36/.local/etc/artha.log
 A:/home/vn36/.local/etc/betterlockscreenrc
 A:/home/vn36/.local/etc/config.h/dmenu-config.h
 A:/home/vn36/.local/etc/config.h/dwm-config.h
-A:/home/vn36/.local/etc/config.h/slock-config.h
 A:/home/vn36/.local/etc/config.h/st-config.h
 A:/home/vn36/.local/etc/dunst/dunstrc
 A:/home/vn36/.local/etc/git/config
@@ -51,10 +50,13 @@ A:/home/vn36/.local/share/ranger/bookmarks
 A:/home/vn36/.local/share/ranger/tagged
 A:/home/vn36/.local/share/rhythmbox/playlists.xml
 A:/home/vn36/.local/share/rhythmbox/rhythmdb.xml
-A:/home/vn36/.zshenv
 
 A:/home/vn36/.local/etc/config.h/dwm-config.mk
 A:/home/vn36/.local/etc/neofetch/config.conf
 A:/home/vn36/.local/etc/root/crontab
 A:/home/vn36/.local/etc/crontab
 A:/home/vn36/.local/etc/qt5ct/qt5ct.conf
+A:/home/vn36/.local/etc/user-dirs.locale
+A:/home/vn36/.local/etc/config.h/slock-config.h
+A:/home/vn36/.local/lib/dotfiles/.zshenv
+A:/home/vn36/.local/lib/dotfiles/.pam_environment

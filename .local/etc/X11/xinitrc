@@ -1,4 +1,8 @@
 #!/bin/sh
+env>~/dl/.env
+# if [ "${XDG_VTNR}" -eq 1 ]; then
+#   betterlockscreen -l blur
+# fi
 
 # builtin default config
 userresources=$XDG_CONFIG_HOME/X11/Xresources
@@ -13,11 +17,15 @@ unset f
 
 # custom config
 # keyboard
-setxkbmap -option altwin:swap_alt_win -option ctrl:nocaps
+setxkbmap -option altwin:swap_alt_win
+setxkbmap -option ctrl:nocaps
+# setxkbmap -option ctrl:swapcaps
+xcape -e 'Control_L=Escape'
 # for another mod key
 # clear mod3
 # keysym F8 = Hyper_R
 xset r rate 200 200
+xset -r 23
 # pointer(s)
 xset m 4 0
 # xsetroot -cursor_name left_ptr
@@ -25,13 +33,13 @@ xset m 4 0
 # startup programs
 #type unclutter>/dev/null && unclutter -idle 1 -root -jitter 40
 #artha &
-feh --no-fehbg --bg-fill "$HOME/pix/wallpapers/animebuilders-re.jpg"
+pactl set-source-mute @DEFAULT_SOURCE@ 1
+feh --no-fehbg --bg-center "$HOME/media/pix/wallpapers/cc1_resized.jpg"
 dunst &
-picom -f &
+picom -f --dbus &
 while xsetroot -name "$(bar.sh)"
 do
 	sleep 1m
 done &
 
 exec dwm &>$HOME/.local/var/log/dwm.log
-

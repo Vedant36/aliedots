@@ -55,30 +55,34 @@ ab intlctl Vedant36 is not a intellectual
 ab coke cocain
 " keybinds ∑ { n ∈ ▲ } 🅇(n) ○-> Ⓨ[n] ▢△◈ {{{1
 " uncategorized {{{2
+xn > >gv
+xn < <gv
+
 nn Q gq
 tno <c-a> <C-\><C-N>
-nn <leader>y "*yiw
 " nn q; q:
 nn Y y$
 nn <space> za
 vn <space> zf
 "  leaderbinds {{{2
-nn <leader>a gg"*yG``
-nn <leader>e :echo<space>
-nn <leader>h :h<space>
 nn <leader><leader> <C-^>
-nn <leader>r :sp\| terminal<cr>i
-nn <leader>s :%s/
+nn <leader>a gg"*yG``
 nn <silent> <leader>b :ls<cr>:b<space>
 nn <silent> <leader>c "+
 vn <silent> <leader>c "+
-nn <expr> <leader>g ":vimgrep /\\\<" . expand("<cword>") . "\\\>/j ** <bar> cw<cr>"
 nn <silent> <leader>d yyp
+nn <leader>e :echo<space>
+nn <expr> <leader>g ":vimgrep /\\\<" . expand("<cword>") . "\\\>/j ** <bar> cw<cr>"
+nn <leader>h :h<space>
+nn <leader>m <nop>
 nn <silent> <leader>n :E<cr>
 nn <silent> <leader>p "*
 vn <silent> <leader>p "*
 nn <silent> <leader>q @q
+nn <leader>r :sp\| terminal<cr>i
+nn <leader>s :%s/
 nn <silent> <leader>w :w<cr>
+nn <leader>y "*yiw
 " <f>unction keybinds {{{2
 nn <silent> <F3> :so $MYVIMRC<cr>
 ino <silent> <F3> <esc>:so $MYVIMRC<cr>gi
@@ -98,16 +102,16 @@ ino <c-f> <Right>
 ino <m-b> <C-Left>
 ino <m-f> <C-Right>
 " buffer/tab switching {{{2
-nm <silent> <m-1> <Plug>lightline#bufferline#go(1)
-nm <silent> <m-2> <Plug>lightline#bufferline#go(2)
-nm <silent> <m-3> <Plug>lightline#bufferline#go(3)
-nm <silent> <m-4> <Plug>lightline#bufferline#go(4)
-nm <silent> <m-5> <Plug>lightline#bufferline#go(5)
-nm <silent> <m-6> <Plug>lightline#bufferline#go(6)
-nm <silent> <m-7> <Plug>lightline#bufferline#go(7)
-nm <silent> <m-8> <Plug>lightline#bufferline#go(8)
-nm <silent> <m-9> <Plug>lightline#bufferline#go(9)
-nn <silent> <m-0> :bl<cr>
+nm <silent> <m-`> <Plug>lightline#bufferline#go(1)
+nm <silent> <m-1> <Plug>lightline#bufferline#go(2)
+nm <silent> <m-2> <Plug>lightline#bufferline#go(3)
+nm <silent> <m-3> <Plug>lightline#bufferline#go(4)
+nm <silent> <m-4> <Plug>lightline#bufferline#go(5)
+nm <silent> <m-5> <Plug>lightline#bufferline#go(6)
+nm <silent> <m-6> <Plug>lightline#bufferline#go(7)
+nm <silent> <m-7> <Plug>lightline#bufferline#go(8)
+nm <silent> <m-8> <Plug>lightline#bufferline#go(9)
+nn <silent> <m-9> :bl<cr>
 nn <silent> <tab> :bn<cr>
 nn <silent> <s-tab> :bp<cr>
 " quick move between most used files {{{2
@@ -194,8 +198,29 @@ augroup custom_filetype
 	au filetype vim nn <buffer> <leader>1 oPlug ''<esc>h
 	au filetype xdefaults setlocal commentstring=!\ %s
 augroup END
+augroup transparent
+	au!
+	 " Workaround for creating transparent bg
+    autocmd SourcePost * highlight Normal     ctermbg=NONE guibg=NONE
+            \ |    highlight LineNr     ctermbg=NONE guibg=NONE
+            \ |    highlight SignColumn ctermbg=NONE guibg=NONE
+augroup END
 
 " Custom plugins {{{1
+" " Filename completion with glob {{{2
+" function! MyCompleteFileName()
+"     " match a (potential) wildcard preceding cursor position
+"     " note: \f is a filename character, see :h 'isfname'
+"     let l:pattern = matchstr(strpart(getline('.'), 0, col('.') - 1), '\v(\f|\*|\?)*$')
+"     " set the matches
+"     call complete(col('.') - len(l:pattern), getcompletion(l:pattern, "file"))
+"     " must return an empty string to show the menu
+"     return ''
+" endfunction
+
+" " rebind <C-X><C-F> to invoke our custom function
+" inoremap <silent> <C-X><C-F> <C-R>=MyCompleteFileName()<CR>
+
 " Neat foldtext {{{2
 " Credit: https://dhruvasagar.com/2013/03/28/vim-better-foldtext https://www.reddit.com/r/vim/comments/fzcz5b
 function! NeatFoldText()
@@ -233,7 +258,7 @@ function! BetterIndent(lnum)
     if getline(a:lnum) =~? '\v^\s*$'
         return '-1'
     endif
-	if getline(a:lnum) =~ '\v^\s*}$'
+	if getline(a:lnum) =~ '\v^\s*},?$'
 		" return '-1'
 		return IndentLevel(a:lnum-1)
 	endif
@@ -398,7 +423,7 @@ let g:markdown_fenced_languages = [ 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosin
 
 let g:tokyonight_style = 'storm' " available: night, storm
 let g:tokyonight_enable_italic = 1
-" let g:tokyonight_transparent_background = 1
+let g:tokyonight_transparent_background = 1
 let g:palenight_terminal_italics=1
 let g:gruvbox_italic = 1
 let g:material_terminal_italics = 1
@@ -444,6 +469,23 @@ let g:lightline = {
 	" \ 'subseparator': { 'left': '\ue0b9', 'right': '\ue0b9' }
 	" \ 'tabline_separator': { 'left': '\ue0bc', 'right': '\ue0ba' }
 	" \ 'tabline_subseparator': { 'left': '\ue0bb', 'right': '\ue0bb' }
+" colorizer config {{{2
+lua <<EOF
+require 'colorizer'.setup ({
+	-- '*';
+}, {
+	RGB      = true;         -- #RGB hex codes
+	RRGGBB   = true;         -- #RRGGBB hex codes
+	names    = true;         -- "Name" codes like Blue
+	RRGGBBAA = true;         -- #RRGGBBAA hex codes
+	rgb_fn   = true;        -- CSS rgb() and rgba() functions
+	hsl_fn   = true;        -- CSS hsl() and hsla() functions
+	css      = true;        -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+	css_fn   = true;        -- Enable all CSS *functions*: rgb_fn, hsl_fn
+	-- Available modes: foreground, background
+	mode     = 'background'; -- Set the display mode.
+})
+EOF
 " }}}1
 " .nvimrc {{{1
 if has('nvim')

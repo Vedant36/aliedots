@@ -1,5 +1,9 @@
 # Vedant36's .zshrc
 [[ "$-" != *i* ]] && return # if aint runnin interactively dont do anything
+# if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+# 	# exec 'startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1 2>&1 | tee ~/.local/var/log/x.log'
+# 	exec startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1
+# fi
 # # timing code to be used with sort_timings.zsh {{{1
 # zmodload zsh/datetime
 # setopt PROMPT_SUBST
@@ -52,21 +56,22 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 # keybinds {{{1
-bindkey '^[[3~' delete-char # why the ack cant terminals interpret what a delete is
-bindkey '^[[H' beginning-of-line
-bindkey '^[[1~' beginning-of-line
-bindkey '^[[F' end-of-line
-bindkey '^[[4~' end-of-line
-bindkey '^P' up-line-or-search
-bindkey '^N' down-line-or-search
-bindkey '^[^M' self-insert-unmeta # to insert a new line without executing command
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^[[7~"   beginning-of-line
 bindkey "^[[8~"   end-of-line
-bindkey -s "^[#" "^[OH: ^M"
+bindkey '^K' kill-line
+bindkey '^N' down-line-or-search
+bindkey '^O' self-insert-unmeta # to insert a new line without executing command
+bindkey '^P' up-line-or-search
+bindkey '^[[1~' beginning-of-line
+bindkey '^[[3~' delete-char # why the ack cant terminals interpret what a delete is
+bindkey '^[[4~' end-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[H' beginning-of-line
+# bindkey -s "^A" ""
 bindkey -s "^Z" "^Ufg^M"
-bindkey -s "^S" ""
+bindkey -s "^[#" "^[OH: ^M"
 # readline keybinds
 bindkey '^F' forward-char
 bindkey '^B' backward-char
@@ -96,7 +101,7 @@ setopt hist_no_store
 . /usr/share/doc/find-the-command/ftc.zsh quiet noprompt
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
-export ZSH_PLUGINS=${ZDOTDIR-~}/plugins
+export ZSH_PLUGINS=$XDG_DATA_HOME/zsh/plugins
 # url: https://github.com/zsh-users/zsh-autosuggestions
 . $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 # url: https://github.com/zdharma/fast-syntax-highlighting

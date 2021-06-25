@@ -2,10 +2,10 @@
 
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int gappx     = 3;        /* gaps between windows */
+static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int showbar            = 0;        /* 0 means no bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Iosevka Term:size=10" };
 static const char dmenufont[]       = "Iosevka Term:size=10";
 static const char col_gray1[]       = "#1a1b26";
@@ -20,7 +20,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "ﭮ", "5", "6", "7" };
+static const char *tags[] = { "", "", "", "", "", "ﭮ", "5", "6" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -28,9 +28,9 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class          instance     title       tags mask   isfloating  monitor */
-	{ "qutebrowser",  NULL,        NULL,       1 << 1,     0,          -1 },
-	{ "mpv",          NULL,        NULL,       1 << 3,     0,          -1 },
-	{ "discord",      NULL,        NULL,       1 << 4,     0,          -1 },
+	{ "qutebrowser",  NULL,        NULL,       1 << 2,     0,          -1 },
+	{ "mpv",          NULL,        NULL,       1 << 4,     0,          -1 },
+	{ "discord",      NULL,        NULL,       1 << 5,     0,          -1 },
 };
 
 /* layout(s) */
@@ -78,11 +78,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("pkill sleep") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_d,      spawn,          SHCMD("discord") },
-	{ MODKEY|ShiftMask,             XK_e,      spawn,          SHCMD("betterlockscreen -l blur") },
-	{ MODKEY,                       XK_e,      spawn,          SHCMD("betterlockscreen -s blur") },
-	{ MODKEY,                       XK_Print,  spawn,          SHCMD("maim \"~/pix/screenshots/ss-$(date '+%F-%H-%M')\"") },
+	{ MODKEY|ShiftMask,             XK_e,      spawn,          SHCMD("lock") },
+	{ MODKEY,                       XK_e,      spawn,          SHCMD("lock && systemctl suspend") },
 	{ MODKEY,                       XK_w,      spawn,          SHCMD("qutebrowser") },
-	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("qutebrowser --temp-basedir --set content.private_browsing true --config-py $XDG_CONFIG_HOME/qutebrowser/config.py") },
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("/usr/bin/qutebrowser --temp-basedir --set content.private_browsing true --config-py $XDG_CONFIG_HOME/qutebrowser/config.py") },
 	{ MODKEY,                       XK_apostrophe,focusstack,  {.i = +1 } },
 	{ MODKEY,                       XK_semicolon, focusstack,  {.i = -1 } },
 	{ MODKEY,                       XK_comma,  incnmaster,     {.i = +1 } },
@@ -102,19 +101,23 @@ static Key keys[] = {
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+	{ MODKEY,                       bracketright, spawn,          {.v = upvol   } },
+	{ MODKEY,                       bracketleft, spawn,          {.v = downvol } },
+	{ MODKEY,                       backslash,        spawn,          {.v = mutevol } },
+	TAGKEYS(                        XK_grave,                  0)
+	TAGKEYS(                        XK_1,                      1)
+	TAGKEYS(                        XK_2,                      2)
+	TAGKEYS(                        XK_3,                      3)
+	TAGKEYS(                        XK_4,                      4)
+	TAGKEYS(                        XK_5,                      5)
+	TAGKEYS(                        XK_6,                      6)
+	TAGKEYS(                        XK_7,                      7)
+	TAGKEYS(                        XK_8,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } },
-	{ 0,              XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
-	{ 0,              XF86XK_AudioMute,        spawn,          {.v = mutevol } },
+	{ 0,              XK_Print,                spawn,          SHCMD("scrot \"~/pix/screenshots/ss-$(date '+%F-%H-%M')\" && notify-send took screenshot") },
+	/* { 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } }, */
+	/* { 0,              XF86XK_AudioLowerVolume, spawn,          {.v = downvol } }, */
+	/* { 0,              XF86XK_AudioMute,        spawn,          {.v = mutevol } }, */
 };
 
 /* button definitions */

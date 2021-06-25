@@ -162,7 +162,7 @@
 
 
 ! Appearence {{{1
-Xcursor.theme: xterm
+! Xcursor.theme: xterm
 *.fading: 5
 *.alpha: 0.97
 *.font:           xft:Iosevka Term:style=Regular:     size=10

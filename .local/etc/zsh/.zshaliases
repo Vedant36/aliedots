@@ -9,6 +9,7 @@ alias gh='git add . && git commit -a && git push'
 alias ah='ad commit -a && ad push'
 alias l='ls -alpshF'
 alias v=nvim
+# Note: replace startx with `exec startx` if wanting to exit shell after logout. hmmm security
 alias x='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1 2>&1 | tee ~/.local/var/log/x.log'
 alias y='python'
 alias path='echo $PATH | tr -s ":" "\n"'
@@ -46,7 +47,9 @@ alias xob='xsel -ob'
 alias p=$PM
 alias pf='$PM -F'
 alias pp='$PM -Rcns'
+complete -F _complete_alias pp
 alias pi='$PM -Si'
+complete -F _complete_alias pi
 # changing directory conveniences {{{1
 alias cb='cd ~/.local/bin'
 alias cv='cd ~/dox/dotfiles'

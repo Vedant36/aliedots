@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+# !/usr/bin/env zsh
 # settings {{{1
 export skip_global_compinit=1
 export BROWSER="qutebrowser"
@@ -24,10 +24,10 @@ export SCRIPTS=$HOME/.local/bin/custom
 export PATH="$SCRIPTS:$HOME/.local/bin/wrappers:$HOME/.local/bin:$PATH"
 export REPOS="$HOME/dox/{textfiles,CPlus,Python,dotfiles,datasets}"
 export BIN_HOME=$HOME/.local/bin
-# export XDG_CONFIG_HOME=$HOME/.local/etc
-# export XDG_CACHE_HOME=$HOME/.local/var/cache
-# export XDG_DATA_HOME=$HOME/.local/share
-# export XDG_STATE_HOME=$HOME/.local/var/lib
+export XDG_CONFIG_HOME=$HOME/.local/etc
+export XDG_CACHE_HOME=$HOME/.local/var/cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/var/lib
 # ~ Cleanup {{{1
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
