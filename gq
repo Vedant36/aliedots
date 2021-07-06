@@ -17,9 +17,9 @@ main(){
 			echo -ne "\033[0;35m$i\033[0m " && \
 			git status -sb 2>/dev/null && cd ../ && all=0
 	done
-	[ -z "$1" ] && [ `dot status -s | wc -l` -gt 0 ] && cd ~ && \
+	[ -z "$1" ] && [ `ad status -s | wc -l` -gt 0 ] && cd ~ && \
 		echo -ne "\033[0;35m$HOME/dox/aliedots\033[0m " && \
-		dot status -sb 2>/dev/null && all=0
+		ad status -sb 2>/dev/null && all=0
 	return $all
 }
 main "$1" || echo "\033[0;32mAll repos are synced!\033[0m"

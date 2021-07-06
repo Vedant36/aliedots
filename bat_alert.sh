@@ -8,4 +8,4 @@ export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 [ -z "$charging" ] && [ "$battery_level" -ge 90 ] && \
 	/usr/bin/notify-send -u critical "The battery is charging above 90%." "Charging: ${battery_level}% "
 [ "$charging" ] && [ "$battery_level" -lt 7 ] && \
-   /usr/bin/notify-send -u critical "The battery is below 7%." "Charging: ${battery_level}% "
+   /usr/bin/notify-send -u critical "The battery is below 7%." "Discharging: ${battery_level}% "
