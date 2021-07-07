@@ -98,7 +98,7 @@ setopt hist_no_store
 # sourcings(7) fastest to slowest {{{1
 . ${ZDOTDIR-~}/.zshaliases
 . ${ZDOTDIR-~}/.zshfunctions
-. /usr/share/doc/find-the-command/ftc.zsh quiet noprompt
+. /usr/share/doc/find-the-command/ftc.zsh quiet
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
 export ZSH_PLUGINS=$XDG_DATA_HOME/zsh/plugins

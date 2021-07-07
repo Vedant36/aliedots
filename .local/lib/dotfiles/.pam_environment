@@ -11,8 +11,9 @@ HOME                  DEFAULT="/home/@{PAM_USER}" OVERRIDE="@{HOME}"
 
 # Set XDG_CONFIG_HOME:
 XDG_CONFIG_HOME       DEFAULT="${HOME}/.local/etc"
+
+# set others because i have no idea how to import env variables to shell
 XDG_CACHE_HOME        DEFAULT="${HOME}/.local/var/cache"
-XDG_CONFIG_HOME       DEFAULT="${HOME}/.local/etc"
 XDG_DATA_HOME         DEFAULT="${HOME}/.local/share"
 XDG_STATE_HOME        DEFAULT="${HOME}/.local/var/lib"
 

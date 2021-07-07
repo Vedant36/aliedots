@@ -12,6 +12,7 @@ set modelines=1
 set tabstop=4 softtabstop=4 shiftwidth=4 noautoindent nojoinspaces
 set colorcolumn=80 cursorline
 set scrolloff=5
+set showmatch matchtime=3
 set list " lcs=tab:❯\ ,trail:-,nbsp:+
 set listchars=tab:→\ ,eol:\ ,trail:·
 set splitbelow splitright
@@ -28,7 +29,7 @@ set fileformats=unix,dos,mac
 set showtabline=2
 set omnifunc=syntaxcomplete#Complete
 set completeopt+=menuone
-set shortmess+=c " Shut off completion messages
+set shortmess=aoOstTIcF " Shut off completion messages
 set sessionoptions=buffers,curdir,folds,tabpages,globals
 set noexpandtab noshiftround " to check if tab is better
 set foldmethod=marker fillchars=fold:-
@@ -55,21 +56,17 @@ ab intlctl Vedant36 is not a intellectual
 ab coke cocain
 " keybinds ∑ { n ∈ ▲ } 🅇(n) ○-> Ⓨ[n] ▢△◈ {{{1
 " uncategorized {{{2
-xn > >gv
-xn < <gv
-
-nn Q gq
+" nn g/ /\<\><left><left>
+nn <esc> :echoe "pressed esc nerd"<cr>
+nn , ciw
 tno <c-a> <C-\><C-N>
-" nn q; q:
 nn Y y$
-nn <space> za
-vn <space> zf
 "  leaderbinds {{{2
 nn <leader><leader> <C-^>
 nn <leader>a gg"*yG``
 nn <silent> <leader>b :ls<cr>:b<space>
 nn <silent> <leader>c "+
-vn <silent> <leader>c "+
+xn <silent> <leader>c "+
 nn <silent> <leader>d yyp
 nn <leader>e :echo<space>
 nn <expr> <leader>g ":vimgrep /\\\<" . expand("<cword>") . "\\\>/j ** <bar> cw<cr>"
@@ -77,7 +74,7 @@ nn <leader>h :h<space>
 nn <leader>m <nop>
 nn <silent> <leader>n :E<cr>
 nn <silent> <leader>p "*
-vn <silent> <leader>p "*
+xn <silent> <leader>p "*
 nn <silent> <leader>q @q
 nn <leader>r :sp\| terminal<cr>i
 nn <leader>s :%s/
@@ -148,31 +145,38 @@ nn <C-s> :echo  " ⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀�
 				\ ⢀⢂⢑⠀⡂⡃⠅⠊⢄⢑⠠⠑⢕⢕⢝⢮⢺⢕⢟⢮⢊⢢⢱⢄⠃⣇⣞⢞⣞⢾\n
 				\ ⢀⠢⡑⡀⢂⢊⠠⠁⡂⡐⠀⠅⡈⠪⠪⠪⠣⠫⠑⡁⢔⠕⣜⣜⢦⡰⡎⡯⡾⡽"<cr>
 " categorized but less so misc {{{2
+nn Q gq
+nn QQ gqq
+nn <space> za
+xn <space> zf
+xn > >gv
+xn < <gv
 nn [j <c-o>
 nn ]j <c-i>
-
 nn ; :
 nn : ;
-vn ; :
-
+xn ; :
 nn n nzzNn
 nn N NzzNn
-
 nn zuj zjk
-vn zp zdgvzf
-
+xn zp zdgvzf
 nn ZA :xa<cr>
 nn ZX :qa<cr>
 nn ZS :w !echo <bar> dmenu <bar> sudo -S tee %<cr>
-
 nn <silent> <C-j> <C-w>w
 nn <silent> <C-k> <C-w>W
 nn <expr><silent> cot ':<c-u>set tabstop='.v:count1.'<cr>'
+
+" nn h <nop>
+" nn j <nop>
+" nn k <nop>
+" nn l <nop>
 " }}}1
 " autocmd {{{1
 au bufnewfile,bufread *.log* setf logtalk
 au bufnewfile,bufread *.conf* setf cfg
 au bufnewfile,bufread .zsh* setf zsh
+au bufnewfile,bufread *.qss setf css
 au termopen term://* setf terminal
 " au bufnewfile,bufread *man* setf man " doesn't work
 au bufwritepost ~/.Xresources silent !xrdb ~/.Xresources
@@ -185,14 +189,14 @@ augroup custom_filetype
 	au filetype man nn <buffer><silent> ]] :call search('^\S')<cr>
 	au filetype man nn <buffer><silent> [[ :call search('^\S','b')<cr>
 	au filetype man set nobuflisted
-	au filetype markdown nn j gj
-	au filetype markdown nn k gk
+	au filetype markdown nn <buffer> j gj
+	au filetype markdown nn <buffer> k gk
 	au filetype markdown nn <buffer> <leader>1 A)<esc>I[](<esc>hi
 	au filetype markdown nn zq :vimgrep /^#\+ .*.*/ %<Left><Left><Left><Left><Left>
 	au filetype markdown setl cc=
 	au filetype markdown setlocal commentstring=<!--\ %s\ -->
 	au filetype netrw setl bufhidden=wipe
-	au filetype netrw nno l <cr> | nno h -
+	au filetype netrw nmap l <cr> | nmap h -
 	au filetype python setl noet ts=4
 	au filetype upstart setlocal commentstring=#\ %s
 	au filetype vim nn <buffer> <leader>1 oPlug ''<esc>h
@@ -296,7 +300,7 @@ endfunction
 " HexMode from vimwiki https://vim.fandom.com/wiki/Improved_hex_editing {{{2
 nn <silent> <F10> :Hexmode<CR>
 " ino <silent> <F10> <Esc>:Hexmode<CR>
-vn <silent> <F10> :<C-U>Hexmode<CR>
+xn <silent> <F10> :<C-U>Hexmode<CR>
 " ex command for toggling hex mode - define mapping if desired
 command! -bar Hexmode call ToggleHex()
 let g:xxdopts=''
@@ -396,6 +400,7 @@ try
 	Plug 'norcalli/nvim-colorizer.lua' " Faster but requires tru color
 	Plug 'airblade/vim-gitgutter'
 	Plug 'tpope/vim-unimpaired'
+	Plug 'google/vim-searchindex'
 
 	" Themes
 	Plug 'drewtempelmeyer/palenight.vim'
@@ -473,6 +478,7 @@ let g:lightline = {
 lua <<EOF
 require 'colorizer'.setup ({
 	-- '*';
+	-- '!markdown';
 }, {
 	RGB      = true;         -- #RGB hex codes
 	RRGGBB   = true;         -- #RRGGBB hex codes

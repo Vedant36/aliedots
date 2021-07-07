@@ -1,0 +1,25 @@
+html select,
+html input[type="submit"]
+{
+	background-color : #282828 !important;
+	color: #fff !important;
+}
+
+html select:hover,
+html input[type="submit"]:hover
+{
+	background-color : #444 !important;
+}
+
+html * {
+	caret-color: #888;
+}
+
+::-webkit-scrollbar { width: initial; }
+::-webkit-scrollbar-button {  background-color: #333; }
+::-webkit-scrollbar-track {  background-color: #282828; }
+::-webkit-scrollbar-track-piece { background-color: #222; }
+::-webkit-scrollbar-thumb { background-color: #444; }
+::-webkit-scrollbar-corner { background-color: #333; }
+::-webkit-resizer { background-color: #444; }
+

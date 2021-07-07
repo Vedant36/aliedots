@@ -1,1 +1,1 @@
-ACTION=="change", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl1", OWNER="vn36", MODE="0664"
+ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="acpi_video0", RUN+="/usr/bin/chgrp video %S%p/brightness", RUN+="/usr/bin/chmod g+w %S%p/brightness"

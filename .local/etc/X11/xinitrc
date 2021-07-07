@@ -1,5 +1,4 @@
 #!/bin/sh
-env>~/dl/.env
 # if [ "${XDG_VTNR}" -eq 1 ]; then
 #   betterlockscreen -l blur
 # fi
@@ -25,7 +24,8 @@ xcape -e 'Control_L=Escape'
 # clear mod3
 # keysym F8 = Hyper_R
 xset r rate 200 200
-xset -r 23
+# xset -r 23
+xset -r 36
 # pointer(s)
 xset m 4 0
 # xsetroot -cursor_name left_ptr
@@ -34,12 +34,35 @@ xset m 4 0
 #type unclutter>/dev/null && unclutter -idle 1 -root -jitter 40
 #artha &
 pactl set-source-mute @DEFAULT_SOURCE@ 1
-feh --no-fehbg --bg-center "$HOME/media/pix/wallpapers/cc1_resized.jpg"
+feh --no-fehbg --bg-center "$(xdg-user-dir PICTURES)/wallpapers/cc1_resized.jpg"
 dunst &
-picom -f --dbus &
-while xsetroot -name "$(bar.sh)"
-do
-	sleep 1m
+picom -f &
+xss-lock lock &
+while xsetroot -name "$(bar.sh)"; do
+	sleep 1m &
+	wait $!
 done &
 
-exec dwm &>$HOME/.local/var/log/dwm.log
+while true; do
+	# Log stderror to a file 
+	dwm 2>$HOME/.local/var/log/dwm.log
+	# No error logging
+	#dwm >/dev/null 2>&1
+done
+
+# relaunch DWM if the binary changes, otherwise bail
+# csum=""
+# new_csum=$(sha1sum $(which dwm))
+# while true
+# do
+# 	if [ "$csum" != "$new_csum" ]
+# 	then
+# 		csum=$new_csum
+# 		dwm &>$HOME/.local/var/log/dwm.log
+# 	else
+# 		exit 0
+# 	fi
+# 	new_csum=$(sha1sum $(which dwm))
+# 	sleep 0.5
+# done
+

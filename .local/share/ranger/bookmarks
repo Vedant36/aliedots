@@ -1,16 +1,16 @@
-':/home/vn36
+':/home/vn36/dox/sec
 l:/home/vn36/.local
 j:/home/vn36/dl
 d:/home/vn36/dox
-m:/home/vn36/media/melum
-p:/home/vn36/media/pix
-v:/home/vn36/media/vids
+m:/home/vn36/melum
+p:/home/vn36/pix
+v:/home/vn36/vids
 b:/home/vn36/.local/bin/custom
 e:/home/vn36/.local/etc
 x:/home/vn36/.local/etc/X11
 k:/home/vn36/.local/etc/kitty
 n:/home/vn36/.local/etc/nvim
-q:/home/vn36/.local/etc/qutebrowser
+q:/home/vn36
 f:/home/vn36/.local/etc/ranger
 z:/home/vn36/.local/etc/zsh
 o:/home/vn36/.local/opt/dwm
@@ -18,3 +18,5 @@ s:/home/vn36/.local/share
 h:/media/vn36/Seagate Expansion Drive/36Vedant
 w:/home/vn36/pix/wallpapers
 a:/home/vn36
+t:/home/vn36/dox/textfiles
+c:/home/vn36/.local/var/cache

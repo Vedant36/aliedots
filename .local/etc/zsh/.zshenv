@@ -1,4 +1,5 @@
 # !/usr/bin/env zsh
+[[ "$-" != *i* ]] && return # if aint runnin interactively dont do anything
 # settings {{{1
 export skip_global_compinit=1
 export BROWSER="qutebrowser"
@@ -28,10 +29,11 @@ export XDG_CONFIG_HOME=$HOME/.local/etc
 export XDG_CACHE_HOME=$HOME/.local/var/cache
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/var/lib
+export XDG_LIB_HOME=$HOME/.local/lib
 # ~ Cleanup {{{1
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
-export PYTHONSTARTUP=$HOME/.local/bin/startup.py
+export PYTHONSTARTUP=$XDG_LIB_HOME/python/startup.py
 #export IPYTHONDIR=$XDG_CONFIG_HOME/ipython
 export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgreprc
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
