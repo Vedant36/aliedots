@@ -1,5 +1,4 @@
 A:/home/vn36/.local/README.md
-A:/home/vn36/.local/bin/.gitignore
 A:/home/vn36/.local/etc/.gitignore
 A:/home/vn36/.local/etc/MediaHuman/YouTube to MP3.conf
 A:/home/vn36/.local/etc/X11/Xresources
@@ -70,5 +69,6 @@ A:/home/vn36/.local/share/zsh/.zsh_history
 A:/home/vn36/.local/var/cache/.gitignore
 A:/home/vn36/.local/var/lib/.gitignore
 A:/home/vn36/.local/var/log/.gitignore
-A:/home/vn36/.local/zrepo.log
 
+A:/home/vn36/.local/lib/dotfiles/zrepo.log
+A:/home/vn36/.local/bin/.gitignore

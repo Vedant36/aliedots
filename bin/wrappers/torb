@@ -1,0 +1,1 @@
+tor-browser --dir=$HOME/.local/opt/torb $@

@@ -1,0 +1,38 @@
+#!/bin/sh
+BACKLIGHT="/sys/class/backlight/acpi_video0"
+max_brightness=$(cat $BACKLIGHT/max_brightness)
+brightness=$(cat $BACKLIGHT/brightness)
+NAME=$(basename "$0")
+
+helptext() { echo -e "\
+\033[0;35mUsage:\033[0m
+	$NAME (-[ip]{1,2})? \033[0;3mvalue\033[0;m
+	\033[0;33mTo set the brightness to a value:\033[0m
+	$NAME \033[0;3mvalue\033[0;m
+	\033[0;33mTo increment the brightness (accepts negative values):\033[0m
+	$NAME -i \033[0;3mvalue\033[0;m
+	\033[0;33mTo set value in percentage:\033[0m
+	$NAME -p \033[0;3mvalue\033[0;m
+	$NAME -ip \033[0;3mvalue\033[0;m
+\033[0;35mCurrent brightness:\033[0m $brightness/$max_brightness"
+exit 0
+}
+
+[ "$1" ] || helptext
+
+case $1 in
+	-h)
+		helptext
+		exit 0
+		;;
+	-i)
+		new_bright=$(bc <<< "(($2 * $max_brightness) / 100) + $brightness")
+		;;
+	*)
+		new_bright=$(echo "$max_brightness * $1 / 100" | bc)
+		;;
+esac
+[ "$new_bright" -lt 0 ] && new_bright=0
+[ "$new_bright" -gt "$max_brightness" ] && new_bright=$max_brightness
+echo "$new_bright" | tee $BACKLIGHT/brightness
+

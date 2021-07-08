@@ -1,0 +1,153 @@
+#!/usr/bin/env bash
+
+# Original Author : Pavan Jadhaw
+# Modified by : Vedant36
+# Github Profile : https://github.com/pavanjadhaw
+# Project Repository : https://github.com/pavanjadhaw/betterlockscreen
+
+# Configurable settings
+insidecolor=#a9b1d6ff
+ringcolor=#ffffffff
+keyhlcolor=#9ece6aee
+bshlcolor=#9ece6aee
+separatorcolor=#9ece6aee
+insidevercolor=#9ece6aee
+insidewrongcolor=#9ece6aee
+ringvercolor=#ffffffff
+ringwrongcolor=#ffffffff
+verifcolor=#ffffffff
+timecolor=#ffffffff
+datecolor=#ffffffff
+
+loginbox=#7aa2f733
+font="iosevka term"
+locktext="100 seconds to midnight"
+lock_timeout=5
+time_format='%H:%M:%S'
+picture_location=/home/vn36/media/pix/wallpapers/cc1.jpg
+res=$(xdpyinfo | grep -Po 'dimensions:\s*\K\d+x\d+')
+# create folder in ~/.cache/i3lock directory
+res_folder="${XDG_CACHE_HOME:-$HOME/.cache}/i3lock"
+folder=$res_folder
+echo "Got" $@ $res_folder
+if [ ! -d $folder -o -n "$2" ]; then
+	rm -f $folder
+	ln -s $res_folder $folder
+fi
+# ratio for rectangle to be drawn for time background on lockscreen
+# Original Image
+orig_wall="$folder/wall.png"
+# Versions (from here)
+# You can use these images to set different versions as wallpaper
+# lockscreen background.
+resized="$folder/resized.png" # resized image for your resolution
+# images to be used as wallpaper
+# lockscreen images (images to be used as lockscreen background)
+l_screen="$folder/l_blur.png"
+
+lock() {
+	pkill -USR1 dunst
+	# dunstctl set-paused true
+	i3lock \
+		-c 00000000 \
+		-t -i "$l_screen" \
+		--time-pos='x+110:h-70' \
+		--date-pos='x+43:h-45' \
+		--clock --date-align 1 --date-str "$locktext" --time-str "$time_format" \
+		--inside-color=$insidecolor --ring-color=$ringcolor --line-uses-inside \
+		--keyhl-color=$keyhlcolor --bshl-color=$bshlcolor --separator-color=$separatorcolor \
+		--insidever-color=$insidevercolor --insidewrong-color=$insidewrongcolor \
+		--ringver-color=$ringvercolor --ringwrong-color=$ringwrongcolor --ind-pos='x+280:h-70' \
+		--radius=20 --ring-width=4 --verif-text='' --wrong-text='' \
+		--verif-color="$verifcolor" --time-color="$timecolor" --date-color="$datecolor" \
+		--time-font="$font" --date-font="$font" --layout-font="$font" --verif-font="$font" --wrong-font="$font" \
+		--noinput-text='' --force-clock --pass-media-keys "$lockargs" \
+		--bar-step 5
+	[ "$(dunstctl is-paused)" == "true" ] && pkill -USR2 dunst
+	# dunstctl set-paused false
+}
+
+rec_get_random() {
+	dir="$1"
+	if [ ! -d "$dir" ]; then
+		user_input="$dir"
+		return
+	fi
+	dir=("$dir"/*)
+	dir="${dir[RANDOM % ${#dir[@]}]}"
+	rec_get_random "$dir"
+}
+
+logical_px() {
+	# get dpi value from xrdb
+	local DPI=$(grep -oP 'Xft.dpi:\s*\K\d+' ~/.Xresources | bc)
+	
+	# return the default value if no DPI is set
+	if [ -z "$DPI" ]; then
+		echo $1
+	else
+		local SCALE=$(echo "scale=2; $DPI / 96.0" | bc)
+
+		# check if scaling the value is worthy
+		if [ $(echo "$SCALE > 1.25" | bc -l) -eq 0 ]; then
+			echo $1
+		else
+			echo "$SCALE * $1 / 1" | bc
+		fi
+	fi
+}
+
+update() {
+	# use 
+	background="$1"
+
+	rectangles=" "
+	SR=$(xrandr --query | grep ' connected' | grep -o '[0-9][0-9]*x[0-9][0-9]*[^ ]*')
+	for RES in $SR; do
+		SRA=(${RES//[x+]/ })
+		CX=$((${SRA[2]} + $(logical_px 25)))
+		CY=$((${SRA[1]} - $(logical_px 30)))
+		rectangles+="rectangle $CX,$CY $((CX+$(logical_px 300))),$((CY-$(logical_px 80))) "
+	done
+
+	# User supplied Image
+	user_image="$folder/user_image.png"
+
+	# create folder
+	if [ ! -d $folder ]; then
+		echo "Creating '$folder' directory to cache processed images."
+		mkdir -p "$folder"
+	fi
+
+	# get random file in dir if passed argument is a dir
+	rec_get_random "$background"
+
+	# get user image
+	cp "$user_input" "$user_image"
+	if [ ! -f $user_image ]; then
+		echo 'Please specify the path to the image you would like to use'
+		exit 1
+	fi
+
+	# replace orignal with user image
+	cp "$user_image" "$orig_wall"
+	rm "$user_image"
+
+	echo 'Generating alternate images based on the image you specified,'
+	echo 'please wait this might take few seconds...'
+
+	# wallpapers
+
+	echo
+	echo 'Converting provided image to match your resolution...'
+	# resize image
+	convert "$orig_wall" -resize "$res""^" -gravity center -extent "$res" "$resized"
+
+	echo
+	echo 'Caching images for faster screen locking'
+	# resized
+	convert "$resized" -draw "fill #$loginbox $rectangles" "$l_resized"
+}
+lock
+exit 0
+
