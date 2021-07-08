@@ -50,7 +50,7 @@ export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export FZF_{DEFAULT,CTRL_T}_COMMAND='find . -path "*/.git" -prune -o -path "*/.cache" -prune -o -print 2>/dev/null | sed 1d'
 export FZF_ALT_C_COMMAND='find . -type d -a \( -path "*/.git" -prune -o -path "*/.cache" -prune -o -print \) 2>/dev/null | sed 1d'
 export FZF_DEFAULT_OPTS="-m --reverse --tiebreak=begin --info=inline --bind 'ctrl-space:execute(nvim {}),ctrl-y:execute-silent(echo {} | xsel -ib)+abort' 2>/dev/null"
-export FZF_CTRL_T_OPTS=" --tiebreak=begin --preview \"batcat --color=always --style=numbers {}\""
+export FZF_CTRL_T_OPTS=" --tiebreak=begin --preview \"bat --color=always --style=numbers {}\""
 export FZF_ALT_C_OPTS=" --tiebreak=begin --preview 'ls -Al {}'"
 # export FZF_CTRL_R_OPTS=""
 # ps ch $$ >> ~/.local/var/log/calls.log

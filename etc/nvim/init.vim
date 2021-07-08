@@ -61,6 +61,7 @@ nn <esc> :echoe "pressed esc nerd"<cr>
 nn , ciw
 tno <c-a> <C-\><C-N>
 nn Y y$
+nn <silent><c-n> :browse filter! /\v(man:\/\/<bar>term:\/\/<bar>\/tmp\/)/ oldfiles<cr>
 "  leaderbinds {{{2
 nn <leader><leader> <C-^>
 nn <leader>a gg"*yG``

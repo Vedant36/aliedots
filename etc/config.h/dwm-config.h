@@ -119,9 +119,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      8)
 	{ MODKEY|ShiftMask,             XK_q,             quit,           {0} },
 	{ 0,                            XK_Print,         spawn,          SHCMD("scrot \"$HOME/pix/screenshots/ss_%F_%H-%M-%S.png\"") },
-	{ ShiftMask,                    XK_Print,         spawn,          SHCMD("scrot -s \"$HOME/pix/screenshots/ss_%F_%H-%M-%S.png\"") },
+	{ ShiftMask,                    XK_Print,         spawn,          SHCMD("scrot -sf \"$HOME/pix/screenshots/ss_%F_%H-%M-%S.png\"") },
 	{ ControlMask,                  XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -e 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
-	{ ControlMask|ShiftMask,        XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -se 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
+	{ ControlMask|ShiftMask,        XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -sfe 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
 	/* { 0,          XF86XK_AudioRaiseVolume,  spawn,          {.v = upvol   } }, */
 	/* { 0,          XF86XK_AudioLowerVolume,  spawn,          {.v = downvol } }, */
 	/* { 0,          XF86XK_AudioMute,         spawn,          {.v = mutevol } }, */

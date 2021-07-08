@@ -16,6 +16,8 @@
 qutebrowser/bookmarks/
 qutebrowser/autoconfig.yml
 qutebrowser/qsettings/
+!ranger/
+__pycache__/
 !root/
 !X11/
 !zathura/

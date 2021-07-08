@@ -108,6 +108,7 @@ c.url.searchengines = {
 	'm2': 'https://man.archlinux.org/{}', # arch man pages
 	'm': 'https://linux.die.net/man/1/{}', # man pages
 	'p': 'https://thepiratebay.org/search.php?q={}',
+	's': 'https://open.spotify.com/search/{}',
 	'w': 'https://web.archive.org/web/*/{}',
 	'y': 'https://www.youtube.com/results?search_query={}',
 }

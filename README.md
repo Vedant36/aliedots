@@ -27,5 +27,10 @@ $HOME
 	.pam_environment
 	.zshenv
 
->Note: Using the xdg variable structure inspired from [ayekat's dotfiles](https://github.com/ayekat/dotfiles)
-
+## Notes
+- Using the xdg variable structure inspired from [ayekat's dotfiles](https://github.com/ayekat/dotfiles)
+- all directories whether empty or full which i do not want to version control have a .gitignore with the contents:
+```git
+*
+!.gitignore
+```
