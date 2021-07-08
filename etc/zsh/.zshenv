@@ -21,7 +21,7 @@ export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 # XDG and other HOME dirs {{{1
 export LOG=$HOME/.local/var/log
-export SCRIPTS=$HOME/.local/bin/custom
+export SCRIPTS=$HOME/.local/bin/scripts
 export PATH="$SCRIPTS:$HOME/.local/bin/wrappers:$HOME/.local/bin:$PATH"
 export REPOS="$HOME/dox/{textfiles,CPlus,Python,dotfiles,datasets}"
 export BIN_HOME=$HOME/.local/bin
