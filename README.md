@@ -34,3 +34,5 @@ $HOME
 *
 !.gitignore
 ```
+- etc/root contains files that should be hard linked to /etc with the same folder structure. crontab will have to be seperately written using `sudo crontab -e`
+- the user has a crontab too, available in lib/dotfiles/crontab

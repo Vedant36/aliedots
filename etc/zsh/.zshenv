@@ -6,6 +6,7 @@ export BROWSER="qutebrowser"
 export PM=yay # package manager
 export QT_QPA_PLATFORMTHEME=qt5ct
 
+export TERMINAL=kitty
 export EDITOR="nvim"
 export VISUAL="nvim"
 export LESS='--RAW-CONTROL-CHARS --squeeze-blank-lines --quit-on-intr --quit-if-one-screen --no-init' # --mouse

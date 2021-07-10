@@ -2,7 +2,7 @@
 	email = vedantneema@gmail.com
 	name = Vedant36
 [core]
-	pager = nvim -R
+	pager = nvim
 [color]
 	pager = no
 [credential]

@@ -1,8 +1,6 @@
-dmenu
-dmenu_path
-dmenu_run
-dwm
-smu
-st
-stest
+*
+!*/
+!scripts/*
+!wrappers/*
+!.gitignore
 

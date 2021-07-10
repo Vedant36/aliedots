@@ -35,7 +35,7 @@ es(){(
 )}
 # px: package manager wrapper(s) {{{1
 px() {
-	pak=$(($PM -Qm && $PM -Qn) | fzf -n1 --preview "$PM -Qi {1}" --height 100% | cut -d" " -f1 | tr '\n' ' ')
+	pak=$(($PM -Qem && $PM -Qen) | fzf -n1 --preview "$PM -Qi {1}" --height 100% | cut -d" " -f1 | tr '\n' ' ')
 	[ "$pak" ] && eval "$PM -Rcns ${pak% *}"
 }
 # extract directory {{{1

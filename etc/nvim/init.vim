@@ -12,7 +12,7 @@ set modelines=1
 set tabstop=4 softtabstop=4 shiftwidth=4 noautoindent nojoinspaces
 set colorcolumn=80 cursorline
 set scrolloff=5
-set showmatch matchtime=3
+set showmatch matchtime=1
 set list " lcs=tab:❯\ ,trail:-,nbsp:+
 set listchars=tab:→\ ,eol:\ ,trail:·
 set splitbelow splitright
@@ -177,10 +177,11 @@ nn <expr><silent> cot ':<c-u>set tabstop='.v:count1.'<cr>'
 au bufnewfile,bufread *.log* setf logtalk
 au bufnewfile,bufread *.conf* setf cfg
 au bufnewfile,bufread .zsh* setf zsh
+au bufnewfile,bufread .gitignore setlocal commentstring=#\ %s
 au bufnewfile,bufread *.qss setf css
 au termopen term://* setf terminal
 " au bufnewfile,bufread *man* setf man " doesn't work
-au bufwritepost ~/.Xresources silent !xrdb ~/.Xresources
+au bufwritepost $XDG_CONFIG_HOME/X11/Xresources silent !xrdb $XDG_CONFIG_HOME/X11/Xresources
 au bufwritepost config.h :make PREFIX=$HOME/.local clean install
 " au TextChanged,TextChangedI <buffer> silent write
 augroup custom_filetype
@@ -193,9 +194,11 @@ augroup custom_filetype
 	au filetype markdown nn <buffer> j gj
 	au filetype markdown nn <buffer> k gk
 	au filetype markdown nn <buffer> <leader>1 A)<esc>I[](<esc>hi
-	au filetype markdown nn zq :vimgrep /^#\+ .*.*/ %<Left><Left><Left><Left><Left>
+	" au filetype markdown nn zq :vimgrep /^#\+ .*.*/ %<Left><Left><Left><Left><Left>
+	au filetype markdown nn <silent>zq :Toc<cr>
 	au filetype markdown setl cc=
 	au filetype markdown setlocal commentstring=<!--\ %s\ -->
+	au filetype markdown au filetype qf nn <cr> <cr>:lcl<cr>
 	au filetype netrw setl bufhidden=wipe
 	au filetype netrw nmap l <cr> | nmap h -
 	au filetype python setl noet ts=4
@@ -212,6 +215,19 @@ augroup transparent
 augroup END
 
 " Custom plugins {{{1
+" " Auto Tabularize in tables by Tim Pope {{{2
+" inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+" function! s:align()
+"   let p = '^\s*|\s.*\s|\s*$'
+"   if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+"     let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+"     let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+"     Tabularize/|/l1
+"     normal! 0
+"     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+"   endif
+" endfunction
 " " Filename completion with glob {{{2
 " function! MyCompleteFileName()
 "     " match a (potential) wildcard preceding cursor position
@@ -241,7 +257,7 @@ endfunction
 set foldtext=NeatFoldText()
 
 " better indent folding https://learnvimscriptthehardway.stevelosh.com/chapters/49.html {{{2
-au filetype python setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
+" au filetype python setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
 " function! NextNonBlankLine(lnum)
 " 	let numlines = line('$')
 " 	let current = a:lnum + 1
@@ -392,6 +408,8 @@ try
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
 	Plug 'plasticboy/vim-markdown'
+	" Plug 'prurigro/vim-markdown-concealed'
+	Plug 'godlygeek/tabular'
 	Plug 'francoiscabrol/ranger.vim'
 	" Plug 'bling/vim-bufferline'
 	" Plug 'tpope/vim-vinegar'
@@ -424,6 +442,7 @@ let g:lightline#bufferline#min_buffer_count = 2
 
 let g:bufferline_rotate = 2
 
+let g:vim_markdown_folding_disabled = 0
 let g:vim_markdown_folding_style_pythonic = 1
 let g:markdown_fenced_languages = [ 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'js=javascript', 'ts=typescript', 'py=python' ]
 
@@ -442,6 +461,12 @@ nn <c-p> :Files<cr>
 nmap <leader>i <Plug>CommentaryLine
 nmap <leader>u <Plug>Commentary<Plug>Commentary
 vmap <leader>i <Plug>Commentary
+nn <leader>t<bar> :Tab /<bar><cr>
+vn <leader>t<bar> :Tab /<bar><cr>
+nn <leader>t= :Tab /=<cr>
+vn <leader>t= :Tab /=<cr>
+nn <leader>t: :Tab /:<cr>
+vn <leader>t: :Tab /:<cr>
 " lightline config {{{2
 let g:lightline = {
 	\ 'colorscheme': colors_name,

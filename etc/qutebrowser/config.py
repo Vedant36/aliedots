@@ -1,6 +1,8 @@
 # Documentation:
 #   qute://help/configuring.html
 #   qute://help/settings.html
+import subprocess
+from qutebrowser.api import interceptor
 config.load_autoconfig(False)
 
 c.backend = 'webengine'
@@ -36,10 +38,6 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 config.set('content.javascript.enabled', True, 'https://www.youtube.com/*')
 config.set('content.javascript.enabled', True, 'https://duckduckgo.com/*')
-c.content.javascript.enabled = True
-c.content.autoplay = False
-c.content.blocking.adblock.lists = ['https://easylist.to/easylist/easylist.txt', 'https://easylist.to/easylist/easyprivacy.txt', 'https://easylist-downloads.adblockplus.org/easylistdutch.txt', 'https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt', 'https://www.i-dont-care-about-cookies.eu/abp/', 'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt']
-c.content.blocking.method = 'both'
 c.content.cookies.accept = 'no-3rdparty'
 c.content.fullscreen.window = False
 c.content.notifications.enabled = False
@@ -52,23 +50,6 @@ c.downloads.remove_finished = 0
 
 c.editor.command = [ 'kitty', '-1', 'nvim', '-c', 'norm {line}G{column0}l', '{file}' ]
 
-font_size = 10
-fixed = f'{font_size}pt Iosevka Term'
-c.fonts.default_family = 'Futura'
-c.fonts.default_family = [ "Futura", "Unifont" ]
-c.fonts.statusbar = fixed
-c.fonts.completion.category = fixed
-c.fonts.completion.entry = fixed
-# c.fonts.web.family.fixed = 'Iosevka Term'
-c.fonts.web.family.sans_serif = 'Futura'
-c.fonts.web.family.serif = 'Helvetica'
-c.fonts.web.family.standard = 'Futura'
-c.fonts.web.size.default = 14
-c.fonts.web.size.default_fixed = 14
-
-c.hints.border = '0px'
-c.hints.chars = 'abcdefghijklmnopqrstuvwxyz'
-c.hints.padding = { "bottom": 1, "left": 1, "right": 1, "top": 1 }
 
 c.input.insert_mode.auto_load = True
 # c.input.mouse.rocker_gestures = True
@@ -113,17 +94,37 @@ c.url.searchengines = {
 	'y': 'https://www.youtube.com/results?search_query={}',
 }
 
-# # block youtube ads from playing. still have to skip them however.
-# # Source: https://www.reddit.com/r/qutebrowser/comments/my7tbq/block_youtube_ads/
-# def filter_yt(info: interceptor.Request):
-# 	url = info.request_url
-# 	if (url.host() == "www.youtube.com" 
-# 		and url.path() == "/get_video_info"
-# 		and "&adformat=" in url.query()
-# 	):
-# 		info.block()
+# ================== Youtube/Ad Blocking =======================
+c.content.javascript.enabled = True
+c.content.autoplay = False
+c.content.blocking.adblock.lists = [ \
+	"https://easylist.to/easylist/easylist.txt", \
+	"https://easylist.to/easylist/easyprivacy.txt", \
+	"https://secure.fanboy.co.nz/fanboy-cookiemonster.txt", \
+	"https://easylist.to/easylist/fanboy-annoyance.txt", \
+	"https://secure.fanboy.co.nz/fanboy-annoyance.txt", \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt", \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt", \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt", \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt", \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt", \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt" \
+	]
+c.content.blocking.enabled = True
+c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+c.content.blocking.method = 'both'
+def filter_yt(info: interceptor.Request):
+	"""Block the given request if necessary."""
+	url = info.request_url
+	if (
+		url.host() == "www.youtube.com"
+		and url.path() == "/get_video_info"
+		and "&adformat=" in url.query()
+	):
+		info.block()
+interceptor.register(filter_yt)
 
-# interceptor.register(filter_yt)
+
 
 c.bindings.commands = {
 	"normal": {
@@ -158,16 +159,97 @@ c.bindings.commands = {
 		"<ctrl-r>": "save;; restart",
 	},
 	"insert": {
-		"<ctrl-j>": "fake-key <enter>",
-		"<ctrl-m>": "fake-key <enter>",
-		"<ctrl-w>": "fake-key <ctrl-backspace>",
-		"<ctrl-u>": "fake-key <shift-home><backspace>",
-		"<ctrl-k>": "fake-key <shift-end><backspace>",
-		"<ctrl-d>": "fake-key <ctrl-a><backspace>",
-		"<ctrl-h>": "fake-key <backspace>",
-		# "<ctrl-f>": "fake-key <right>",
-		# "<ctrl-b>": "fake-key <left>",
-		"<alt-f>" : "fake-key <ctrl-right>",
-		"<alt-b>" : "fake-key <ctrl-left>",
+		"<Ctrl-a>": "fake-key <Home>",
+		"<Alt-b>": "fake-key <Ctrl-Left>",
+		"<Ctrl-b>": "fake-key <Left>",
+		"<Ctrl-c>": "fake-key <Ctrl-a><Backspace>",
+		"<Alt-d>": "fake-key <Ctrl-Delete>",
+		"<Ctrl-d>": "fake-key <Delete>",
+		"<Ctrl-e>": "fake-key <End>",
+		"<Alt-f>": "fake-key <Ctrl-Right>",
+		"<Ctrl-f>": "fake-key <Right>",
+		"<Ctrl-h>": "fake-key <Backspace>",
+		"<Ctrl-h>": "fake-key <Backspace>",
+		"<Ctrl-j>": "fake-key <Enter>",
+		"<Ctrl-k>": "fake-key <Shift-End><Delete>",
+		"<Ctrl-m>": "fake-key <Enter>",
+		"<Ctrl-n>": "fake-key <Down>",
+		"<Ctrl-p>": "fake-key <Up>",
+		"<Ctrl-u>": "fake-key <Shift-Home><Delete>",
+		"<Ctrl-w>": "fake-key <Ctrl-Backspace>",
+		"<Ctrl-x><Ctrl-e>": "open-editor",
 	}
 }
+
+# ====================== xresources =========================
+# taken from https://qutebrowser.org/doc/help/configuring.html
+def read_xresources(prefix):
+	"""
+	read settings from xresources
+	"""
+	props = {}
+	x = subprocess.run(["xrdb", "-query"], stdout=subprocess.PIPE)
+	lines = x.stdout.decode().split("\n")
+	for line in filter(lambda l: l.startswith(prefix), lines):
+		prop, _, value = line.partition(":\t")
+		props[prop] = value
+	return props
+
+xresources = read_xresources("*")
+
+c.colors.statusbar.normal.bg = xresources["*.background"]
+c.colors.statusbar.command.bg = xresources["*.background"]
+c.colors.statusbar.command.fg = xresources["*.foreground"]
+c.colors.statusbar.normal.fg = xresources["*.foreground"]
+c.colors.statusbar.url.success.https.fg = xresources["*.color2"]
+c.statusbar.show = "always"
+c.statusbar.padding = { "bottom": 0, "left": 0, "right": 0, "top": 0 }
+
+c.colors.tabs.even.bg = "#15161e"
+c.colors.tabs.odd.bg = xresources["*.background"]
+c.colors.tabs.even.fg = xresources["*.foreground"]
+c.colors.tabs.odd.fg = xresources["*.foreground"]
+c.colors.tabs.selected.even.bg = xresources["*.color8"]
+c.colors.tabs.selected.odd.bg = xresources["*.color8"]
+c.hints.border = '0'
+c.colors.hints.bg = xresources["*.background"]
+c.colors.hints.fg = xresources["*.foreground"]
+c.hints.chars = 'abcdefghijklmnopqrstuvwxyz'
+c.hints.padding = { "bottom": 1, "left": 1, "right": 1, "top": 1 }
+c.tabs.show = "multiple"
+
+# change title format
+c.tabs.title.format = "{audio}{current_title}"
+
+# fonts
+font_size = 10
+fixed = f'{font_size}pt Iosevka Term'
+c.fonts.default_family = 'Futura'
+c.fonts.default_family = [ "Futura", "Unifont" ]
+c.fonts.statusbar = fixed
+c.fonts.completion.category = fixed
+c.fonts.completion.entry = fixed
+c.fonts.hints = f'{font_size}pt Iosevka Term'
+# c.fonts.web.family.fixed = 'Iosevka Term'
+c.fonts.web.family.sans_serif = 'Futura'
+c.fonts.web.family.serif = 'Helvetica'
+c.fonts.web.family.standard = 'Futura'
+c.fonts.web.size.default = 14
+c.fonts.web.size.default_fixed = 14
+
+c.colors.tabs.indicator.stop = xresources["*.color14"]
+c.colors.completion.odd.bg = xresources["*.background"]
+c.colors.completion.even.bg = "#15161e"
+c.colors.completion.fg = xresources["*.foreground"]
+c.colors.completion.category.bg = xresources["*.background"]
+c.colors.completion.category.fg = xresources["*.foreground"]
+c.colors.completion.item.selected.bg = xresources["*.background"]
+c.colors.completion.item.selected.fg = xresources["*.foreground"]
+
+# If not in light theme
+if xresources["*.background"] != "#ffffff":
+	# c.qt.args = ['blink-settings=darkMode=4']
+	# c.colors.webpage.prefers_color_scheme_dark = True
+	c.colors.webpage.darkmode.enabled = True
+	# c.hints.border = "1px solid #FFFFFF"
+

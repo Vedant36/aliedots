@@ -1,3 +1,3 @@
 #!/bin/sh
 # script put in PATH to be able to operate on the git bare repository
-git --git-dir=$HOME/dox/aliedots --work-tree=$HOME $@
+git --git-dir=$HOME/.local/.git --work-tree=$HOME/.local $@

@@ -39,7 +39,6 @@ dunst &
 picom -f &
 xss-lock lock &
 
-echo asd>~/asd
 while xsetroot -name "$(bar.sh)"; do
 	sleep 1m &
 	echo $! > ${XDG_CACHE_HOME:-$HOME/.cache}/sleep_pid

@@ -1,54 +1,54 @@
 ! Vedant36 Xresources
 ! Themes {{{1
 ! ! timpope {{{2
-! *background:   #000000
-! *foreground:   #aaaaaa
-! *color0:  #000000
-! *color1:  #aa0000
-! *color2:  #00aa00
-! *color3:  #aa5522
-! *color4:  #0000ee
-! *color5:  #aa00aa
-! *color6:  #00aaaa
-! *color7:  #aaaaaa
-! *color8:  #555555
-! *color9:  #ff4444
-! *color10: #44ff44
-! *color11: #ffff00
-! *color12: #5c5cff
-! *color13: #ff00ff
-! *color14: #00ffff
-! *color15: #ffffff
-! ! *colorBD: #ffffff
+! *.background:   #000000
+! *.foreground:   #aaaaaa
+! *.color0:  #000000
+! *.color1:  #aa0000
+! *.color2:  #00aa00
+! *.color3:  #aa5522
+! *.color4:  #0000ee
+! *.color5:  #aa00aa
+! *.color6:  #00aaaa
+! *.color7:  #aaaaaa
+! *.color8:  #555555
+! *.color9:  #ff4444
+! *.color10: #44ff44
+! *.color11: #ffff00
+! *.color12: #5c5cff
+! *.color13: #ff00ff
+! *.color14: #00ffff
+! *.color15: #ffffff
+! ! *.colorBD: #ffffff
 ! ! gruvbox {{{2
-! ! hard contrast: *background: #1d2021
-! *background: #282828
-! ! soft contrast: *background: #32302f
-! *foreground: #ebdbb2
+! ! hard contrast: *.background: #1d2021
+! *.background: #282828
+! ! soft contrast: *.background: #32302f
+! *.foreground: #ebdbb2
 ! ! Black + DarkGrey
-! *color0:  #282828
-! *color8:  #928374
+! *.color0:  #282828
+! *.color8:  #928374
 ! ! DarkRed + Red
-! *color1:  #cc241d
-! *color9:  #fb4934
+! *.color1:  #cc241d
+! *.color9:  #fb4934
 ! ! DarkGreen + Green
-! *color2:  #98971a
-! *color10: #b8bb26
+! *.color2:  #98971a
+! *.color10: #b8bb26
 ! ! DarkYellow + Yellow
-! *color3:  #d79921
-! *color11: #fabd2f
+! *.color3:  #d79921
+! *.color11: #fabd2f
 ! ! DarkBlue + Blue
-! *color4:  #458588
-! *color12: #83a598
+! *.color4:  #458588
+! *.color12: #83a598
 ! ! DarkMagenta + Magenta
-! *color5:  #b16286
-! *color13: #d3869b
+! *.color5:  #b16286
+! *.color13: #d3869b
 ! ! DarkCyan + Cyan
-! *color6:  #689d6a
-! *color14: #8ec07c
+! *.color6:  #689d6a
+! *.color14: #8ec07c
 ! ! LightGrey + White
-! *color7:  #a89984
-! *color15: #ebdbb2
+! *.color7:  #a89984
+! *.color15: #ebdbb2
 ! ! Nord Theme {{{2
 ! #define nord0 #2E3440
 ! #define nord1 #3B4252
@@ -70,8 +70,8 @@
 ! *.foreground:   nord4
 ! *.background:   nord0
 ! *.cursorColor:  nord4
-! ! *fading: 5
-! *fadeColor: nord3
+! ! *.fading: 5
+! *.fadeColor: nord3
 
 ! *.color0: nord1
 ! *.color1: nord11
@@ -92,35 +92,35 @@
 
 ! Theme - Tokyo-Night {{{2
 ! general
-*foreground: #a9b1d6
-*background: #1a1b26
-*cursorColor: #a9b1d6
+*.foreground: #a9b1d6
+*.background: #1a1b26
+*.cursorColor: #a9b1d6
 ! terminal padding color
-*borderColor: #1a1b26
+*.borderColor: #1a1b26
 ! black
-*color0: #1a1b26
-*color8: #4e5173
+*.color0: #1a1b26
+*.color8: #4e5173
 ! red
-*color1: #F7768E
-*color9: #F7768E
+*.color1: #F7768E
+*.color9: #F7768E
 ! green
-*color2: #9ECE6A
-*color10: #9ECE6A
+*.color2: #9ECE6A
+*.color10: #9ECE6A
 ! yellow
-*color3: #E0AF68
-*color11: #E0AF68
+*.color3: #E0AF68
+*.color11: #E0AF68
 ! blue
-*color4: #7AA2F7
-*color12: #7AA2F7
+*.color4: #7AA2F7
+*.color12: #7AA2F7
 ! magenta
-*color5: #9a7ecc
-*color13: #9a7ecc
+*.color5: #9a7ecc
+*.color13: #9a7ecc
 ! cyan
-*color6: #4abaaf
-*color14: #4abaaf
+*.color6: #4abaaf
+*.color14: #4abaaf
 ! white
-*color7: #acb0d0
-*color15: #acb0d0
+*.color7: #acb0d0
+*.color15: #acb0d0
 
 ! ! Theme - Monokai {{{2
 ! ! special
@@ -165,10 +165,10 @@
 ! Xcursor.theme: xterm
 *.fading: 5
 *.alpha: 0.97
-*.font:           xft:Iosevka Term:style=Regular:     size=10
-*.boldFont:       xft:Iosevka Term:style=Bold:        size=10
-*.italicFont:     xft:Iosevka Term:style=Italic:      size=10
-*.boldItalicFont: xft:Iosevka Term:style=Bold Italic: size=10
+*.font:           xft:Iosevka Term:style=Regular:     size=9
+*.boldFont:       xft:Iosevka Term:style=Bold:        size=9
+*.italicFont:     xft:Iosevka Term:style=Italic:      size=9
+*.boldItalicFont: xft:Iosevka Term:style=Bold Italic: size=9
 *.letterSpace: 0
 *.lineSpace: 0
 *.geometry: 137x30

@@ -1,22 +1,20 @@
-':/home/vn36/.local/bin/wrappers
-l:/home/vn36/.local
+':/home/vn36/.local/etc/ranger
 j:/home/vn36/dl
 d:/home/vn36/dox
+t:/home/vn36/dox/textfiles
 m:/home/vn36/melum
 p:/home/vn36/pix
+w:/home/vn36/pix/wallpapers
 v:/home/vn36/vids
+l:/home/vn36/.local
 b:/home/vn36/.local/bin/scripts
 e:/home/vn36/.local/etc
 x:/home/vn36/.local/etc/X11
 k:/home/vn36/.local/etc/kitty
 n:/home/vn36/.local/etc/nvim
-q:/home/vn36
 f:/home/vn36/.local/etc/ranger
 z:/home/vn36/.local/etc/zsh
 o:/home/vn36/.local/opt/dwm
 s:/home/vn36/.local/share
-h:/media/vn36/Seagate Expansion Drive/36Vedant
-w:/home/vn36/pix/wallpapers
-a:/home/vn36
-t:/home/vn36/dox/textfiles
 c:/home/vn36/.local/var/cache
+h:/media/vn36/Seagate Expansion Drive/36Vedant
