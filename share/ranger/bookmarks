@@ -1,4 +1,5 @@
-':/home/vn36/.local/etc/ranger
+':/home/vn36/.local/share
+a:/home/vn36
 j:/home/vn36/dl
 d:/home/vn36/dox
 t:/home/vn36/dox/textfiles
@@ -12,6 +13,7 @@ e:/home/vn36/.local/etc
 x:/home/vn36/.local/etc/X11
 k:/home/vn36/.local/etc/kitty
 n:/home/vn36/.local/etc/nvim
+q:/home/vn36/.local/etc/qutebrowser
 f:/home/vn36/.local/etc/ranger
 z:/home/vn36/.local/etc/zsh
 o:/home/vn36/.local/opt/dwm

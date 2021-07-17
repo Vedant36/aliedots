@@ -36,3 +36,7 @@ $HOME
 ```
 - etc/root contains files that should be hard linked to /etc with the same folder structure. crontab will have to be seperately written using `sudo crontab -e`
 - the user has a crontab too, available in lib/dotfiles/crontab
+## todo for setup
+minecraft files settings, server.dat
+## setup outside of the repository contents
+/var/lib/vnstat/vnstat.db

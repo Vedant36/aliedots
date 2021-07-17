@@ -25,11 +25,13 @@ c.colors.tabs.odd.bg = "#333333"
 c.colors.tabs.even.bg = "#444444"
 
 c.completion.cmd_history_max_items = 1000
+c.completion.shrink = True
 
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://accounts.google.com/*')
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://docs.google.com/*')
+config.set('content.register_protocol_handler', False, 'https://mail.google.com*')
 config.set('content.images', True, 'chrome-devtools://*')
 config.set('content.images', True, 'devtools://*')
 config.set('content.javascript.enabled', True, 'chrome-devtools://*')
@@ -97,21 +99,21 @@ c.url.searchengines = {
 # ================== Youtube/Ad Blocking =======================
 c.content.javascript.enabled = True
 c.content.autoplay = False
-c.content.blocking.adblock.lists = [ \
-	"https://easylist.to/easylist/easylist.txt", \
-	"https://easylist.to/easylist/easyprivacy.txt", \
-	"https://secure.fanboy.co.nz/fanboy-cookiemonster.txt", \
-	"https://easylist.to/easylist/fanboy-annoyance.txt", \
-	"https://secure.fanboy.co.nz/fanboy-annoyance.txt", \
-	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt", \
-	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt", \
-	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt", \
-	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt", \
-	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt", \
-	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt" \
-	]
+# c.content.blocking.adblock.lists = [ \
+# 	"https://easylist.to/easylist/easylist.txt", \
+# 	"https://easylist.to/easylist/easyprivacy.txt", \
+# 	"https://secure.fanboy.co.nz/fanboy-cookiemonster.txt", \
+# 	"https://easylist.to/easylist/fanboy-annoyance.txt", \
+# 	"https://secure.fanboy.co.nz/fanboy-annoyance.txt", \
+# 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt", \
+# 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt", \
+# 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt", \
+# 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt", \
+# 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt", \
+# 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt" \
+# 	]
 c.content.blocking.enabled = True
-c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+# c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
 c.content.blocking.method = 'both'
 def filter_yt(info: interceptor.Request):
 	"""Block the given request if necessary."""
@@ -138,12 +140,14 @@ c.bindings.commands = {
 		"ZQ": "close",
 		"ZZ": "save;; close",
 		"ce": "config-edit",
+		"cs": "config-source",
 		"ef": "fake-key f",
 		"ei": "fake-key i",
 		"e<space>": "fake-key <esc>",
 		"gI": "hint inputs --first;; mode-enter insert;; fake-key /<ctrl-a><backspace>",
 		"h" : "tab-prev",
 		"l" : "tab-next",
+		"yw": "fake-key <ctrl-a>",
 		"!" : "set-cmd-text :open !",
 		",M": "hint links spawn -d mpv {hint-url}",
 		",m": "spawn --user view_in_mpv",

@@ -1,0 +1,6 @@
+#!/bin/sh
+# cant use xcape while im trying to sprint hit
+pkill xcape
+java -jar /opt/mc-tlauncher/tlauncher.jar
+xcape -e 'Control_L=Escape'
+

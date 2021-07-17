@@ -34,5 +34,5 @@ case $1 in
 esac
 [ "$new_bright" -lt 0 ] && new_bright=0
 [ "$new_bright" -gt "$max_brightness" ] && new_bright=$max_brightness
-echo "$new_bright" | tee $BACKLIGHT/brightness
+echo "$new_bright" > $BACKLIGHT/brightness
 

@@ -198,7 +198,7 @@ augroup custom_filetype
 	au filetype markdown nn <silent>zq :Toc<cr>
 	au filetype markdown setl cc=
 	au filetype markdown setlocal commentstring=<!--\ %s\ -->
-	au filetype markdown au filetype qf nn <cr> <cr>:lcl<cr>
+	au filetype markdown au filetype qf nn <silent><cr> <cr>:lcl<cr>
 	au filetype netrw setl bufhidden=wipe
 	au filetype netrw nmap l <cr> | nmap h -
 	au filetype python setl noet ts=4

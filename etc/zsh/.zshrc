@@ -152,3 +152,5 @@ export PROMPT=" %F{green}$shlvl%f%F{magenta}%~%f%F{blue}>%f "
 # # from :2,7 {{{1
 # unsetopt XTRACE
 # exec 2>&3 3>&-
+# }}}
+
