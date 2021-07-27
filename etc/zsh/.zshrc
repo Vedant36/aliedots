@@ -132,7 +132,7 @@ preexec() {
 }
 
 precmd() {
-  print -n "\e]0;$(print -P $HOST: zsh '(%~)')\a"
+  # print -n "\e]0;$(print -P $HOST: zsh '(%~)')\a"
   if [ $ini ]; then
     now=$(($(date +%s%0N)/1000000))
     # total="%K{magenta} %F{black}$(($now-$ini))ms %k%F{magenta}%K{blue}%f"

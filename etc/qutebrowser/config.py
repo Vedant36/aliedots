@@ -2,7 +2,6 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 import subprocess
-from qutebrowser.api import interceptor
 config.load_autoconfig(False)
 
 c.backend = 'webengine'
@@ -11,10 +10,10 @@ c.auto_save.session = True
 
 c.colors.webpage.bg = '#292d3e'
 # c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
-# c.colors.webpage.darkmode.enabled = True
+# c.colors.webpage.darkmode.enabled = False
+c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.policy.images = 'never'
 c.colors.webpage.preferred_color_scheme = 'dark'
-c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
 c.colors.webpage.darkmode.contrast = -.022 # the lower the darker
 c.colors.webpage.darkmode.threshold.text = 150
@@ -31,7 +30,7 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{w
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://accounts.google.com/*')
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://docs.google.com/*')
-config.set('content.register_protocol_handler', False, 'https://mail.google.com*')
+config.set('content.register_protocol_handler', False, 'https://mail.google.com')
 config.set('content.images', True, 'chrome-devtools://*')
 config.set('content.images', True, 'devtools://*')
 config.set('content.javascript.enabled', True, 'chrome-devtools://*')
@@ -40,15 +39,17 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 config.set('content.javascript.enabled', True, 'https://www.youtube.com/*')
 config.set('content.javascript.enabled', True, 'https://duckduckgo.com/*')
+config.set('content.geolocation', False, 'https://www.google.com')
 c.content.cookies.accept = 'no-3rdparty'
 c.content.fullscreen.window = False
 c.content.notifications.enabled = False
+c.content.pdfjs = True
 c.content.private_browsing = False
 c.content.user_stylesheets = ['$XDG_CONFIG_HOME/qutebrowser/fix-tooltips.qss', '$XDG_CONFIG_HOME/qutebrowser/darkmode.qss']
 c.content.webrtc_ip_handling_policy = 'disable-non-proxied-udp'
 
 c.downloads.location.suggestion = 'both'
-c.downloads.remove_finished = 0
+c.downloads.remove_finished = 1
 
 c.editor.command = [ 'kitty', '-1', 'nvim', '-c', 'norm {line}G{column0}l', '{file}' ]
 
@@ -67,6 +68,7 @@ c.tabs.show_switching_delay = 500
 c.tabs.mousewheel_switching = False
 c.tabs.new_position.unrelated = 'next'
 c.tabs.select_on_remove = 'last-used'
+c.tabs.last_close = 'close'
 c.window.transparent = True
 c.window.hide_decoration = True
 c.url.open_base_url = True
@@ -99,22 +101,23 @@ c.url.searchengines = {
 # ================== Youtube/Ad Blocking =======================
 c.content.javascript.enabled = True
 c.content.autoplay = False
-# c.content.blocking.adblock.lists = [ \
-# 	"https://easylist.to/easylist/easylist.txt", \
-# 	"https://easylist.to/easylist/easyprivacy.txt", \
-# 	"https://secure.fanboy.co.nz/fanboy-cookiemonster.txt", \
-# 	"https://easylist.to/easylist/fanboy-annoyance.txt", \
-# 	"https://secure.fanboy.co.nz/fanboy-annoyance.txt", \
-# 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt", \
-# 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt", \
-# 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt", \
-# 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt", \
-# 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt", \
-# 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt" \
-# 	]
+c.content.blocking.adblock.lists = [ \
+	"https://easylist.to/easylist/easylist.txt", \
+	"https://easylist.to/easylist/easyprivacy.txt", \
+	"https://secure.fanboy.co.nz/fanboy-cookiemonster.txt", \
+	"https://easylist.to/easylist/fanboy-annoyance.txt", \
+	"https://secure.fanboy.co.nz/fanboy-annoyance.txt", \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt", \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt", \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt", \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt", \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt", \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt" \
+	]
 c.content.blocking.enabled = True
-# c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
 c.content.blocking.method = 'both'
+from qutebrowser.api import interceptor
 def filter_yt(info: interceptor.Request):
 	"""Block the given request if necessary."""
 	url = info.request_url
@@ -141,6 +144,7 @@ c.bindings.commands = {
 		"ZZ": "save;; close",
 		"ce": "config-edit",
 		"cs": "config-source",
+		"ec": "fake-key c",
 		"ef": "fake-key f",
 		"ei": "fake-key i",
 		"e<space>": "fake-key <esc>",
@@ -206,6 +210,7 @@ c.colors.statusbar.command.bg = xresources["*.background"]
 c.colors.statusbar.command.fg = xresources["*.foreground"]
 c.colors.statusbar.normal.fg = xresources["*.foreground"]
 c.colors.statusbar.url.success.https.fg = xresources["*.color2"]
+c.colors.statusbar.url.hover.fg = xresources["*.color4"]
 c.statusbar.show = "always"
 c.statusbar.padding = { "bottom": 0, "left": 0, "right": 0, "top": 0 }
 
@@ -218,7 +223,7 @@ c.colors.tabs.selected.odd.bg = xresources["*.color8"]
 c.hints.border = '0'
 c.colors.hints.bg = xresources["*.background"]
 c.colors.hints.fg = xresources["*.foreground"]
-c.hints.chars = 'abcdefghijklmnopqrstuvwxyz'
+c.hints.chars = 'xseol,zawp;.cdrikmvftyujnbgh'
 c.hints.padding = { "bottom": 1, "left": 1, "right": 1, "top": 1 }
 c.tabs.show = "multiple"
 
@@ -249,11 +254,4 @@ c.colors.completion.category.bg = xresources["*.background"]
 c.colors.completion.category.fg = xresources["*.foreground"]
 c.colors.completion.item.selected.bg = xresources["*.background"]
 c.colors.completion.item.selected.fg = xresources["*.foreground"]
-
-# If not in light theme
-if xresources["*.background"] != "#ffffff":
-	# c.qt.args = ['blink-settings=darkMode=4']
-	# c.colors.webpage.prefers_color_scheme_dark = True
-	c.colors.webpage.darkmode.enabled = True
-	# c.hints.border = "1px solid #FFFFFF"
 

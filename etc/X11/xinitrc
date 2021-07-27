@@ -41,7 +41,7 @@ xss-lock lock &
 
 while xsetroot -name "$(bar.sh)"; do
 	sleep 1m &
-	echo $! > ${XDG_CACHE_HOME:-$HOME/.cache}/sleep_pid
+	echo $! > ${XDG_STATE_HOME:-$HOME/.cache}/sleep_pid
 	wait $!
 done &
 

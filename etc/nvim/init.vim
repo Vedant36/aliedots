@@ -57,6 +57,7 @@ ab coke cocain
 " keybinds ∑ { n ∈ ▲ } 🅇(n) ○-> Ⓨ[n] ▢△◈ {{{1
 " uncategorized {{{2
 " nn g/ /\<\><left><left>
+nn <M-CR> <c-o>o
 nn <esc> :echoe "pressed esc nerd"<cr>
 nn , ciw
 tno <c-a> <C-\><C-N>
@@ -200,7 +201,7 @@ augroup custom_filetype
 	au filetype markdown setlocal commentstring=<!--\ %s\ -->
 	au filetype markdown au filetype qf nn <silent><cr> <cr>:lcl<cr>
 	au filetype netrw setl bufhidden=wipe
-	au filetype netrw nmap l <cr> | nmap h -
+	au filetype netrw nmap <buffer>l <cr>2j | nmap <buffer>h -
 	au filetype python setl noet ts=4
 	au filetype upstart setlocal commentstring=#\ %s
 	au filetype vim nn <buffer> <leader>1 oPlug ''<esc>h
