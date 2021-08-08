@@ -1,45 +1,14 @@
+#!/usr/bin/env python
 # Documentation:
 #   qute://help/configuring.html
 #   qute://help/settings.html
 import subprocess
+# Settings {{{1
 config.load_autoconfig(False)
-
-c.backend = 'webengine'
-
 c.auto_save.session = True
-
-c.colors.webpage.bg = '#292d3e'
-# c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
-# c.colors.webpage.darkmode.enabled = False
-c.colors.webpage.darkmode.enabled = True
-c.colors.webpage.darkmode.policy.images = 'never'
-c.colors.webpage.preferred_color_scheme = 'dark'
-c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
-c.colors.webpage.darkmode.contrast = -.022 # the lower the darker
-c.colors.webpage.darkmode.threshold.text = 150
-c.colors.webpage.darkmode.threshold.background = 100
-# c.colors.webpage.darkmode.policy.images = 'always'
-# c.colors.webpage.darkmode.grayscale.images = 0.35
-c.colors.tabs.odd.bg = "#333333"
-c.colors.tabs.even.bg = "#444444"
-
+c.backend = 'webengine'
 c.completion.cmd_history_max_items = 1000
 c.completion.shrink = True
-
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://accounts.google.com/*')
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://docs.google.com/*')
-config.set('content.register_protocol_handler', False, 'https://mail.google.com')
-config.set('content.images', True, 'chrome-devtools://*')
-config.set('content.images', True, 'devtools://*')
-config.set('content.javascript.enabled', True, 'chrome-devtools://*')
-config.set('content.javascript.enabled', True, 'devtools://*')
-config.set('content.javascript.enabled', True, 'chrome://*/*')
-config.set('content.javascript.enabled', True, 'qute://*/*')
-config.set('content.javascript.enabled', True, 'https://www.youtube.com/*')
-config.set('content.javascript.enabled', True, 'https://duckduckgo.com/*')
-config.set('content.geolocation', False, 'https://www.google.com')
 c.content.cookies.accept = 'no-3rdparty'
 c.content.fullscreen.window = False
 c.content.notifications.enabled = False
@@ -47,32 +16,48 @@ c.content.pdfjs = True
 c.content.private_browsing = False
 c.content.user_stylesheets = ['$XDG_CONFIG_HOME/qutebrowser/fix-tooltips.qss', '$XDG_CONFIG_HOME/qutebrowser/darkmode.qss']
 c.content.webrtc_ip_handling_policy = 'disable-non-proxied-udp'
-
 c.downloads.location.suggestion = 'both'
 c.downloads.remove_finished = 1
-
 c.editor.command = [ 'kitty', '-1', 'nvim', '-c', 'norm {line}G{column0}l', '{file}' ]
-
-
+c.hints.border = '0'
+c.hints.chars = 'xseol,zawp;.cdrikmvftyujnbgh'
+c.hints.padding = { "bottom": 1, "left": 1, "right": 1, "top": 1 }
 c.input.insert_mode.auto_load = True
-# c.input.mouse.rocker_gestures = True
-
 c.scrolling.bar = 'when-searching'
 c.scrolling.smooth = True
-
 c.session.lazy_restore = True
-
+c.statusbar.padding = { "bottom": 0, "left": 0, "right": 0, "top": 0 }
+c.statusbar.show = "always"
 c.tabs.background = True
-c.tabs.show = 'multiple'
-c.tabs.show_switching_delay = 500
+c.tabs.last_close = 'close'
 c.tabs.mousewheel_switching = False
 c.tabs.new_position.unrelated = 'next'
 c.tabs.select_on_remove = 'last-used'
-c.tabs.last_close = 'close'
-c.window.transparent = True
-c.window.hide_decoration = True
+c.tabs.show = "multiple"
+c.tabs.show = 'multiple'
+c.tabs.show_switching_delay = 500
+c.tabs.title.format = "{audio}{current_title}"
 c.url.open_base_url = True
+c.window.hide_decoration = True
+c.window.transparent = True
 
+# fonts {{{1
+font_size = 10
+fixed = f'{font_size}pt Iosevka Term'
+c.fonts.default_family = 'Futura'
+c.fonts.default_family = [ "Futura", "Unifont" ]
+c.fonts.statusbar = fixed
+c.fonts.completion.category = fixed
+c.fonts.completion.entry = fixed
+c.fonts.hints = f'{font_size}pt Iosevka Term'
+# c.fonts.web.family.fixed = 'Iosevka Term'
+c.fonts.web.family.sans_serif = 'Futura'
+c.fonts.web.family.serif = 'Helvetica'
+c.fonts.web.family.standard = 'Futura'
+c.fonts.web.size.default = 14
+c.fonts.web.size.default_fixed = 14
+
+# Aliases {{{1
 c.aliases = {
 	"q": "close",
 	"qa": "quit",
@@ -83,6 +68,7 @@ c.aliases = {
 	"sleep": "later",
 }
 
+# Search Engines {{{1
 c.url.searchengines = {
 	'DEFAULT': 'https://www.duckduckgo.com/?q={}',
 	'4': 'https://4chan.org/{}',
@@ -98,7 +84,7 @@ c.url.searchengines = {
 	'y': 'https://www.youtube.com/results?search_query={}',
 }
 
-# ================== Youtube/Ad Blocking =======================
+# Youtube/Ad Blocking {{{1
 c.content.javascript.enabled = True
 c.content.autoplay = False
 c.content.blocking.adblock.lists = [ \
@@ -129,8 +115,7 @@ def filter_yt(info: interceptor.Request):
 		info.block()
 interceptor.register(filter_yt)
 
-
-
+# Bindings {{{1
 c.bindings.commands = {
 	"normal": {
 		"A" : "set-cmd-text :open {url:pretty}",
@@ -144,14 +129,13 @@ c.bindings.commands = {
 		"ZZ": "save;; close",
 		"ce": "config-edit",
 		"cs": "config-source",
-		"ec": "fake-key c",
-		"ef": "fake-key f",
-		"ei": "fake-key i",
+		**{f"e{i}": f"fake-key {i}" for i in "qwertyuiopasdfghjklzxcvbnm"},
 		"e<space>": "fake-key <esc>",
 		"gI": "hint inputs --first;; mode-enter insert;; fake-key /<ctrl-a><backspace>",
 		"h" : "tab-prev",
 		"l" : "tab-next",
 		"yw": "fake-key <ctrl-a>",
+		"z" : "tab-focus 1;; open -t -r https://np.ironhelmet.com/game/6154399536381952;; tab-move -;; open -t -r https://np.ironhelmet.com/game/4575009249689600",
 		"!" : "set-cmd-text :open !",
 		",M": "hint links spawn -d mpv {hint-url}",
 		",m": "spawn --user view_in_mpv",
@@ -189,7 +173,7 @@ c.bindings.commands = {
 	}
 }
 
-# ====================== xresources =========================
+# Colors from Xresources {{{1
 # taken from https://qutebrowser.org/doc/help/configuring.html
 def read_xresources(prefix):
 	"""
@@ -204,6 +188,21 @@ def read_xresources(prefix):
 	return props
 
 xresources = read_xresources("*")
+even = "#15161e"
+odd = xresources["*.background"]
+
+c.colors.webpage.bg = '#292d3e'
+# c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
+# c.colors.webpage.darkmode.enabled = False
+c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.policy.images = 'never'
+c.colors.webpage.preferred_color_scheme = 'dark'
+c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
+c.colors.webpage.darkmode.contrast = -.022 # the lower the darker
+c.colors.webpage.darkmode.threshold.text = 150
+c.colors.webpage.darkmode.threshold.background = 100
+# c.colors.webpage.darkmode.policy.images = 'always'
+# c.colors.webpage.darkmode.grayscale.images = 0.35
 
 c.colors.statusbar.normal.bg = xresources["*.background"]
 c.colors.statusbar.command.bg = xresources["*.background"]
@@ -211,47 +210,38 @@ c.colors.statusbar.command.fg = xresources["*.foreground"]
 c.colors.statusbar.normal.fg = xresources["*.foreground"]
 c.colors.statusbar.url.success.https.fg = xresources["*.color2"]
 c.colors.statusbar.url.hover.fg = xresources["*.color4"]
-c.statusbar.show = "always"
-c.statusbar.padding = { "bottom": 0, "left": 0, "right": 0, "top": 0 }
 
-c.colors.tabs.even.bg = "#15161e"
-c.colors.tabs.odd.bg = xresources["*.background"]
+c.colors.tabs.even.bg = even
+c.colors.tabs.odd.bg = odd
 c.colors.tabs.even.fg = xresources["*.foreground"]
 c.colors.tabs.odd.fg = xresources["*.foreground"]
 c.colors.tabs.selected.even.bg = xresources["*.color8"]
 c.colors.tabs.selected.odd.bg = xresources["*.color8"]
-c.hints.border = '0'
 c.colors.hints.bg = xresources["*.background"]
 c.colors.hints.fg = xresources["*.foreground"]
-c.hints.chars = 'xseol,zawp;.cdrikmvftyujnbgh'
-c.hints.padding = { "bottom": 1, "left": 1, "right": 1, "top": 1 }
-c.tabs.show = "multiple"
-
-# change title format
-c.tabs.title.format = "{audio}{current_title}"
-
-# fonts
-font_size = 10
-fixed = f'{font_size}pt Iosevka Term'
-c.fonts.default_family = 'Futura'
-c.fonts.default_family = [ "Futura", "Unifont" ]
-c.fonts.statusbar = fixed
-c.fonts.completion.category = fixed
-c.fonts.completion.entry = fixed
-c.fonts.hints = f'{font_size}pt Iosevka Term'
-# c.fonts.web.family.fixed = 'Iosevka Term'
-c.fonts.web.family.sans_serif = 'Futura'
-c.fonts.web.family.serif = 'Helvetica'
-c.fonts.web.family.standard = 'Futura'
-c.fonts.web.size.default = 14
-c.fonts.web.size.default_fixed = 14
 
 c.colors.tabs.indicator.stop = xresources["*.color14"]
-c.colors.completion.odd.bg = xresources["*.background"]
-c.colors.completion.even.bg = "#15161e"
+c.colors.tabs.indicator.error = xresources["*.color9"]
+c.colors.completion.even.bg = even
+c.colors.completion.odd.bg = odd
 c.colors.completion.fg = xresources["*.foreground"]
 c.colors.completion.category.bg = xresources["*.background"]
 c.colors.completion.category.fg = xresources["*.foreground"]
 c.colors.completion.item.selected.bg = xresources["*.background"]
 c.colors.completion.item.selected.fg = xresources["*.foreground"]
 
+# Headers and javascript exceptions {{{1
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://accounts.google.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://docs.google.com/*')
+config.set('content.register_protocol_handler', False, 'https://mail.google.com')
+config.set('content.images', True, 'chrome-devtools://*')
+config.set('content.images', True, 'devtools://*')
+config.set('content.javascript.enabled', True, 'chrome-devtools://*')
+config.set('content.javascript.enabled', True, 'devtools://*')
+config.set('content.javascript.enabled', True, 'chrome://*/*')
+config.set('content.javascript.enabled', True, 'qute://*/*')
+config.set('content.javascript.enabled', True, 'https://www.youtube.com/*')
+config.set('content.javascript.enabled', True, 'https://duckduckgo.com/*')
+config.set('content.geolocation', False, 'https://www.google.com')

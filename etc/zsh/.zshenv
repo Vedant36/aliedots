@@ -21,16 +21,17 @@ export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 # XDG and other HOME dirs {{{1
-export LOG=$HOME/.local/var/log
-export SCRIPTS=$HOME/.local/bin/scripts
+export LOG="$HOME/.local/var/log"
+export SCRIPTS="$HOME/.local/bin/scripts"
 export PATH="$SCRIPTS:$HOME/.local/bin/wrappers:$HOME/.local/bin:$PATH"
 export REPOS="$HOME/dox/{textfiles,CPlus,Python,dotfiles,datasets}"
-export BIN_HOME=$HOME/.local/bin
-export XDG_CONFIG_HOME=$HOME/.local/etc
-export XDG_CACHE_HOME=$HOME/.local/var/cache
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_STATE_HOME=$HOME/.local/var/lib
-export XDG_LIB_HOME=$HOME/.local/lib
+export DATASETS="$HOME/dox/_Other/datasets"
+export BIN_HOME="$HOME/.local/bin"
+export XDG_CONFIG_HOME="$HOME/.local/etc"
+export XDG_CACHE_HOME="$HOME/.local/var/cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/var/lib"
+export XDG_LIB_HOME="$HOME/.local/lib"
 # ~ Cleanup {{{1
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo

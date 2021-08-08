@@ -1,5 +1,6 @@
 #!/bin/sh
-BACKLIGHT="/sys/class/backlight/acpi_video0"
+# BACKLIGHT="/sys/class/backlight/acpi_video0"
+BACKLIGHT="/sys/class/backlight/amdgpu_bl0"
 max_brightness=$(cat $BACKLIGHT/max_brightness)
 brightness=$(cat $BACKLIGHT/brightness)
 NAME=$(basename "$0")
