@@ -38,6 +38,8 @@ feh --no-fehbg --bg-center "$(xdg-user-dir PICTURES)/wallpapers/cc1_resized.jpg"
 dunst &
 picom -f &
 xss-lock lock &
+mpd
+mpdscribble --conf /home/vn36/.local/lib/private/lastfm.conf
 
 while xsetroot -name "$(bar.sh)"; do
 	sleep 1m &

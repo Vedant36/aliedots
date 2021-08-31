@@ -1,1 +1,4 @@
-private
+*
+!*/
+!dotfiles/
+!python/startup.py

@@ -62,7 +62,6 @@ bindkey "^[[7~"   beginning-of-line
 bindkey "^[[8~"   end-of-line
 bindkey '^K' kill-line
 bindkey '^N' down-line-or-search
-bindkey '^O' self-insert-unmeta # to insert a new line without executing command
 bindkey '^P' up-line-or-search
 bindkey '^[[1~' beginning-of-line
 bindkey '^[[3~' delete-char # why the ack cant terminals interpret what a delete is

@@ -425,7 +425,7 @@ try
 	" Themes
 	Plug 'drewtempelmeyer/palenight.vim'
 	" Plug 'folke/tokyonight.nvim'
-	Plug 'fioncat/vim-oceanicnext'
+	" Plug 'fioncat/vim-oceanicnext'
 	Plug 'ghifarit53/tokyonight-vim'
 	Plug 'morhetz/gruvbox'
 	call plug#end()

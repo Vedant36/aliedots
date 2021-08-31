@@ -102,16 +102,14 @@ c.content.blocking.adblock.lists = [ \
 	]
 c.content.blocking.enabled = True
 c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
-c.content.blocking.method = 'both'
+c.content.blocking.method = 'adblock'
 from qutebrowser.api import interceptor
 def filter_yt(info: interceptor.Request):
 	"""Block the given request if necessary."""
 	url = info.request_url
-	if (
-		url.host() == "www.youtube.com"
+	if ( url.host() == "www.youtube.com"
 		and url.path() == "/get_video_info"
-		and "&adformat=" in url.query()
-	):
+		and "&adformat=" in url.query()):
 		info.block()
 interceptor.register(filter_yt)
 
@@ -135,7 +133,7 @@ c.bindings.commands = {
 		"h" : "tab-prev",
 		"l" : "tab-next",
 		"yw": "fake-key <ctrl-a>",
-		"z" : "tab-focus 1;; open -t -r https://np.ironhelmet.com/game/6154399536381952;; tab-move -;; open -t -r https://np.ironhelmet.com/game/4575009249689600",
+		"z" : "open -t -r https://np.ironhelmet.com/game/6748681729212416;; tab-move",
 		"!" : "set-cmd-text :open !",
 		",M": "hint links spawn -d mpv {hint-url}",
 		",m": "spawn --user view_in_mpv",
@@ -192,9 +190,7 @@ even = "#15161e"
 odd = xresources["*.background"]
 
 c.colors.webpage.bg = '#292d3e'
-# c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
-# c.colors.webpage.darkmode.enabled = False
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 c.colors.webpage.darkmode.policy.images = 'never'
 c.colors.webpage.preferred_color_scheme = 'dark'
 c.colors.webpage.darkmode.algorithm = 'lightness-hsl'

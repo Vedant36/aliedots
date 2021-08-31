@@ -5,8 +5,9 @@
 !environment.d/*
 !git/*
 !kitty/*
-!mpd/*
-!mpv/*
+!mpd/mpd.conf
+!mpv/**
+/mpv/watch_later
 !ncmpcpp/*
 !neofetch/*
 nvim/*
@@ -15,9 +16,10 @@ nvim/*
 !pulse/daemon.conf
 !qt5ct/qt5ct.conf
 !qutebrowser/**
-/qutebrowser/bookmarks/*
+/qutebrowser/bookmarks
 /qutebrowser/autoconfig.yml
-/qutebrowser/qsettings/*
+/qutebrowser/qsettings
+/qutebrowser/jblock
 !ranger/**
 __pycache__/
 /ranger/plugins/__init__.py
