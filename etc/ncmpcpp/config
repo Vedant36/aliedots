@@ -6,7 +6,7 @@ ncmpcpp_directory  = ~/.local/etc/ncmpcpp
 mpd_host = "localhost"
 mpd_port = "6600"
 mpd_connection_timeout = "5"
-mpd_crossfade_time = "5"
+mpd_crossfade_time = "3"
 
 # Playlist
 playlist_disable_highlight_delay = "0"
@@ -48,7 +48,6 @@ visualizer_type = "spectrum" (spectrum/wave)
 visualizer_in_stereo = "yes"
 visualizer_look = "+|"
 
-
 ## Navigation ##
 cyclic_scrolling = "yes"
 header_text_scrolling = "yes"
@@ -88,6 +87,7 @@ display_bitrate = "yes"
 # enable_window_title = "no"
 empty_tag_marker = ""
 
+media_library_primary_tag = album_artist
 # lyrics_directory = ~/.local/share/lyrics
 # mpd_host = localhost
 # mpd_port = 6600

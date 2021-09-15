@@ -133,11 +133,10 @@ c.bindings.commands = {
 		"h" : "tab-prev",
 		"l" : "tab-next",
 		"yw": "fake-key <ctrl-a>",
-		"z" : "open -t -r https://np.ironhelmet.com/game/6748681729212416;; tab-move",
+		# "z" : "open -t -r https://np.ironhelmet.com/game/6748681729212416;; tab-move",
 		"!" : "set-cmd-text :open !",
 		",M": "hint links spawn -d mpv {hint-url}",
-		",m": "spawn --user view_in_mpv",
-		# ",m": "spawn -d mpv {url}",
+		",m": "spawn -d mpv {url}",
 		",p": "config-cycle content.proxy socks://localhost:9050/ system",
 		",s": "config-cycle statusbar.show never always",
 		",t": "config-cycle tabs.show multiple never",
@@ -190,15 +189,13 @@ even = "#15161e"
 odd = xresources["*.background"]
 
 c.colors.webpage.bg = '#292d3e'
-c.colors.webpage.darkmode.enabled = False
+# c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.policy.images = 'never'
 c.colors.webpage.preferred_color_scheme = 'dark'
 c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
 c.colors.webpage.darkmode.contrast = -.022 # the lower the darker
 c.colors.webpage.darkmode.threshold.text = 150
 c.colors.webpage.darkmode.threshold.background = 100
-# c.colors.webpage.darkmode.policy.images = 'always'
-# c.colors.webpage.darkmode.grayscale.images = 0.35
 
 c.colors.statusbar.normal.bg = xresources["*.background"]
 c.colors.statusbar.command.bg = xresources["*.background"]

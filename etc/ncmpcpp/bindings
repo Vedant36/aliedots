@@ -1,3 +1,56 @@
+# Vedant36's ncmpcpp config
+
+def_key "k"
+  scroll_up
+def_key "shift-k"
+  select_item
+  scroll_up
+def_key "j"
+  scroll_down
+def_key "shift-j"
+  select_item
+  scroll_down
+def_key "h"
+	previous_column
+def_key "l"
+	show_lyrics
+	next_column
+# def_key "J"
+# 	move_sort_order_down
+# def_key "K"
+# 	move_sort_order_up
+def_key "J"
+  move_selected_items_down
+def_key "K"
+  move_selected_items_up
+
+
+def_key "ctrl-u"
+  page_up
+def_key "ctrl-d"
+  page_down
+
+def_key "g"
+  move_home
+def_key "G"
+  move_end
+def_key "ctrl-g"
+  jump_to_position_in_song
+
+def_key "+"
+  show_clock
+def_key "="
+  volume_up
+
+def_key "t"
+	find
+def_key "t"
+	find_item_forward
+def_key "n"
+  next_found_item
+def_key "N"
+  previous_found_item
+
 ##############################################################
 ## This is the example bindings file. Copy it to            ##
 ## ~/.ncmpcpp/bindings or $XDG_CONFIG_HOME/ncmpcpp/bindings ##
@@ -152,20 +205,6 @@
 #def_key "mouse"
 #  mouse_event
 #
-#def_key "up"
-#  scroll_up
-#
-#def_key "shift-up"
-#  select_item
-#  scroll_up
-#
-#def_key "down"
-#  scroll_down
-#
-#def_key "shift-down"
-#  select_item
-#  scroll_down
-#
 #def_key "["
 #  scroll_up_album
 #
@@ -177,18 +216,6 @@
 #
 #def_key "}"
 #  scroll_down_artist
-#
-#def_key "page_up"
-#  page_up
-#
-#def_key "page_down"
-#  page_down
-#
-#def_key "home"
-#  move_home
-#
-#def_key "end"
-#  move_end
 #
 #def_key "insert"
 #  select_item
@@ -224,28 +251,10 @@
 #  delete_stored_playlist
 #
 #def_key "right"
-#  next_column
-#
-#def_key "right"
 #  slave_screen
 #
 #def_key "right"
 #  volume_up
-#
-#def_key "+"
-#  volume_up
-#
-#def_key "left"
-#  previous_column
-#
-#def_key "left"
-#  master_screen
-#
-#def_key "left"
-#  volume_down
-#
-#def_key "-"
-#  volume_down
 #
 #def_key ":"
 #  execute_command
@@ -291,9 +300,6 @@
 #
 #def_key "8"
 #  show_visualizer
-#
-#def_key "="
-#  show_clock
 #
 #def_key "@"
 #  show_server_info
@@ -400,12 +406,6 @@
 #def_key "?"
 #  find_item_backward
 #
-#def_key "."
-#  next_found_item
-#
-#def_key ","
-#  previous_found_item
-#
 #def_key "w"
 #  toggle_find_mode
 #
@@ -432,9 +432,6 @@
 #
 #def_key "I"
 #  show_artist_info
-#
-#def_key "g"
-#  jump_to_position_in_song
 #
 #def_key "l"
 #  show_lyrics
@@ -465,18 +462,6 @@
 #
 #def_key "C"
 #  crop_main_playlist
-#
-#def_key "m"
-#  move_sort_order_up
-#
-#def_key "m"
-#  move_selected_items_up
-#
-#def_key "n"
-#  move_sort_order_down
-#
-#def_key "n"
-#  move_selected_items_down
 #
 #def_key "M"
 #  move_selected_items_to

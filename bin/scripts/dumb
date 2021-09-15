@@ -1,2 +1,0 @@
-#!/bin/sh
-cd $HOME/dox/textfiles && nvim todo.md data.md sites.md movies.md melum.md books.md

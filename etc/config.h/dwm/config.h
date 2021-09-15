@@ -80,7 +80,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          {.v = desktop_dmenucmd } },
 	{ MODKEY,                       XK_q,             spawn,          {.v = termcmd} },
 	{ MODKEY,                       XK_a,             spawn,          {.v = fmcmd} },
-	{ MODKEY,                       XK_s,             spawn,          SHCMD("kitty -1 dumb") },
+	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && kitty -1 nvim todo.md course.md data.md sites.md movies.md melum.md books.md") },
 	{ MODKEY,                       XK_v,             spawn,          SHCMD("kitty -1 nvim") },
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          SHCMD("kitty -1 pulseaudio") },
 	{ MODKEY|ShiftMask,             XK_b,             spawn,          SHCMD("pkill sleep") },

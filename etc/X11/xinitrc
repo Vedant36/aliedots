@@ -40,6 +40,7 @@ picom -f &
 xss-lock lock &
 mpd
 mpdscribble --conf /home/vn36/.local/lib/private/lastfm.conf
+eval `ssh-agent -s`
 
 while xsetroot -name "$(bar.sh)"; do
 	sleep 1m &

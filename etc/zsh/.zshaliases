@@ -11,7 +11,7 @@ alias l='ls -alpshF'
 alias v=nvim
 # Note: replace startx with `exec startx` if wanting to exit shell after logout. hmmm security
 alias x='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" 2>&1 | tee ~/.local/var/log/x.log'
-alias y='python'
+alias y='ipython'
 alias path='echo $PATH | tr -s ":" "\n"'
 alias pn='ping 1.1.1.1'
 # Global {{{1
