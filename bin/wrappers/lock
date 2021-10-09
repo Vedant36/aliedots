@@ -46,9 +46,11 @@ resized="$folder/resized.png" # resized image for your resolution
 l_screen="$folder/l_blur.png"
 
 lock() {
-	pkill -USR1 dunst
-	# dunstctl set-paused true
+	pkill xdotool
+	# pkill -USR1 dunst
+	dunstctl set-paused true
 	i3lock \
+		-n \
 		-c 00000000 \
 		-t -i "$l_screen" \
 		--time-pos='x+110:h-70' \
@@ -63,8 +65,8 @@ lock() {
 		--time-font="$font" --date-font="$font" --layout-font="$font" --verif-font="$font" --wrong-font="$font" \
 		--noinput-text='' --force-clock --pass-media-keys "$lockargs" \
 		--bar-step 5
-	[ "$(dunstctl is-paused)" == "true" ] && pkill -USR2 dunst
-	# dunstctl set-paused false
+	# [ "$(dunstctl is-paused)" == "true" ] && pkill -USR2 dunst
+	dunstctl set-paused false
 }
 
 rec_get_random() {

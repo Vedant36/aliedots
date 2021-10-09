@@ -1,13 +1,14 @@
 # Vedant36's zsh aliases
 # color hmmmmmm {{{1
-alias ls='ls --color=auto'
+alias ls='exa'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 # imp {{{1
 # alias ad='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
 alias gh='git add . && git commit -a && git push'
 alias ah='ad commit -a && ad push'
-alias l='ls -alpshF'
+alias l='exa -alhFs size'
+alias lg='exa -x --icons --git --group-directories-first'
 alias v=nvim
 # Note: replace startx with `exec startx` if wanting to exit shell after logout. hmmm security
 alias x='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" 2>&1 | tee ~/.local/var/log/x.log'

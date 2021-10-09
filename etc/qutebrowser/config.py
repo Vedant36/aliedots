@@ -9,6 +9,7 @@ c.auto_save.session = True
 c.backend = 'webengine'
 c.completion.cmd_history_max_items = 1000
 c.completion.shrink = True
+c.completion.use_best_match = True
 c.content.cookies.accept = 'no-3rdparty'
 c.content.fullscreen.window = False
 c.content.notifications.enabled = False
@@ -75,13 +76,20 @@ c.url.searchengines = {
 	'a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}',
 	'd': 'https://html.duckduckgo.com/html?q={}', # nojs version of duckduckgo
 	'g': 'https://www.google.com/search?hl=en&q={}',
-	'h': 'https://github.com/{}',
+	'gh': 'https://github.com/{}',
 	'm2': 'https://man.archlinux.org/{}', # arch man pages
 	'm': 'https://linux.die.net/man/1/{}', # man pages
+	'o': 'http://oeis.org/search?q={}',
+	'oa': 'http://oeis.org/A{}',
+	'ob': 'http://oeis.org/b{}.txt',
 	'p': 'https://thepiratebay.org/search.php?q={}',
+	'r': 'https://reddit.com/r/{}',
 	's': 'https://open.spotify.com/search/{}',
 	'w': 'https://web.archive.org/web/*/{}',
+	'wa': 'https://mathworld.wolfram.com/search/index.html?query={}',
 	'y': 'https://www.youtube.com/results?search_query={}',
+	'scp': 'https://scp-wiki.wikidot.com/scp-{}',
+	'mc': 'https://minecraft.fandom.com/wiki/{}',
 }
 
 # Youtube/Ad Blocking {{{1
@@ -133,7 +141,7 @@ c.bindings.commands = {
 		"h" : "tab-prev",
 		"l" : "tab-next",
 		"yw": "fake-key <ctrl-a>",
-		# "z" : "open -t -r https://np.ironhelmet.com/game/6748681729212416;; tab-move",
+		"z" : "open -t -r https://np.ironhelmet.com/game/5980642448506880;; tab-move",
 		"!" : "set-cmd-text :open !",
 		",M": "hint links spawn -d mpv {hint-url}",
 		",m": "spawn -d mpv {url}",
@@ -238,3 +246,4 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 config.set('content.javascript.enabled', True, 'https://www.youtube.com/*')
 config.set('content.javascript.enabled', True, 'https://duckduckgo.com/*')
 config.set('content.geolocation', False, 'https://www.google.com')
+config.set('content.geolocation', False, 'https://www.embibe.com')

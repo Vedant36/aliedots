@@ -70,7 +70,7 @@ nn <silent> <leader>b :ls<cr>:b<space>
 nn <silent> <leader>c "+
 xn <silent> <leader>c "+
 nn <silent> <leader>d yyp
-nn <leader>e :echo<space>
+nn <silent> <leader>e o<c-o>:r !date<cr><end>:<space>
 nn <expr> <leader>g ":vimgrep /\\\<" . expand("<cword>") . "\\\>/j ** <bar> cw<cr>"
 nn <leader>h :h<space>
 nn <leader>m <nop>
@@ -89,7 +89,7 @@ nn <silent> <F5> :w!<cr>
 ino <silent> <F5> <esc>:w!<cr>gi
 nn <silent> <F6> :set invspell<cr>
 ino <silent> <F6> <C-O>:set invspell<cr>
-nn <silent> <F7> :!./%:S<cr>
+nn <silent> <F7> :!time ./%:S<cr>
 nn <silent><F9> :bufdo e!<cr>
 " inoremaps {{{2
 ino jk <esc>
@@ -120,6 +120,7 @@ nn <silent> <leader>oa :e $XDG_CONFIG_HOME/zsh/.zshaliases<cr>
 nn <silent> <leader>oe :e $XDG_CONFIG_HOME/zsh/.zshenv<cr>
 nn <silent> <leader>of :e $XDG_CONFIG_HOME/zsh/.zshfunctions<cr>
 nn <silent> <leader>oz :e $XDG_CONFIG_HOME/zsh/.zshrc<cr>
+nn <silent> <leader>od :e $HOME/.local/opt/dwm/config.h<cr>
 nn <silent> <leader>oh :e $HISTFILE<cr>
 nn <silent> <leader>ol :e ~/dox/CPlus/c/begin.c<cr>
 nn <silent> <leader>oy :e ~/dox/Python/platformer_2/Plat.py<cr>
@@ -423,6 +424,7 @@ try
 	Plug 'google/vim-searchindex'
 
 	" Themes
+	" Plug 'projekt0n/github-nvim-theme'
 	Plug 'drewtempelmeyer/palenight.vim'
 	" Plug 'folke/tokyonight.nvim'
 	" Plug 'fioncat/vim-oceanicnext'
@@ -455,6 +457,7 @@ let g:gruvbox_italic = 1
 let g:material_terminal_italics = 1
 let g:material_theme_style = 'darker' " default, palenight, ocean, lighter, and darker
 " let g:material_style = 'moonlight'
+" colorscheme github_*
 colorscheme palenight
 " au BufEnter * silent! lcd %:p:h " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file that works with plugins
 " keybinds {{{2

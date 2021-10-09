@@ -29,12 +29,14 @@ static const Rule rules[] = {
 	 */
 	/* class          instance     title       tags mask   isfloating  monitor */
 	{ "qutebrowser",  NULL,        NULL,       1 << 2,     0,          -1 },
+	{ NULL,      "ncmpcpp",        NULL,       1 << 3,     0,          -1 },
 	{ "mpv",          NULL,        NULL,       1 << 4,     0,          -1 },
 	{ "discord",      NULL,        NULL,       1 << 5,     0,          -1 },
 	{ NULL,           NULL,   "TLauncher 2.8", 1 << 0,     0,          -1 },
 	{ NULL,           NULL,   "TLauncher",     1 << 0,     0,          -1 },
 	{ "Minecraft* 1.16.5", NULL,   NULL,       1 << 6,     0,          -1 },
 	{ "Minecraft* 1.17.1", NULL,   NULL,       1 << 6,     0,          -1 },
+	{ "transmission", NULL,        NULL,       1 << 7,     0,          -1 },
 	{ "Popcorn-Time", NULL,        NULL,       1 << 0,     0,          -1 },
 };
 
@@ -79,8 +81,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,             spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          {.v = desktop_dmenucmd } },
 	{ MODKEY,                       XK_q,             spawn,          {.v = termcmd} },
+	{ MODKEY,                       XK_r,             spawn,          SHCMD("st -n ncmpcpp ncmpcpp") },
+	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
 	{ MODKEY,                       XK_a,             spawn,          {.v = fmcmd} },
-	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && kitty -1 nvim todo.md course.md data.md sites.md movies.md melum.md books.md") },
+	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && kitty -1 nvim todo.md data.md sites.md movies.md melum.md books.md course.md cs.md") },
 	{ MODKEY,                       XK_v,             spawn,          SHCMD("kitty -1 nvim") },
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          SHCMD("kitty -1 pulseaudio") },
 	{ MODKEY|ShiftMask,             XK_b,             spawn,          SHCMD("pkill sleep") },
@@ -116,6 +120,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_bracketleft,   spawn,          {.v = downvol } },
 	{ MODKEY,                       XK_bracketright,  spawn,          {.v = upvol   } },
 	{ MODKEY,                       XK_backslash,     spawn,          {.v = mutevol } },
+	{ MODKEY|ShiftMask,             XK_bracketleft,   spawn,          SHCMD("mpc volume -2") },
+	{ MODKEY|ShiftMask,             XK_bracketright,  spawn,          SHCMD("mpc volume +2") },
+	{ MODKEY|ShiftMask,             XK_backslash,     spawn,          SHCMD("mpc toggle") },
 	{ MODKEY,                       XK_F3,            spawn,          SHCMD("bright -i 5") },
 	{ MODKEY,                       XK_F2,            spawn,          SHCMD("bright -i -5") },
 	TAGKEYS(                        XK_grave,                  0)
