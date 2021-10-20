@@ -1,6 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-
-/* appearance */
+// appearance {{{1
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -18,10 +17,9 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
-
-/* tagging */
+// tagging {{{1
 static const char *tags[] = { "", "", "", "", "", "ﭮ", "", "﫸" };
-
+// Rules {{{1
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
@@ -39,8 +37,7 @@ static const Rule rules[] = {
 	{ "transmission", NULL,        NULL,       1 << 7,     0,          -1 },
 	{ "Popcorn-Time", NULL,        NULL,       1 << 0,     0,          -1 },
 };
-
-/* layout(s) */
+// layout(s) {{{1
 static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
@@ -51,20 +48,17 @@ static const Layout layouts[] = {
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
-
-/* key definitions */
+// key definitions {{{1
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
+// helper for spawning shell commands in the pre dwm-5.0 fashion {{{1
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 #include <X11/XF86keysym.h>
-
-/* commands */
+// commands {{{1
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1,
 	"-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "20", "-p", "$", NULL };
@@ -84,7 +78,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,             spawn,          SHCMD("st -n ncmpcpp ncmpcpp") },
 	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
 	{ MODKEY,                       XK_a,             spawn,          {.v = fmcmd} },
-	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && kitty -1 nvim todo.md data.md sites.md movies.md melum.md books.md course.md cs.md") },
+	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && kitty -1 nvim todo.md data.md sites.md") },
 	{ MODKEY,                       XK_v,             spawn,          SHCMD("kitty -1 nvim") },
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          SHCMD("kitty -1 pulseaudio") },
 	{ MODKEY|ShiftMask,             XK_b,             spawn,          SHCMD("pkill sleep") },
@@ -120,9 +114,13 @@ static Key keys[] = {
 	{ MODKEY,                       XK_bracketleft,   spawn,          {.v = downvol } },
 	{ MODKEY,                       XK_bracketright,  spawn,          {.v = upvol   } },
 	{ MODKEY,                       XK_backslash,     spawn,          {.v = mutevol } },
+
 	{ MODKEY|ShiftMask,             XK_bracketleft,   spawn,          SHCMD("mpc volume -2") },
 	{ MODKEY|ShiftMask,             XK_bracketright,  spawn,          SHCMD("mpc volume +2") },
 	{ MODKEY|ShiftMask,             XK_backslash,     spawn,          SHCMD("mpc toggle") },
+	{ MODKEY|ShiftMask,             XK_comma,         spawn,          SHCMD("mpc next") },
+	{ MODKEY|ShiftMask,             XK_period,        spawn,          SHCMD("mpc prev") },
+
 	{ MODKEY,                       XK_F3,            spawn,          SHCMD("bright -i 5") },
 	{ MODKEY,                       XK_F2,            spawn,          SHCMD("bright -i -5") },
 	TAGKEYS(                        XK_grave,                  0)
@@ -145,8 +143,7 @@ static Key keys[] = {
 	/* { 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("bright -i 5") }, */
 	/* { 0,          XF86XK_MonBrightnessDown,    spawn,          SHCMD("bright -i -5") }, */
 };
-
-/* button definitions */
+// button definitions {{{1
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
@@ -162,4 +159,5 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+// }}}
 

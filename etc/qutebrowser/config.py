@@ -87,6 +87,7 @@ c.url.searchengines = {
 	's': 'https://open.spotify.com/search/{}',
 	'w': 'https://web.archive.org/web/*/{}',
 	'wa': 'https://mathworld.wolfram.com/search/index.html?query={}',
+	'x': 'https://searx.xyz/search?q={}',
 	'y': 'https://www.youtube.com/results?search_query={}',
 	'scp': 'https://scp-wiki.wikidot.com/scp-{}',
 	'mc': 'https://minecraft.fandom.com/wiki/{}',
@@ -174,7 +175,7 @@ c.bindings.commands = {
 		"<Ctrl-p>": "fake-key <Up>",
 		"<Ctrl-u>": "fake-key <Shift-Home><Delete>",
 		"<Ctrl-w>": "fake-key <Ctrl-Backspace>",
-		"<Ctrl-x><Ctrl-e>": "open-editor",
+		"<Ctrl-x><Ctrl-e>": "edit-text",
 	}
 }
 

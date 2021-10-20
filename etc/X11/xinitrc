@@ -19,7 +19,7 @@ unset f
 setxkbmap -option altwin:swap_alt_win
 setxkbmap -option ctrl:nocaps
 # setxkbmap -option ctrl:swapcaps
-xcape -e 'Control_L=Escape'
+xcape -e 'Control_L=Escape' -t 100
 # for another mod key
 # clear mod3
 # keysym F8 = Hyper_R
@@ -31,15 +31,14 @@ xset m 4 0
 # xsetroot -cursor_name left_ptr
 
 # startup programs
-#type unclutter>/dev/null && unclutter -idle 1 -root -jitter 40
-#artha &
+type unclutter>/dev/null && unclutter -idle 1 -root -jitter 40 &
+artha &
 pactl set-source-mute @DEFAULT_SOURCE@ 1
 feh --no-fehbg --bg-center "$(xdg-user-dir PICTURES)/wallpapers/current.jpg"
 dunst &
 picom -f &
 xss-lock lock &
-artha &!
-mpd &!
+mpd &
 mpdscribble --conf /home/vn36/.local/lib/private/lastfm.conf
 eval `ssh-agent -s`
 

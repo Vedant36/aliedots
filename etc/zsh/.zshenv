@@ -5,6 +5,7 @@ export skip_global_compinit=1
 export BROWSER="qutebrowser"
 export PM=yay # package manager
 export QT_QPA_PLATFORMTHEME=qt5ct
+# export XCURSOR_THEME=Breeze_Snow
 
 export TERMINAL=kitty
 export EDITOR="nvim"
@@ -13,8 +14,9 @@ export LESS='--RAW-CONTROL-CHARS --squeeze-blank-lines --quit-on-intr --quit-if-
 # export PAGER="nvim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
 #     -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
 #     -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -"
-export PAGER="nvim -"
-export MANPAGER="nvim -c 'set ft=man' -"
+# export PAGER="nvim -"
+# export MANPAGER="nvim -c 'set ft=man' -"
+export MANPAGER='less'
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
 export LC_ALL='en_US.UTF-8'

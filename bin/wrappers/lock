@@ -67,6 +67,7 @@ lock() {
 		--bar-step 5
 	# [ "$(dunstctl is-paused)" == "true" ] && pkill -USR2 dunst
 	dunstctl set-paused false
+	kill $(cat ${XDG_STATE_HOME:-$HOME/.cache}/sleep_pid)
 }
 
 rec_get_random() {

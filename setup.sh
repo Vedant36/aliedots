@@ -1,6 +1,7 @@
 #!/bin/zsh
 # script contains some setup that is needed for my dotfiles like linking some
-# files
+# files. TODO root files, user and root crontabs with necessary permissions, 
+# minecraft files
 
 config_h() {
 	for i in $(find $HOME/.local/etc/config.h -type f)
