@@ -5,6 +5,7 @@
 !environment.d/*
 !git/*
 !kitty/*
+!MediaHuman/YouTube to MP3.conf
 !mpd/mpd.conf
 !mpv/**
 mpv/watch_later

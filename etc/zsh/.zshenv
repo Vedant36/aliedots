@@ -14,9 +14,10 @@ export LESS='--RAW-CONTROL-CHARS --squeeze-blank-lines --quit-on-intr --quit-if-
 # export PAGER="nvim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
 #     -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
 #     -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -"
-# export PAGER="nvim -"
+export PAGER="nvim -"
 # export MANPAGER="nvim -c 'set ft=man' -"
-export MANPAGER='less'
+# export MANPAGER='nvim'
+export MANPAGER="nvim +Man\!"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
 export LC_ALL='en_US.UTF-8'

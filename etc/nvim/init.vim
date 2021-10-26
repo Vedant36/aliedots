@@ -14,7 +14,8 @@ set colorcolumn=80 cursorline
 set scrolloff=5
 set showmatch matchtime=1
 set list " lcs=tab:❯\ ,trail:-,nbsp:+
-set listchars=tab:→\ ,eol:\ ,trail:·
+" set listchars=tab:→\ ,eol:\ ,trail:·
+set listchars=tab:\|\ ,eol:\ ,trail:·
 set splitbelow splitright
 set hlsearch ignorecase incsearch smartcase
 set updatetime=300 timeoutlen=300
@@ -188,8 +189,9 @@ au bufwritepost config.h :make PREFIX=$HOME/.local clean install
 " au TextChanged,TextChangedI <buffer> silent write
 augroup custom_filetype
 	au!
-	au filetype diff,man if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
-	au filetype help nn <buffer><silent> q :bd<cr>
+	au filetype diff if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
+	au filetype json set foldmethod=expr foldexpr=BetterIndent(v:lnum)
+	au filetype help,man nn <buffer><silent> q ZQ<cr>
 	au filetype man nn <buffer><silent> ]] :call search('^\S')<cr>
 	au filetype man nn <buffer><silent> [[ :call search('^\S','b')<cr>
 	au filetype man set nobuflisted
@@ -281,7 +283,7 @@ function! BetterIndent(lnum)
     if getline(a:lnum) =~? '\v^\s*$'
         return '-1'
     endif
-	if getline(a:lnum) =~ '\v^\s*},?$'
+	if getline(a:lnum) =~ '\v^\s*[}\]],?$'
 		" return '-1'
 		return IndentLevel(a:lnum-1)
 	endif
@@ -403,7 +405,7 @@ try
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
 	Plug 'lambdalisue/nerdfont.vim'
-	" Plug 'hoob3rt/lualine.nvim'
+	" Plug 'nvim-lualine/lualine.nvim'
 	" Plug 'kyazdani42/nvim-web-devicons'
 
 	Plug 'tpope/vim-commentary'

@@ -70,7 +70,7 @@ bindkey '^[[F' end-of-line
 bindkey '^[[H' beginning-of-line
 # bindkey -s "^A" ""
 bindkey -s "^Z" "^Ufg^M"
-bindkey -s "^[#" "^[OH: ^M"
+bindkey -s "^[#" " ^[[H: ^M"
 # readline keybinds
 bindkey '^F' forward-char
 bindkey '^B' backward-char

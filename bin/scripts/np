@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+# Neptune's Pride API documentation: https://forum.ironhelmet.com/t/api-documentation-player-written/7533
+api_key="$XDG_LIB_HOME/private/neptune_api.json"
+[[ $1 == '-e' || $1 == '--echo' ]] && show=1 && shift
+index=$1
+[[ -z $1 ]] && index=$(($(wc -l $api_key|cut -d' ' -f1) - 3))
+
+data=$(jq ".[$index]" "$api_key" | sed -e 's/[{}" ,]//g' -e 's/:/=/' -e '/^$/d' | paste -sd '&')
+response=$(curl -X POST -d "$data" 'https://np.ironhelmet.com/api' | python -m json.tool)
+if [[ $show ]];then
+	echo $response
+else
+	name=$DATASETS/neptunes_pride/neptune_$index.json
+	echo $name
+	echo $response > $name
+fi
+

@@ -3,7 +3,7 @@
 GRUB_DEFAULT=0
 GRUB_TIMEOUT=1
 GRUB_DISTRIBUTOR="Arch"
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet acpi_osi=Linux acpi_backlight=video"
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet acpi_osi=Linux acpi_backlight=video i8042.noloop"
 GRUB_CMDLINE_LINUX=""
 # GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nouveau.noaccel=1 acpi_sleep=nonvs acpi_osi=Linux acpi_backlight=video"
 

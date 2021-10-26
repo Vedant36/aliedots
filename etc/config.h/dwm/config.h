@@ -77,12 +77,16 @@ static Key keys[] = {
 	{ MODKEY,                       XK_q,             spawn,          {.v = termcmd} },
 	{ MODKEY,                       XK_r,             spawn,          SHCMD("st -n ncmpcpp ncmpcpp") },
 	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
+
 	{ MODKEY,                       XK_a,             spawn,          {.v = fmcmd} },
 	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && kitty -1 nvim todo.md data.md sites.md") },
 	{ MODKEY,                       XK_v,             spawn,          SHCMD("kitty -1 nvim") },
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          SHCMD("kitty -1 pulseaudio") },
-	{ MODKEY|ShiftMask,             XK_b,             spawn,          SHCMD("pkill sleep") },
+	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD("kitty -1 bc -l") },
+
 	{ MODKEY,                       XK_b,             togglebar,      {0} },
+	{ MODKEY|ShiftMask,             XK_b,             spawn,          SHCMD("pkill sleep") },
+
 	{ MODKEY,                       XK_d,             spawn,          SHCMD("discord") },
 	{ MODKEY|ShiftMask,             XK_e,             spawn,          SHCMD("lock") },
 	{ MODKEY,                       XK_e,             spawn,          SHCMD("lock && systemctl suspend") },
@@ -118,8 +122,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_bracketleft,   spawn,          SHCMD("mpc volume -2") },
 	{ MODKEY|ShiftMask,             XK_bracketright,  spawn,          SHCMD("mpc volume +2") },
 	{ MODKEY|ShiftMask,             XK_backslash,     spawn,          SHCMD("mpc toggle") },
-	{ MODKEY|ShiftMask,             XK_comma,         spawn,          SHCMD("mpc next") },
-	{ MODKEY|ShiftMask,             XK_period,        spawn,          SHCMD("mpc prev") },
+	{ MODKEY|ShiftMask,             XK_comma,         spawn,          SHCMD("mpc prev") },
+	{ MODKEY|ShiftMask,             XK_period,        spawn,          SHCMD("mpc next") },
 
 	{ MODKEY,                       XK_F3,            spawn,          SHCMD("bright -i 5") },
 	{ MODKEY,                       XK_F2,            spawn,          SHCMD("bright -i -5") },

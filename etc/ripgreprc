@@ -1,6 +1,6 @@
 -j12
 
 --glob
-!git/*
+!.git/*
 
 --smart-case

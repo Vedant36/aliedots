@@ -1,3 +1,5 @@
+-- Source: https://gist.github.com/jamesxmcintosh/f419785d1c95d8f49873b800bb407dc5
+--[ FileConcat-S src/license_blurb.lua HASH:1198092acdd22752d33872a3d0fdd75ae520cfa3b8a1acc1d66fac6d8906229b ]--
 --[[
     Copyright (C) 2017 AMM
 
@@ -14,11 +16,8 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]--
---[[
-    mpv_thumbnail_script.lua 0.4.2 - commit a2de250 (branch master)
-    https://github.com/TheAMM/mpv_thumbnail_script
-    Built on 2018-02-07 20:36:54
-]]--
+--[ FileConcat-E src/license_blurb.lua HASH:1198092acdd22752d33872a3d0fdd75ae520cfa3b8a1acc1d66fac6d8906229b ]--
+--[ FileConcat-S lib/helpers.lua HASH:efe55221aa2d98eba817ad0430efe784fbdf652a812709ff93d59d27dfce2652 ]--
 local assdraw = require 'mp.assdraw'
 local msg = require 'mp.msg'
 local opt = require 'mp.options'
@@ -340,6 +339,8 @@ function round_rect(ass, x0, y0, x1, y1, rtl, rtr, rbr, rbl)
         ass:bezier_curve(x0, y0 + rtl - rtl*c, x0 + rtl - rtl*c, y0, x0 + rtl, y0) -- top left corner
     end
 end
+--[ FileConcat-E lib/helpers.lua HASH:efe55221aa2d98eba817ad0430efe784fbdf652a812709ff93d59d27dfce2652 ]--
+--[ FileConcat-S src/options.lua HASH:43289ede028e21aaafa333306430507752fcc218de48b5aac9b89a2b2ba64da2 ]--
 local SCRIPT_NAME = "mpv_thumbnail_script"
 
 local default_cache_base = ON_WINDOWS and os.getenv("TEMP") or "/tmp/"
@@ -461,6 +462,8 @@ local thumbnailer_options = {
 }
 
 read_options(thumbnailer_options, SCRIPT_NAME)
+--[ FileConcat-E src/options.lua HASH:43289ede028e21aaafa333306430507752fcc218de48b5aac9b89a2b2ba64da2 ]--
+--[ FileConcat-S src/thumbnailer_server.lua HASH:46733b227076eae5d2d1a21eed4b7e2d2b43c5eec66850c2b903f97d981f0cce ]--
 function skip_nil(tbl)
     local n = {}
     for k, v in pairs(tbl) do
@@ -476,7 +479,7 @@ function create_thumbnail_mpv(file_path, timestamp, size, output_path, options)
                                                        or thumbnailer_options.remote_direct_stream)
 
     local header_fields_arg = nil
-    local header_fields = mp.get_property_native("http-header-fields")
+    local header_fields = mp.get_property_native("http-header-fields", {})
     if #header_fields > 0 then
         -- We can't escape the headers, mpv won't parse "--http-header-fields='Name: value'" properly
         header_fields_arg = "--http-header-fields=" .. table.concat(header_fields, ",")
@@ -499,8 +502,8 @@ function create_thumbnail_mpv(file_path, timestamp, size, output_path, options)
         -- Pass HTTP headers from current instance
         header_fields_arg,
         -- Pass User-Agent and Referer - should do no harm even with ytdl active
-        "--user-agent=" .. mp.get_property_native("user-agent"),
-        "--referrer=" .. mp.get_property_native("referrer"),
+        "--user-agent=" .. mp.get_property_native("user-agent", ""),
+        "--referrer=" .. mp.get_property_native("referrer", ""),
         -- Disable hardware decoding
         "--hwdec=no",
 
@@ -522,7 +525,7 @@ function create_thumbnail_mpv(file_path, timestamp, size, output_path, options)
         "--vf-add=format=bgra",
         "--of=rawvideo",
         "--ovc=rawvideo",
-        "--o", output_path
+        "--o=" .. output_path
     })
     return utils.subprocess({args=mpv_command})
 end
@@ -592,6 +595,7 @@ function do_worker_job(state_json_string, frames_json_string)
         msg.error("Failed to parse state JSON")
         return
     end
+    local state_id = thumb_state.id
 
     local thumbnail_indexes, err = utils.parse_json(frames_json_string)
     if err then
@@ -609,6 +613,11 @@ function do_worker_job(state_json_string, frames_json_string)
     end
 
     local file_duration = mp.get_property_native("duration")
+    -- Bail if we get a nil duration
+    if not file_duration then
+      return
+    end
+
     local file_path = thumb_state.worker_input_path
 
     if thumb_state.is_remote then
@@ -627,7 +636,7 @@ function do_worker_job(state_json_string, frames_json_string)
         -- Grab the "middle" of the thumbnail duration instead of the very start, and leave some margin in the end
         local timestamp = math.min(file_duration - 0.25, (thumb_idx + 0.5) * thumb_state.thumbnail_delta)
 
-        mp.commandv("script-message", "mpv_thumbnail_script-progress", tostring(thumbnail_index))
+        mp.commandv("script-message", "mpv_thumbnail_script-progress", tostring(state_id), tostring(thumbnail_index))
 
         -- The expected size (raw BGRA image)
         local thumbnail_raw_size = (thumb_state.thumbnail_size.w * thumb_state.thumbnail_size.h * 4)
@@ -692,7 +701,7 @@ function do_worker_job(state_json_string, frames_json_string)
         end
 
         msg.debug("Finished work on thumbnail", thumb_idx)
-        mp.commandv("script-message", "mpv_thumbnail_script-ready", tostring(thumbnail_index), thumbnail_path)
+        mp.commandv("script-message", "mpv_thumbnail_script-ready", tostring(state_id), tostring(thumbnail_index), thumbnail_path)
     end
 
     msg.debug(("Generating %d thumbnails @ %dx%d for %q"):format(
@@ -734,3 +743,5 @@ mp.register_script_message("mpv_thumbnail_script-slaved", function()
     msg.debug("Successfully registered with master")
     register_timer:stop()
 end)
+--[ FileConcat-E src/thumbnailer_server.lua HASH:46733b227076eae5d2d1a21eed4b7e2d2b43c5eec66850c2b903f97d981f0cce ]--
+

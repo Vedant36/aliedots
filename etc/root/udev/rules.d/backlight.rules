@@ -1,1 +1,2 @@
 ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="acpi_video0", RUN+="/usr/bin/chgrp video %S%p/brightness", RUN+="/usr/bin/chmod g+w %S%p/brightness"
+ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl0", RUN+="/usr/bin/chgrp video %S%p/brightness", RUN+="/usr/bin/chmod g+w %S%p/brightness"

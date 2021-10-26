@@ -34,7 +34,7 @@ xset m 4 0
 type unclutter>/dev/null && unclutter -idle 1 -root -jitter 40 &
 artha &
 pactl set-source-mute @DEFAULT_SOURCE@ 1
-feh --no-fehbg --bg-center "$(xdg-user-dir PICTURES)/wallpapers/current.jpg"
+feh --no-fehbg --bg-center "$(xdg-user-dir PICTURES)/current.jpg"
 dunst &
 picom -f &
 xss-lock lock &
