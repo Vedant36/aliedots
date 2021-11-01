@@ -7,12 +7,12 @@ alias egrep='egrep --color=auto'
 # alias ad='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
 alias gh='git add . && git commit -a && git push'
 alias ah='ad commit -a && ad push'
-alias l='exa -alhFs size'
+alias l='exa -alhgFs size'
 alias lg='exa -x --icons --git --group-directories-first'
 alias v=nvim
 # Note: replace startx with `exec startx` if wanting to exit shell after logout. hmmm security
 alias x='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" 2>&1 | tee ~/.local/var/log/x.log'
-alias y='ipython'
+alias y='ipython --autocall=2 --nosep'
 alias path='echo $PATH | tr -s ":" "\n"'
 alias pn='ping 1.1.1.1'
 # Global {{{1

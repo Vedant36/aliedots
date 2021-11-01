@@ -101,24 +101,25 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,             setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return,        zoom,           {0} },
 	{ MODKEY,                       XK_Tab,           view,           {0} },
+
 	{ MODKEY,                       XK_x,             killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_x,             spawn,          SHCMD("xdotool getwindowfocus windowkill") },
-	{ MODKEY|ControlMask,           XK_x,             spawn,          SHCMD("pkill x") },
+	{ MODKEY|ControlMask,           XK_x,             spawn,          SHCMD("pkill -x Xorg") },
 	{ MODKEY|ShiftMask|ControlMask, XK_x,             spawn,          SHCMD("xkill") },
+
 	{ MODKEY,                       XK_t,             setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,             setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,             setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,         setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,         togglefloating, {0} },
-	{ MODKEY,                       XK_0,             view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,             tag,            {.ui = ~0 } },
+
 	{ MODKEY,                       XK_minus,         setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,         setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,         setgaps,        {.i = 0  } },
+
 	{ MODKEY,                       XK_bracketleft,   spawn,          {.v = downvol } },
 	{ MODKEY,                       XK_bracketright,  spawn,          {.v = upvol   } },
 	{ MODKEY,                       XK_backslash,     spawn,          {.v = mutevol } },
-
 	{ MODKEY|ShiftMask,             XK_bracketleft,   spawn,          SHCMD("mpc volume -2") },
 	{ MODKEY|ShiftMask,             XK_bracketright,  spawn,          SHCMD("mpc volume +2") },
 	{ MODKEY|ShiftMask,             XK_backslash,     spawn,          SHCMD("mpc toggle") },
@@ -127,6 +128,9 @@ static Key keys[] = {
 
 	{ MODKEY,                       XK_F3,            spawn,          SHCMD("bright -i 5") },
 	{ MODKEY,                       XK_F2,            spawn,          SHCMD("bright -i -5") },
+
+	{ MODKEY,                       XK_0,             view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_0,             tag,            {.ui = ~0 } },
 	TAGKEYS(                        XK_grave,                  0)
 	TAGKEYS(                        XK_1,                      1)
 	TAGKEYS(                        XK_2,                      2)
@@ -141,11 +145,6 @@ static Key keys[] = {
 	{ ShiftMask,                    XK_Print,         spawn,          SHCMD("scrot -sf \"$HOME/pix/screenshots/ss_%F_%H-%M-%S.png\"") },
 	{ ControlMask,                  XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -e 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
 	{ ControlMask|ShiftMask,        XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -sfe 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
-	/* { 0,          XF86XK_AudioRaiseVolume,  spawn,          {.v = upvol   } }, */
-	/* { 0,          XF86XK_AudioLowerVolume,  spawn,          {.v = downvol } }, */
-	/* { 0,          XF86XK_AudioMute,         spawn,          {.v = mutevol } }, */
-	/* { 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("bright -i 5") }, */
-	/* { 0,          XF86XK_MonBrightnessDown,    spawn,          SHCMD("bright -i -5") }, */
 };
 // button definitions {{{1
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */

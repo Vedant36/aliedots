@@ -31,15 +31,15 @@ xset m 4 0
 # xsetroot -cursor_name left_ptr
 
 # startup programs
-type unclutter>/dev/null && unclutter -idle 1 -root -jitter 40 &
+type unclutter>/dev/null && unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
 artha &
 pactl set-source-mute @DEFAULT_SOURCE@ 1
-feh --no-fehbg --bg-center "$(xdg-user-dir PICTURES)/current.jpg"
+feh --no-fehbg --bg-center "$(xdg-user-dir PICTURES)"/current.*
 dunst &
 picom -f &
 xss-lock lock &
 mpd &
-mpdscribble --conf /home/vn36/.local/lib/private/lastfm.conf
+pgrep mpdscribble || mpdscribble --conf /home/vn36/.local/lib/private/lastfm.conf &
 eval `ssh-agent -s`
 
 while xsetroot -name "$(bar.sh)"; do

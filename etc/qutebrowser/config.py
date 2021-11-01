@@ -1,7 +1,5 @@
 #!/usr/bin/env python
-# Documentation:
-#   qute://help/configuring.html
-#   qute://help/settings.html
+# Documentation: qute://help/configuring.html qute://help/settings.html
 import subprocess
 # Settings {{{1
 config.load_autoconfig(False)
@@ -79,6 +77,8 @@ c.url.searchengines = {
 	'gh': 'https://github.com/{}',
 	'm2': 'https://man.archlinux.org/{}', # arch man pages
 	'm': 'https://linux.die.net/man/1/{}', # man pages
+	'mw': 'https://www.merriam-webster.com/dictionary/{}',
+	'l': 'https://lyrics.com/lyrics/{}', # lyric finding engine
 	'o': 'http://oeis.org/search?q={}',
 	'oa': 'http://oeis.org/A{}',
 	'ob': 'http://oeis.org/b{}.txt',
@@ -89,6 +89,7 @@ c.url.searchengines = {
 	'wa': 'https://mathworld.wolfram.com/search/index.html?query={}',
 	'x': 'https://searx.xyz/search?q={}',
 	'y': 'https://www.youtube.com/results?search_query={}',
+	'yl': 'https://youtube.com/watch?v={}',
 	'scp': 'https://scp-wiki.wikidot.com/scp-{}',
 	'mc': 'https://minecraft.fandom.com/wiki/{}',
 }
@@ -97,6 +98,7 @@ c.url.searchengines = {
 c.content.javascript.enabled = True
 c.content.autoplay = False
 c.content.blocking.adblock.lists = [ \
+	"https://raw.githubusercontent.com/brave/adblock-lists/master/brave-unbreak.txt", \
 	"https://easylist.to/easylist/easylist.txt", \
 	"https://easylist.to/easylist/easyprivacy.txt", \
 	"https://secure.fanboy.co.nz/fanboy-cookiemonster.txt", \
@@ -107,7 +109,7 @@ c.content.blocking.adblock.lists = [ \
 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt", \
 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt", \
 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt", \
-	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt" \
+	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt", \
 	]
 c.content.blocking.enabled = True
 c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
@@ -197,7 +199,7 @@ xresources = read_xresources("*")
 even = "#15161e"
 odd = xresources["*.background"]
 
-c.colors.webpage.bg = '#292d3e'
+# c.colors.webpage.bg = '#292d3e'
 # c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.policy.images = 'never'
 c.colors.webpage.preferred_color_scheme = 'dark'

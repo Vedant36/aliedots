@@ -4,8 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 with open(os.getenv("HOME")+'/.local/var/log/batinfo.log', 'r') as fp:
-	data = [[int(j) for j in i.split(':')] for i in fp.read().split('\n')[:-1]]
-	x, y = np.asarray(data, dtype=int)[-30:,:].T
+	data = [[int(j) for j in i.split()] for i in fp.read().split('\n')[:-1]]
+	x, y = np.asarray(data, dtype=int)[-100:,:].T
 
 	events = list()
 	fig, ax = plt.subplots()

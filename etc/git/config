@@ -19,3 +19,5 @@
 	  pushInsteadOf = "aur:"
 [alias]
 	gud = !echo git gud nerd
+[init]
+	defaultBranch = main

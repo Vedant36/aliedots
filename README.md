@@ -3,7 +3,7 @@
 
 To use the dots, on a fresh installation of Arch linux(not tested on other distros but might work) execute
 `git clone https://github.com/Vedant36/aliedots .local`
-in the home folder. Then link .local/lib/dotfiles/{.zshenv,.pam_environment} to home and the wallpaper of your choice to pix/current.jpg(this location can be changes in .local/etc/X11/xinitrc in the line starting with feh).
+in the home folder. Then link .local/lib/dotfiles/{.zshenv,.pam_environment} to home and the wallpaper of your choice to pix/current.*(this location can be changes in .local/etc/X11/xinitrc in the line starting with feh).
 
 execute the xinit wrapper `x` on the shell to start the x server
 

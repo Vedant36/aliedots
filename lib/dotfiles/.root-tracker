@@ -1,0 +1,15 @@
+default/grub
+modprobe.d/bbswitch.conf
+modprobe.d/blacklist.conf
+modules-load.d/bbswitch.conf
+NetworkManager/conf.d/dns.conf
+systemd/system/getty@tty1.service.d/override.conf
+udev/rules.d/backlight.rules
+X11/xorg.conf.d/20-amdgpu.conf
+X11/xorg.conf.d/30-touchpad.conf
+xdg/reflector/reflector.conf
+anacrontab
+asound.conf
+cron.allow
+pacman.conf
+tlp.conf

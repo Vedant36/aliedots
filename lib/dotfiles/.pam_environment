@@ -5,6 +5,8 @@
 # systemd-environment-d-generator(8) loads the environment.d(5) files from the
 # right place (this solves the chicken-or-egg problem for setting
 # XDG_CONFIG_HOME).
+# Written by: ayekat
+# Modified by: Vedant36
 
 # Ugly workaround for Debian (as they ship an ancient version of PAM):
 HOME                  DEFAULT="/home/@{PAM_USER}" OVERRIDE="@{HOME}"

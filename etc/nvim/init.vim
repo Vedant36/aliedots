@@ -15,7 +15,7 @@ set scrolloff=5
 set showmatch matchtime=1
 set list " lcs=tab:❯\ ,trail:-,nbsp:+
 " set listchars=tab:→\ ,eol:\ ,trail:·
-set listchars=tab:\|\ ,eol:\ ,trail:·
+set listchars=tab:\|_,eol:\ ,trail:·
 set splitbelow splitright
 set hlsearch ignorecase incsearch smartcase
 set updatetime=300 timeoutlen=300
@@ -58,6 +58,7 @@ ab coke cocain
 " keybinds ∑ { n ∈ ▲ } 🅇(n) ○-> Ⓨ[n] ▢△◈ {{{1
 " uncategorized {{{2
 " nn g/ /\<\><left><left>
+nn \ :Goyo<cr>
 nn <M-CR> <c-o>o
 nn <esc> :echoe "pressed esc nerd"<cr>
 nn , ciw
@@ -190,7 +191,7 @@ au bufwritepost config.h :make PREFIX=$HOME/.local clean install
 augroup custom_filetype
 	au!
 	au filetype diff if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
-	au filetype json set foldmethod=expr foldexpr=BetterIndent(v:lnum)
+	au filetype json,yaml set foldmethod=expr foldexpr=BetterIndent(v:lnum)
 	au filetype help,man nn <buffer><silent> q ZQ<cr>
 	au filetype man nn <buffer><silent> ]] :call search('^\S')<cr>
 	au filetype man nn <buffer><silent> [[ :call search('^\S','b')<cr>
@@ -405,6 +406,9 @@ try
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
 	Plug 'lambdalisue/nerdfont.vim'
+	Plug 'github/copilot.vim', { 'on': 'Copilot enable' }
+	Plug 'junegunn/goyo.vim'
+	" Plug 'jessfraz/openai.vim' " for completions from openai
 	" Plug 'nvim-lualine/lualine.nvim'
 	" Plug 'kyazdani42/nvim-web-devicons'
 
@@ -440,6 +444,15 @@ catch //
 endtry
 " plugin config 
 " settings/variables {{{2
+let g:goyo_width = '95%'
+let g:goyo_height = '95%'
+let g:goto_linenr = 0
+
+let g:copilot_filetypes = {
+	\ '*': v:false,
+	\ 'markdown': v:false,
+	\ }
+
 let g:lightline#bufferline#enable_nerdfont = 1
 let g:lightline#bufferline#show_number = 2
 " let g:lightline#bufferline#unicode_symbols = 1

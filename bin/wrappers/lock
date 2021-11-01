@@ -83,7 +83,7 @@ rec_get_random() {
 
 logical_px() {
 	# get dpi value from xrdb
-	local DPI=$(grep -oP 'Xft.dpi:\s*\K\d+' ~/.Xresources | bc)
+	local DPI=$(xrdb -query | grep -oP 'Xft.dpi:\s*\K\d+' | bc)
 	
 	# return the default value if no DPI is set
 	if [ -z "$DPI" ]; then
