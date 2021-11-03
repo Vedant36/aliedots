@@ -47,6 +47,7 @@ alias xob='xsel -ob'
 # pacman aliases {{{1
 alias p=$PM
 alias pf='$PM -F'
+alias pg='$PM -S'
 alias pp='$PM -Rcns'
 complete -F _complete_alias pp
 alias pi='$PM -Si'

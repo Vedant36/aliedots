@@ -18,7 +18,7 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 // tagging {{{1
-static const char *tags[] = { "", "", "", "", "", "ﭮ", "", "﫸" };
+static const char *tags[] = { "", "", "", "", "", "ﭮ", "", "﫸" };
 // Rules {{{1
 static const Rule rules[] = {
 	/* xprop(1):
@@ -26,16 +26,17 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class          instance     title       tags mask   isfloating  monitor */
+	{ NULL,           NULL,   "TLauncher 2.8", 1 << 0,     0,          -1 },
+	{ NULL,           NULL,   "TLauncher",     1 << 0,     0,          -1 },
+	{ "Popcorn-Time", NULL,        NULL,       1 << 0,     0,          -1 },
+	{ "Zathura",      NULL,        NULL,       1 << 1,     0,          -1 },
 	{ "qutebrowser",  NULL,        NULL,       1 << 2,     0,          -1 },
 	{ NULL,      "ncmpcpp",        NULL,       1 << 3,     0,          -1 },
 	{ "mpv",          NULL,        NULL,       1 << 4,     0,          -1 },
 	{ "discord",      NULL,        NULL,       1 << 5,     0,          -1 },
-	{ NULL,           NULL,   "TLauncher 2.8", 1 << 0,     0,          -1 },
-	{ NULL,           NULL,   "TLauncher",     1 << 0,     0,          -1 },
 	{ "Minecraft* 1.16.5", NULL,   NULL,       1 << 6,     0,          -1 },
 	{ "Minecraft* 1.17.1", NULL,   NULL,       1 << 6,     0,          -1 },
 	{ "transmission", NULL,        NULL,       1 << 7,     0,          -1 },
-	{ "Popcorn-Time", NULL,        NULL,       1 << 0,     0,          -1 },
 };
 // layout(s) {{{1
 static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */

@@ -38,18 +38,16 @@ export XDG_LIB_HOME="$HOME/.local/lib"
 # ~ Cleanup {{{1
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
-export PYTHONSTARTUP=$XDG_LIB_HOME/python/startup.py
+# export PYTHONSTARTUP=$XDG_LIB_HOME/python/startup.py
 export IPYTHONDIR=$XDG_CONFIG_HOME/ipython
 export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgreprc
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
-export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv
-[[ ! -d $XDG_CACHE_HOME/nv ]] && mkdir $XDG_CACHE_HOME/nv
+# export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv
+# [[ ! -d $XDG_CACHE_HOME/nv ]] && mkdir $XDG_CACHE_HOME/nv
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
 [[ ! -d $XDG_DATA_HOME/gnupg ]] && mkdir -m700 $XDG_DATA_HOME/gnupg 
 export HISTFILE=$XDG_DATA_HOME/zsh/.zsh_history
 export LESSHISTFILE=$XDG_DATA_HOME/lesshst
-export PULSE_COOKIE=$XDG_DATA_HOME/pulse/cookie
-[[ ! -d $XDG_DATA_HOME/pulse ]] && mkdir $XDG_DATA_HOME/pulse
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 # fzf {{{1
 export FZF_{DEFAULT,CTRL_T}_COMMAND='find . -path "*/.git" -prune -o -path "*/.cache" -prune -o -print 2>/dev/null | sed 1d'

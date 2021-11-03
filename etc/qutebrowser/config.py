@@ -144,7 +144,7 @@ c.bindings.commands = {
 		"h" : "tab-prev",
 		"l" : "tab-next",
 		"yw": "fake-key <ctrl-a>",
-		"z" : "open -t -r https://np.ironhelmet.com/game/5980642448506880;; tab-move",
+		"z" : "open -t -r https://np.ironhelmet.com/game/5980642448506880;; tab-move;; open -t -r https://np.ironhelmet.com/game/4934372577509376",
 		"!" : "set-cmd-text :open !",
 		",M": "hint links spawn -d mpv {hint-url}",
 		",m": "spawn -d mpv {url}",

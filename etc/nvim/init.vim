@@ -49,7 +49,8 @@ let $PAGER=''
 let $FZF_DEFAULT_COMMAND = 'find . -path "*/.git" -prune -o -path "*/.cache" -prune -o -print 2>/dev/null | sed 1d'
 " global variables {{{1
 let g:diff_translations = 0
-let g:netrw_banner=0
+let g:netrw_banner = 0
+let g:netrw_liststyle = 1
 " let g:netrw_list_hide=netrw_gitignore#Hide()
 let python_space_error_highlight = 1
 " abbreviates {{{1
@@ -58,7 +59,7 @@ ab coke cocain
 " keybinds ∑ { n ∈ ▲ } 🅇(n) ○-> Ⓨ[n] ▢△◈ {{{1
 " uncategorized {{{2
 " nn g/ /\<\><left><left>
-nn \ :Goyo<cr>
+nn <silent> \ :Goyo<cr>
 nn <M-CR> <c-o>o
 nn <esc> :echoe "pressed esc nerd"<cr>
 nn , ciw
@@ -399,7 +400,6 @@ endfunction
 " :w !diff % - " to view diff with the original file
 " :w ++enc=utf-8 " to write to file in utf-8 to solve CONVERSION ERROR
 " plugins {{{1
-" if empty(glob("${XDG_DATA_HOME-$HOME/.local/share}/nvim/site/autoload"))
 try
 	" plugin calls {{{2
 	call plug#begin()
@@ -407,7 +407,7 @@ try
 	Plug 'mengelbrecht/lightline-bufferline'
 	Plug 'lambdalisue/nerdfont.vim'
 	Plug 'github/copilot.vim', { 'on': 'Copilot enable' }
-	Plug 'junegunn/goyo.vim'
+	Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 	" Plug 'jessfraz/openai.vim' " for completions from openai
 	" Plug 'nvim-lualine/lualine.nvim'
 	" Plug 'kyazdani42/nvim-web-devicons'
@@ -415,27 +415,24 @@ try
 	Plug 'tpope/vim-commentary'
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
-	Plug 'plasticboy/vim-markdown'
-	" Plug 'prurigro/vim-markdown-concealed'
-	Plug 'godlygeek/tabular'
-	Plug 'francoiscabrol/ranger.vim'
-	" Plug 'bling/vim-bufferline'
+	Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+	" Plug 'godlygeek/tabular'
+	" Plug 'bling/vim-bufferline' " nice compact bufferline
 	" Plug 'tpope/vim-vinegar'
 	" Plug 'lifepillar/vim-mucomplete'
 	" Plug 'neoclide/coc.nvim', {'branch': 'release'} " comlpetion engine
-	" Plug 'fabi1cazenave/suckless.vim' " epic winow management
 	Plug 'norcalli/nvim-colorizer.lua' " Faster but requires tru color
 	Plug 'airblade/vim-gitgutter'
 	Plug 'tpope/vim-unimpaired'
 	Plug 'google/vim-searchindex'
 
 	" Themes
+	Plug 'kaicataldo/material.vim'
 	" Plug 'projekt0n/github-nvim-theme'
-	Plug 'drewtempelmeyer/palenight.vim'
-	" Plug 'folke/tokyonight.nvim'
+	Plug 'drewtempelmeyer/palenight.vim', { 'on': 'colorscheme palenight' }
 	" Plug 'fioncat/vim-oceanicnext'
-	Plug 'ghifarit53/tokyonight-vim'
-	Plug 'morhetz/gruvbox'
+	Plug 'ghifarit53/tokyonight-vim', { 'on': 'colorscheme tokyonight' }
+	Plug 'morhetz/gruvbox', { 'on': 'colorscheme gruvbox' }
 	call plug#end()
 	" }}}2
 catch //
@@ -470,22 +467,14 @@ let g:tokyonight_transparent_background = 1
 let g:palenight_terminal_italics=1
 let g:gruvbox_italic = 1
 let g:material_terminal_italics = 1
-let g:material_theme_style = 'darker' " default, palenight, ocean, lighter, and darker
-" let g:material_style = 'moonlight'
-" colorscheme github_*
-colorscheme palenight
+let g:material_theme_style = 'palenight' " default, palenight, ocean, lighter, and darker
 " au BufEnter * silent! lcd %:p:h " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file that works with plugins
+colorscheme gruvbox
 " keybinds {{{2
 nn <c-p> :Files<cr>
 nmap <leader>i <Plug>CommentaryLine
 nmap <leader>u <Plug>Commentary<Plug>Commentary
 vmap <leader>i <Plug>Commentary
-nn <leader>t<bar> :Tab /<bar><cr>
-vn <leader>t<bar> :Tab /<bar><cr>
-nn <leader>t= :Tab /=<cr>
-vn <leader>t= :Tab /=<cr>
-nn <leader>t: :Tab /:<cr>
-vn <leader>t: :Tab /:<cr>
 " lightline config {{{2
 let g:lightline = {
 	\ 'colorscheme': colors_name,
@@ -548,4 +537,3 @@ if has('nvim')
 	" luafile $XDG_CONFIG_HOME/nvim/script.lua
 endif
 " }}}1
-
