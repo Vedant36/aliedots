@@ -65,7 +65,7 @@ nn <esc> :echoe "pressed esc nerd"<cr>
 nn , ciw
 tno <c-a> <C-\><C-N>
 nn Y y$
-nn <silent><c-n> :browse filter! /\v(man:\/\/<bar>term:\/\/<bar>\/tmp\/)/ oldfiles<cr>
+" nn <silent><c-n> :browse filter! /\v(man:\/\/<bar>term:\/\/<bar>\/tmp\/)/ oldfiles<cr>
 "  leaderbinds {{{2
 nn <leader><leader> <C-^>
 nn <leader>a gg"*yG``
@@ -405,12 +405,14 @@ try
 	call plug#begin()
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
-	Plug 'lambdalisue/nerdfont.vim'
+	" Plug 'lambdalisue/nerdfont.vim'
 	Plug 'github/copilot.vim', { 'on': 'Copilot enable' }
+	" Plug 'tom-doerr/vim_codex', { 'on': 'CreateCompletionLine' }
 	Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 	" Plug 'jessfraz/openai.vim' " for completions from openai
 	" Plug 'nvim-lualine/lualine.nvim'
-	" Plug 'kyazdani42/nvim-web-devicons'
+	Plug 'kyazdani42/nvim-web-devicons'
+	" Plug 'https://github.com/shaunsingh/nord.nvim'
 
 	Plug 'tpope/vim-commentary'
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -425,6 +427,9 @@ try
 	Plug 'airblade/vim-gitgutter'
 	Plug 'tpope/vim-unimpaired'
 	Plug 'google/vim-searchindex'
+
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
 
 	" Themes
 	Plug 'kaicataldo/material.vim'
@@ -453,6 +458,7 @@ let g:copilot_filetypes = {
 let g:lightline#bufferline#enable_nerdfont = 1
 let g:lightline#bufferline#show_number = 2
 " let g:lightline#bufferline#unicode_symbols = 1
+let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#min_buffer_count = 2
 
 let g:bufferline_rotate = 2
@@ -469,9 +475,10 @@ let g:gruvbox_italic = 1
 let g:material_terminal_italics = 1
 let g:material_theme_style = 'palenight' " default, palenight, ocean, lighter, and darker
 " au BufEnter * silent! lcd %:p:h " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file that works with plugins
-colorscheme gruvbox
+colorscheme palenight
 " keybinds {{{2
-nn <c-p> :Files<cr>
+nn <c-p> :Telescope git_files<cr>
+nn <c-n> :Telescope oldfiles<cr>
 nmap <leader>i <Plug>CommentaryLine
 nmap <leader>u <Plug>Commentary<Plug>Commentary
 vmap <leader>i <Plug>Commentary

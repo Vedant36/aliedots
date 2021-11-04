@@ -185,7 +185,8 @@ EOF
 				done
 fi
 
-xinit "$client" "$clientargs" -- "$server" "$display" "$serverargs"
+# server args should not have quotes as it is intended for multiple arguments to be passed to it
+xinit "$client" "$clientargs" -- "$server" $display $serverargs
 
 retval=$?
 
