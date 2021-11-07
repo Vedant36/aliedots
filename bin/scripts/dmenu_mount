@@ -1,0 +1,41 @@
+#!/usr/bin/sh
+# script to mount removable media using udisks and dmenu
+usb_devices=$(lsblk -nrpo "name,type,size,label,mountpoint" | sed -E '/(\/dev\/nvme0n1|disk)/d')
+android_devices=$(simple-mtpfs -l)
+devices="$usb_devices\nMTP\nUnmount All MTP"
+echo $devices
+[ -z "$devices" ] && notify-send "No devices found" && exit 1
+data=$(echo -e "$devices" | dmenu -i -l 20)
+if [ "$data" ]; then
+	device=$(awk '{print $1}' <<< $data)
+	if [ -z "$(grep MTP <<<$data)" ]; then
+		mounted=$(awk '{print $5}' <<< $data)
+		if [ "$mounted" ]; then
+			udisksctl unmount -b $device
+			notify-send "Unmounted $device"
+		else
+			udisksctl mount -b $device
+			notify-send "Mounted $device"
+		fi
+	else
+		if [ "$data" == "Unmount All MTP" ]; then
+			for i in $(ls -1 ~/.local/mnt); do
+				echo $i
+				fusermount -u ~/.local/mnt/"$i"
+			done
+			notify-send "Unmounted all within ~/.local/mnt"
+		else
+			echo $android_devices
+			if [ $(wc -l <<< "$android_devices") -gt 1 ]; then
+				choice=$(dmenu -i -l 20 <<< "$android_devices" | cut -d: -f1)
+			else
+				choice=1
+			fi
+			notify-send "Mounting $data"
+			[ "$(ls -1 ~/.local/mnt/Samsung0)" ] || simple-mtpfs --device $choice ~/.local/mnt/Samsung0 && exit 0
+			[ "$(ls -1 ~/.local/mnt/Samsung1)" ] || simple-mtpfs --device $choice ~/.local/mnt/Samsung1 && exit 0
+			[ "$(ls -1 ~/.local/mnt/Samsung2)" ] || simple-mtpfs --device $choice ~/.local/mnt/Samsung2 && exit 0
+			
+		fi
+	fi
+fi

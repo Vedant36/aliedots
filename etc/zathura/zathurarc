@@ -2,3 +2,4 @@ set guioptions ''
 map b toggle_statusbar
 map , navigate next
 map . navigate previous
+set pages-per-row 2

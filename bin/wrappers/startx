@@ -191,7 +191,7 @@ xinit "$client" "$clientargs" -- "$server" $display $serverargs
 retval=$?
 
 if [ "$enable_xauth" = 1 ] ; then
-	[ "$removelist" ] && xauth remove "$removelist"
+	[ "$removelist" ] && xauth remove $removelist
 	[ "$xserverauthfile" ] && rm -f "$xserverauthfile"
 fi
 

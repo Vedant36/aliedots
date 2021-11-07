@@ -1,11 +1,12 @@
 # GRUB boot loader configuration
 
-GRUB_DEFAULT=0
+GRUB_DEFAULT="1>2"
 GRUB_TIMEOUT=1
 GRUB_DISTRIBUTOR="Arch"
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet acpi_osi=Linux acpi_backlight=video i8042.noloop"
-GRUB_CMDLINE_LINUX=""
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 acpi_osi=Linux acpi_backlight=video"
+# GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 acpi_osi=Linux acpi_backlight=video resume=UUID=7fb17bd1-9594-4f5d-9051-78557fccf185 resume_offset=4489216"
 # GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nouveau.noaccel=1 acpi_sleep=nonvs acpi_osi=Linux acpi_backlight=video"
+GRUB_CMDLINE_LINUX=""
 
 # Preload both GPT and MBR modules so that they are not missed
 GRUB_PRELOAD_MODULES="part_gpt part_msdos"
@@ -40,11 +41,11 @@ GRUB_DISABLE_RECOVERY=true
 
 # Uncomment and set to the desired menu colors.  Used by normal and wallpaper
 # modes only.  Entries specified as foreground/background.
-#GRUB_COLOR_NORMAL="blue/light-green"
-#GRUB_COLOR_HIGHLIGHT="black/green"
+#GRUB_COLOR_NORMAL="light-blue/black"
+#GRUB_COLOR_HIGHLIGHT="light-cyan/blue"
 
 # Uncomment one of them for the gfx desired, a image background or a gfxtheme
-#GRUB_BACKGROUND="/home/vn36/pix/wallpapers/cc1_resized.jpg"
+#GRUB_BACKGROUND="/path/to/wallpaper"
 GRUB_THEME="/boot/grub/themes/virtual_future/theme.txt"
 
 # Uncomment to get a beep at GRUB start

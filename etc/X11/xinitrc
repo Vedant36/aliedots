@@ -39,6 +39,8 @@ dunst &
 picom -f &
 xss-lock lock &
 mpd &
+# check if mpdscibble is already running. required because the process stays on
+# even when the X server is closed
 pgrep mpdscribble || mpdscribble --conf /home/vn36/.local/lib/private/lastfm.conf &
 eval `ssh-agent -s`
 

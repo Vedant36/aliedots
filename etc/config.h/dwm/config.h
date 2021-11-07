@@ -2,13 +2,14 @@
 // appearance {{{1
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 0;        /* gaps between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 4;       /* snap pixel */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Iosevka Term:size=10" };
 static const char dmenufont[]       = "Iosevka Term:size=10";
+/* static const char col_gray3[]       = "#545c7e"; */
 static const char col_gray1[]       = "#1a1b26";
-static const char col_gray2[]       = "#545c7e";
+static const char col_gray2[]       = "#1f2335";
 static const char col_gray3[]       = "#a9b1d6";
 static const char col_gray4[]       = "#c0caf5";
 static const char col_cyan[]        = "#33467c";
@@ -75,12 +76,15 @@ static Key keys[] = {
 	/* modifier                     key               function        argument */
 	{ MODKEY,                       XK_p,             spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          {.v = desktop_dmenucmd } },
+	{ MODKEY|ControlMask,           XK_q,             spawn,          SHCMD("echo -e 'poweroff\nreboot' | dmenu -l 20 | sh") },
 	{ MODKEY,                       XK_q,             spawn,          {.v = termcmd} },
 	{ MODKEY,                       XK_r,             spawn,          SHCMD("st -n ncmpcpp ncmpcpp") },
 	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
 
 	{ MODKEY,                       XK_a,             spawn,          {.v = fmcmd} },
 	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && kitty -1 nvim todo.md data.md sites.md") },
+	{ MODKEY|ShiftMask,             XK_s,             spawn,          SHCMD("state") },
+	{ MODKEY|ShiftMask,             XK_m,             spawn,          SHCMD("dmenu_mount") },
 	{ MODKEY,                       XK_v,             spawn,          SHCMD("kitty -1 nvim") },
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          SHCMD("kitty -1 pulseaudio") },
 	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD("kitty -1 bc -l") },
@@ -98,8 +102,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,             focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,             incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,             incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,             setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,             setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_h,             setmfact,       {.f = -0.02} },
+	{ MODKEY,                       XK_l,             setmfact,       {.f = +0.02} },
 	{ MODKEY,                       XK_Return,        zoom,           {0} },
 	{ MODKEY,                       XK_Tab,           view,           {0} },
 
@@ -127,8 +131,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,         spawn,          SHCMD("mpc prev") },
 	{ MODKEY|ShiftMask,             XK_period,        spawn,          SHCMD("mpc next") },
 
-	{ MODKEY,                       XK_F3,            spawn,          SHCMD("bright -i 5") },
+	{ MODKEY,                       XK_F1,            spawn,          SHCMD("kitty -1 nvim ~/.local/opt/dwm/config.h") },
 	{ MODKEY,                       XK_F2,            spawn,          SHCMD("bright -i -5") },
+	{ MODKEY,                       XK_F3,            spawn,          SHCMD("bright -i 5") },
 
 	{ MODKEY,                       XK_0,             view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,             tag,            {.ui = ~0 } },

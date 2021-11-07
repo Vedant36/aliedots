@@ -104,7 +104,7 @@ export ZSH_PLUGINS=$XDG_DATA_HOME/zsh/plugins
 # url: https://github.com/zsh-users/zsh-autosuggestions
 . $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 # url: https://github.com/zdharma/fast-syntax-highlighting
-#. $ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null # colors commands and hex color codes
+. $ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null # colors commands and hex color codes
 # setopts {{{1
 autoload colors && colors
 setopt auto_cd              # type bare dir name and cd to it e.g. `$ /`

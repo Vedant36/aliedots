@@ -406,7 +406,7 @@ try
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
 	" Plug 'lambdalisue/nerdfont.vim'
-	Plug 'github/copilot.vim', { 'on': 'Copilot enable' }
+	Plug 'github/copilot.vim', { 'on': 'Copilot' }
 	" Plug 'tom-doerr/vim_codex', { 'on': 'CreateCompletionLine' }
 	Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 	" Plug 'jessfraz/openai.vim' " for completions from openai
@@ -452,7 +452,8 @@ let g:goto_linenr = 0
 
 let g:copilot_filetypes = {
 	\ '*': v:false,
-	\ 'markdown': v:false,
+	\ 'sh': v:true,
+	\ 'zsh': v:true,
 	\ }
 
 let g:lightline#bufferline#enable_nerdfont = 1

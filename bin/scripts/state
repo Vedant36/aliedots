@@ -1,0 +1,33 @@
+#!/usr/bin/bash
+# script to manage on and off states for things like {picom, wallpape reload, xss-lock, xcape, mounting drives(android?), unclutter, etc} and also one for killing processes
+
+choice=$(echo "\
+xcape $(pgrep xcape|wc -l)
+xss-lock $(pgrep xss-lock|wc -l)
+wallpaper
+picom
+" | dmenu -l 20)
+
+case $choice in
+	xcape)
+		if pgrep xcape; then
+			pkill xcape
+		else
+			xcape -e 'Control_L=Escape'
+		fi
+		;;
+	xss-lock)
+		if pgrep xss-lock; then
+			pkill xss-lock
+		else
+			xss-lock -l lock
+		fi
+		;;
+	wallpaper)
+		feh --no-fehbg --bg-fill "$(xdg-user-dir PICTURES)"/current.*
+		;;
+	picom)
+		picom --experimental-backends
+		;;
+esac
+
