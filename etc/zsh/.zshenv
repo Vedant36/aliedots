@@ -36,6 +36,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/var/lib"
 export XDG_LIB_HOME="$HOME/.local/lib"
 # ~ Cleanup {{{1
+export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 # export PYTHONSTARTUP=$XDG_LIB_HOME/python/startup.py
@@ -52,6 +53,7 @@ export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 # fzf {{{1
 export FZF_{DEFAULT,CTRL_T}_COMMAND='find . -path "*/.git" -prune -o -path "*/.cache" -prune -o -print 2>/dev/null | sed 1d'
 export FZF_ALT_C_COMMAND='find . -type d -a \( -path "*/.git" -prune -o -path "*/.cache" -prune -o -print \) 2>/dev/null | sed 1d'
+# nvim binding doesn't work
 export FZF_DEFAULT_OPTS="-m --reverse --tiebreak=begin --info=inline --bind 'ctrl-space:execute(nvim {}),ctrl-y:execute-silent(echo {} | xsel -ib)+abort' 2>/dev/null"
 export FZF_CTRL_T_OPTS=" --tiebreak=begin --preview \"bat --color=always --style=numbers {}\""
 export FZF_ALT_C_OPTS=" --tiebreak=begin --preview 'ls -Al {}'"

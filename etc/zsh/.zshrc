@@ -95,6 +95,7 @@ setopt hist_reduce_blanks   # remove superflous blanks
 setopt hist_no_store
 
 # sourcings(7) fastest to slowest {{{1
+eval "$(zoxide init zsh)"
 . ${ZDOTDIR-~}/.zshaliases
 . ${ZDOTDIR-~}/.zshfunctions
 . /usr/share/doc/find-the-command/ftc.zsh quiet

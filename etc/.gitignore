@@ -1,5 +1,6 @@
 *
 !*/
+!anacrontab
 !config.h/**
 !dunst/*
 !environment.d/*
@@ -17,11 +18,9 @@ nvim/*
 !nvim/script.lua
 !pulse/daemon.conf
 !qt5ct/qt5ct.conf
-!qutebrowser/**
-qutebrowser/bookmarks
-qutebrowser/autoconfig.yml
-qutebrowser/qsettings
-qutebrowser/jblock
+!qutebrowser/config.py
+!qutebrowser/*.qss
+!qutebrowser/quickmarks
 !ranger/**
 __pycache__/
 ranger/plugins/__init__.py

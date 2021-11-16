@@ -13,8 +13,9 @@ def_key "shift-j"
 def_key "h"
 	previous_column
 def_key "l"
-	show_lyrics
 	next_column
+def_key "l"
+	show_lyrics
 # def_key "J"
 # 	move_sort_order_down
 # def_key "K"
@@ -217,8 +218,8 @@ def_key "N"
 #def_key "}"
 #  scroll_down_artist
 #
-#def_key "insert"
-#  select_item
+def_key "space"
+  select_item
 #
 #def_key "enter"
 #  enter_directory
@@ -232,14 +233,14 @@ def_key "N"
 #def_key "enter"
 #  play_item
 #
-def_key "space"
-  select_item
+def_key "ctrl-a"
+  add_item_to_playlist
 #
 #def_key "space"
 #  toggle_lyrics_update_on_song_change
 #
-#def_key "space"
-#  toggle_visualization_type
+def_key "space"
+  toggle_visualization_type
 #
 #def_key "delete"
 #  delete_playlist_items
@@ -325,8 +326,8 @@ def_key "space"
 #def_key "backspace"
 #  jump_to_parent_directory
 #
-#def_key "backspace"
-#  replay_song
+def_key "0"
+  replay_song
 #
 #def_key "f"
 #  seek_forward

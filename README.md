@@ -35,8 +35,9 @@ $HOME
 ```
 
 ## Notes
-- the set-up script(still in developement) is lib/dotfiles/setup.sh, although that is not necessary to get the aliedots experience
 - Using the xdg variable structure inspired from [ayekat's dotfiles](https://github.com/ayekat/dotfiles)
+- the set-up script(still in developement) is lib/dotfiles/setup.sh, although that is not necessary to get the aliedots experience
+- {packages,foreign packages} i use are in lib/dotfiles/{pkglist,foreignpkglist}.txt
 - all directories whether empty or full which i do not want to version control have a .gitignore with the contents:
 ```git
 *

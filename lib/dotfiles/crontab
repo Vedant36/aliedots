@@ -1,3 +1,4 @@
-*/10 * * * * /home/vn36/.local/bin/custom/bat_alert.sh
-*/10 * * * * /home/vn36/.local/bin/custom/bat_log.sh
+*/5 * * * * /home/vn36/.local/bin/scripts/bat_alert.sh
+# */10 * * * * /home/vn36/.local/bin/scripts/bat_log.sh
+* */1 * * * anacron -t "$HOME"/etc/anacrontab -S "$HOME"/var/spool/anacron
 

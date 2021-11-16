@@ -15,6 +15,7 @@ c.content.pdfjs = True
 c.content.private_browsing = False
 c.content.user_stylesheets = ['$XDG_CONFIG_HOME/qutebrowser/fix-tooltips.qss', '$XDG_CONFIG_HOME/qutebrowser/darkmode.qss']
 c.content.webrtc_ip_handling_policy = 'disable-non-proxied-udp'
+c.content.geolocation = False
 c.downloads.location.suggestion = 'both'
 c.downloads.remove_finished = 1
 c.editor.command = [ 'kitty', '-1', 'nvim', '-c', 'norm {line}G{column0}l', '{file}' ]
@@ -41,14 +42,14 @@ c.window.hide_decoration = True
 c.window.transparent = True
 
 # fonts {{{1
-font_size = 10
-fixed = f'{font_size}pt Iosevka Term'
+font_size = '10pt'
+fixed = f'{font_size} Iosevka Term'
 c.fonts.default_family = 'Futura'
 # c.fonts.default_family = [ "Futura", "Unifont" ]
 c.fonts.statusbar = fixed
 c.fonts.completion.category = fixed
 c.fonts.completion.entry = fixed
-c.fonts.hints = f'{font_size}pt Iosevka Term'
+c.fonts.hints = f'{font_size} Iosevka Term'
 # c.fonts.web.family.fixed = 'Iosevka Term'
 c.fonts.web.family.sans_serif = 'Futura'
 c.fonts.web.family.serif = 'Helvetica'

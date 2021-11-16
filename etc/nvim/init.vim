@@ -60,8 +60,7 @@ ab coke cocain
 " uncategorized {{{2
 " nn g/ /\<\><left><left>
 nn <silent> \ :Goyo<cr>
-nn <M-CR> <c-o>o
-nn <esc> :echoe "pressed esc nerd"<cr>
+ino <M-CR> <c-o>O
 nn , ciw
 tno <c-a> <C-\><C-N>
 nn Y y$
@@ -103,7 +102,7 @@ ino <c-b> <Left>
 ino <c-f> <Right>
 ino <m-b> <C-Left>
 ino <m-f> <C-Right>
-" buffer/tab switching {{{2
+" buffer switching {{{2
 nm <silent> <m-`> <Plug>lightline#bufferline#go(1)
 nm <silent> <m-1> <Plug>lightline#bufferline#go(2)
 nm <silent> <m-2> <Plug>lightline#bufferline#go(3)
@@ -128,6 +127,13 @@ nn <silent> <leader>oh :e $HISTFILE<cr>
 nn <silent> <leader>ol :e ~/dox/CPlus/c/begin.c<cr>
 nn <silent> <leader>oy :e ~/dox/Python/platformer_2/Plat.py<cr>
 nn <silent> <leader>ov :e ~/dl/dotfiles/dot.sh<cr>
+" window management {{{2
+nn <C-j> <C-w>w
+nn <C-k> <C-w>W
+nn <m-h> <c-w>>
+nn <m-j> <c-w>-
+nn <m-k> <c-w>+
+nn <m-l> <c-w><
 " sus {{{2
 nn <C-s> :echo  " ⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢊⠘⡮⣣⠪⠢⡑⡌\n
 				\ ⠀⠀⠀⠟⠝⠈⠀⠀⠀⠡⠀⠠⢈⠠⢐⢠⢂⢔⣐⢄⡂⢔⠀⡁⢉⠸⢨⢑⠕⡌\n
@@ -169,10 +175,7 @@ xn zp zdgvzf
 nn ZA :xa<cr>
 nn ZX :qa<cr>
 nn ZS :w !echo <bar> dmenu <bar> sudo -S tee %<cr>
-nn <silent> <C-j> <C-w>w
-nn <silent> <C-k> <C-w>W
 nn <expr><silent> cot ':<c-u>set tabstop='.v:count1.'<cr>'
-
 " nn h <nop>
 " nn j <nop>
 " nn k <nop>
@@ -191,6 +194,7 @@ au bufwritepost config.h :make PREFIX=$HOME/.local clean install
 " au TextChanged,TextChangedI <buffer> silent write
 augroup custom_filetype
 	au!
+	au filetype crontab setlocal commentstring=#\ %s
 	au filetype diff if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
 	au filetype json,yaml set foldmethod=expr foldexpr=BetterIndent(v:lnum)
 	au filetype help,man nn <buffer><silent> q ZQ<cr>
@@ -212,28 +216,17 @@ augroup custom_filetype
 	au filetype vim nn <buffer> <leader>1 oPlug ''<esc>h
 	au filetype xdefaults setlocal commentstring=!\ %s
 augroup END
-augroup transparent
-	au!
-	 " Workaround for creating transparent bg
-    autocmd SourcePost * highlight Normal     ctermbg=NONE guibg=NONE
-            \ |    highlight LineNr     ctermbg=NONE guibg=NONE
-            \ |    highlight SignColumn ctermbg=NONE guibg=NONE
-augroup END
+" augroup transparent
+" 	au!
+" 	 " Workaround for creating transparent bg
+"     autocmd SourcePost * highlight Normal     ctermbg=NONE guibg=NONE
+"             \ |    highlight LineNr     ctermbg=NONE guibg=NONE
+"             \ |    highlight SignColumn ctermbg=NONE guibg=NONE
+" augroup END
 
 " Custom plugins {{{1
 " " Auto Tabularize in tables by Tim Pope {{{2
 " inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
-
-" function! s:align()
-"   let p = '^\s*|\s.*\s|\s*$'
-"   if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-"     let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-"     let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-"     Tabularize/|/l1
-"     normal! 0
-"     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-"   endif
-" endfunction
 " " Filename completion with glob {{{2
 " function! MyCompleteFileName()
 "     " match a (potential) wildcard preceding cursor position
@@ -285,7 +278,7 @@ function! BetterIndent(lnum)
     if getline(a:lnum) =~? '\v^\s*$'
         return '-1'
     endif
-	if getline(a:lnum) =~ '\v^\s*[}\]],?$'
+	if getline(a:lnum) =~ '\v^\s*[}\])],?$'
 		" return '-1'
 		return IndentLevel(a:lnum-1)
 	endif
@@ -430,14 +423,18 @@ try
 
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 	" Themes
 	Plug 'kaicataldo/material.vim'
 	" Plug 'projekt0n/github-nvim-theme'
+	Plug 'tanvirtin/monokai.nvim'
 	Plug 'drewtempelmeyer/palenight.vim', { 'on': 'colorscheme palenight' }
 	" Plug 'fioncat/vim-oceanicnext'
 	Plug 'ghifarit53/tokyonight-vim', { 'on': 'colorscheme tokyonight' }
 	Plug 'morhetz/gruvbox', { 'on': 'colorscheme gruvbox' }
+	Plug 'sainnhe/sonokai'
+	Plug 'glepnir/zephyr-nvim'
 	call plug#end()
 	" }}}2
 catch //
@@ -461,6 +458,7 @@ let g:lightline#bufferline#show_number = 2
 " let g:lightline#bufferline#unicode_symbols = 1
 let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#min_buffer_count = 2
+let g:lightline#bufferline#auto_hide = 200
 
 let g:bufferline_rotate = 2
 
@@ -474,12 +472,12 @@ let g:tokyonight_transparent_background = 1
 let g:palenight_terminal_italics=1
 let g:gruvbox_italic = 1
 let g:material_terminal_italics = 1
-let g:material_theme_style = 'palenight' " default, palenight, ocean, lighter, and darker
+" let g:material_theme_style = 'palenight' " default, palenight, ocean, lighter, and darker
 " au BufEnter * silent! lcd %:p:h " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file that works with plugins
-colorscheme palenight
+colorscheme sonokai
 " keybinds {{{2
-nn <c-p> :Telescope git_files<cr>
-nn <c-n> :Telescope oldfiles<cr>
+nn <silent><c-p> :Telescope git_files<cr>
+nn <silent><c-n> :Telescope oldfiles<cr>
 nmap <leader>i <Plug>CommentaryLine
 nmap <leader>u <Plug>Commentary<Plug>Commentary
 vmap <leader>i <Plug>Commentary
@@ -533,6 +531,14 @@ require 'colorizer'.setup ({
 	-- Available modes: foreground, background
 	mode     = 'background'; -- Set the display mode.
 })
+EOF
+" treesitter highlighting config {{{2
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
 EOF
 " }}}1
 " .nvimrc {{{1

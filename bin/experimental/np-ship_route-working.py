@@ -8,6 +8,9 @@ class Star:
 		self.l = np.array([x, y])
 		self.ships = 0
 
+	def __repr__(self):
+		return f"{self.l}"
+
 	def __sub__(self, other):
 		return np.linalg.norm([self.l, other.l])
 
@@ -21,6 +24,8 @@ class Carrier:
 		self.ships = self.s[0].ships
 		self.s[0].ships = 0
 
+	def __repr__(self):
+		return f"Carrier {self.i} {self.d} {self.s}"
 
 	def move(self):
 		s=self.s
@@ -46,7 +51,7 @@ carriers = [
 		]
 carrier_info = [[] for i in carriers]
 
-for i in range(1000):
+for i in range(100):
 	for a,b in zip(stars, star_info):
 		b.append(a.ships)
 		a.ships+=1

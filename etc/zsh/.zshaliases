@@ -11,7 +11,7 @@ alias l='exa -alhgFs size'
 alias lg='exa -x --icons --git --group-directories-first'
 alias v=nvim
 # Note: replace startx with `exec startx` if wanting to exit shell after logout. hmmm security
-alias x='startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" 2>&1 | tee ~/.local/var/log/x.log'
+alias x='startx | tee ~/.local/var/log/x.log'
 alias y='ipython --autocall=2 --nosep'
 alias path='echo $PATH | tr -s ":" "\n"'
 alias pn='ping 1.1.1.1'
@@ -49,9 +49,8 @@ alias p=$PM
 alias pf='$PM -F'
 alias pg='$PM -S'
 alias pp='$PM -Rcns'
-complete -F _complete_alias pp
-alias pi='$PM -Si'
-complete -F _complete_alias pi
+alias pi='$PM -S'
+alias pq='$PM -Si'
 # changing directory conveniences {{{1
 alias cb='cd ~/.local/bin'
 alias cv='cd ~/dox/dotfiles'

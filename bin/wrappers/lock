@@ -46,9 +46,10 @@ resized="$folder/resized.png" # resized image for your resolution
 l_screen="$folder/l_blur.png"
 
 lock() {
+	mpc -q pause
 	pkill xdotool
-	# pkill -USR1 dunst
 	dunstctl set-paused true
+
 	i3lock \
 		-n \
 		-c 00000000 \
@@ -65,9 +66,11 @@ lock() {
 		--time-font="$font" --date-font="$font" --layout-font="$font" --verif-font="$font" --wrong-font="$font" \
 		--noinput-text='' --force-clock --pass-media-keys "$lockargs" \
 		--bar-step 5
-	# [ "$(dunstctl is-paused)" == "true" ] && pkill -USR2 dunst
+
 	dunstctl set-paused false
 	kill $(cat ${XDG_STATE_HOME:-$HOME/.cache}/sleep_pid)
+	# custom event reminder script
+	command -v event && event
 }
 
 rec_get_random() {

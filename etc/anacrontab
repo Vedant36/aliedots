@@ -1,17 +1,18 @@
 # /etc/anacrontab: configuration file for anacron
 
-# See anacron(8) and anacrontab(5) for details.
-
 SHELL=/bin/sh
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 MAILTO=root
 # the maximal random delay added to the base delay of the jobs
 RANDOM_DELAY=45
 # the jobs will be started during the following hours only
-START_HOURS_RANGE=3-22
+# START_HOURS_RANGE=3-22
 
 #period in days   delay in minutes   job-identifier   command
 #1	5	cron.daily		nice run-parts /etc/cron.daily
 #7	25	cron.weekly		nice run-parts /etc/cron.weekly
 #@monthly 45	cron.monthly		nice run-parts /etc/cron.monthly
-1	5	pacman.update	yay -Sy && echo "$(yay -Qu)" | sed 1d > "/home/vn36"/.local/var/log/packages.log
+1	5	todo	echo $(date "+%F") $(wc -l "$HOME"/dox/textfiles/todo.md | awk '{print $1}') >> "$HOME"/.local/var/log/todo.log
+1	5	pkglist.sync	pacman -Qqen>"$HOME"/.local/lib/dotfiles/pkglist.txt
+1	5	foreignpkg.sync pacman -Qqem>"$HOME"/.local/lib/dotfiles/foreignpkglist.txt
+# vim: ft=crontab

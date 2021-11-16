@@ -102,8 +102,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,             focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,             incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,             incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,             setmfact,       {.f = -0.02} },
-	{ MODKEY,                       XK_l,             setmfact,       {.f = +0.02} },
+	{ MODKEY,                       XK_h,             setmfact,       {.f = -0.01} },
+	{ MODKEY,                       XK_l,             setmfact,       {.f = +0.01} },
 	{ MODKEY,                       XK_Return,        zoom,           {0} },
 	{ MODKEY,                       XK_Tab,           view,           {0} },
 
@@ -148,9 +148,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      8)
 	{ MODKEY|ShiftMask,             XK_q,             quit,           {0} },
 	{ 0,                            XK_Print,         spawn,          SHCMD("scrot \"$HOME/pix/screenshots/ss_%F_%H-%M-%S.png\"") },
-	{ ShiftMask,                    XK_Print,         spawn,          SHCMD("scrot -sf \"$HOME/pix/screenshots/ss_%F_%H-%M-%S.png\"") },
+	{ ShiftMask,                    XK_Print,         spawn,          SHCMD("scrot -s -f \"$HOME/pix/screenshots/ss_%F_%H-%M-%S.png\"") },
 	{ ControlMask,                  XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -e 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
-	{ ControlMask|ShiftMask,        XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -sfe 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
+	{ ControlMask|ShiftMask,        XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -s -f -e 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
 };
 // button definitions {{{1
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */

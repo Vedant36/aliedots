@@ -15,6 +15,10 @@ done
 unset f
 
 # custom config
+# resolution
+xrandr --newmode "1920x1080_60.00" 173.00 1920 2048 2248 2576 1080 1083 1088 1120 -hsync +vsync
+xrandr --addmode Virtual-1 1920x1080_60.00
+xrandr --output Virtual-1 --mode 1920x1080_60.00
 # keyboard
 setxkbmap -option altwin:swap_alt_win
 setxkbmap -option ctrl:nocaps
@@ -24,10 +28,9 @@ xcape -e 'Control_L=Escape' -t 100
 # clear mod3
 # keysym F8 = Hyper_R
 xset r rate 200 200
-# xset -r 23
 xset -r 36
-# pointer(s)
-xset m 4 0
+xset m 4 0 # pointer(s)
+xset dpms 900 900 900
 # xsetroot -cursor_name left_ptr
 
 # startup programs
@@ -37,10 +40,8 @@ pactl set-source-mute @DEFAULT_SOURCE@ 1
 feh --no-fehbg --bg-center "$(xdg-user-dir PICTURES)"/current.*
 dunst &
 picom -f &
-xss-lock lock &
-mpd &
-# check if mpdscibble is already running. required because the process stays on
-# even when the X server is closed
+xss-lock -n 'bright -i -5' -l lock &
+[ ! -s ~/.config/mpd/pid ] && mpd
 pgrep mpdscribble || mpdscribble --conf /home/vn36/.local/lib/private/lastfm.conf &
 eval `ssh-agent -s`
 

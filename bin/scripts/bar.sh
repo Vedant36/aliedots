@@ -4,7 +4,7 @@ dot=" $(($(ad diff origin/main|wc -l) - $(ad diff origin/main ~/.local/share/
 # dot=$(ad diff origin/main | wc -l)
 uptime=" $(uptime -p)"
 packages=" $(wc -l <$LOG/packages.log)"
-bat_state="$(upower -i "$(upower -e | grep BAT)" | grep -E 'state|time|percentage' | sed 's/.*:\s*\(.*\)/\1/')"
+bat_state="$(upower -i "$(upower -e | grep BAT)" | grep -E 'state|time to|percentage' | sed 's/.*:\s*\(.*\)/\1/')"
 state="" && [ "$(grep discharging <<< $bat_state)" ] && state=""
 bat="${state} $(tail -n1 <<< $bat_state) $(tail -n2 <<< $bat_state | head -n1)"
 # bat="${state} $(acpi -b | grep -Po '[0-9]+(?=%)')% $(grep -v)"
