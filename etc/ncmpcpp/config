@@ -1,7 +1,7 @@
 ##
 # Files
 mpd_music_dir = "~/melum"
-lyrics_directory  = ~/.local/etc/mpd/lyrics
+lyrics_directory  = ~/.local/var/lib/mpd/lyrics
 ncmpcpp_directory  = ~/.local/etc/ncmpcpp
 mpd_host = "localhost"
 mpd_port = "6600"

@@ -1,7 +1,8 @@
-*
-!*/
+/*
+!ranger/
+ranger/*
 !ranger/bookmarks
-zsh/*
-!zsh/.zsh_history
+!zsh/
+zsh/plugins
 !.gitignore
 

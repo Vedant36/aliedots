@@ -1,0 +1,6 @@
+[Added Associations]
+text/plain=nvim.desktop;
+application/zip=nvim.desktop;
+application/text=nvim.desktop;
+application/css=nvim.desktop;
+application/x-shockwave-flash=mpv.desktop;

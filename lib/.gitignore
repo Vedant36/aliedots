@@ -1,4 +1,3 @@
-*
-!*/
-!dotfiles/**
+/*
+!dotfiles/
 !python/startup.py

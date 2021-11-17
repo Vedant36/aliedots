@@ -37,7 +37,7 @@ xset dpms 900 900 900
 type unclutter>/dev/null && unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
 artha &
 pactl set-source-mute @DEFAULT_SOURCE@ 1
-feh --no-fehbg --bg-center "$(xdg-user-dir PICTURES)"/current.*
+feh --no-fehbg --bg-fill "$(xdg-user-dir PICTURES)"/current.*
 dunst &
 picom -f &
 xss-lock -n 'bright -i -5' -l lock &

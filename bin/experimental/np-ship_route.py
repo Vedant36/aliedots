@@ -4,7 +4,7 @@ import numpy as np
 import json
 
 class Carrier:
-	def __init__(self, loop, drop_index=0, index=0, time_to_target=0):
+	def __init__(self, order, pos=None):
 		self.drop_index = loop[0]
 		self.loop = loop[1:]
 		self.index = index

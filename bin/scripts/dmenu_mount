@@ -11,11 +11,17 @@ if [ "$data" ]; then
 	if [ -z "$(grep MTP <<<$data)" ]; then
 		mounted=$(awk '{print $5}' <<< $data)
 		if [ "$mounted" ]; then
-			udisksctl unmount -b $device
-			notify-send "Unmounted $device"
+			if udisksctl unmount -b $device; then
+				notify-send "Successfully Unmounted $device"
+			else
+				notify-send "Failed to Unmount $device"
+			fi
 		else
-			udisksctl mount -b $device
-			notify-send "Mounted $device"
+			if udisksctl mount -b $device; then
+				notify-send "Successfully Mounted $device"
+			else
+				notify-send "Failed to Mount $device"
+			fi
 		fi
 	else
 		if [ "$data" == "Unmount All MTP" ]; then

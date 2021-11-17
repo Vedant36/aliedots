@@ -23,6 +23,7 @@ dpkg
 dunst
 efibootmgr
 exa
+exfat-utils
 expac
 fakeroot
 feh
@@ -79,7 +80,6 @@ mupdf-tools
 ncdu
 ncmpcpp
 neofetch
-neovim
 networkmanager
 nodejs
 noto-fonts-emoji
@@ -192,6 +192,7 @@ xorg-xwininfo
 xorg-xwud
 xsel
 xss-lock
+yt-dlp
 zathura
 zathura-djvu
 zathura-pdf-mupdf

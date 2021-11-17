@@ -5,6 +5,7 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 # imp {{{1
 # alias ad='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
+alias pls='sudo'
 alias gh='git add . && git commit -a && git push'
 alias ah='ad commit -a && ad push'
 alias l='exa -alhgFs size'

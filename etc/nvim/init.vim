@@ -130,10 +130,10 @@ nn <silent> <leader>ov :e ~/dl/dotfiles/dot.sh<cr>
 " window management {{{2
 nn <C-j> <C-w>w
 nn <C-k> <C-w>W
-nn <m-h> <c-w>>
-nn <m-j> <c-w>-
-nn <m-k> <c-w>+
-nn <m-l> <c-w><
+nn <m-h> <c-w><
+nn <m-j> <c-w>+
+nn <m-k> <c-w>-
+nn <m-l> <c-w>>
 " sus {{{2
 nn <C-s> :echo  " ⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢊⠘⡮⣣⠪⠢⡑⡌\n
 				\ ⠀⠀⠀⠟⠝⠈⠀⠀⠀⠡⠀⠠⢈⠠⢐⢠⢂⢔⣐⢄⡂⢔⠀⡁⢉⠸⢨⢑⠕⡌\n
@@ -458,7 +458,7 @@ let g:lightline#bufferline#show_number = 2
 " let g:lightline#bufferline#unicode_symbols = 1
 let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#min_buffer_count = 2
-let g:lightline#bufferline#auto_hide = 200
+let g:lightline#bufferline#auto_hide = 400
 
 let g:bufferline_rotate = 2
 

@@ -8,6 +8,7 @@ i3lock-color-git
 lf-bin
 mpdscribble
 multitime
+neovim-nightly-bin
 neovim-symlinks
 pandoc-bin
 picom-ibhagwan-git

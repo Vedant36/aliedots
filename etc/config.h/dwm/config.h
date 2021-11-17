@@ -94,7 +94,7 @@ static Key keys[] = {
 
 	{ MODKEY,                       XK_d,             spawn,          SHCMD("discord") },
 	{ MODKEY|ShiftMask,             XK_e,             spawn,          SHCMD("lock") },
-	{ MODKEY,                       XK_e,             spawn,          SHCMD("lock && systemctl suspend") },
+	{ MODKEY,                       XK_e,             spawn,          SHCMD("systemctl suspend") },
 	{ MODKEY,                       XK_w,             spawn,          SHCMD("qutebrowser") },
 	{ MODKEY|ShiftMask,             XK_w,             spawn,          SHCMD("/usr/bin/qutebrowser --temp-basedir --set content.private_browsing true --config-py $XDG_CONFIG_HOME/qutebrowser/config.py") },
 	{ MODKEY|ControlMask,           XK_w,             spawn,          SHCMD("torb") },
