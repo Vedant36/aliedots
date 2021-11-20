@@ -25,13 +25,14 @@ swap(){
 # es(explore securely) function to view files securely {{{1
 es(){(
 	set -e
-	cd $HOME/dox
+	pushd $HOME/dox
 	local SE=sec
-	gpg -d ${SE}.tar.gpg>${SE}.tar && rm ${SE}.tar.gpg
-	tar xf ${SE}.tar && rm ${SE}.tar
+	[ -s ${SE}.tar.gpg ] && gpg -d ${SE}.tar.gpg>${SE}.tar && mv ${SE}.tar.gpg ~/.local/lib/private/
+	[ -s ${SE}.tar ] && tar xf ${SE}.tar && rm ${SE}.tar
 	ranger $SE
-	tar c ${SE} | gpg -r "Vedant Neema" -e>${SE}.tar.gpg
-	rm -rf $SE
+	[ -d ${SE} ] && tar c ${SE} | gpg -r "Vedant Neema" -e>${SE}.tar.gpg
+	[ -d ${SE} ] && rm -rf $SE
+	popd
 )}
 # px: package manager wrapper(s) {{{1
 pex() {

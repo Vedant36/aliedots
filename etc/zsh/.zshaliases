@@ -8,7 +8,7 @@ alias egrep='egrep --color=auto'
 alias pls='sudo'
 alias gh='git add . && git commit -a && git push'
 alias ah='ad commit -a && ad push'
-alias l='exa -alhgFs size'
+alias l='exa --icons -alhgFs size'
 alias lg='exa -x --icons --git --group-directories-first'
 alias v=nvim
 # Note: replace startx with `exec startx` if wanting to exit shell after logout. hmmm security
@@ -16,6 +16,7 @@ alias x='startx | tee ~/.local/var/log/x.log'
 alias y='ipython --autocall=2 --nosep'
 alias path='echo $PATH | tr -s ":" "\n"'
 alias pn='ping 1.1.1.1'
+alias python='env PYTHONSTARTUP=$XDG_LIB_HOME/python/startup.py python'
 # Global {{{1
 alias -g noerr='2>/dev/null'
 alias -g A='| awk'

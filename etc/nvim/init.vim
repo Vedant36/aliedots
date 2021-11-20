@@ -15,7 +15,7 @@ set scrolloff=5
 set showmatch matchtime=1
 set list " lcs=tab:❯\ ,trail:-,nbsp:+
 " set listchars=tab:→\ ,eol:\ ,trail:·
-set listchars=tab:\|_,eol:\ ,trail:·
+set listchars=tab:\|\ ,eol:\ ,trail:·
 set splitbelow splitright
 set hlsearch ignorecase incsearch smartcase
 set updatetime=300 timeoutlen=300
