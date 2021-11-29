@@ -6,6 +6,8 @@ while read i;do
 	# send a notification if $i is greater than today's date in epoch time
 	# write the code in a more debuggable way
 	if [ "$(date +%s)" -gt "$(date +%s -d "$(echo "$i" | cut -d= -f 1)")" ];then
+		# need to export this to make notify-send work
+		export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 		notify-send -u critical "$i" ""
 	fi
 	

@@ -212,10 +212,12 @@ augroup custom_filetype
 	au filetype netrw setl bufhidden=wipe
 	au filetype netrw nmap <buffer>l <cr>2j | nmap <buffer>h -
 	au filetype python setl noet ts=4
+	au filetype python nn <silent><F7> :!time python ./%:S<cr>
 	au filetype upstart setlocal commentstring=#\ %s
 	au filetype vim nn <buffer> <leader>1 oPlug ''<esc>h
 	au filetype xdefaults setlocal commentstring=!\ %s
 augroup END
+" " to make any background transparent
 " augroup transparent
 " 	au!
 " 	 " Workaround for creating transparent bg
@@ -401,7 +403,7 @@ try
 	" Plug 'lambdalisue/nerdfont.vim'
 	Plug 'github/copilot.vim', { 'on': 'Copilot' }
 	" Plug 'tom-doerr/vim_codex', { 'on': 'CreateCompletionLine' }
-	Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
+	" Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 	" Plug 'jessfraz/openai.vim' " for completions from openai
 	" Plug 'nvim-lualine/lualine.nvim'
 	Plug 'kyazdani42/nvim-web-devicons'
@@ -417,23 +419,25 @@ try
 	" Plug 'lifepillar/vim-mucomplete'
 	" Plug 'neoclide/coc.nvim', {'branch': 'release'} " comlpetion engine
 	Plug 'norcalli/nvim-colorizer.lua' " Faster but requires tru color
-	Plug 'airblade/vim-gitgutter'
 	Plug 'tpope/vim-unimpaired'
 	Plug 'google/vim-searchindex'
 
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
+	Plug 'lewis6991/gitsigns.nvim'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 	" Themes
-	Plug 'kaicataldo/material.vim'
+	" Plug 'kaicataldo/material.vim'
+	Plug 'ErichDonGubler/vim-sublime-monokai', { 'on': 'colorscheme sublimemonokai' }
+	" Plug 'crusoexia/vim-monokai'
 	" Plug 'projekt0n/github-nvim-theme'
-	Plug 'tanvirtin/monokai.nvim'
+	" Plug 'tanvirtin/monokai.nvim'
 	Plug 'drewtempelmeyer/palenight.vim', { 'on': 'colorscheme palenight' }
 	" Plug 'fioncat/vim-oceanicnext'
 	Plug 'ghifarit53/tokyonight-vim', { 'on': 'colorscheme tokyonight' }
 	Plug 'morhetz/gruvbox', { 'on': 'colorscheme gruvbox' }
-	Plug 'sainnhe/sonokai'
+	" Plug 'sainnhe/sonokai', { 'on': 'colorscheme sonokai' }
 	Plug 'glepnir/zephyr-nvim'
 	call plug#end()
 	" }}}2
@@ -445,7 +449,6 @@ endtry
 " settings/variables {{{2
 let g:goyo_width = '95%'
 let g:goyo_height = '95%'
-let g:goto_linenr = 0
 
 let g:copilot_filetypes = {
 	\ '*': v:false,
@@ -458,7 +461,7 @@ let g:lightline#bufferline#show_number = 2
 " let g:lightline#bufferline#unicode_symbols = 1
 let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#min_buffer_count = 2
-let g:lightline#bufferline#auto_hide = 400
+" let g:lightline#bufferline#auto_hide = 400
 
 let g:bufferline_rotate = 2
 
@@ -468,13 +471,14 @@ let g:markdown_fenced_languages = [ 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosin
 
 let g:tokyonight_style = 'storm' " available: night, storm
 let g:tokyonight_enable_italic = 1
-let g:tokyonight_transparent_background = 1
+let g:tokyonight_transparent_background = 0
 let g:palenight_terminal_italics=1
 let g:gruvbox_italic = 1
 let g:material_terminal_italics = 1
+let g:monokai_term_italic = 1
+let g:monokai_gui_italic = 1
 " let g:material_theme_style = 'palenight' " default, palenight, ocean, lighter, and darker
-" au BufEnter * silent! lcd %:p:h " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file that works with plugins
-colorscheme sonokai
+colorscheme tokyonight
 " keybinds {{{2
 nn <silent><c-p> :Telescope git_files<cr>
 nn <silent><c-n> :Telescope oldfiles<cr>
@@ -484,8 +488,6 @@ vmap <leader>i <Plug>Commentary
 " lightline config {{{2
 let g:lightline = {
 	\ 'colorscheme': colors_name,
-	\ 'separator': { 'left': '', 'right': '' },
-	\ 'subseparator': { 'left': '', 'right': '' },
 	\ 'active': {
 	\ 	 'left': [ [ 'mode', 'paste' ], [ 'filename', 'modified' ] ],
 	\ 	 'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'charvaluehex', 'filetype', 'linecount', 'fileinfo' ] ]
@@ -510,10 +512,8 @@ let g:lightline = {
 	\   'buffers': 'tabsel'
 	\ }
 	\ }
-	" \ 'separator': { 'left': '\ue0b8', 'right': '\ue0be' }
-	" \ 'subseparator': { 'left': '\ue0b9', 'right': '\ue0b9' }
-	" \ 'tabline_separator': { 'left': '\ue0bc', 'right': '\ue0ba' }
-	" \ 'tabline_subseparator': { 'left': '\ue0bb', 'right': '\ue0bb' }
+	" \ 'separator': { 'left': '', 'right': '' },
+	" \ 'subseparator': { 'left': '', 'right': '' },
 " colorizer config {{{2
 lua <<EOF
 require 'colorizer'.setup ({
@@ -540,6 +540,8 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+" other lua stuff {{{2
+lua require('gitsigns').setup()
 " }}}1
 " .nvimrc {{{1
 if has('nvim')

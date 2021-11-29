@@ -1,6 +1,5 @@
 acpi
 acpid
-amd-ucode
 android-tools
 aria2
 aspell
@@ -29,7 +28,6 @@ fakeroot
 feh
 file
 findutils
-flex
 fzf
 gawk
 gcc
@@ -61,9 +59,10 @@ linux
 linux-firmware
 linux-headers
 linux-lts
+linux-zen
+linux-zen-headers
 lshw
 ltrace
-lxappearance
 lynx
 m4
 macchanger
@@ -85,7 +84,6 @@ nodejs
 noto-fonts-emoji
 ntfs-3g
 nuspell
-obs-studio
 otf-ipafont
 pacgraph
 pacman
@@ -127,6 +125,7 @@ transmission-qt
 tree
 ttf-arphic-uming
 ttf-indic-otf
+ttf-iosevka-nerd
 ttf-nerd-fonts-symbols
 udisks2
 unclutter
@@ -135,6 +134,7 @@ unzip
 upower
 valgrind
 vnstat
+w3m
 wget
 which
 wmctrl

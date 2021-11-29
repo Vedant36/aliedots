@@ -1,3 +1,4 @@
+amd-ucode-git
 amdctl-git
 artha
 bbswitch-ati-dkms-git
@@ -16,10 +17,12 @@ popcorntime-bin
 ranger-git
 shellcheck-bin
 simple-mtpfs
+spectre-meltdown-checker
 spotify
 tor-browser
 windscribe-cli
 xcursor-breeze
+xorg-meta
 xxd-standalone
 yay-bin
 youtube-to-mp3

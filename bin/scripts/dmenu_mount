@@ -7,6 +7,7 @@ echo $devices
 [ -z "$devices" ] && notify-send "No devices found" && exit 1
 data=$(echo -e "$devices" | dmenu -i -l 20)
 # TODO: remove some ifs, i dont like branching
+# TODO: make this script work for removable drives with spaces in their names
 if [ "$data" ]; then
 	device=$(awk '{print $1}' <<< $data)
 	if [ -z "$(grep MTP <<<$data)" ]; then

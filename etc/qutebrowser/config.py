@@ -13,7 +13,10 @@ c.content.fullscreen.window = False
 c.content.notifications.enabled = False
 c.content.pdfjs = True
 c.content.private_browsing = False
-c.content.user_stylesheets = ['$XDG_CONFIG_HOME/qutebrowser/fix-tooltips.qss', '$XDG_CONFIG_HOME/qutebrowser/darkmode.qss']
+import os
+XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME", os.path.join(os.getenv('HOME'), '.config'))
+# TODO: darkmode and better-duckduckgo not working
+c.content.user_stylesheets = [f'{XDG_CONFIG_HOME}/qutebrowser/fix-tooltips.qss', f'{XDG_CONFIG_HOME}/qutebrowser/darkmode.qss', f'{XDG_CONFIG_HOME}/qutebrowser/better-duckduckgo.css']
 c.content.webrtc_ip_handling_policy = 'disable-non-proxied-udp'
 c.content.geolocation = False
 c.downloads.location.suggestion = 'both'
@@ -34,8 +37,7 @@ c.tabs.mousewheel_switching = False
 c.tabs.new_position.unrelated = 'next'
 c.tabs.select_on_remove = 'last-used'
 c.tabs.show = "multiple"
-c.tabs.show = 'multiple'
-c.tabs.show_switching_delay = 500
+c.tabs.show_switching_delay = 400
 c.tabs.title.format = "{audio}{current_title}"
 c.url.open_base_url = True
 c.window.hide_decoration = True
@@ -90,7 +92,7 @@ c.url.searchengines = {
 	'wa': 'https://mathworld.wolfram.com/search/index.html?query={}',
 	'x': 'https://searx.xyz/search?q={}',
 	'y': 'https://www.youtube.com/results?search_query={}',
-	'yl': 'https://youtube.com/watch?v={}',
+	'yw': 'https://youtube.com/watch?v={}',
 	'scp': 'https://scp-wiki.wikidot.com/scp-{}',
 	'mc': 'https://minecraft.fandom.com/wiki/{}',
 }
@@ -145,7 +147,8 @@ c.bindings.commands = {
 		"h" : "tab-prev",
 		"l" : "tab-next",
 		"yw": "fake-key <ctrl-a>",
-		"z" : "open -t -r https://np.ironhelmet.com/game/5980642448506880;; tab-move",
+		"yk": "jseval -q document.getElementsByTagName('video')[0].playbackRate = 16", # speed up youtube ad
+		"z" : "open -t -r https://adventofcode.com/2021 ;; tab-move",
 		"!" : "set-cmd-text :open !",
 		",M": "hint links spawn -d mpv {hint-url}",
 		",m": "spawn -d mpv {url}",
@@ -201,7 +204,7 @@ even = "#15161e"
 odd = xresources["*.background"]
 
 # c.colors.webpage.bg = '#292d3e'
-# c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.policy.images = 'never'
 c.colors.webpage.preferred_color_scheme = 'dark'
 c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
@@ -236,6 +239,12 @@ c.colors.completion.item.selected.bg = xresources["*.background"]
 c.colors.completion.item.selected.fg = xresources["*.foreground"]
 
 # Headers and javascript exceptions {{{1
+# [Most comman user agents](https://techblog.willshouse.com/2012/01/03/most-common-user-agents/)
+c.content.webgl = False
+c.content.canvas_reading = False
+c.content.headers.accept_language = 'en-US,en;q=0.5'
+c.content.headers.custom = {"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}
+c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://accounts.google.com/*')
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')

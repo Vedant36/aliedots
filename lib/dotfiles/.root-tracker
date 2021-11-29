@@ -12,5 +12,6 @@ xdg/reflector/reflector.conf
 anacrontab
 asound.conf
 cron.allow
+makepkg.conf
 pacman.conf
 tlp.conf

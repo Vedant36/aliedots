@@ -130,6 +130,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_backslash,     spawn,          SHCMD("mpc toggle") },
 	{ MODKEY|ShiftMask,             XK_comma,         spawn,          SHCMD("mpc prev") },
 	{ MODKEY|ShiftMask,             XK_period,        spawn,          SHCMD("mpc next") },
+	{ MODKEY,                       XK_comma,         spawn,          SHCMD("mpc seek -5") },
+	{ MODKEY,                       XK_period,        spawn,          SHCMD("mpc seek +5") },
 
 	{ MODKEY,                       XK_F1,            spawn,          SHCMD("kitty -1 nvim ~/.local/opt/dwm/config.h") },
 	{ MODKEY,                       XK_F2,            spawn,          SHCMD("bright -i -5") },

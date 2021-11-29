@@ -3,7 +3,7 @@
 dot=" $(($(ad diff origin/main|wc -l) - $(ad diff origin/main ~/.local/share/zsh/.zsh_history|wc -l)))"
 # dot=$(ad diff origin/main | wc -l)
 uptime=" $(uptime -p)"
-packages=" $(wc -l <$LOG/packages.log)"
+packages=" $(if [-s $LOG/packages.log ]; then wc -l <$LOG/packages.log;else printf 0;fi)"
 bat_state="$(upower -i "$(upower -e | grep BAT)" | grep -E 'state|time to|percentage' | sed 's/.*:\s*\(.*\)/\1/')"
 state="" && [ "$(grep discharging <<< $bat_state)" ] && state=""
 bat="${state} $(tail -n1 <<< $bat_state) $(tail -n2 <<< $bat_state | head -n1)"
@@ -12,7 +12,7 @@ date=" $(date '+%a %F %H:%M')"
 modules=(
 	"$dot"
 	# "$uptime"
-	"$packages"
+	# "$packages"
 	"$bat"
 	"$date"
 )

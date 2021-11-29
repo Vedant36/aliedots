@@ -28,7 +28,7 @@ xcape -e 'Control_L=Escape' -t 100
 # clear mod3
 # keysym F8 = Hyper_R
 xset r rate 200 200
-xset -r 36
+xset -r 36 # turn off repeat for return key
 xset m 4 0 # pointer(s)
 xset dpms 900 900 900
 # xsetroot -cursor_name left_ptr
@@ -41,7 +41,7 @@ feh --no-fehbg --bg-fill "$(xdg-user-dir PICTURES)"/current.*
 dunst &
 picom -f &
 xss-lock -n 'bright -i -5' -l lock &
-[ ! -s ~/.config/mpd/pid ] && mpd
+[ ! -s "$XDG_LIB_HOME"/mpd/pid ] && mpd
 pgrep mpdscribble || mpdscribble --conf /home/vn36/.local/lib/private/lastfm.conf &
 eval `ssh-agent -s`
 
@@ -53,9 +53,9 @@ done &
 
 while true; do
 	# Log stderror to a file 
-	dwm 2>$HOME/.local/var/log/dwm.log
+	# dwm 2>$HOME/.local/var/log/dwm.log
 	# No error logging
-	#dwm >/dev/null 2>&1
+	dwm >/dev/null 2>&1
 done
 
 # relaunch DWM if the binary changes, otherwise bail

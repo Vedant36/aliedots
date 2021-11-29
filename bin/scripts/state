@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-# script to manage on and off states for things like {picom, wallpape reload, xss-lock, xcape, mounting drives(android?), unclutter, etc} and also one for killing processes
+# script to manage on and off states for things like {picom, wallpape reload, xss-lock, xcape, unclutter}
 choice=$(echo "\
 xcape $(pgrep xcape | wc -l)
 xss-lock $(pgrep xss-lock | wc -l)

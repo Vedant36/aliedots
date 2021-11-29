@@ -1,0 +1,350 @@
+/* 
+!! ENABLING CSS GRID MASONRY
+	- IN FIREFOX:
+		- Go to about:config in your URL bar
+		- Accept the Risk
+		- Search for "layout.css.grid-template-masonry-value.enabled"
+		- Make sure it's set to "true"
+		- Restart Firefox
+	- OTHER BROWSERS:
+		- ... You may just have to wait until the feature gets fully supported: https://caniuse.com/mdn-css_properties_grid-template-rows_masonry
+
+!! SOME SETTINGS DO NOT WORK WITH THESE DDG SETTINGS:
+- Header: On & Fixed;
+- Page Width: 'Wide' or 'Super Wide'
+*/
+
+
+/* ==UserStyle==
+@name           Better DuckDuckGo Layout
+@namespace      github.com/openstyles/stylus
+@version        1.0.0
+@description    A better layout for DuckDuckGo. Moving modules aside requires CSS Grid Masonry, which many browsers don't support yet.
+@author         Me
+@preprocessor   stylus
+
+
+@name           Better DuckDuckGo Layout
+@version        1.0.0
+@description    A better layout for DuckDuckGo. Moving modules aside requires CSS Grid Masonry, which many browsers don't support yet.
+@updateURL      https://userstyles.world/api/style/1258.user.css
+@preprocessor   stylus
+
+ -- AUTHOR STUFF --
+@namespace      Freeplay
+@author         Freeplay (https://freeplay.codeberg.page/)
+@homepageURL    https://codeberg.org/Freeplay/UserStyles
+@supportURL     https://codeberg.org/Freeplay/UserStyles/issues
+
+
+@var text notice 'Make sure you are using the "Stylus" browser extension, not "Stylish"!' "'https://add0n.com/stylus.html'"
+
+@var checkbox verticalNav "Vertical Navigation" 1
+@var checkbox moveModules "Move Modules Aside [REQURES CSS GRID MASONRY]"  1
+@var color    colorScheme "Background Color Scheme" #3969ef
+@var color    textCScheme "Text Color Scheme" #769dff
+
+==/UserStyle== */
+@-moz-document domain("duckduckgo.com") {
+	
+	.is-link-style-exp .search__button:hover, .is-link-style-exp .search__button:focus, .is-link-style-exp .search:hover .search__button, .is-link-style-exp .search:hover .search__button:focus, .is-link-style-exp .search--header.has-text.search--hover .search__button:hover, .is-link-style-exp .search--header.has-text.search--focus .search__button:hover, .is-link-style-exp .search--home.has-text .search__button:focus, .is-link-style-exp .search--home.has-text .search__button:hover, .is-link-style-exp .search__input:focus ~ .search__button, .is-link-style-exp .search--header.has-text.search--hover .search__button, .is-link-style-exp .search--header.has-text.search--focus .search__button, .is-link-style-exp .search--home.has-text .search__button {
+		background-color: colorScheme;
+	}
+	.dark-bg.is-vertical-tabs-exp #duckbar .zcm__link:not(.dropdown__button).is-active, .dark-bg.is-vertical-tabs-exp #duckbar .zcm__link:not(.dropdown__button).is-active:active, .dark-bg.is-vertical-tabs-exp #duckbar .zcm__link:not(.dropdown__button).is-active:hover {
+		color: textCScheme;
+		border-color: textCScheme;
+	}
+	
+if verticalNav {
+	.set-header--menu.has-zcm #header_wrapper {
+		padding: 0 !important;
+		border: 0 !important;
+		margin-bottom: 10px;
+		#header {
+			padding: 0 !important;
+			border: 0 !important;
+		}
+	}
+	.detail__pane {
+		max-width: 100%;
+	}
+	#zero_click_wrapper {
+		background: none;
+		overflow: hidden;
+		& > div:not(.is-full-page), .metabar:not(.js-zcm-sticky) {
+			border: 0;
+			border-bottom-left-radius: 10px;
+			.zci__main--tiles:not(.has-tiles--grid) {
+				margin-left: -10px;
+			}
+			.tileview--grid {
+				padding-left: 10px;
+			}
+		}
+	}
+	@media  only screen and (min-width: 1080px) {
+		#header_wrapper {
+			margin-left: -150px;
+		}
+		#header {
+			min-height: unset;
+			flex-grow: 1;
+			padding-bottom: 16px;
+			
+			.header__logo-wrap {
+				max-width: 150px !important;
+				margin-left: 0 !important;
+			}
+			
+			.zcm-wrap-wrap {
+				position: fixed;
+				left: 0;
+				top: 100px;
+				transition: top .4s;
+				padding-right: 20px;
+				
+				#duckbar {
+					overflow-y: auto;
+					scrollbar-width: thin;
+					max-height: calc(100vh - 110px );
+					margin-top: -20px;
+					margin-right: 20px;
+					padding-top: 20px;
+					transition: padding .6s, margin .4s, max-height .2s;
+				}
+				
+				// Header Hidden
+				.set-header--floating & {
+					top: 50px;
+					#duckbar {
+						margin-top: -50px;
+						max-height: calc(100vh - 60px);
+						padding-top: 50px;
+					}
+				}
+				// Header Shown
+				.set-header--floating #header_wrapper[style*="top: 0px;"] & {
+					top: 100px;
+					#duckbar {
+						margin-top: -20px;
+						max-height: calc(100vh - 100px);
+						padding-top: 20px;
+					}
+				}
+				// Header Disabled
+				.set-header--menu.has-zcm & {
+					top: 30px;
+				}
+
+				&, #duckbar, .zcm, #duckbar_static, #duckbar_new {
+					flex-direction: column !important;
+					height: auto;
+					display: flex;
+					padding-left: 0;
+				}
+				#duckbar {
+					padding-left: 0;
+					margin-left: 0;
+					.zcm {
+						min-width: unset !important;
+						.zcm__item {
+							padding: 0 !important;
+							height: auto !important;
+						}
+						#duckbar_dynamic_sep {
+							display: none;
+						}
+						li a {
+							margin: 0;
+							padding: 14px 20px;
+							padding-right: 10px;
+							border-radius: 0 100px 100px 0;
+							width: 100px;
+							height: auto !important;
+							line-height: 1em !important;
+							&.is-active {
+								border: none !important;
+								background: rgba(100,100,100,0.2);
+							}
+							.zcm__link__icon {
+								margin-right: 15px !important;
+							}
+						}
+						#duckbar_dropdowns {
+							margin-left: 0;
+						}
+					}
+				}
+			}
+		}
+		
+		.header--aside {
+			margin: 0 !important;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			align-content: center;
+			justify-content: flex-end;
+			flex-wrap: wrap;
+			.header__button--menu {
+				order: 2;
+			}
+			.text_promo {
+				position: static;
+				order: 3;
+				margin-top: -4px;
+			}
+		}
+
+
+		.body--serp .site-wrapper {
+			padding-left: 150px !important;
+			box-sizing: border-box;
+			margin-top: 0 !important;
+		}
+
+		.footer {
+			padding-left: 150px !important;
+		}
+		.set-header--fixed .header-wrap, .set-header--floating .header-wrap {
+			margin-left: 0px !important; 
+		}
+
+		.tileview--grid .zci__main,
+		.metabar__in, .welcome, .zcm-wrap, .zci__main, .zci__detail, .serp__results, .tile-wrap .no-results, .footer--mobile {
+			padding-left: 0;
+		}
+
+		.tileview--grid {
+			margin-left: -7px;
+		}
+
+		/* Fix positionin of settings popup, cuts off in smaller screens. */
+		.modal--dropdown--settings {
+			position: fixed !important;
+			top: 100px !important;
+			left: 170px !important;
+			z-index: 999999 !important;
+			.set-header--floating & {
+				top: 50px !important;
+			}
+			// Header Shown
+			.set-header--floating #header_wrapper[style*="top: 0px;"] & {
+				top: 100px !important;
+			}
+			// Header Disabled
+			.set-header--menu.has-zcm & {
+				top: 30px !important;
+			}
+		}
+
+	}
+	@media  only screen and (max-width: 1230px) and (min-width: 1080px) {
+		.body--serp #header_wrapper#header_wrapper {
+			margin-left: -130px !important;
+		}
+		.body--serp .site-wrapper {
+			padding-left: 130px !important;
+		}
+	}
+}
+
+if moveModules {
+	@media  only screen and (min-width: 590px) {
+		@supports not (grid-template-rows: masonry) {
+			.results--sidebar::before {
+				content: "BETTER DUCKDUCKGO LAYOUT WARNING: You cannot use the ''Move Modules Aside'' option because your browser does not support CSS Grid Masonry. Please view the instructions at the top of the style's code to enable, or disable the option.";
+				color: #8a8a8a;
+				padding: 15px;
+				margin-bottom: 20px;
+				font-weight: 700;
+				display: block;
+				border-radius: 10px;
+				background-color: rgba(100,100,100, 0.1);
+			}
+		}
+		@supports (grid-template-rows: masonry) {
+			#links_wrapper {
+				display: grid;
+				grid-template-columns: calc(680px - 2vw) auto calc(100% - 705px + 2vw);
+				grid-template-rows: masonry;
+				width: 1200px !important;
+				box-sizing: content-box;
+				max-width: calc(100% - 0px);
+				min-width: unset;
+				padding-bottom: 30px;
+				justify-content: flex-start;
+				&::before {
+					content: "";
+					grid-column: 2;
+					width: calc(15vw - 200px);
+					max-width: 90px;
+					min-width: 10px;
+				}
+				.results--main {
+					display: contents;
+					& > * {
+						grid-column: 1;
+					}
+					.ia-modules {
+						grid-column: 3;
+					}
+					.search-filters-wrap {
+						grid-column: 3;
+						grid-row: 1;
+						margin-left: -.5em;
+					}
+					#links {
+						display: contents;
+						& > * {
+							grid-column: 1;
+						}
+						.module-slot {
+							grid-column: 3;
+							max-width: 100% !important;
+							padding-right: 0;
+							padding-left: 0;
+							.module--images__thumbnails {
+								display: flex;
+								flex-wrap: wrap;
+								margin-right: -8px;
+								& > div {
+									flex-grow: 1;
+									margin-right: 8px;
+									a, img {
+										width: 100%;
+										object-fit: cover;
+									}
+								}
+							}
+							.related-searches__list--first {
+								padding-right: 10px;
+							}
+						}
+						.result__sitelinks--organics {
+							order: unset !important;
+						}
+					}
+				}
+				.results--sidebar {
+					grid-column: 3;
+					margin-left: 0px;
+					grid-row: 1;
+					margin-right: 0 !important;
+					max-width: unset;
+					margin-top: 20px;
+				}
+				.ia-modules {
+					padding: 0;
+				}
+			}	
+		}
+
+
+
+	}
+}
+
+	
+	
+}
