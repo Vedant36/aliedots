@@ -1,4 +1,5 @@
 # Vedant36's zsh functions
+y(){ ipython --autocall=2 --nosep $@ }
 # f(file manager): ranger wrapper from arch wiki {{{1
 f(){
 	if [[ -z "$RANGER_LEVEL" ]];then

@@ -94,6 +94,8 @@ ino <silent> <F6> <C-O>:set invspell<cr>
 nn <silent> <F7> :!time ./%:S<cr>
 nn <silent><F9> :bufdo e!<cr>
 " inoremaps {{{2
+inoremap <c-u> <c-g>u<c-u>
+inoremap <c-w> <c-g>u<c-w>
 ino jk <esc>
 ino kj <esc>
 ino <m-tab> <c-f>

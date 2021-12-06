@@ -43,6 +43,10 @@ c.url.open_base_url = True
 c.window.hide_decoration = True
 c.window.transparent = True
 
+c.fileselect.handler = "external"
+c.fileselect.single_file.command = ['kitty', '-e', 'ranger', '--choosefile', '{}']
+c.fileselect.multiple_files.command = ['kitty', '-e', 'ranger', '--choosefiles', '{}']
+
 # fonts {{{1
 font_size = '10pt'
 fixed = f'{font_size} Iosevka Term'

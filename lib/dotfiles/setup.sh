@@ -3,8 +3,6 @@
 # files.
 # TODO: root files, user and root crontabs with necessary permissions, 
 # minecraft files, zsh plugins
-# TODO: backup for things out of the repo -
-# vnstat.db, fonts, journalctl
 
 on_setup() {
 }

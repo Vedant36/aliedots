@@ -7,13 +7,13 @@ alias egrep='egrep --color=auto'
 # alias ad='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
 alias pls='sudo'
 alias gh='git add . && git commit -a && git push'
+alias linedo="xargs -d '\n' -I {}" 
 alias ah='ad commit -a && ad push'
 alias l='exa --icons -alhgF'
 alias lg='exa -x --icons --git --group-directories-first'
 alias v=nvim
 # Note: replace startx with `exec startx` if wanting to exit shell after logout. hmmm security
 alias x='startx |& tee ~/.local/var/log/x.log'
-alias y='ipython --autocall=2 --nosep'
 alias path='echo $PATH | tr -s ":" "\n"'
 alias pn='ping 1.1.1.1'
 alias python='env PYTHONSTARTUP=$XDG_LIB_HOME/python/startup.py python'

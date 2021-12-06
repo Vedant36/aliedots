@@ -110,6 +110,7 @@ rsync
 scrot
 sed
 socat
+speedtest-cli
 strace
 subdl
 sudo
