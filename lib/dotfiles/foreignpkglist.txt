@@ -1,5 +1,6 @@
 amd-ucode-git
 amdctl-git
+ani-cli-git
 artha
 bbswitch-ati-dkms-git
 chromium-widevine

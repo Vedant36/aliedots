@@ -23,7 +23,7 @@ c.downloads.location.suggestion = 'both'
 c.downloads.remove_finished = 1
 c.editor.command = [ 'kitty', '-1', 'nvim', '-c', 'norm {line}G{column0}l', '{file}' ]
 c.hints.border = '0'
-c.hints.chars = 'xseol,zawp;.cdrikmvftyujnbgh'
+c.hints.chars = 'asdfjkl;ghnmxcvbziowerutyqp'
 c.hints.padding = { "bottom": 1, "left": 1, "right": 1, "top": 1 }
 c.input.insert_mode.auto_load = True
 c.scrolling.bar = 'when-searching'
@@ -147,6 +147,7 @@ c.bindings.commands = {
 		"cs": "config-source",
 		**{f"e{i}": f"fake-key {i}" for i in "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"},
 		"e<space>": "fake-key <esc>",
+		"gw": "open w {url}",
 		"gI": "hint inputs --first;; mode-enter insert;; fake-key /<ctrl-a><backspace>",
 		"h" : "tab-prev",
 		"l" : "tab-next",

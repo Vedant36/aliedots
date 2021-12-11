@@ -1,9 +1,8 @@
 #!/usr/bin/sh
 # script to mount removable media using udisks and dmenu
-usb_devices=$(lsblk -nrpo "name,type,size,label,mountpoint" | sed -E '/(\/dev\/nvme0n1|disk)/d')
+usb_devices=$(lsblk -nrpo "name,type,size,mountpoint,label" | sed -E '/(\/dev\/nvme0n1|disk)/d')
 android_devices=$(simple-mtpfs -l)
 devices="$usb_devices\nMTP\nUnmount All MTP"
-echo $devices
 [ -z "$devices" ] && notify-send "No devices found" && exit 1
 data=$(echo -e "$devices" | dmenu -i -l 20)
 # TODO: remove some ifs, i dont like branching
@@ -11,7 +10,7 @@ data=$(echo -e "$devices" | dmenu -i -l 20)
 if [ "$data" ]; then
 	device=$(awk '{print $1}' <<< $data)
 	if [ -z "$(grep MTP <<<$data)" ]; then
-		mounted=$(awk '{print $5}' <<< $data)
+		mounted=$(awk '{print $4}' <<< $data)
 		if [ "$mounted" ]; then
 			notify-send "Unmounting" "$(udisksctl unmount -b "$device" 2>&1)"
 		else

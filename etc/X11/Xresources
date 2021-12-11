@@ -168,10 +168,10 @@
 Xcursor.theme: Breeze_Snow
 *.fading: 5
 *.alpha: 0.97
-*.font:           xft:Iosevka Term:style=Regular:     size=9
-*.boldFont:       xft:Iosevka Term:style=Bold:        size=9
-*.italicFont:     xft:Iosevka Term:style=Italic:      size=9
-*.boldItalicFont: xft:Iosevka Term:style=Bold Italic: size=9
+*.font:           xft:Agave Nerd Font:style=Regular:     size=9
+*.boldFont:       xft:Agave Nerd Font:style=Bold:        size=9
+*.italicFont:     xft:Agave Nerd Font:style=Italic:      size=9
+*.boldItalicFont: xft:Agave Nerd Font:style=Bold Italic: size=9
 *.letterSpace: 0
 *.lineSpace: 0
 *.geometry: 137x30

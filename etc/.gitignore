@@ -1,5 +1,6 @@
 __pycache__/
 /btop/
+/byobu/
 /dconf/
 /discord/
 /enchant/
@@ -13,8 +14,8 @@ __pycache__/
 /mpd/watch_later
 /ncmpcpp/error.log
 /nvim/
-/nvim/init.vim
-/nvim/script.lua
+!/nvim/init.vim
+!/nvim/script.lua
 /Popcorn-Time/
 /procps/
 /pulse/

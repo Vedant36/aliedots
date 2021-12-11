@@ -159,8 +159,8 @@ nn <C-s> :echo  " ⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀�
 				\ ⢀⢂⢑⠀⡂⡃⠅⠊⢄⢑⠠⠑⢕⢕⢝⢮⢺⢕⢟⢮⢊⢢⢱⢄⠃⣇⣞⢞⣞⢾\n
 				\ ⢀⠢⡑⡀⢂⢊⠠⠁⡂⡐⠀⠅⡈⠪⠪⠪⠣⠫⠑⡁⢔⠕⣜⣜⢦⡰⡎⡯⡾⡽"<cr>
 " categorized but less so misc {{{2
-nn Q gq
-nn QQ gqq
+nn Q gqq
+xn Q gqq
 nn <space> za
 xn <space> zf
 xn > >gv
@@ -402,6 +402,7 @@ try
 	call plug#begin()
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
+	" Plug 'romgrk/barbar.nvim'
 	" Plug 'lambdalisue/nerdfont.vim'
 	Plug 'github/copilot.vim', { 'on': 'Copilot' }
 	" Plug 'tom-doerr/vim_codex', { 'on': 'CreateCompletionLine' }
@@ -428,6 +429,7 @@ try
 	Plug 'nvim-telescope/telescope.nvim'
 	Plug 'lewis6991/gitsigns.nvim'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	Plug 'p00f/nvim-ts-rainbow'
 
 	" Themes
 	" Plug 'kaicataldo/material.vim'
@@ -440,7 +442,7 @@ try
 	Plug 'ghifarit53/tokyonight-vim', { 'on': 'colorscheme tokyonight' }
 	Plug 'morhetz/gruvbox', { 'on': 'colorscheme gruvbox' }
 	" Plug 'sainnhe/sonokai', { 'on': 'colorscheme sonokai' }
-	Plug 'glepnir/zephyr-nvim'
+	Plug 'glepnir/zephyr-nvim', { 'on': 'colorscheme zephyr' }
 	call plug#end()
 	" }}}2
 catch //
@@ -449,13 +451,12 @@ catch //
 endtry
 " plugin config 
 " settings/variables {{{2
-let g:goyo_width = '95%'
-let g:goyo_height = '95%'
-
 let g:copilot_filetypes = {
 	\ '*': v:false,
 	\ 'sh': v:true,
 	\ 'zsh': v:true,
+	\ 'python': v:true,
+	\ 'vim': v:true,
 	\ }
 
 let g:lightline#bufferline#enable_nerdfont = 1
@@ -464,6 +465,9 @@ let g:lightline#bufferline#show_number = 2
 let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#min_buffer_count = 2
 " let g:lightline#bufferline#auto_hide = 400
+
+let bufferline = get(g:, 'bufferline', {})
+let bufferline.auto_hide = v:true
 
 let g:bufferline_rotate = 2
 
@@ -540,6 +544,11 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,              -- false will disable the whole extension
   },
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+  }
 }
 EOF
 " other lua stuff {{{2
