@@ -3,6 +3,7 @@
 # files.
 # TODO: root files, user and root crontabs with necessary permissions, 
 # minecraft files, zsh plugins
+# idea: do root files as a PKGBUILD, will only be useful on arch based
 
 on_setup() {
 }

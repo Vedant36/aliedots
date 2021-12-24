@@ -5,7 +5,8 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 # imp {{{1
 # alias ad='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
-alias pls='sudo'
+alias sudo='doas'
+alias pls='doas'
 alias gh='git add . && git commit -a && git push'
 alias linedo="xargs -d '\n' -I {}" 
 alias ah='ad commit -a && ad push'
@@ -47,7 +48,7 @@ alias xop='xsel -op'
 alias xib='xsel -ib'
 alias xob='xsel -ob'
 # pacman aliases {{{1
-alias p=$PM
+alias p='$PM --sudo doas'
 alias pf='$PM -F'
 alias pg='$PM -S'
 alias pp='$PM -Rcns'

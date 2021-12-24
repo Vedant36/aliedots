@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 # script to mount removable media using udisks and dmenu
-usb_devices=$(lsblk -nrpo "name,type,size,mountpoint,label" | sed -E '/(\/dev\/nvme0n1|disk)/d')
-android_devices=$(simple-mtpfs -l)
+usb_devices=$(lsblk -nrpo "name,type,size,mountpoint" | sed -E '/(\/dev\/nvme0n1|disk)/d')
+android_devices=$(timeout 1 simple-mtpfs -l)
 devices="$usb_devices\nMTP\nUnmount All MTP"
 [ -z "$devices" ] && notify-send "No devices found" && exit 1
 data=$(echo -e "$devices" | dmenu -i -l 20)
@@ -19,12 +19,10 @@ if [ "$data" ]; then
 	else
 		if [ "$data" == "Unmount All MTP" ]; then
 			for i in $(ls -1 ~/.local/mnt); do
-				echo $i
 				fusermount -u ~/.local/mnt/"$i"
 			done
 			notify-send "Unmounted all within ~/.local/mnt"
 		else
-			echo $android_devices
 			if [ $(wc -l <<< "$android_devices") -gt 1 ]; then
 				choice=$(dmenu -i -l 20 <<< "$android_devices" | cut -d: -f1)
 			else

@@ -41,11 +41,13 @@ groff
 grub
 gzip
 haveged
+hq
 hspell
 htop
 imagemagick
 inetutils
 iputils
+ipython
 jdk-openjdk
 jq
 jre8-openjdk-headless
@@ -62,6 +64,7 @@ linux-zen-headers
 lostfiles
 lshw
 ltrace
+lua
 lynx
 m4
 macchanger
@@ -83,11 +86,14 @@ nodejs
 noto-fonts-emoji
 ntfs-3g
 nuspell
+opendoas
 otf-ipafont
+p7zip
 pacgraph
 pacman
 pacman-contrib
 patch
+pavucontrol
 pcurses
 pdfjs
 pigz
@@ -98,9 +104,11 @@ pulseaudio
 pulsemixer
 pv
 python-adblock
+python-matplotlib
 python-numpy
 python-pillow
 python-pip
+python-pycodestyle
 python-wheel
 qutebrowser
 reflector
@@ -116,6 +124,8 @@ subdl
 sudo
 sxiv
 systemd-sysvcompat
+tesseract
+tesseract-data-eng
 thunar
 thunar-volman
 tlp

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # Documentation: qute://help/configuring.html qute://help/settings.html
 import subprocess
+import os
 # Settings {{{1
 config.load_autoconfig(False)
 c.auto_save.session = True
@@ -13,10 +14,11 @@ c.content.fullscreen.window = False
 c.content.notifications.enabled = False
 c.content.pdfjs = True
 c.content.private_browsing = False
-import os
 XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME", os.path.join(os.getenv('HOME'), '.config'))
 # TODO: darkmode and better-duckduckgo not working
-c.content.user_stylesheets = [f'{XDG_CONFIG_HOME}/qutebrowser/fix-tooltips.qss', f'{XDG_CONFIG_HOME}/qutebrowser/darkmode.qss', f'{XDG_CONFIG_HOME}/qutebrowser/better-duckduckgo.css']
+c.content.user_stylesheets = [f'{XDG_CONFIG_HOME}/qutebrowser/fix-tooltips.qss']
+# , f'{XDG_CONFIG_HOME}/qutebrowser/darkmode.qss',
+# f'{XDG_CONFIG_HOME}/qutebrowser/better-duckduckgo.css']
 c.content.webrtc_ip_handling_policy = 'disable-non-proxied-udp'
 c.content.geolocation = False
 c.downloads.location.suggestion = 'both'
@@ -46,6 +48,7 @@ c.window.transparent = True
 c.fileselect.handler = "external"
 c.fileselect.single_file.command = ['kitty', '-e', 'ranger', '--choosefile', '{}']
 c.fileselect.multiple_files.command = ['kitty', '-e', 'ranger', '--choosefiles', '{}']
+c.fileselect.folder.command = ['kitty', '-e', 'ranger', '--choosedir', '{}']
 
 # fonts {{{1
 font_size = '10pt'
@@ -90,13 +93,14 @@ c.url.searchengines = {
 	'oa': 'http://oeis.org/A{}',
 	'ob': 'http://oeis.org/b{}.txt',
 	'p': 'https://thepiratebay.org/search.php?q={}',
+    'py': 'https://pypi.org/search/?q={}',
 	'r': 'https://reddit.com/r/{}',
 	's': 'https://open.spotify.com/search/{}',
 	'w': 'https://web.archive.org/web/*/{}',
 	'wa': 'https://mathworld.wolfram.com/search/index.html?query={}',
 	'x': 'https://searx.xyz/search?q={}',
-	'y': 'https://www.youtube.com/results?search_query={}',
-	'yw': 'https://youtube.com/watch?v={}',
+    'y': 'https://tube.cadence.moe/search?q={}',
+    'yw': 'https://tube.cadence.moe/watch?v={}',
 	'scp': 'https://scp-wiki.wikidot.com/scp-{}',
 	'mc': 'https://minecraft.fandom.com/wiki/{}',
 }
@@ -119,7 +123,9 @@ c.content.blocking.adblock.lists = [ \
 	"https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt", \
 	]
 c.content.blocking.enabled = True
-c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts']
+c.content.blocking.hosts.lists = [
+	'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts'
+	]
 c.content.blocking.method = 'adblock'
 from qutebrowser.api import interceptor
 def filter_yt(info: interceptor.Request):
@@ -209,7 +215,7 @@ even = "#15161e"
 odd = xresources["*.background"]
 
 # c.colors.webpage.bg = '#292d3e'
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 c.colors.webpage.darkmode.policy.images = 'never'
 c.colors.webpage.preferred_color_scheme = 'dark'
 c.colors.webpage.darkmode.algorithm = 'lightness-hsl'

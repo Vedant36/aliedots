@@ -32,7 +32,7 @@ set omnifunc=syntaxcomplete#Complete
 set completeopt+=menuone
 set shortmess=aoOstTIcF " Shut off completion messages
 set sessionoptions=buffers,curdir,folds,tabpages,globals
-set noexpandtab noshiftround " to check if tab is better
+set expandtab noshiftround " to check if tab is better
 set foldmethod=marker fillchars=fold:-
 set browsedir=~/dox/
 if !($TERM == 'rxvt-unicode-256color')
@@ -59,11 +59,12 @@ ab coke cocain
 " keybinds ∑ { n ∈ ▲ } 🅇(n) ○-> Ⓨ[n] ▢△◈ {{{1
 " uncategorized {{{2
 " nn g/ /\<\><left><left>
-nn <silent> \ :Goyo<cr>
 ino <M-CR> <c-o>O
 nn , ciw
 tno <c-a> <C-\><C-N>
 nn Y y$
+ino <c-w> <c-g>u<c-w>
+ino <c-u> <c-g>u<c-u>
 " nn <silent><c-n> :browse filter! /\v(man:\/\/<bar>term:\/\/<bar>\/tmp\/)/ oldfiles<cr>
 "  leaderbinds {{{2
 nn <leader><leader> <C-^>
@@ -80,7 +81,7 @@ nn <silent> <leader>n :E<cr>
 nn <silent> <leader>p "*
 xn <silent> <leader>p "*
 nn <silent> <leader>q @q
-nn <leader>r :sp\| terminal<cr>i
+nn <leader>r :sp\| terminal<cr>
 nn <leader>s :%s/
 nn <silent> <leader>w :w<cr>
 nn <leader>y "*yiw
@@ -91,8 +92,8 @@ nn <silent> <F5> :w!<cr>
 ino <silent> <F5> <esc>:w!<cr>gi
 nn <silent> <F6> :set invspell<cr>
 ino <silent> <F6> <C-O>:set invspell<cr>
-nn <silent> <F7> :!time ./%:S<cr>
-nn <silent><F9> :bufdo e!<cr>
+nn <silent> <F7> :sp \| term time ./%:S<cr>
+nn <silent> <F9> :bufdo e!<cr>
 " inoremaps {{{2
 inoremap <c-u> <c-g>u<c-u>
 inoremap <c-w> <c-g>u<c-w>
@@ -104,6 +105,9 @@ ino <c-b> <Left>
 ino <c-f> <Right>
 ino <m-b> <C-Left>
 ino <m-f> <C-Right>
+" inoremaps for programing
+ino ;p print()<left>
+ino ;p' print('')<left><left>
 " buffer switching {{{2
 nm <silent> <m-`> <Plug>lightline#bufferline#go(1)
 nm <silent> <m-1> <Plug>lightline#bufferline#go(2)
@@ -193,6 +197,7 @@ au termopen term://* setf terminal
 " au bufnewfile,bufread *man* setf man " doesn't work
 au bufwritepost $XDG_CONFIG_HOME/X11/Xresources silent !xrdb $XDG_CONFIG_HOME/X11/Xresources
 au bufwritepost config.h :make PREFIX=$HOME/.local clean install
+autocmd TermOpen * startinsert
 " au TextChanged,TextChangedI <buffer> silent write
 augroup custom_filetype
 	au!
@@ -213,8 +218,7 @@ augroup custom_filetype
 	au filetype markdown au filetype qf nn <silent><cr> <cr>:lcl<cr>
 	au filetype netrw setl bufhidden=wipe
 	au filetype netrw nmap <buffer>l <cr>2j | nmap <buffer>h -
-	au filetype python setl noet ts=4
-	au filetype python nn <silent><F7> :!time python ./%:S<cr>
+	au filetype python nn <silent> <F7> :sp \| term time python %:S<cr>
 	au filetype upstart setlocal commentstring=#\ %s
 	au filetype vim nn <buffer> <leader>1 oPlug ''<esc>h
 	au filetype xdefaults setlocal commentstring=!\ %s
@@ -425,11 +429,13 @@ try
 	Plug 'tpope/vim-unimpaired'
 	Plug 'google/vim-searchindex'
 
+	Plug 'samirettali/shebang.nvim'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
 	Plug 'lewis6991/gitsigns.nvim'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'p00f/nvim-ts-rainbow'
+	" Plug 'mfussenegger/nvim-lint'
 
 	" Themes
 	" Plug 'kaicataldo/material.vim'
@@ -484,6 +490,7 @@ let g:material_terminal_italics = 1
 let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
 " let g:material_theme_style = 'palenight' " default, palenight, ocean, lighter, and darker
+" au BufWritePost <buffer> lua require('lint').try_lint()
 colorscheme tokyonight
 " keybinds {{{2
 nn <silent><c-p> :Telescope git_files<cr>
@@ -494,6 +501,8 @@ vmap <leader>i <Plug>Commentary
 " lightline config {{{2
 let g:lightline = {
 	\ 'colorscheme': colors_name,
+	\ 'separator': { 'left': '', 'right': '' },
+	\ 'subseparator': { 'left': '', 'right': '' },
 	\ 'active': {
 	\ 	 'left': [ [ 'mode', 'paste' ], [ 'filename', 'modified' ] ],
 	\ 	 'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'charvaluehex', 'filetype', 'linecount', 'fileinfo' ] ]
@@ -518,8 +527,6 @@ let g:lightline = {
 	\   'buffers': 'tabsel'
 	\ }
 	\ }
-	" \ 'separator': { 'left': '', 'right': '' },
-	" \ 'subseparator': { 'left': '', 'right': '' },
 " colorizer config {{{2
 lua <<EOF
 require 'colorizer'.setup ({
@@ -551,6 +558,12 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 EOF
+" " nvim-lint config {{{2
+" lua << EOF
+" require('lint').linters_by_ft = {
+" 	python = {'pycodestyle'}
+" }
+" EOF
 " other lua stuff {{{2
 lua require('gitsigns').setup()
 " }}}1

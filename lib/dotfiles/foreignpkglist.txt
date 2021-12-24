@@ -6,6 +6,7 @@ bbswitch-ati-dkms-git
 chromium-widevine
 colorpicker
 find-the-command
+htmlq-bin
 i3lock-color-git
 lf-bin
 mpdscribble
@@ -15,11 +16,13 @@ neovim-symlinks
 pandoc-bin
 picom-ibhagwan-git
 popcorntime-bin
+python-openai
 ranger-git
 shellcheck-bin
 simple-mtpfs
 spectre-meltdown-checker
 spotify
+sublime-text-3
 tor-browser
 windscribe-cli
 xcursor-breeze

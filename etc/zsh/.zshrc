@@ -71,7 +71,10 @@ bindkey '^[[H' beginning-of-line
 # bindkey -s "^A" ""
 bindkey -s "^Z" "^Ufg^M"
 bindkey -s "^[#" " ^[[H: ^M"
+bindkey '^X^E' edit-command-line
 # readline keybinds
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
 bindkey '^F' forward-char
 bindkey '^B' backward-char
 bindkey '^[f' forward-word
@@ -152,4 +155,6 @@ export PROMPT=" %F{green}$shlvl%f%F{magenta}%~%f%F{blue}>%f "
 # # from :2,7 {{{1
 # unsetopt XTRACE
 # exec 2>&3 3>&-
-
+# to print {{{1
+lsmod | grep uvcvideo
+echo -n

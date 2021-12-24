@@ -1,9 +1,6 @@
 #!/bin/sh
-# if [ "${XDG_VTNR}" -eq 1 ]; then
-#   betterlockscreen -l blur
-# fi
 
-# builtin default config
+# builtin default config {{{
 userresources=$XDG_CONFIG_HOME/X11/Xresources
 # usermodmap=$XDG_CONFIG_HOME/X11/Xmodmap
 [ -f $userresources ] && xrdb $userresources
@@ -14,7 +11,7 @@ userresources=$XDG_CONFIG_HOME/X11/Xresources
 done
 unset f
 
-# custom config
+# X configuration {{{1
 # resolution
 xrandr --newmode "1920x1080_60.00" 173.00 1920 2048 2248 2576 1080 1083 1088 1120 -hsync +vsync
 xrandr --addmode Virtual-1 1920x1080_60.00
@@ -29,11 +26,11 @@ xcape -e 'Control_L=Escape' -t 100
 # keysym F8 = Hyper_R
 xset r rate 200 200
 xset -r 36 # turn off repeat for return key
-xset m 4 0 # pointer(s)
+xset m 4 0 # mouse
 xset dpms 900 900 900
 # xsetroot -cursor_name left_ptr
 
-# startup programs
+# startup programs {{{1
 type unclutter>/dev/null && unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
 artha &
 pactl set-source-mute @DEFAULT_SOURCE@ 1
@@ -45,6 +42,7 @@ xss-lock -n 'bright -i -5' -l lock &
 pgrep mpdscribble || mpdscribble --conf /home/vn36/.local/lib/private/lastfm.conf &
 eval `ssh-agent -s`
 
+# window manager {{{1
 while xsetroot -name "$(bar.sh)"; do
 	sleep 1m &
 	echo $! > ${XDG_STATE_HOME:-$HOME/.cache}/sleep_pid
@@ -58,6 +56,10 @@ while true; do
 	dwm >/dev/null 2>&1
 done
 
+# misc stuff i dont use now/dont work {{{1
+# if [ "${XDG_VTNR}" -eq 1 ]; then
+#   betterlockscreen -l blur
+# fi
 # relaunch DWM if the binary changes, otherwise bail
 # csum=""
 # new_csum=$(sha1sum $(which dwm))
