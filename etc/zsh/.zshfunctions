@@ -1,5 +1,4 @@
 # Vedant36's zsh functions
-y(){ ipython --autocall=2 --nosep $@ }
 # f(file manager): ranger wrapper from arch wiki {{{1
 f(){
 	if [[ -z "$RANGER_LEVEL" ]];then
@@ -28,11 +27,18 @@ es(){(
 	set -e
 	pushd $HOME/dox
 	local SE=sec
-	[ -s ${SE}.tar.gpg ] && gpg -d ${SE}.tar.gpg>${SE}.tar && mv ${SE}.tar.gpg ~/.local/lib/private/
-	[ -s ${SE}.tar ] && tar xf ${SE}.tar && rm ${SE}.tar
-	ranger $SE
-	[ -d ${SE} ] && tar c ${SE} | gpg -r "Vedant Neema" -e>${SE}.tar.gpg
-	[ -d ${SE} ] && rm -rf $SE
+    mkdir -p ~/.local/lib/private
+    if [ -s ${SE}.tar.gpg ];then
+        gpg -d ${SE}.tar.gpg>${SE}.tar
+        [ -s ${SE}.tar ]
+        mv ${SE}.tar.gpg ~/.local/lib/private/${SE}-pre.tar.gpg
+        tar xf ${SE}.tar && rm ${SE}.tar
+        ranger $SE
+    fi
+	[ -d ${SE} ]
+    tar c ${SE} | gpg -r "Vedant Neema" -e>${SE}.tar.gpg
+	rm -rf $SE
+    cp ${SE}.tar.gpg ~/.local/lib/private/${SE}-post.tar.gpg
 	popd
 )}
 # px: package manager wrapper(s) {{{1

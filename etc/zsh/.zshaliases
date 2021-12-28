@@ -6,6 +6,7 @@ alias egrep='egrep --color=auto'
 # imp {{{1
 # alias ad='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
 alias sudo='doas'
+alias sudoedit='doas nvim'
 alias pls='doas'
 alias gh='git add . && git commit -a && git push'
 alias linedo="xargs -d '\n' -I {}" 
@@ -13,6 +14,7 @@ alias ah='ad commit -a && ad push'
 alias l='exa --icons -alhgF'
 alias lg='exa -x --icons --git --group-directories-first'
 alias v=nvim
+alias y='ipython --autocall=2 --nosep'
 # Note: replace startx with `exec startx` if wanting to exit shell after logout. hmmm security
 alias x='startx |& tee ~/.local/var/log/x.log'
 alias path='echo $PATH | tr -s ":" "\n"'
@@ -48,7 +50,7 @@ alias xop='xsel -op'
 alias xib='xsel -ib'
 alias xob='xsel -ob'
 # pacman aliases {{{1
-alias p='$PM --sudo doas'
+alias p='$PM'
 alias pf='$PM -F'
 alias pg='$PM -S'
 alias pp='$PM -Rcns'

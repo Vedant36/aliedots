@@ -15,4 +15,5 @@ RANDOM_DELAY=45
 1	5	todo	echo $(date "+%F") $(wc -l "$HOME"/dox/textfiles/todo.md | awk '{print $1}') >> "$HOME"/.local/var/log/todo.log
 1	5	pkglist.sync	pacman -Qqen>"$HOME"/.local/lib/dotfiles/pkglist.txt
 1	5	foreignpkg.sync pacman -Qqem>"$HOME"/.local/lib/dotfiles/foreignpkglist.txt
+1	5	checkupdates.sync	checkupdates>~/.local/var/log/packages.log
 # vim: ft=crontab

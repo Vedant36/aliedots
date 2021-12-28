@@ -38,6 +38,7 @@ feh --no-fehbg --bg-fill "$(xdg-user-dir PICTURES)"/current.*
 dunst &
 picom -f &
 xss-lock -n 'bright -i -5' -l lock &
+redshift -l 23.5:78.5 &
 [ ! -s "$XDG_LIB_HOME"/mpd/pid ] && mpd
 pgrep mpdscribble || mpdscribble --conf /home/vn36/.local/lib/private/lastfm.conf &
 eval `ssh-agent -s`

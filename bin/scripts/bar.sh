@@ -17,7 +17,7 @@ music="$(mpc status | grep playing>/dev/null && mpc -f " %artist% - %title%" 
 modules=(
 	"$dot"
 	# "$uptime"
-	# "$packages"
+	"$packages"
 	"$music"
 	"$bat"
 	"$date"

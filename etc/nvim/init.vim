@@ -131,7 +131,7 @@ nn <silent> <leader>oz :e $XDG_CONFIG_HOME/zsh/.zshrc<cr>
 nn <silent> <leader>od :e $HOME/.local/opt/dwm/config.h<cr>
 nn <silent> <leader>oh :e $HISTFILE<cr>
 nn <silent> <leader>ol :e ~/dox/CPlus/c/begin.c<cr>
-nn <silent> <leader>oy :e ~/dox/Python/platformer_2/Plat.py<cr>
+nn <silent> <leader>oy :e ~/dox/zmisc_code/Plat.py<cr>
 nn <silent> <leader>ov :e ~/dl/dotfiles/dot.sh<cr>
 " window management {{{2
 nn <C-j> <C-w>w

@@ -1,9 +1,18 @@
 #!/bin/zsh
 # script contains some setup that is needed for my dotfiles like linking some
 # files.
-# TODO: root files, user and root crontabs with necessary permissions, 
-# minecraft files, zsh plugins
-# idea: do root files as a PKGBUILD, will only be useful on arch based
+: "
+TODO:
+root files, user and root crontabs with necessary permissions, patches in dwm
+and dmenu
+SETUP:
+setup root files as a PKGBUILD
+zsh,nvim plugins
+BACKUP:
+lib/private
+share/minecraft/{saves,screenshots,modlist}
+/var/lib/vnstat/vnstat.db
+"
 
 on_setup() {
 }
@@ -21,5 +30,8 @@ case $1 in
 	config_h)
 		config_h
 		;;
+    *)
+        echo bruh
+        ;;
 esac
 

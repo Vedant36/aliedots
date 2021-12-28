@@ -159,7 +159,7 @@ c.bindings.commands = {
 		"l" : "tab-next",
 		"yw": "fake-key <ctrl-a>",
 		"yk": "jseval -q document.getElementsByTagName('video')[0].playbackRate = 16", # speed up youtube ad
-		"z" : "open -t -r https://adventofcode.com/2021 ;; tab-move",
+		"z" : "open -t -r  ;; tab-move",
 		"!" : "set-cmd-text :open !",
 		",M": "hint links spawn -d mpv {hint-url}",
 		",m": "spawn -d mpv {url}",

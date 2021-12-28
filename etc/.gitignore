@@ -25,6 +25,7 @@ __pycache__/
 ranger/plugins/__init__.py
 !root/**
 !X11/*
+!yay/config.json
 !zathura/*
 !zsh/*
 zsh/.zcompdump

@@ -5,10 +5,12 @@ artha
 bbswitch-ati-dkms-git
 chromium-widevine
 colorpicker
+ebtables
 find-the-command
 htmlq-bin
 i3lock-color-git
 lf-bin
+lutris-wine-meta
 mpdscribble
 multitime
 neovim-nightly-bin

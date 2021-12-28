@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 # script to mount removable media using udisks and dmenu
 usb_devices=$(lsblk -nrpo "name,type,size,mountpoint" | sed -E '/(\/dev\/nvme0n1|disk)/d')
-android_devices=$(timeout 1 simple-mtpfs -l)
+android_devices=$(timeout 1 simple-mtpfs -l 2>/dev/null)
 devices="$usb_devices\nMTP\nUnmount All MTP"
 [ -z "$devices" ] && notify-send "No devices found" && exit 1
 data=$(echo -e "$devices" | dmenu -i -l 20)
@@ -30,9 +30,9 @@ if [ "$data" ]; then
 			fi
 			notify-send "Mounting $data"
 			# for now can only handle 3 mtp connections for readability
-			[ "$(ls -1 ~/.local/mnt/Samsung0)" ] || simple-mtpfs --device $choice ~/.local/mnt/Samsung0 && exit 0
-			[ "$(ls -1 ~/.local/mnt/Samsung1)" ] || simple-mtpfs --device $choice ~/.local/mnt/Samsung1 && exit 0
-			[ "$(ls -1 ~/.local/mnt/Samsung2)" ] || simple-mtpfs --device $choice ~/.local/mnt/Samsung2 && exit 0
+			[ "$(ls -1 ~/.local/mnt/Samsung0)" ] || simple-mtpfs --device $choice ~/.local/mnt/Samsung0 && exit 0 2>/dev/null
+			[ "$(ls -1 ~/.local/mnt/Samsung1)" ] || simple-mtpfs --device $choice ~/.local/mnt/Samsung1 && exit 0 2>/dev/null
+			[ "$(ls -1 ~/.local/mnt/Samsung2)" ] || simple-mtpfs --device $choice ~/.local/mnt/Samsung2 && exit 0 2>/dev/null
 		fi
 	fi
 fi

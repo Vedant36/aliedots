@@ -3,6 +3,7 @@ modprobe.d/bbswitch.conf
 modprobe.d/blacklist.conf
 modules-load.d/bbswitch.conf
 NetworkManager/conf.d/dns.conf
+pacman.d/hooks/clean_package_cache.hook
 systemd/system/getty@tty1.service.d/override.conf
 systemd/journald.conf
 sysctl.d/99-swappiness.conf

@@ -12,6 +12,9 @@
 # echo "Logging to $logfile"
 # exec 3>&2 2>$logfile
 # setopt XTRACE
+# run-help {{{1
+unalias run-help
+autoload run-help
 # tab-complete {{{1
 export ENABLE_CORRECTION="true"
 export CASE_SENSITIVE="false"
