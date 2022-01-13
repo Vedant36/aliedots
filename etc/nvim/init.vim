@@ -1,63 +1,13 @@
 " Vedant36's [n]vimrc
 " .vimrc settings {{{1
-scriptencoding utf-8
-set encoding=utf-8
-set history=500
-set nocompatible
-set pastetoggle=<F10>
-set path+=**
-" set mouse=a
-set autoread
-set modelines=1
-set tabstop=4 softtabstop=4 shiftwidth=4 noautoindent nojoinspaces
-set colorcolumn=80 cursorline
-set scrolloff=5
-set showmatch matchtime=1
-set list " lcs=tab:❯\ ,trail:-,nbsp:+
-" set listchars=tab:→\ ,eol:\ ,trail:·
-set listchars=tab:\|\ ,eol:\ ,trail:·
-set splitbelow splitright
-set hlsearch ignorecase incsearch smartcase
-set updatetime=300 timeoutlen=300
-set number relativenumber
-set switchbuf=usetab
-set nrformats=alpha,bin,hex,octal
-set title lazyredraw noshowmode hidden
-set autochdir
-set numberwidth=4
-set grepprg=rg\ --vimgrep
-set fileformats=unix,dos,mac
-set showtabline=2
-set omnifunc=syntaxcomplete#Complete
-set completeopt+=menuone
-set shortmess=aoOstTIcF " Shut off completion messages
-set sessionoptions=buffers,curdir,folds,tabpages,globals
-set expandtab noshiftround " to check if tab is better
-set foldmethod=marker fillchars=fold:-
-set browsedir=~/dox/
-if !($TERM == 'rxvt-unicode-256color')
-	set termguicolors
-endif
-" if has('termguicolors')
-" 	set termguicolors
-" endif
-let mapleader = "\<space>"
-let maplocalleader = "\\"
-filetype on
-filetype plugin indent on
-let $PAGER=''
-let $FZF_DEFAULT_COMMAND = 'find . -path "*/.git" -prune -o -path "*/.cache" -prune -o -print 2>/dev/null | sed 1d'
-" global variables {{{1
-let g:diff_translations = 0
-let g:netrw_banner = 0
-let g:netrw_liststyle = 1
-" let g:netrw_list_hide=netrw_gitignore#Hide()
-let python_space_error_highlight = 1
+lua require('vn36')
 " abbreviates {{{1
 ab intlctl Vedant36 is not a intellectual
 ab coke cocain
 " keybinds ∑ { n ∈ ▲ } 🅇(n) ○-> Ⓨ[n] ▢△◈ {{{1
 " uncategorized {{{2
+let mapleader = "\<space>"
+let maplocalleader = "\\"
 " nn g/ /\<\><left><left>
 ino <M-CR> <c-o>O
 nn , ciw
@@ -137,8 +87,8 @@ nn <silent> <leader>ov :e ~/dl/dotfiles/dot.sh<cr>
 nn <C-j> <C-w>w
 nn <C-k> <C-w>W
 nn <m-h> <c-w><
-nn <m-j> <c-w>+
-nn <m-k> <c-w>-
+nn <m-j> <c-w>-
+nn <m-k> <c-w>+
 nn <m-l> <c-w>>
 " sus {{{2
 nn <C-s> :echo  " ⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢊⠘⡮⣣⠪⠢⡑⡌\n
@@ -163,8 +113,6 @@ nn <C-s> :echo  " ⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀�
 				\ ⢀⢂⢑⠀⡂⡃⠅⠊⢄⢑⠠⠑⢕⢕⢝⢮⢺⢕⢟⢮⢊⢢⢱⢄⠃⣇⣞⢞⣞⢾\n
 				\ ⢀⠢⡑⡀⢂⢊⠠⠁⡂⡐⠀⠅⡈⠪⠪⠪⠣⠫⠑⡁⢔⠕⣜⣜⢦⡰⡎⡯⡾⡽"<cr>
 " categorized but less so misc {{{2
-nn Q gqq
-xn Q gqq
 nn <space> za
 xn <space> zf
 xn > >gv
@@ -398,6 +346,8 @@ endfunction
 " au BufNewFile * call Start()
 " }}}1
 " useful commands {{{1
+" from https://vim.fandom.com/wiki/Load_multiple_files_with_a_single_command
+com! -complete=file -nargs=* Edit silent! exec "!vim --servername " . v:servername . " --remote-silent <args>"
 " :w !diff % - " to view diff with the original file
 " :w ++enc=utf-8 " to write to file in utf-8 to solve CONVERSION ERROR
 " plugins {{{1
@@ -439,16 +389,16 @@ try
 
 	" Themes
 	" Plug 'kaicataldo/material.vim'
-	Plug 'ErichDonGubler/vim-sublime-monokai', { 'on': 'colorscheme sublimemonokai' }
+	Plug 'ErichDonGubler/vim-sublime-monokai'
 	" Plug 'crusoexia/vim-monokai'
 	" Plug 'projekt0n/github-nvim-theme'
 	" Plug 'tanvirtin/monokai.nvim'
-	Plug 'drewtempelmeyer/palenight.vim', { 'on': 'colorscheme palenight' }
+	Plug 'drewtempelmeyer/palenight.vim'
 	" Plug 'fioncat/vim-oceanicnext'
-	Plug 'ghifarit53/tokyonight-vim', { 'on': 'colorscheme tokyonight' }
-	Plug 'morhetz/gruvbox', { 'on': 'colorscheme gruvbox' }
-	" Plug 'sainnhe/sonokai', { 'on': 'colorscheme sonokai' }
-	Plug 'glepnir/zephyr-nvim', { 'on': 'colorscheme zephyr' }
+	Plug 'ghifarit53/tokyonight-vim'
+	Plug 'morhetz/gruvbox'
+	" Plug 'sainnhe/sonokai'
+	Plug 'glepnir/zephyr-nvim'
 	call plug#end()
 	" }}}2
 catch //

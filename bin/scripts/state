@@ -6,6 +6,7 @@ xss-lock $(pgrep xss-lock | wc -l)
 unclutter $(pgrep unclutter | wc -l)
 wallpaper
 picom
+dunst
 " | dmenu -l 20)
 
 case $choice in
@@ -40,5 +41,8 @@ case $choice in
 			picom --experimental-backends
 		fi
 		;;
+    dunst)
+        pkill dunst && dunst &!
+        ;;
 esac
 

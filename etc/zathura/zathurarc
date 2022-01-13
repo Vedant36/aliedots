@@ -1,3 +1,4 @@
+# from https://gitlab.com/listout/dots/-/blob/master/.config/zathura/genzathurarc {{{
 set recolor "true"
 set recolor-lightcolor "#1c1c1c"
 set recolor-darkcolor "#b5b4c9"
@@ -25,13 +26,14 @@ set notification-error-fg "#B5B4C9"
 set notification-warning-bg "#1c1c1c"
 set notification-warning-fg "#B5B4C9"
 set statusbar-basename true
-set font "Iosevka Nerd Font"
-set selection-clipboard clipboard
 set window-height 900
 set window-width 1400
 set highlight-color "#b5b4c9"
 set guioptions ''
+# }}}
+set font "Iosevka Nerd Font"
 map b toggle_statusbar
 map , navigate next
 map . navigate previous
 set pages-per-row 2
+# vim: ft=conf

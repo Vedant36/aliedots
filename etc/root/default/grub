@@ -48,10 +48,12 @@ GRUB_DISABLE_RECOVERY=true
 
 # Uncomment one of them for the gfx desired, a image background or a gfxtheme
 #GRUB_BACKGROUND="/path/to/wallpaper"
-GRUB_THEME="/boot/grub/themes/virtual_future/theme.txt"
+GRUB_THEME="/home/vn36/dl/pak/grub-themes/virtual_future/theme.txt"
 
 # Uncomment to get a beep at GRUB start
 #GRUB_INIT_TUNE="480 440 1"
+# amogus theme
+#GRUB_INIT_TUNE="500 262 2 311 2 349 2 370 2 349 2 311 2 262 5 233 1 294 1 262 2"
 
 # Uncomment to make GRUB remember the last selection. This requires
 # setting 'GRUB_DEFAULT=saved' above.

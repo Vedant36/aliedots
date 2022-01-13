@@ -10,6 +10,7 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export TERMINAL=kitty
 export EDITOR="nvim"
 export VISUAL="nvim"
+export SUDO="doas"
 export LESS='--RAW-CONTROL-CHARS --squeeze-blank-lines --quit-on-intr --quit-if-one-screen --no-init' # --mouse
 # export PAGER="nvim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
 #     -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \

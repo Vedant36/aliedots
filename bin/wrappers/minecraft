@@ -1,6 +1,6 @@
 #!/bin/sh
 # cant use xcape while im trying to sprint hit
 pkill xcape
-java -jar /home/vn36/.local/opt/TLauncher-2.8/TLauncher-2.8.jar
-xcape -e 'Control_L=Escape'
+"$HOME"/.local/opt/UltimMC/UltimMC
+xcape -e 'Control_L=Escape' -t 100
 

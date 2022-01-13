@@ -52,9 +52,9 @@ done &
 
 while true; do
 	# Log stderror to a file 
-	# dwm 2>$HOME/.local/var/log/dwm.log
+	dwm >$HOME/.local/var/log/dwm.log
 	# No error logging
-	dwm >/dev/null 2>&1
+	# dwm >/dev/null 2>&1
 done
 
 # misc stuff i dont use now/dont work {{{1
