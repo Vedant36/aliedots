@@ -70,7 +70,8 @@ lock() {
 	dunstctl set-paused false
 	kill $(cat ${XDG_STATE_HOME:-$HOME/.cache}/sleep_pid)
 	# custom event reminder script
-	command -v event && event
+    bat_alert.sh
+	event
 }
 
 rec_get_random() {

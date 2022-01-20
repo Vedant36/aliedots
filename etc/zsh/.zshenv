@@ -37,8 +37,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/var/lib"
 export XDG_LIB_HOME="$HOME/.local/lib"
 # ~ Cleanup {{{1
-export CALCHISTFILE=$XDG_DATA_HOME/calc_histfile
-export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
+export WINEPREFIX="$XDG_DATA_HOME/wine/default"
+export CALCHISTFILE="$XDG_DATA_HOME/calc_histfile"
+export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 # export PYTHONSTARTUP=$XDG_LIB_HOME/python/startup.py

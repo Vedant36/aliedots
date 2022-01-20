@@ -20,9 +20,10 @@ cmake
 cronie
 discord
 dmidecode
-dnsmasq
 dpkg
+drawing
 dunst
+ed
 edk2-ovmf
 efibootmgr
 emacs
@@ -34,6 +35,7 @@ fd
 feh
 fzf
 gcr
+geogebra
 git
 gnu-netcat
 grub
@@ -64,6 +66,7 @@ lostfiles
 lshw
 ltrace
 lua
+luakit
 lutris
 lynx
 macchanger
@@ -82,6 +85,7 @@ ncdu
 ncmpcpp
 neofetch
 neovim
+nethogs
 networkmanager
 nodejs
 noto-fonts-emoji
@@ -138,6 +142,7 @@ ttf-indic-otf
 ttf-iosevka-nerd
 ttf-nerd-fonts-symbols
 udisks2
+ufw
 unclutter
 unrar
 unzip

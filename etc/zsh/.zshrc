@@ -22,8 +22,8 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zmodload zsh/complist
-compinit -u
 _comp_options+=(globdots)
+compinit -u
 autoload -U bashcompinit && bashcompinit # support bash-completions
 # vi mode {{{1
 bindkey -v

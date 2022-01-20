@@ -26,6 +26,9 @@ config_h() {
 case $1 in
 	all)
 		config_h
+
+        # 4Chan-X
+        curl --output-directory "${XDG_DATA_DIR:-$HOME/.local/share}"/qutebrowser/greasemonkey 'https://www.4chan-x.net/builds/4chan-X.user.js'
 		;;
 	config_h)
 		config_h

@@ -91,6 +91,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_v,             spawn,          SHCMD("kitty -1 nvim") },
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          SHCMD("kitty -1 pulseaudio") },
 	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD("kitty -1 bc -l") },
+	{ MODKEY,                       XK_z,             spawn,          SHCMD("boomer") },
 
 	{ MODKEY,                       XK_b,             togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_b,             spawn,          SHCMD("pkill sleep") },

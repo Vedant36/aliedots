@@ -2,6 +2,11 @@
 !ranger/
 ranger/*
 !ranger/bookmarks
+!qutebrowser/
+qutebrowser/*
+!qutebrowser/greasemonkey/
+qutebrowser/greasemonkey/*
+!qutebrowser/greasemonkey/block-yt-ads.js
 !zsh/
 zsh/plugins
 !.gitignore

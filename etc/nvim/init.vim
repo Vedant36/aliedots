@@ -9,6 +9,9 @@ ab coke cocain
 let mapleader = "\<space>"
 let maplocalleader = "\\"
 " nn g/ /\<\><left><left>
+nn yie ggyG``
+nn "*yie gg"*yG``
+nn "+yie gg"+yG``
 ino <M-CR> <c-o>O
 nn , ciw
 tno <c-a> <C-\><C-N>
@@ -18,7 +21,6 @@ ino <c-u> <c-g>u<c-u>
 " nn <silent><c-n> :browse filter! /\v(man:\/\/<bar>term:\/\/<bar>\/tmp\/)/ oldfiles<cr>
 "  leaderbinds {{{2
 nn <leader><leader> <C-^>
-nn <leader>a gg"*yG``
 nn <silent> <leader>b :ls<cr>:b<space>
 nn <silent> <leader>c "+
 xn <silent> <leader>c "+

@@ -3,6 +3,7 @@ ani-cli-git
 artha
 base-devel-meta
 bbswitch-ati-dkms-git
+boomer-git
 chromium-widevine
 colorpicker
 ebtables
@@ -25,6 +26,7 @@ shellcheck-bin
 simple-mtpfs
 spotify
 tor-browser
+veusz
 windscribe-cli
 xcursor-breeze
 xorg-meta

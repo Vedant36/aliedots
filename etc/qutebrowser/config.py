@@ -82,6 +82,7 @@ c.url.searchengines = {
 	'DEFAULT': 'https://www.duckduckgo.com/?q={}',
 	'4': 'https://4chan.org/{}',
 	'a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}',
+    'ap': 'https://animixplay.to/?q={}', # anime
     'b': 'https://1lib.in/s/{}',
     'b2': 'https://www.pdfdrive.com/search?q={}',
 	'd': 'https://html.duckduckgo.com/html?q={}', # nojs version of duckduckgo
@@ -100,7 +101,8 @@ c.url.searchengines = {
 	's': 'https://open.spotify.com/search/{}',
     'su': 'https://steamunlocked.net/?s={}',
 	'w': 'https://web.archive.org/web/*/{}',
-	'wa': 'https://mathworld.wolfram.com/search/index.html?query={}',
+    'wa': 'https://www.wolframalpha.com/input/?i={}',
+	'wm': 'https://mathworld.wolfram.com/search/index.html?query={}',
 	'x': 'https://searx.xyz/search?q={}',
     'y': 'https://youtube.com/search?q={}',
     'yw': 'https://tube.cadence.moe/watch?v={}',
