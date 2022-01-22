@@ -45,4 +45,10 @@ $HOME
 ```
 - etc/root contains files that should be hard linked to /etc with the same folder structure
 - the user and the(currently non-existent) root crontab will be available in lib/dotfiles/crontab
+- if a different XDG_CONFIG_HOME is used, the variable at the line matching `^set preview_script ` in $XDG_CONFIG_HOME/ranger/rc.conf needs to be changed
+
+## problematic files
+share/ranger/bookmarks: only first line changes pretty quickly(mark ' is saved there)
+share/zsh/.zsh_history: very long and has unneccesarily long diffs when commiting
+etc/MediaHuman/YouTube to MP3.conf: same as above except this file is much less useful
 

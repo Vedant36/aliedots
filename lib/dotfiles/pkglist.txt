@@ -38,6 +38,7 @@ gcr
 geogebra
 git
 gnu-netcat
+gnuchess
 grub
 haveged
 hq
@@ -101,6 +102,7 @@ pacman-contrib
 pcurses
 pdfjs
 pigz
+poppler
 powertop
 ps_mem
 pulseaudio

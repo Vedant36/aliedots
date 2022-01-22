@@ -1,0 +1,17 @@
+## Arch Linux mirrorlist
+# With:       rankmirrors -m 1 -v $(curl https://archlinux.org/mirrorlist/all/https/)
+# On:         2022-01-22 01:34:51 UTC
+# By:         Vedant36
+
+# Sweden
+Server = https://mirror.osbeck.com/archlinux/$repo/os/$arch
+
+# Germany
+Server = https://appuals.com/archlinux/$repo/os/$arch
+
+# India
+Server = https://mirrors.piconets.webwerks.in/archlinux-mirror/$repo/os/$arch
+
+# Australia
+Server = https://arch.lucassymons.net/$repo/os/$arch
+

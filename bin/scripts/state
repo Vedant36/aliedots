@@ -5,6 +5,7 @@ xcape $(pgrep xcape | wc -l)
 xss-lock $(pgrep xss-lock | wc -l)
 unclutter $(pgrep unclutter | wc -l)
 wallpaper
+dpms $(xset q | grep -Po 'DPMS is \K\S+')
 picom
 dunst
 " | dmenu -l 20)
@@ -34,6 +35,13 @@ case $choice in
 	wallpaper)
 		feh --no-fehbg --bg-fill "$(xdg-user-dir PICTURES)"/current.*
 		;;
+    dpms*)
+        if [ "$(xset q | grep -Po 'DPMS is \K\S+')" == "Enabled" ]; then
+            xset -dpms
+        else
+            xset +dpms
+        fi
+        ;;
 	picom)
 		if pgrep picom; then
 			pkill picom
