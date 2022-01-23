@@ -118,7 +118,6 @@ python-wheel
 qemu
 qutebrowser
 redshift
-reflector
 ripgrep
 rofi
 rsync

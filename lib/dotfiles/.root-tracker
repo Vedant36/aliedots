@@ -14,7 +14,6 @@ cron.allow
 makepkg.conf
 doas.conf
 modules-load.d/bbswitch.conf
-anacrontab
 asound.conf
 pacman.conf
 X11/xorg.conf.d/30-touchpad.conf

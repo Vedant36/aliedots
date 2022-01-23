@@ -51,4 +51,4 @@ $HOME
 share/ranger/bookmarks: only first line changes pretty quickly(mark ' is saved there)
 share/zsh/.zsh_history: very long and has unneccesarily long diffs when commiting
 etc/MediaHuman/YouTube to MP3.conf: same as above except this file is much less useful
-
+etc/environment.d/*: don't know a way to transfer them to shell variables
