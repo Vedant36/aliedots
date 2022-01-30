@@ -1,16 +1,28 @@
 #!/usr/bin/env sh
-# set -x
-event_log="$(cat "$HOME"/.local/lib/dotfiles/event.log | grep -vE '(^/\*.*\*/|^$)')"
-[ "$event_log" ] || exit 0
-while read i;do
+## Simple event reminder
+## Written by Vedant36
+## Format:
+##     <date>=<summary>=<body>
+## Crontab:
+##     */5 * * * * "$HOME"/.local/bin/scripts/event
+## Update 1.1 on 2022-01-31: made better
+
+# when calling from crontab, need to export this to make notify-send work
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
+
+cutter(){
+	field="$1"
+	shift
+	echo "$@" | cut -d= -f"$field"
+}
+
+grep -vE '(^/\*.*\*/|^$)' "$HOME"/.local/lib/dotfiles/event.log | \
+	while read -r i;do
 	# send a notification if $i is greater than today's date in epoch time
-	# write the code in a more debuggable way
-	if [ "$(date +%s)" -gt "$(date +%s -d "$(echo "$i" | cut -d= -f 1)")" ];then
-		# need to export this to make notify-send work
-		export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
-		notify-send -u critical "$i" ""
+	if [ "$(date +%s)" -gt "$(date +%s -d "$(cutter 1 "$i")")" ];then
+		# a space after the summary allows sending the notification even when
+		# no second field is specified
+		notify-send -u critical "$(cutter 2 "$i"| xargs) " "$(cutter 1,3- "$i")"
 	fi
-	
-	# return $((${$(cut -d: -f1 <<< "$i"):-0}<$(date +%s))) && notify-send $i
-done<<<"$event_log"
+done
 

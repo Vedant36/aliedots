@@ -11,6 +11,7 @@ bat
 bc
 bdf-unifont
 beep
+bind
 bridge-utils
 btop
 calc
@@ -20,9 +21,11 @@ cmake
 cronie
 discord
 dmidecode
+dnsmasq
 dpkg
 drawing
 dunst
+dust
 ed
 edk2-ovmf
 efibootmgr
@@ -109,6 +112,7 @@ pulseaudio
 pulsemixer
 pv
 python-adblock
+python-magic
 python-matplotlib
 python-numpy
 python-pillow

@@ -25,6 +25,7 @@ ranger-git
 shellcheck-bin
 simple-mtpfs
 spotify
+task-spooler
 tor-browser
 veusz
 windscribe-cli

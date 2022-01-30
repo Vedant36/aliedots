@@ -19,16 +19,16 @@ xrandr --output Virtual-1 --mode 1920x1080_60.00
 # keyboard
 setxkbmap -option altwin:swap_alt_win
 setxkbmap -option ctrl:nocaps
-# setxkbmap -option ctrl:swapcaps
+#setxkbmap -option ctrl:swapcaps
 xcape -e 'Control_L=Escape' -t 100
 # for another mod key
-# clear mod3
-# keysym F8 = Hyper_R
+#clear mod3
+#keysym F8 = Hyper_R
 xset r rate 200 200
 xset -r 36 # turn off repeat for return key
 xset m 4 0 # mouse
-xset dpms 900 900 900
-# xsetroot -cursor_name left_ptr
+xset dpms 720 720 720
+#xsetroot -cursor_name left_ptr
 
 # startup programs {{{1
 type unclutter>/dev/null && unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
@@ -52,7 +52,7 @@ done &
 
 while true; do
 	# Log stderror to a file 
-	dwm >$HOME/.local/var/log/dwm.log
+	env XDG_CURRENT_DESKTOP=dwm dwm >$HOME/.local/var/log/dwm.log
 	# No error logging
 	# dwm >/dev/null 2>&1
 done

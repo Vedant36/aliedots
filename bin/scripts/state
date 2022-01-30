@@ -1,12 +1,13 @@
-#!/usr/bin/bash
-# script to manage on and off states for things like {picom, wallpape reload, xss-lock, xcape, unclutter}
+#!/usr/bin/sh
+# script to manage on and off states for things like
+# {picom, wallpape reload, xss-lock, xcape, unclutter}
 choice=$(echo "\
 xcape $(pgrep xcape | wc -l)
 xss-lock $(pgrep xss-lock | wc -l)
 unclutter $(pgrep unclutter | wc -l)
 wallpaper
 dpms $(xset q | grep -Po 'DPMS is \K\S+')
-picom
+picom $(pgrep picom | wc -l)
 dunst
 " | dmenu -l 20)
 
@@ -50,6 +51,7 @@ case $choice in
 		fi
 		;;
     dunst)
+        # Reload
         pkill dunst && dunst &!
         ;;
 esac

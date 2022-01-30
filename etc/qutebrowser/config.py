@@ -85,6 +85,7 @@ c.url.searchengines = {
     'ap': 'https://animixplay.to/?q={}', # anime
     'b': 'https://1lib.in/s/{}',
     'b2': 'https://www.pdfdrive.com/search?q={}',
+    'b3': 'https://libgen.me/search?query={}',
 	'd': 'https://html.duckduckgo.com/html?q={}', # nojs version of duckduckgo
 	'g': 'https://www.google.com/search?hl=en&q={}',
 	'gh': 'https://github.com/{}',
@@ -100,7 +101,6 @@ c.url.searchengines = {
 	'r': 'https://reddit.com/r/{}',
 	's': 'https://open.spotify.com/search/{}',
     'su': 'https://steamunlocked.net/?s={}',
-	'w': 'https://web.archive.org/web/*/{}',
     'wiby': 'https://wiby.me/?q={}',
     'wa': 'https://www.wolframalpha.com/input/?i={}',
 	'wm': 'https://mathworld.wolfram.com/search/index.html?query={}',
@@ -161,6 +161,7 @@ c.bindings.commands = {
 		"e<space>": "fake-key <esc>",
 		"gw": "open w {url}",
 		"gI": "hint inputs --first;; mode-enter insert;; fake-key /<ctrl-a><backspace>",
+        "gw": "open https://web.archive.org/web/*/{url:pretty}",
 		"h" : "tab-prev",
 		"l" : "tab-next",
 		"yw": "fake-key <ctrl-a>",
@@ -169,6 +170,7 @@ c.bindings.commands = {
 		"!" : "set-cmd-text :open !",
 		",M": "hint links spawn -d mpv {hint-url}",
 		",m": "spawn -d mpv {url}",
+        ",a": "config-cycle content.blocking.enabled;; reload",
 		",p": "config-cycle content.proxy socks://localhost:9050/ system",
 		",s": "config-cycle statusbar.show never always",
 		",t": "config-cycle tabs.show multiple never",
@@ -242,8 +244,8 @@ c.colors.tabs.even.fg = xresources["*.foreground"]
 c.colors.tabs.odd.fg = xresources["*.foreground"]
 c.colors.tabs.selected.even.bg = xresources["*.color8"]
 c.colors.tabs.selected.odd.bg = xresources["*.color8"]
-c.colors.hints.bg = xresources["*.background"]
-c.colors.hints.fg = xresources["*.foreground"]
+c.colors.hints.bg = xresources["*.foreground"]
+c.colors.hints.fg = xresources["*.background"]
 
 c.colors.tabs.indicator.stop = xresources["*.color14"]
 c.colors.tabs.indicator.error = xresources["*.color9"]

@@ -27,7 +27,6 @@ xn <silent> <leader>c "+
 nn <silent> <leader>d yyp
 nn <silent> <leader>e o<c-o>:r !date<cr><end>:<space>
 nn <expr> <leader>g ":vimgrep /\\\<" . expand("<cword>") . "\\\>/j ** <bar> cw<cr>"
-nn <leader>h :h<space>
 nn <leader>m <nop>
 nn <silent> <leader>n :E<cr>
 nn <silent> <leader>p "*
@@ -143,6 +142,7 @@ au bufnewfile,bufread *.conf* setf cfg
 au bufnewfile,bufread .zsh* setf zsh
 au bufnewfile,bufread .gitignore setlocal commentstring=#\ %s
 au bufnewfile,bufread *.qss setf css
+au bufnewfile,bufread *.rasi setf rasi
 au termopen term://* setf terminal
 " au bufnewfile,bufread *man* setf man " doesn't work
 au bufwritepost $XDG_CONFIG_HOME/X11/Xresources silent !xrdb $XDG_CONFIG_HOME/X11/Xresources
@@ -214,56 +214,43 @@ endfunction
 set foldtext=NeatFoldText()
 
 " better indent folding https://learnvimscriptthehardway.stevelosh.com/chapters/49.html {{{2
-" au filetype python setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
-" function! NextNonBlankLine(lnum)
-" 	let numlines = line('$')
-" 	let current = a:lnum + 1
-
-" 	while current <= numlines
-" 		if getline(current) =~? '\v\S'
-" 			return current
-" 		endif
-
-" 		let current += 1
-" 	endwhile
-
-" 	return -2
-" endfunction
+" au filetype python setl foldmethod=expr foldexpr=PythonIndent(v:lnum)
+" au bufnewfile,bufread config.py setl foldmethod=marker
 function! IndentLevel(lnum)
 	return indent(a:lnum) / &shiftwidth
 endfunction
 function! BetterIndent(lnum)
-    if getline(a:lnum) =~? '\v^\s*$'
-        return '-1'
-    endif
-	if getline(a:lnum) =~ '\v^\s*[}\])],?$'
-		" return '-1'
-		return IndentLevel(a:lnum-1)
-	endif
+  if getline(a:lnum) =~? '\v^\s*$'
+    return '-1'
+  endif
+  if getline(a:lnum) =~ '\v^\s*[}\])],?$'
+    " return '-1'
+    return IndentLevel(a:lnum-1)
+  endif
 
-    let this_indent = IndentLevel(a:lnum)
-    let next_indent = IndentLevel(a:lnum+1)
-    " let next_indent = IndentLevel(NextNonBlankLine(a:lnum))
+  let this_indent = IndentLevel(a:lnum)
+  let next_indent = IndentLevel(a:lnum+1)
+  " let next_indent = IndentLevel(NextNonBlankLine(a:lnum))
 
-    if next_indent == this_indent
-        return this_indent
-    elseif next_indent < this_indent
-        return this_indent
-    elseif next_indent > this_indent
-        return '>' . next_indent
-    endif
+  if next_indent == this_indent
+    return this_indent
+  elseif next_indent < this_indent
+    return this_indent
+  elseif next_indent > this_indent
+    return '>' . next_indent
+  endif
 endfunction
 
 " folding for diff from vimwiki https://vim.fandom.com/wiki/Folding_for_diff_files {{{2
 au filetype diff setl foldmethod=expr foldexpr=DiffFold(v:lnum)
 function! DiffFold(lnum)
   let line = getline(a:lnum)
-  if line =~ '^\(diff\|---\|+++\|@@\) '
-    return 1
-  elseif line[0] =~ '[-+ ]'
-    return 2
+  if line =~ '^diff '
+    return ">1"
+  elseif line =~ '^@@'
+    return ">2"
   else
-    return 0
+    return "="
   endif
 endfunction
 " ranger {{{2
@@ -479,6 +466,28 @@ let g:lightline = {
 	\   'buffers': 'tabsel'
 	\ }
 	\ }
+" Telescope config {{{2
+lua <<EOF
+require('telescope').setup{
+  defaults = {
+    -- ...
+  },
+  pickers = {
+    find_files = {
+      theme = "dropdown",
+    },
+    git_files = {
+      theme = "dropdown",
+    },
+    oldfiles = {
+      theme = "dropdown",
+    }
+  },
+  extensions = {
+    -- ...
+  }
+}
+EOF
 " colorizer config {{{2
 lua <<EOF
 require 'colorizer'.setup ({
@@ -510,13 +519,13 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 EOF
-" " nvim-lint config {{{2
+" nvim-lint config {{{2
 " lua << EOF
 " require('lint').linters_by_ft = {
 " 	python = {'pycodestyle'}
 " }
 " EOF
-" other lua stuff {{{2
+" Gitsigns {{{2
 lua require('gitsigns').setup()
 " }}}1
 " .nvimrc {{{1

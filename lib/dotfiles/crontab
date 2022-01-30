@@ -1,5 +1,13 @@
-*/5 * * * * "$HOME"/.local/bin/scripts/bat_alert.sh
-# */10 * * * * /home/vn36/.local/bin/scripts/bat_log.sh
+# remember to leave an empty line at the end lest nothing will work
+# 1. minute (0-59)
+# |   2. hour (0-23)
+# |   |   3. day of month (1-31)
+# |   |   |   4. month (1-12)
+# |   |   |   |   5. day of week (0-7: 0 or 7 is Sun, or use names)
+# |   |   |   |   |   6. commandline
+# |   |   |   |   |   |
+#min hr  dom mon dow command
 * */1 * * * anacron -t "$HOME"/.local/etc/anacrontab -S "$HOME"/.local/var/spool/anacron
+*/5 * * * * "$HOME"/.local/bin/scripts/bat_alert.sh
 */5 * * * * "$HOME"/.local/bin/scripts/event
 

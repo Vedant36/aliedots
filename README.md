@@ -8,23 +8,23 @@ in the home folder. Then link .local/lib/dotfiles/{.zshenv,.pam_environment} to 
 execute the xinit wrapper `x` on the shell to start the x server
 
 ## Home Directory structure
-```
 $HOME
 	.local/
-		bin/
-			custom/
-			wrappers/
-		etc/
-		opt/
-		share/
+		bin/                <!-- added to PATH -->
+			experimental/
+			scripts/        <!-- added to PATH -->
+			wrappers/       <!-- added to PATH -->
+		etc/                <!-- XDG_CONFIG_HOME -->
+		opt/                <!-- contains all my local repos like dwm, dmenu, etc -->
+		share/              <!-- XDG_DATA_HOME -->
 		tmp/
 			desktop/
 			public/
 			templates/
 		var/
-			cache/
-			lib/
-			log/
+			cache/          <!-- XDG_CACHE_HOME -->
+			lib/            <!-- XDG_STATE_HOME -->
+			log/            <!-- logging files -->
 	dl/
 	dox/
 	melum/
@@ -32,7 +32,6 @@ $HOME
 	vids/
 	.pam_environment
 	.zshenv
-```
 
 ## Notes
 - Using the xdg variable structure inspired from [ayekat's dotfiles](https://github.com/ayekat/dotfiles)

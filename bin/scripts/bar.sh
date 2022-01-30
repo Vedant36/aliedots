@@ -26,5 +26,5 @@ modules=(
 # echo -e "  ${dot}  ${uptime}  ${packages}  ${bat}  ${date} "
 echo -en " "
 for i in "${modules[@]}";do
-	[ "$i" ] && echo -en " $i "
+	[ "$i" ] && echo -en "| $i "
 done
