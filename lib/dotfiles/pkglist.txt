@@ -1,5 +1,6 @@
 acpi
 acpid
+alsa-utils
 amdvlk
 android-tools
 aria2
@@ -34,11 +35,11 @@ exa
 exfat-utils
 exiv2
 expac
+fasd
 fd
 feh
 fzf
 gcr
-geogebra
 git
 gnu-netcat
 gnuchess
@@ -61,6 +62,7 @@ lib32-vulkan-radeon
 libnotify
 libvoikko
 linux
+linux-docs
 linux-firmware
 linux-headers
 linux-lts
@@ -91,6 +93,7 @@ neofetch
 neovim
 nethogs
 networkmanager
+nnn
 nodejs
 noto-fonts-emoji
 ntfs-3g
@@ -176,5 +179,4 @@ zathura
 zathura-djvu
 zathura-pdf-mupdf
 zip
-zoxide
 zsh

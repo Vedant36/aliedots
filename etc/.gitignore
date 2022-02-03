@@ -13,9 +13,10 @@ mpv/watch_later
 !ncmpcpp/bindings
 !ncmpcpp/config
 !neofetch/*
+!nvim/**
 nvim/*
 !nvim/init.vim
-!nvim/script.lua
+!nvim/lua
 !pulse/daemon.conf
 !qutebrowser/config.py
 !qutebrowser/*.qss

@@ -6,11 +6,11 @@
 # Sweden
 Server = https://mirror.osbeck.com/archlinux/$repo/os/$arch
 
-# Germany
-Server = https://appuals.com/archlinux/$repo/os/$arch
-
 # India
 Server = https://mirrors.piconets.webwerks.in/archlinux-mirror/$repo/os/$arch
+
+# Germany
+Server = https://appuals.com/archlinux/$repo/os/$arch
 
 # Australia
 Server = https://arch.lucassymons.net/$repo/os/$arch

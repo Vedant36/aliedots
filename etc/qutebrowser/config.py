@@ -96,7 +96,7 @@ c.url.searchengines = {
 	'o': 'http://oeis.org/search?q={}',
 	'oa': 'http://oeis.org/A{}',
 	'ob': 'http://oeis.org/b{}.txt',
-	'p': 'https://thepiratebay.org/search.php?q={}',
+	'p': 'https://tpb.one/search.php?q={}',
     'py': 'https://pypi.org/search/?q={}',
 	'r': 'https://reddit.com/r/{}',
 	's': 'https://open.spotify.com/search/{}',
@@ -263,7 +263,7 @@ c.content.webgl = False
 c.content.canvas_reading = False
 c.content.headers.accept_language = 'en-US,en;q=0.5'
 c.content.headers.custom = {"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"}
-c.content.headers.user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'
+c.content.headers.user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {upstream_browser_key}/{upstream_browser_version} Safari/{webkit_version}', 'https://web.whatsapp.com/')
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://accounts.google.com/*')
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')

@@ -37,6 +37,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/var/lib"
 export XDG_LIB_HOME="$HOME/.local/lib"
 # ~ Cleanup {{{1
+export _FASD_DATA="$XDG_DATA_HOME"/fasd
 export WINEPREFIX="$XDG_DATA_HOME/wine/default"
 export CALCHISTFILE="$XDG_DATA_HOME/calc_histfile"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"

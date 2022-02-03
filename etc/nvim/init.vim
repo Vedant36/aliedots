@@ -341,21 +341,21 @@ com! -complete=file -nargs=* Edit silent! exec "!vim --servername " . v:serverna
 " :w ++enc=utf-8 " to write to file in utf-8 to solve CONVERSION ERROR
 " plugins {{{1
 try
-	" plugin calls {{{2
 	call plug#begin()
+	" plugin calls {{{2
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
 	" Plug 'romgrk/barbar.nvim'
 	" Plug 'lambdalisue/nerdfont.vim'
 	Plug 'github/copilot.vim', { 'on': 'Copilot' }
 	" Plug 'tom-doerr/vim_codex', { 'on': 'CreateCompletionLine' }
-	" Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 	" Plug 'jessfraz/openai.vim' " for completions from openai
 	" Plug 'nvim-lualine/lualine.nvim'
 	Plug 'kyazdani42/nvim-web-devicons'
 	" Plug 'https://github.com/shaunsingh/nord.nvim'
 
 	Plug 'tpope/vim-commentary'
+	Plug 'tpope/vim-surround'
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
 	Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -376,20 +376,14 @@ try
 	Plug 'p00f/nvim-ts-rainbow'
 	" Plug 'mfussenegger/nvim-lint'
 
-	" Themes
-	" Plug 'kaicataldo/material.vim'
-	Plug 'ErichDonGubler/vim-sublime-monokai'
-	" Plug 'crusoexia/vim-monokai'
-	" Plug 'projekt0n/github-nvim-theme'
-	" Plug 'tanvirtin/monokai.nvim'
+	" Themes {{{2
 	Plug 'drewtempelmeyer/palenight.vim'
-	" Plug 'fioncat/vim-oceanicnext'
 	Plug 'ghifarit53/tokyonight-vim'
 	Plug 'morhetz/gruvbox'
-	" Plug 'sainnhe/sonokai'
+	Plug 'sainnhe/sonokai'
 	Plug 'glepnir/zephyr-nvim'
-	call plug#end()
 	" }}}2
+	call plug#end()
 catch //
 	" !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 	" PlugInstall

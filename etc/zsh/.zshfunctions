@@ -1,6 +1,6 @@
 # Vedant36's zsh functions
 # f(file manager): ranger wrapper from arch wiki {{{1
-f(){
+r(){
 	if [[ -z "$RANGER_LEVEL" ]];then
 		# ranger $(pwd)
 		ranger "$@"

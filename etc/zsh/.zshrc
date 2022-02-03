@@ -71,7 +71,6 @@ bindkey '^[[3~' delete-char # why the ack cant terminals interpret what a delete
 bindkey '^[[4~' end-of-line
 bindkey '^[[F' end-of-line
 bindkey '^[[H' beginning-of-line
-# bindkey -s "^A" ""
 bindkey -s "^Z" "^Ufg^M"
 bindkey -s "^[#" " ^[[H: ^M"
 bindkey '^X^E' edit-command-line
@@ -101,7 +100,9 @@ setopt hist_reduce_blanks   # remove superflous blanks
 setopt hist_no_store
 
 # sourcings(7) fastest to slowest {{{1
-eval "$(zoxide init zsh)"
+# eval "$(zoxide init zsh)"
+eval "$(fasd --init posix-alias zsh-hook)" # minimal(without tab completion
+# eval "$(fasd --init auto)"
 . ${ZDOTDIR-~}/.zshaliases
 . ${ZDOTDIR-~}/.zshfunctions
 . /usr/share/doc/find-the-command/ftc.zsh quiet
@@ -160,4 +161,4 @@ export PROMPT=" %F{green}$shlvl%f%F{magenta}%~%f%F{blue}>%f "
 # exec 2>&3 3>&-
 # to print {{{1
 lsmod | grep uvcvideo
-echo -n
+echo -n # to avoid getting the error return value

@@ -10,8 +10,8 @@ ebtables
 find-the-command
 htmlq-bin
 i3lock-color-git
+icecat-bin
 lf-bin
-librewolf-bin
 lutris-wine-meta
 mpdscribble
 multitime
