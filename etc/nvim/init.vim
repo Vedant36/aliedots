@@ -137,42 +137,53 @@ nn <expr><silent> cot ':<c-u>set tabstop='.v:count1.'<cr>'
 " nn l <nop>
 " }}}1
 " autocmd {{{1
-au bufnewfile,bufread *.log* setf logtalk
-au bufnewfile,bufread *.conf* setf cfg
-au bufnewfile,bufread .zsh* setf zsh
-au bufnewfile,bufread .gitignore setlocal commentstring=#\ %s
-au bufnewfile,bufread *.qss setf css
-au bufnewfile,bufread *.rasi setf rasi
-au termopen term://* setf terminal
-" au bufnewfile,bufread *man* setf man " doesn't work
-au bufwritepost $XDG_CONFIG_HOME/X11/Xresources silent !xrdb $XDG_CONFIG_HOME/X11/Xresources
-au bufwritepost config.h :make PREFIX=$HOME/.local clean install
-autocmd TermOpen * startinsert
-" au TextChanged,TextChangedI <buffer> silent write
-augroup custom_filetype
+augroup _custom
+    au bufwritepost $XDG_CONFIG_HOME/X11/Xresources silent !xrdb $XDG_CONFIG_HOME/X11/Xresources
+    au bufwritepost config.h :make PREFIX=$HOME/.local clean install
+    au TermOpen * startinsert
+    " au TextChanged,TextChangedI <buffer> silent write
+    au TextYankPost * silent! lua require'vim.highlight'.on_yank({higroup='Visual', timeout=50, on_visual=false})
+    au VimResized * tabdo wincmd = 
+augroup end
+
+augroup _custom_filetype_setting
+    au!
+    au bufnewfile,bufread *.log* setf logtalk
+    au bufnewfile,bufread *.conf* setf cfg
+    au bufnewfile,bufread .zsh* setf zsh
+    au bufnewfile,bufread .gitignore setlocal commentstring=#\ %s
+    au bufnewfile,bufread *.qss setf css
+    au bufnewfile,bufread *.rasi setf rasi
+    au termopen term://* setf terminal
+augroup end
+
+augroup _markdown
+	au filetype markdown nn <buffer> j gj
+	au filetype markdown nn <buffer> k gk
+	au filetype markdown nn <buffer> <leader>1 A)<esc>I[](<esc>hi
+	au filetype markdown nn <silent>zq :Toc<cr>
+	au filetype markdown setl cc=
+	au filetype markdown au filetype qf nn <silent><cr> <cr>:lcl<cr>
+augroup end
+
+augroup _filetype
 	au!
 	au filetype crontab setlocal commentstring=#\ %s
 	au filetype diff if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
 	au filetype json,yaml set foldmethod=expr foldexpr=BetterIndent(v:lnum)
 	au filetype help,man nn <buffer><silent> q ZQ<cr>
+	au filetype lua nn <silent> <F7> :sp \| term time lua %:S<cr>
 	au filetype man nn <buffer><silent> ]] :call search('^\S')<cr>
 	au filetype man nn <buffer><silent> [[ :call search('^\S','b')<cr>
 	au filetype man set nobuflisted
-	au filetype markdown nn <buffer> j gj
-	au filetype markdown nn <buffer> k gk
-	au filetype markdown nn <buffer> <leader>1 A)<esc>I[](<esc>hi
-	" au filetype markdown nn zq :vimgrep /^#\+ .*.*/ %<Left><Left><Left><Left><Left>
-	au filetype markdown nn <silent>zq :Toc<cr>
-	au filetype markdown setl cc=
-	au filetype markdown setlocal commentstring=<!--\ %s\ -->
-	au filetype markdown au filetype qf nn <silent><cr> <cr>:lcl<cr>
 	au filetype netrw setl bufhidden=wipe
 	au filetype netrw nmap <buffer>l <cr>2j | nmap <buffer>h -
 	au filetype python nn <silent> <F7> :sp \| term time python %:S<cr>
 	au filetype upstart setlocal commentstring=#\ %s
 	au filetype vim nn <buffer> <leader>1 oPlug ''<esc>h
 	au filetype xdefaults setlocal commentstring=!\ %s
-augroup END
+augroup end
+
 " " to make any background transparent
 " augroup transparent
 " 	au!
@@ -522,13 +533,4 @@ EOF
 " Gitsigns {{{2
 lua require('gitsigns').setup()
 " }}}1
-" .nvimrc {{{1
-if has('nvim')
-	set inccommand=split
-	augroup LuaHighlight
-		autocmd!
-		autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
-	augroup END
-	" luafile $XDG_CONFIG_HOME/nvim/script.lua
-endif
 " }}}1
