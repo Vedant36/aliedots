@@ -105,7 +105,7 @@ logical_px() {
 }
 
 update() {
-	# use 
+	# used to create lock screen image for the first time
 	background="$1"
 
 	rectangles=" "

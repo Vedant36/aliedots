@@ -31,7 +31,7 @@ function get_biggest_files_size() {
 
 function get_file_name() {
 	local file_name=`git rev-list --objects --all | grep $1 | awk '{print $2}'`
-	echo "$file_name" 
+	echo "$file_name"
 }
 
 function get_biggest_files_name() {
@@ -67,7 +67,7 @@ function show_menu() {
 
 	whiptail --title 'git delete' --checklist "Files with their size that might be removed. Files size marked with * exist at current state of the project." $(($NUMBER_OF_FILES + 12)) 90 $(($NUMBER_OF_FILES + 4)) \
 		"${options[@]}" \
-		2> $FILES_TO_REMOVE 
+		2> $FILES_TO_REMOVE
 
 	clear
 }

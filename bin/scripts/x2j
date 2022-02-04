@@ -7,7 +7,7 @@ import sys
 with open(sys.argv[1], "r") as xmlfileObj:
 	#converting xml data to dictionary
 	data_dict = xmltodict.parse(xmlfileObj.read())
-	#creating JSON object using dictionary object  
+	#creating JSON object using dictionary objec
 	jsonObj= json.dumps(data_dict)
 
 	#storing json data to json file

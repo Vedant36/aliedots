@@ -6,7 +6,7 @@ import subprocess as sb
 import re
 
 md_dir='/home/vedant36/Documents/textfiles/'
-def asd(filename=None, head=None):    
+def asd(filename=None, head=None):
   if filename is None: filename=sys.argv[1].split('.')[0]
   if head is None: head=sys.argv[2]
   with open(md_dir+filename+'.md', 'r') as fp:

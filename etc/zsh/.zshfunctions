@@ -61,6 +61,6 @@ exdir(){
 #   if [[ $@ = '-rf qwe' ]];then
 #     mpv 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' 2>/dev/null 1>/dev/null
 #   else
-#     /bin/rm $@ 
+#     /bin/rm $@
 #   fi
 # }

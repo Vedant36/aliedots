@@ -264,11 +264,6 @@ function! DiffFold(lnum)
     return "="
   endif
 endfunction
-" ranger {{{2
-" nn <expr> <leader>y :term ranger --chosefile
-" fun customRanger()
-" 	let l:files = 
-" endfun
 " HexMode from vimwiki https://vim.fandom.com/wiki/Improved_hex_editing {{{2
 nn <silent> <F10> :Hexmode<CR>
 " ino <silent> <F10> <Esc>:Hexmode<CR>
@@ -399,7 +394,7 @@ catch //
 	" !sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 	" PlugInstall
 endtry
-" plugin config 
+" plugin config
 " settings/variables {{{2
 let g:copilot_filetypes = {
 	\ '*': v:false,

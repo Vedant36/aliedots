@@ -50,7 +50,7 @@ export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 # export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv
 # [[ ! -d $XDG_CACHE_HOME/nv ]] && mkdir $XDG_CACHE_HOME/nv
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
-[[ ! -d $XDG_DATA_HOME/gnupg ]] && mkdir -m700 $XDG_DATA_HOME/gnupg 
+[[ ! -d $XDG_DATA_HOME/gnupg ]] && mkdir -m700 $XDG_DATA_HOME/gnupg
 export HISTFILE=$XDG_DATA_HOME/zsh/.zsh_history
 export LESSHISTFILE=$XDG_DATA_HOME/lesshst
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
