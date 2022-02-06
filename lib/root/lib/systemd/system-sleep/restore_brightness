@@ -1,0 +1,13 @@
+#!/bin/sh
+# From: https://forums.linuxmint.com/viewtopic.php?t=277385
+# To be installed as /usr/lib/systemd/system-sleep/restore_brightness
+case $1 in
+    pre)
+        cat /sys/class/backlight/amdgpu_bl0/brightness > /tmp/backlight-brightness
+        ;;
+    post)
+	sleep .1
+        cp /tmp/backlight-brightness /sys/class/backlight/amdgpu_bl0/brightness
+        rm -f /tmp/backlight-brightness
+        ;;
+esac
