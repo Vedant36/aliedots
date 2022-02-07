@@ -44,7 +44,6 @@ git
 gnu-netcat
 gnuchess
 grub
-haveged
 hq
 hspell
 htop
@@ -99,7 +98,6 @@ noto-fonts-emoji
 ntfs-3g
 ntp
 nuspell
-nvtop
 opendoas
 otf-ipafont
 p7zip

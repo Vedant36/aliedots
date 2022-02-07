@@ -79,13 +79,13 @@ c.aliases = {
 
 # Search Engines {{{1
 c.url.searchengines = {
-    'DEFAULT': 'https://www.duckduckgo.com/?q={}',
+	'DEFAULT': 'https://www.duckduckgo.com/?q={}',
 	'4': 'https://4chan.org/{}',
 	'a': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}',
-    'ap': 'https://animixplay.to/?q={}', # anime
-    'b': 'https://1lib.in/s/{}',
-    'b2': 'https://www.pdfdrive.com/search?q={}',
-    'b3': 'https://libgen.me/search?query={}',
+	'ap': 'https://animixplay.to/?q={}', # anime
+	'b': 'https://1lib.in/s/{}',
+	'b2': 'https://www.pdfdrive.com/search?q={}',
+	'b3': 'https://libgen.me/search?query={}',
 	'd': 'https://html.duckduckgo.com/html?q={}', # nojs version of duckduckgo
 	'g': 'https://www.google.com/search?hl=en&q={}',
 	'gh': 'https://github.com/{}',
@@ -96,17 +96,18 @@ c.url.searchengines = {
 	'o': 'http://oeis.org/search?q={}',
 	'oa': 'http://oeis.org/A{}',
 	'ob': 'http://oeis.org/b{}.txt',
-	'p': 'https://tpb.one/search.php?q={}',
-    'py': 'https://pypi.org/search/?q={}',
+	'p': 'https://thepiratebay.org/search.php?q={}',
+	'p2': 'https://tpb.one/search.php?q={}',
+	'py': 'https://pypi.org/search/?q={}',
 	'r': 'https://reddit.com/r/{}',
 	's': 'https://open.spotify.com/search/{}',
-    'su': 'https://steamunlocked.net/?s={}',
-    'wiby': 'https://wiby.me/?q={}',
-    'wa': 'https://www.wolframalpha.com/input/?i={}',
+	'su': 'https://steamunlocked.net/?s={}',
+	'wiby': 'https://wiby.me/?q={}',
+	'wa': 'https://www.wolframalpha.com/input/?i={}',
 	'wm': 'https://mathworld.wolfram.com/search/index.html?query={}',
 	'x': 'https://searx.xyz/search?q={}',
-    'y': 'https://youtube.com/search?q={}',
-    'yw': 'https://tube.cadence.moe/watch?v={}',
+	'y': 'https://youtube.com/search?q={}',
+	'yw': 'https://tube.cadence.moe/watch?v={}',
 	'scp': 'https://scp-wiki.wikidot.com/scp-{}',
 	'mc': 'https://minecraft.fandom.com/wiki/{}',
 }
@@ -161,16 +162,17 @@ c.bindings.commands = {
 		"e<space>": "fake-key <esc>",
 		"gw": "open w {url}",
 		"gI": "hint inputs --first;; mode-enter insert;; fake-key /<ctrl-a><backspace>",
-        "gw": "open https://web.archive.org/web/*/{url:pretty}",
+		"gw": "open https://web.archive.org/web/*/{url:pretty}",
 		"h" : "tab-prev",
 		"l" : "tab-next",
+		"ya": "yank inline '<a href={url}>{title}</a>'",
 		"yw": "fake-key <ctrl-a>",
 		"yk": "jseval -q document.getElementsByTagName('video')[0].playbackRate = 16", # speed up youtube ad
 		"z" : "open -t -r  ;; tab-move",
 		"!" : "set-cmd-text :open !",
 		",M": "hint links spawn -d mpv {hint-url}",
 		",m": "spawn -d mpv {url}",
-        ",a": "config-cycle content.blocking.enabled;; reload",
+		",a": "config-cycle content.blocking.enabled;; reload",
 		",p": "config-cycle content.proxy socks://localhost:9050/ system",
 		",s": "config-cycle statusbar.show never always",
 		",t": "config-cycle tabs.show multiple never",
@@ -279,3 +281,5 @@ config.set('content.javascript.enabled', True, 'https://www.youtube.com/*')
 config.set('content.javascript.enabled', True, 'https://duckduckgo.com/*')
 config.set('content.geolocation', False, 'https://www.google.com')
 config.set('content.geolocation', False, 'https://www.embibe.com')
+# }}}
+# vim: noexpandtab

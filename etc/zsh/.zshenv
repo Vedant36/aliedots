@@ -5,19 +5,13 @@ export skip_global_compinit=1
 export BROWSER="qutebrowser"
 export PM=yay # package manager
 export QT_QPA_PLATFORMTHEME=qt5ct
-# export XCURSOR_THEME=Breeze_Snow
 
 export TERMINAL=kitty
 export EDITOR="nvim"
 export VISUAL="nvim"
 export SUDO="doas"
 export LESS='--RAW-CONTROL-CHARS --squeeze-blank-lines --quit-on-intr --quit-if-one-screen --no-init' # --mouse
-# export PAGER="nvim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
-#     -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
-#     -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -"
 export PAGER="nvim -"
-# export MANPAGER="nvim -c 'set ft=man' -"
-# export MANPAGER='nvim'
 export MANPAGER="nvim +Man\!"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
@@ -25,32 +19,35 @@ export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 # XDG and other HOME dirs {{{1
-export LOG="$HOME/.local/var/log"
 export SCRIPTS="$HOME/.local/bin/scripts"
 export PATH="$SCRIPTS:$HOME/.local/bin/wrappers:$HOME/.local/bin:$PATH"
-export REPOS="$HOME/dox/{textfiles,CPlus,Python,dotfiles,datasets}"
 export DATASETS="$HOME/dox/_Other/datasets"
 export BIN_HOME="$HOME/.local/bin"
 export XDG_CONFIG_HOME="$HOME/.local/etc"
 export XDG_CACHE_HOME="$HOME/.local/var/cache"
 export XDG_DATA_HOME="$HOME/.local/share"
+
 export XDG_STATE_HOME="$HOME/.local/var/lib"
 export XDG_LIB_HOME="$HOME/.local/lib"
+export XDG_LOG_HOME="$HOME/.local/var/log"
 # ~ Cleanup {{{1
 export _FASD_DATA="$XDG_DATA_HOME"/fasd
+mkdir -p "$XDG_DATA_HOME/wine/default"
 export WINEPREFIX="$XDG_DATA_HOME/wine/default"
 export CALCHISTFILE="$XDG_DATA_HOME/calc_histfile"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
 # export PYTHONSTARTUP=$XDG_LIB_HOME/python/startup.py
-export IPYTHONDIR=$XDG_CONFIG_HOME/ipython
+mkdir -p "$XDG_CONFIG_HOME"/ipython
+export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython
 export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgreprc
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 # export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME/nv
 # [[ ! -d $XDG_CACHE_HOME/nv ]] && mkdir $XDG_CACHE_HOME/nv
+mkdir -pm700 $XDG_DATA_HOME/gnupg
 export GNUPGHOME=$XDG_DATA_HOME/gnupg
-[[ ! -d $XDG_DATA_HOME/gnupg ]] && mkdir -m700 $XDG_DATA_HOME/gnupg
+mkdir -p "$XDG_DATA_HOME"/zsh
 export HISTFILE=$XDG_DATA_HOME/zsh/.zsh_history
 export LESSHISTFILE=$XDG_DATA_HOME/lesshst
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority

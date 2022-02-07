@@ -3,9 +3,7 @@
 # predefined variable repos is used if a directory is not given
 
 repos='
-$HOME/.local/bin
-$HOME/dox/CPlus
-$HOME/dox/Python
+$HOME/.local
 $HOME/dox/textfiles'
 
 main(){

@@ -82,7 +82,7 @@ nn <silent> <leader>oz :e $XDG_CONFIG_HOME/zsh/.zshrc<cr>
 nn <silent> <leader>od :e $HOME/.local/opt/dwm/config.h<cr>
 nn <silent> <leader>oh :e $HISTFILE<cr>
 nn <silent> <leader>ol :e ~/dox/CPlus/c/begin.c<cr>
-nn <silent> <leader>oy :e ~/dox/zmisc_code/Plat.py<cr>
+nn <silent> <leader>oy :e ~/dox/zmisc_code/02-Plat.py<cr>
 nn <silent> <leader>ov :e ~/dl/dotfiles/dot.sh<cr>
 " window management {{{2
 nn <C-j> <C-w>w
@@ -123,13 +123,12 @@ nn ]j <c-i>
 nn ; :
 nn : ;
 xn ; :
-nn n nzzNn
-nn N NzzNn
 nn zuj zjk
 xn zp zdgvzf
 nn ZA :xa<cr>
 nn ZX :qa<cr>
 nn ZS :w !echo <bar> dmenu <bar> sudo -S tee %<cr>
+nn ZW :cq<cr>
 nn <expr><silent> cot ':<c-u>set tabstop='.v:count1.'<cr>'
 " nn h <nop>
 " nn j <nop>
@@ -143,12 +142,12 @@ augroup _custom
     au TermOpen * startinsert
     " au TextChanged,TextChangedI <buffer> silent write
     au TextYankPost * silent! lua require'vim.highlight'.on_yank({higroup='Visual', timeout=50, on_visual=false})
-    au VimResized * tabdo wincmd = 
+    au VimResized * tabdo wincmd =
 augroup end
 
 augroup _custom_filetype_setting
     au!
-    au bufnewfile,bufread *.log* setf logtalk
+    au bufnewfile,bufread *.log* setf log
     au bufnewfile,bufread *.conf* setf cfg
     au bufnewfile,bufread .zsh* setf zsh
     au bufnewfile,bufread .gitignore setlocal commentstring=#\ %s
@@ -172,13 +171,13 @@ augroup _filetype
 	au filetype diff if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
 	au filetype json,yaml set foldmethod=expr foldexpr=BetterIndent(v:lnum)
 	au filetype help,man nn <buffer><silent> q ZQ<cr>
-	au filetype lua nn <silent> <F7> :sp \| term time lua %:S<cr>
+	au filetype lua nn <buffer><silent> <F7> :sp \| term time lua %:S<cr>
 	au filetype man nn <buffer><silent> ]] :call search('^\S')<cr>
 	au filetype man nn <buffer><silent> [[ :call search('^\S','b')<cr>
 	au filetype man set nobuflisted
 	au filetype netrw setl bufhidden=wipe
 	au filetype netrw nmap <buffer>l <cr>2j | nmap <buffer>h -
-	au filetype python nn <silent> <F7> :sp \| term time python %:S<cr>
+	au filetype python nn <buffer><silent> <F7> :sp \| term time python %:S<cr>
 	au filetype upstart setlocal commentstring=#\ %s
 	au filetype vim nn <buffer> <leader>1 oPlug ''<esc>h
 	au filetype xdefaults setlocal commentstring=!\ %s
@@ -194,6 +193,15 @@ augroup end
 " augroup END
 
 " Custom plugins {{{1
+" trim trailing whitespace {{{2
+function! <SID>StripTrailingWhitespaces()
+  if !&binary && &filetype != 'diff'
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+  endif
+endfun
+au BufWritePre * call <SID>StripTrailingWhitespaces()
 " " Auto Tabularize in tables by Tim Pope {{{2
 " inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 " " Filename completion with glob {{{2
@@ -349,6 +357,8 @@ com! -complete=file -nargs=* Edit silent! exec "!vim --servername " . v:serverna
 try
 	call plug#begin()
 	" plugin calls {{{2
+    " Plug 'yyq123/vim-syntax-logfile'
+    Plug 'MTDL9/vim-log-highlighting'
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
 	" Plug 'romgrk/barbar.nvim'
@@ -430,7 +440,7 @@ let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
 " let g:material_theme_style = 'palenight' " default, palenight, ocean, lighter, and darker
 " au BufWritePost <buffer> lua require('lint').try_lint()
-colorscheme tokyonight
+colorscheme gruvbox
 " keybinds {{{2
 nn <silent><c-p> :Telescope git_files<cr>
 nn <silent><c-n> :Telescope oldfiles<cr>
@@ -440,8 +450,6 @@ vmap <leader>i <Plug>Commentary
 " lightline config {{{2
 let g:lightline = {
 	\ 'colorscheme': colors_name,
-	\ 'separator': { 'left': '', 'right': '' },
-	\ 'subseparator': { 'left': '', 'right': '' },
 	\ 'active': {
 	\ 	 'left': [ [ 'mode', 'paste' ], [ 'filename', 'modified' ] ],
 	\ 	 'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'charvaluehex', 'filetype', 'linecount', 'fileinfo' ] ]
@@ -466,6 +474,8 @@ let g:lightline = {
 	\   'buffers': 'tabsel'
 	\ }
 	\ }
+	" \ 'separator': { 'left': '', 'right': '' },
+	" \ 'subseparator': { 'left': '', 'right': '' },
 " Telescope config {{{2
 lua <<EOF
 require('telescope').setup{

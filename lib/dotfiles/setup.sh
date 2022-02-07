@@ -7,9 +7,7 @@
 # effects)
 : "
 TODO:
-root files, user and root crontabs with necessary permissions
-SETUP:
-setup root files as a PKGBUILD
+user and root crontabs with necessary permissions
 BACKUP:
 lib/private
 share/minecraft/{saves,screenshots,modlist}
@@ -21,8 +19,8 @@ NOTES:
 make fully idempotent
 need to prob add the script to backup to my external harddrive
 "
-ROOT=$(git rev-parse --show-toplevel)
-# Here, the root directory is assumed to be ~/.local
+PREFIX=$(git rev-parse --show-toplevel)
+# Here, the prefix directory is assumed to be ~/.local
 # Change it according to your needs
 
 idemclone(){
@@ -32,7 +30,7 @@ idemclone(){
 
 cecho(){
     # echo with color to seperate status reports from command output
-    echo "\033[0;4m$1\007"
+    echo "[INFO] \033[0;4m$1\007"
 }
 
 case $1 in
@@ -67,6 +65,9 @@ case $1 in
         for i in $(find $HOME/.local/etc/config.h -type f)
             do ln -f "${i}" "${i/etc\/config.h/opt}"
         done
+
+        cecho "Installing crontab..."
+        crontab < ~/.local/lib/dotfiles/crontab
 
         cecho "Install 4Chan-X greasemonkey script"
         curl --output-directory ~/.local/share/qutebrowser/greasemonkey \

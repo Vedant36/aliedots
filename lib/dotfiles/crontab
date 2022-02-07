@@ -8,6 +8,6 @@
 # |   |   |   |   |   |
 #min hr  dom mon dow command
 * */1 * * * anacron -t "$HOME"/.local/etc/anacrontab -S "$HOME"/.local/var/spool/anacron
-*/5 * * * * "$HOME"/.local/bin/scripts/bat_alert.sh
+*/4 * * * * "$HOME"/.local/bin/scripts/bat_alert.sh
 */5 * * * * "$HOME"/.local/bin/scripts/event
 

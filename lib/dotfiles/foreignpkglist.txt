@@ -24,6 +24,7 @@ python-snakeviz
 ranger-git
 shellcheck-bin
 simple-mtpfs
+soulseekqt
 spotify
 task-spooler
 tor-browser
