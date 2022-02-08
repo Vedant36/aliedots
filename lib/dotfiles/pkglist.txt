@@ -40,6 +40,7 @@ fd
 feh
 fzf
 gcr
+gdb
 git
 gnu-netcat
 gnuchess
@@ -61,7 +62,6 @@ lib32-vulkan-radeon
 libnotify
 libvoikko
 linux
-linux-docs
 linux-firmware
 linux-headers
 linux-lts
@@ -76,6 +76,7 @@ lutris
 lynx
 macchanger
 man-db
+man-pages
 mediainfo
 mesa-utils
 minetest
@@ -86,6 +87,7 @@ mpd
 mpv
 mupdf
 mupdf-tools
+mypaint
 ncdu
 ncmpcpp
 neofetch

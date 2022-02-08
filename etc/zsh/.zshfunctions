@@ -10,22 +10,10 @@ r(){
 }
 # to pass a arg from stdin to multiple functions {{{1
 # filter() { for i in $@; do; $i -; done; }
-# to swap a string with another {{{1
-swap(){
-	read -d^D asd
-	asd=$(sed "s/$1/\x0\x0/g" <<<"$asd")
-	asd=$(sed "s/$2/$1/g" <<<"$asd")
-	asd=$(sed "s/\x0\x0/$2/g" <<<"$asd")
-	printf $asd
-}
-# ce(command explorer?): command to find useful stuff about some function/binary {{{1
-# ce() {
-#   cli=$(compgen -c | sort -u | fzf --preview "echo {} | pee which echo 'type -a' echo whatis" --height 100%)
-# }
 # es(explore securely) function to view files securely {{{1
 es(){(
 	set -e
-	pushd $HOME/dox
+	pushd "$HOME"/dox
 	local SE=sec
     mkdir -p ~/.local/lib/private
     if [ -s ${SE}.tar.gpg ];then
@@ -43,17 +31,23 @@ es(){(
 )}
 # px: package manager wrapper(s) {{{1
 pex() {
-	pak=$(($PM -Qem && $PM -Qen) | fzf -n1 --preview "$PM -Qi {1}" --height 100% | cut -d" " -f1 | tr '\n' ' ')
+	pak=$( ($PM -Qem && $PM -Qen) \
+        | fzf -n1 --preview "$PM -Qi {1}" --height 100% \
+        | cut -d" " -f1 \
+        | tr '\n' ' ')
 	[ "$pak" ] && eval "$PM -Rcns ${pak% *}"
 }
 px() {
-	pak=$(($PM -Qm && $PM -Qn) | fzf -n1 --preview "$PM -Qi {1}" --height 100% | cut -d" " -f1 | tr '\n' ' ')
+	pak=$( ($PM -Qm && $PM -Qn) \
+        | fzf -n1 --preview "$PM -Qi {1}" --height 100% \
+        | cut -d" " -f1 \
+        | tr '\n' ' ')
 	[ "$pak" ] && eval "$PM -Rcns ${pak% *}"
 }
 # extract directory {{{1
 exdir(){
   for i in $@;do
-    [[ -d $i ]] && mv $i/*(D) . && rmdir $i
+    [[ -d "$i" ]] && mv $i/*(D) . && rmdir $i
   done
 }
 # touch woman {{{1

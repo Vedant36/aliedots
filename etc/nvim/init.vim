@@ -13,7 +13,7 @@ nn yie ggyG``
 nn "*yie gg"*yG``
 nn "+yie gg"+yG``
 ino <M-CR> <c-o>O
-nn , ciw
+nn \ ciw
 tno <c-a> <C-\><C-N>
 nn Y y$
 ino <c-w> <c-g>u<c-w>
@@ -114,8 +114,8 @@ nn <C-s> :echo  " ⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀�
 				\ ⢀⢂⢑⠀⡂⡃⠅⠊⢄⢑⠠⠑⢕⢕⢝⢮⢺⢕⢟⢮⢊⢢⢱⢄⠃⣇⣞⢞⣞⢾\n
 				\ ⢀⠢⡑⡀⢂⢊⠠⠁⡂⡐⠀⠅⡈⠪⠪⠪⠣⠫⠑⡁⢔⠕⣜⣜⢦⡰⡎⡯⡾⡽"<cr>
 " categorized but less so misc {{{2
-nn <space> za
-xn <space> zf
+nn , za
+xn , zf
 xn > >gv
 xn < <gv
 nn [j <c-o>
@@ -357,8 +357,6 @@ com! -complete=file -nargs=* Edit silent! exec "!vim --servername " . v:serverna
 try
 	call plug#begin()
 	" plugin calls {{{2
-    " Plug 'yyq123/vim-syntax-logfile'
-    Plug 'MTDL9/vim-log-highlighting'
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
 	" Plug 'romgrk/barbar.nvim'
@@ -372,6 +370,7 @@ try
 
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
 	Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -390,7 +389,7 @@ try
 	Plug 'lewis6991/gitsigns.nvim'
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'p00f/nvim-ts-rainbow'
-	" Plug 'mfussenegger/nvim-lint'
+	Plug 'mfussenegger/nvim-lint'
 
 	" Themes {{{2
 	Plug 'drewtempelmeyer/palenight.vim'
@@ -439,7 +438,7 @@ let g:material_terminal_italics = 1
 let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
 " let g:material_theme_style = 'palenight' " default, palenight, ocean, lighter, and darker
-" au BufWritePost <buffer> lua require('lint').try_lint()
+au BufRead,BufWritePost <buffer> lua require('lint').try_lint()
 colorscheme gruvbox
 " keybinds {{{2
 nn <silent><c-p> :Telescope git_files<cr>
@@ -530,11 +529,13 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 " nvim-lint config {{{2
-" lua << EOF
-" require('lint').linters_by_ft = {
-" 	python = {'pycodestyle'}
-" }
-" EOF
+lua << EOF
+require('lint').linters_by_ft = {
+	-- python = {'pycodestyle'}
+    sh = {'shellcheck'},
+    bash = {'shellcheck'}
+}
+EOF
 " Gitsigns {{{2
 " TODO: switch to vim.keymap.set when 0.7 releases(preferably when switched to init.lua)
 lua <<EOF

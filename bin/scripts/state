@@ -1,13 +1,19 @@
 #!/usr/bin/sh
 # script to manage on and off states for things like
 # {picom, wallpape reload, xss-lock, xcape, unclutter}
+# TODO: make this script less repetitive and merge this with xinitrc
+# SYSTEM_DEPENDENT: interface might be different on different machines
+INTERFACE=wlo1
 choice=$(echo "\
 xcape $(pgrep xcape | wc -l)
+wifi $(nmcli device status | grep -c "^$INTERFACE.* connected") \
+$(nmcli connection show --active 2>&1 | grep -Po "Neema(?=.* $INTERFACE)")
 xss-lock $(pgrep xss-lock | wc -l)
 unclutter $(pgrep unclutter | wc -l)
 wallpaper
 dpms $(xset q | grep -Po 'DPMS is \K\S+')
 picom $(pgrep picom | wc -l)
+redshift $(pgrep redshift | wc -l)
 dunst
 " | dmenu -l 20)
 
@@ -17,6 +23,13 @@ case $choice in
 			pkill xcape
 		else
 			xcape -e 'Control_L=Escape'
+		fi
+		;;
+	wifi*)
+		if nmcli device status | grep "^$INTERFACE.* connected"; then
+			nmcli device disconnect "$INTERFACE"
+		else
+			nmcli device connect "$INTERFACE"
 		fi
 		;;
 	xss-lock*)
@@ -30,29 +43,38 @@ case $choice in
 		if pgrep unclutter;then
 			pkill unclutter
 		else
-			type unclutter>/dev/null && unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
+			type unclutter>/dev/null && \
+				unclutter --timeout 2 --jitter 40 \
+					--start-hidden --ignore-scrolling &
 		fi
 		;;
 	wallpaper)
 		feh --no-fehbg --bg-fill "$(xdg-user-dir PICTURES)"/current.*
 		;;
-    dpms*)
-        if [ "$(xset q | grep -Po 'DPMS is \K\S+')" == "Enabled" ]; then
-            xset -dpms
-        else
-            xset +dpms
-        fi
-        ;;
-	picom)
+	dpms*)
+		if [ "$(xset q | grep -Po 'DPMS is \K\S+')" = "Enabled" ]; then
+			xset -dpms
+		else
+			xset +dpms
+		fi
+		;;
+	picom*)
 		if pgrep picom; then
 			pkill picom
 		else
 			picom --experimental-backends
 		fi
 		;;
-    dunst)
-        # Reload
-        pkill dunst && dunst &!
-        ;;
+	redshift*)
+		if pgrep redshift; then
+			pkill redshift
+		else
+			redshift -l 23.5:78.5 &
+		fi
+		;;
+	dunst)
+		# Reload
+		pkill dunst && dunst &
+		;;
 esac
-
+# vim: noet

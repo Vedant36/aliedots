@@ -13,7 +13,7 @@ local options={
     autoread=true,
     modelines=1,
     expandtab=true, shiftround=false,
-    tabstop=4, softtabstop=4, shiftwidth=4, autoindent=false, joinspaces=false,
+    tabstop=4, softtabstop=4, shiftwidth=4, cindent=true, joinspaces=false,
     -- textwidth=79,
     inccommand="split",
     colorcolumn="80,160", cursorline=true,

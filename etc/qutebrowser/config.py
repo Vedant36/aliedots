@@ -89,6 +89,7 @@ c.url.searchengines = {
 	'd': 'https://html.duckduckgo.com/html?q={}', # nojs version of duckduckgo
 	'g': 'https://www.google.com/search?hl=en&q={}',
 	'gh': 'https://github.com/{}',
+	'gl': 'https://github.com/Vedant36/{}',
 	'm2': 'https://man.archlinux.org/{}', # arch man pages
 	'm': 'https://linux.die.net/man/1/{}', # man pages
 	'mw': 'https://www.merriam-webster.com/dictionary/{}',

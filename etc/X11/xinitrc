@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # builtin default config {{{
-userresources=$XDG_CONFIG_HOME/X11/Xresources
+userresources="$XDG_CONFIG_HOME"/X11/Xresources
 # usermodmap=$XDG_CONFIG_HOME/X11/Xmodmap
-[ -f $userresources ] && xrdb $userresources
+[ -f "$userresources" ] && xrdb "$userresources"
 # [ -f $usermodmap ] && xmodmap $usermodmap
 # start some nice programs
 [ -d /etc/X11/xinit/xinitrc.d ] && for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
@@ -19,7 +19,6 @@ xrandr --output Virtual-1 --mode 1920x1080_60.00
 # keyboard
 setxkbmap -option altwin:swap_alt_win
 setxkbmap -option ctrl:nocaps
-#setxkbmap -option ctrl:swapcaps
 xcape -e 'Control_L=Escape' -t 100
 # for another mod key
 #clear mod3
@@ -28,7 +27,6 @@ xset r rate 200 200
 xset -r 36 # turn off repeat for return key
 xset m 4 0 # mouse
 xset dpms 720 720 720
-#xsetroot -cursor_name left_ptr
 
 # startup programs {{{1
 type unclutter>/dev/null && unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
@@ -41,18 +39,18 @@ xss-lock -n 'bright -i -5' -l lock &
 redshift -l 23.5:78.5 &
 [ ! -s "$XDG_LIB_HOME"/mpd/pid ] && mpd
 pgrep mpdscribble || mpdscribble --conf /home/vn36/.local/lib/private/lastfm.conf &
-eval `ssh-agent -s`
+eval "$(ssh-agent -s)"
 
 # window manager {{{1
 while xsetroot -name "$(bar.sh)"; do
 	sleep 1m &
-	echo $! > ${XDG_STATE_HOME:-$HOME/.cache}/sleep_pid
+	echo $! > "${XDG_STATE_HOME:-$HOME/.cache}"/sleep_pid
 	wait $!
 done &
 
 while true; do
 	# Log stderror to a file
-	env XDG_CURRENT_DESKTOP=dwm dwm >$HOME/.local/var/log/dwm.log
+	env XDG_CURRENT_DESKTOP=dwm dwm >"$HOME"/.local/var/log/dwm.log
 	# No error logging
 	# dwm >/dev/null 2>&1
 done
