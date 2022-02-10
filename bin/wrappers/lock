@@ -68,7 +68,7 @@ lock() {
 		--bar-step 5
 
 	dunstctl set-paused false
-	kill $(cat ${XDG_STATE_HOME:-$HOME/.cache}/sleep_pid)
+    restart-bar
 	# custom event reminder script
     bat_alert.sh
 	event

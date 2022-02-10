@@ -43,7 +43,8 @@ eval "$(ssh-agent -s)"
 
 # window manager {{{1
 while xsetroot -name "$(bar.sh)"; do
-	sleep 1m &
+    # synchronize dwmblocks with the time
+    sleep $((60-$(date +%S))) &
 	echo $! > "${XDG_STATE_HOME:-$HOME/.cache}"/sleep_pid
 	wait $!
 done &

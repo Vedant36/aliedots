@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+[ -s "$XDG_STATE_HOME"/sleep_pid ] && kill "$(cat "$XDG_STATE_HOME"/sleep_pid)"

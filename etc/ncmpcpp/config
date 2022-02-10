@@ -83,6 +83,7 @@ song_status_format = " $2%a $4⟫$3⟫ $8%t $4⟫$3⟫ $5%b "
 centered_cursor = "yes"
 
 # Misc
+execute_on_song_change = "restart-bar"
 display_bitrate = "yes"
 # enable_window_title = "no"
 empty_tag_marker = ""
