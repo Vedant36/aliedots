@@ -31,7 +31,6 @@ ranger/plugins/__init__.py
 zsh/.zcompdump
 !artha.conf
 !artha.log
-!picom.conf
 !ripgreprc
 !user-dirs.dirs
 !user-dirs.locale

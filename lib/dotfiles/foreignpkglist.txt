@@ -18,7 +18,6 @@ multitime
 neovim-symlinks
 networkmanager-dispatcher-ntpd
 pandoc-bin
-picom-ibhagwan-git
 popcorntime-bin
 python-snakeviz
 ranger-git

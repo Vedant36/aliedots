@@ -34,7 +34,7 @@ artha &
 pactl set-source-mute @DEFAULT_SOURCE@ 1
 feh --no-fehbg --bg-fill "$(xdg-user-dir PICTURES)"/current.*
 dunst &
-picom -f &
+xcompmgr &
 xss-lock -n 'bright -i -5' -l lock &
 redshift -l 23.5:78.5 &
 [ ! -s "$XDG_LIB_HOME"/mpd/pid ] && mpd

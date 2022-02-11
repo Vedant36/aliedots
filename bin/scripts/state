@@ -12,7 +12,7 @@ xss-lock $(pgrep xss-lock | wc -l)
 unclutter $(pgrep unclutter | wc -l)
 wallpaper
 dpms $(xset q | grep -Po 'DPMS is \K\S+')
-picom $(pgrep picom | wc -l)
+xcompmgr $(pgrep xcompmgr | wc -l)
 redshift $(pgrep redshift | wc -l)
 dunst
 " | dmenu -l 20)
@@ -58,11 +58,11 @@ case $choice in
 			xset +dpms
 		fi
 		;;
-	picom*)
-		if pgrep picom; then
-			pkill picom
+	xcompmgr*)
+		if pgrep xcompmgr; then
+			pkill xcompmgr
 		else
-			picom --experimental-backends
+			xcompmgr &
 		fi
 		;;
 	redshift*)
