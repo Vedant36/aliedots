@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # builtin default config {{{
 userresources="$XDG_CONFIG_HOME"/X11/Xresources
 # usermodmap=$XDG_CONFIG_HOME/X11/Xmodmap
@@ -50,10 +49,8 @@ while xsetroot -name "$(bar.sh)"; do
 done &
 
 while true; do
-	# Log stderror to a file
-	env XDG_CURRENT_DESKTOP=dwm dwm >"$HOME"/.local/var/log/dwm.log
-	# No error logging
-	# dwm >/dev/null 2>&1
+	# Log to a file
+	env XDG_CURRENT_DESKTOP=dwm dwm >"$HOME"/.local/var/log/dwm.log || exit
 done
 
 # misc stuff i dont use now/dont work {{{1

@@ -1,9 +1,6 @@
 " Vedant36's [n]vimrc
 " .vimrc settings {{{1
 lua require('vn36')
-" abbreviates {{{1
-ab intlctl Vedant36 is not a intellectual
-ab coke cocain
 " keybinds ∑ { n ∈ ▲ } 🅇(n) ○-> Ⓨ[n] ▢△◈ {{{1
 " uncategorized {{{2
 let mapleader = "\<space>"
@@ -18,7 +15,6 @@ tno <c-a> <C-\><C-N>
 nn Y y$
 ino <c-w> <c-g>u<c-w>
 ino <c-u> <c-g>u<c-u>
-" nn <silent><c-n> :browse filter! /\v(man:\/\/<bar>term:\/\/<bar>\/tmp\/)/ oldfiles<cr>
 "  leaderbinds {{{2
 nn <leader><leader> <C-^>
 nn <silent> <leader>b :ls<cr>:b<space>
@@ -56,9 +52,6 @@ ino <c-b> <Left>
 ino <c-f> <Right>
 ino <m-b> <C-Left>
 ino <m-f> <C-Right>
-" inoremaps for programing
-ino ;p print()<left>
-ino ;p' print('')<left><left>
 " buffer switching {{{2
 nm <silent> <m-`> <Plug>lightline#bufferline#go(1)
 nm <silent> <m-1> <Plug>lightline#bufferline#go(2)
@@ -169,7 +162,7 @@ augroup _filetype
 	au!
 	au filetype crontab setlocal commentstring=#\ %s
 	au filetype diff if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
-	au filetype json,yaml set foldmethod=expr foldexpr=BetterIndent(v:lnum)
+	au filetype json,yaml setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
 	au filetype help,man nn <buffer><silent> q ZQ<cr>
 	au filetype lua nn <buffer><silent> <F7> :sp \| term time lua %:S<cr>
 	au filetype man nn <buffer><silent> ]] :call search('^\S')<cr>
@@ -261,7 +254,7 @@ function! BetterIndent(lnum)
 endfunction
 
 " folding for diff from vimwiki https://vim.fandom.com/wiki/Folding_for_diff_files {{{2
-au filetype diff setl foldmethod=expr foldexpr=DiffFold(v:lnum)
+au filetype diff,gitcommit setl foldmethod=expr foldexpr=DiffFold(v:lnum)
 function! DiffFold(lnum)
   let line = getline(a:lnum)
   if line =~ '^diff '
@@ -397,6 +390,10 @@ try
 	Plug 'morhetz/gruvbox'
 	Plug 'sainnhe/sonokai'
 	Plug 'glepnir/zephyr-nvim'
+
+    Plug 'marko-cerovac/material.nvim'
+    Plug 'RRethy/nvim-base16'
+    Plug 'JoosepAlviste/palenightfall.nvim'
 	" }}}2
 	call plug#end()
 catch //
@@ -431,15 +428,15 @@ let g:markdown_fenced_languages = [ 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosin
 
 let g:tokyonight_style = 'storm' " available: night, storm
 let g:tokyonight_enable_italic = 1
-let g:tokyonight_transparent_background = 0
+" let g:tokyonight_transparent_background = 0
 let g:palenight_terminal_italics=1
 let g:gruvbox_italic = 1
 let g:material_terminal_italics = 1
 let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
-" let g:material_theme_style = 'palenight' " default, palenight, ocean, lighter, and darker
+let g:material_style = "palenight"
 au BufRead,BufWritePost <buffer> lua require('lint').try_lint()
-colorscheme gruvbox
+colorscheme palenight
 " keybinds {{{2
 nn <silent><c-p> :Telescope git_files<cr>
 nn <silent><c-n> :Telescope oldfiles<cr>
@@ -533,7 +530,8 @@ lua << EOF
 require('lint').linters_by_ft = {
 	-- python = {'pycodestyle'}
     sh = {'shellcheck'},
-    bash = {'shellcheck'}
+    bash = {'shellcheck'},
+    python = {'pylint'}
 }
 EOF
 " Gitsigns {{{2

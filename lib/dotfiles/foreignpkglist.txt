@@ -1,6 +1,8 @@
 amd-ucode-git
 ani-cli-git
 artha
+aseprite-git
+atool
 base-devel-meta
 bbswitch-ati-dkms-git
 boomer-git
@@ -19,7 +21,9 @@ neovim-symlinks
 networkmanager-dispatcher-ntpd
 pandoc-bin
 popcorntime-bin
+python-openai
 python-snakeviz
+python-spotdl
 ranger-git
 shellcheck-bin
 simple-mtpfs

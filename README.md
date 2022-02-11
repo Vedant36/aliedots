@@ -62,3 +62,8 @@ $HOME
 - share/zsh/.zsh_history: very long and has unneccesarily long diffs when commiting
 - etc/MediaHuman/YouTube to MP3.conf: same as above except this file is much less useful
 - etc/environment.d/*: don't know a way to transfer them to shell variables
+
+## TODO
+- complete setup.sh
+- find better way to profile shell scripts than adding the snippet from .zshrc and passind the resulting file to sort-timings.zsh
+

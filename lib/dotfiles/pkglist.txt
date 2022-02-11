@@ -5,7 +5,6 @@ amdvlk
 android-tools
 aria2
 aspell
-atool
 base
 bash-completion
 bat
@@ -19,6 +18,7 @@ calc
 ccze
 chrony
 cmake
+cmus
 cronie
 discord
 dmidecode
@@ -38,16 +38,20 @@ expac
 fasd
 fd
 feh
+firefox
+fortune-mod
 fzf
 gcr
 gdb
 git
 gnu-netcat
 gnuchess
+gnuplot
 grub
 hq
 hspell
 htop
+hyperfine
 imagemagick
 inetutils
 iputils
@@ -79,7 +83,6 @@ man-db
 man-pages
 mediainfo
 mesa-utils
-minetest
 mlocate
 moreutils
 mpc
@@ -118,6 +121,7 @@ python-adblock
 python-magic
 python-matplotlib
 python-numpy
+python-pandas
 python-pillow
 python-pip
 python-pycodestyle
@@ -140,6 +144,7 @@ tesseract-data-eng
 thunar
 thunar-volman
 tlp
+tmux
 tor
 traceroute
 translate-shell

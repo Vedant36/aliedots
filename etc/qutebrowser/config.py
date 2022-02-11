@@ -7,6 +7,7 @@ config.load_autoconfig(False)
 c.auto_save.session = True
 c.backend = 'webengine'
 c.completion.cmd_history_max_items = 1000
+c.completion.open_categories = ["searchengines", "history"]
 c.completion.shrink = True
 c.completion.use_best_match = True
 c.content.cookies.accept = 'no-3rdparty'
@@ -90,6 +91,7 @@ c.url.searchengines = {
 	'g': 'https://www.google.com/search?hl=en&q={}',
 	'gh': 'https://github.com/{}',
 	'gl': 'https://github.com/Vedant36/{}',
+	'glot': 'https://glot.io/new/{}',
 	'm2': 'https://man.archlinux.org/{}', # arch man pages
 	'm': 'https://linux.die.net/man/1/{}', # man pages
 	'mw': 'https://www.merriam-webster.com/dictionary/{}',
@@ -106,6 +108,7 @@ c.url.searchengines = {
 	'wiby': 'https://wiby.me/?q={}',
 	'wa': 'https://www.wolframalpha.com/input/?i={}',
 	'wm': 'https://mathworld.wolfram.com/search/index.html?query={}',
+	'xiny': 'https://learnxinyminutes.com/docs/{}',
 	'x': 'https://searx.xyz/search?q={}',
 	'y': 'https://youtube.com/search?q={}',
 	'yw': 'https://tube.cadence.moe/watch?v={}',
@@ -153,14 +156,15 @@ c.bindings.commands = {
 		"J" : "back",
 		"K" : "forward",
 		"L" : "fake-key <right>",
-		"M" : "spawn -d umpv {url}",
 		"ZA": "quit --save",
 		"ZQ": "close",
 		"ZZ": "save;; close",
 		"ce": "config-edit",
 		"cs": "config-source",
+
 		**{f"e{i}": f"fake-key {i}" for i in "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"},
 		"e<space>": "fake-key <esc>",
+
 		"gw": "open w {url}",
 		"gI": "hint inputs --first;; mode-enter insert;; fake-key /<ctrl-a><backspace>",
 		"gw": "open https://web.archive.org/web/*/{url:pretty}",
@@ -171,17 +175,23 @@ c.bindings.commands = {
 		"yk": "jseval -q document.getElementsByTagName('video')[0].playbackRate = 16", # speed up youtube ad
 		"z" : "open -t -r  ;; tab-move",
 		"!" : "set-cmd-text :open !",
+
 		",M": "hint links spawn -d mpv {hint-url}",
 		",m": "spawn -d mpv {url}",
+		"M" : "spawn -d umpv {url}",
+		"2M" : "spawn -d umpv -p 2 {url}",
+		";M": "hint --rapid links spawn umpv {hint-url}",
+		";m": "hint links spawn umpv {hint-url}",
+		"2;m": "hint links spawn umpv -p 2 {hint-url}",
+
 		",a": "config-cycle content.blocking.enabled;; reload",
 		",p": "config-cycle content.proxy socks://localhost:9050/ system",
 		",s": "config-cycle statusbar.show never always",
 		",t": "config-cycle tabs.show multiple never",
 		",u": "config-cycle statusbar.show never always;; config-cycle tabs.show never multiple",
+
 		",w": "open https://web.archive.org/*/{url}",
 		",y": "set-cmd-text -s :jseval -q document.getElementsByTagName('video')[0].playbackRate =",
-		";M": "hint --rapid links spawn umpv {hint-url}",
-		";m": "hint links spawn umpv {hint-url}",
 		"<ctrl-r>": "save;; restart",
 	},
 	"insert": {

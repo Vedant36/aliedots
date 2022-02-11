@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 # script to manage on and off states for things like
-# {picom, wallpape reload, xss-lock, xcape, unclutter}
+# {xcompmgr, wallpape reload, xss-lock, xcape, unclutter}
 # TODO: make this script less repetitive and merge this with xinitrc
 # SYSTEM_DEPENDENT: interface might be different on different machines
 INTERFACE=wlo1

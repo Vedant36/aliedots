@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+# `spotdl` should work perfectly fine. no need to waste time on this
+# TODO: complete script
+# script for youtube to mp3(replacement for youtube-to-mp3)
+
+case $1 in
+	--cover)
+		eyeD3 --remove-all-images "$3"
+		eyeD3 --add-image "$2:FRONT_COVER" "$3"
+		;;
+	*)
+		url="$1"
+		# youtube-dl --extract-audio --write-thumbnail "$1" -o '%(title)s.%(ext)s' --exec 'echo %(title) | tee /tmp/filename' 1>/dev/null
+		# IDEA: use yt-dlp first to get the json, then use that to set title and metadata?
+		# use regex to set artist and title tags
+		yt-dlp \
+			--add-metadata \
+			--parse-metadata "title:%(artist)s - %(title)s" \
+			--embed-thumbnail \
+			--extract-audio \
+			-o '%(title)s.%(ext)s' \
+			"$url"
+		# $0 --cover
+		;;
+esac
+# vim: noet
