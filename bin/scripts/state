@@ -1,7 +1,12 @@
 #!/usr/bin/sh
-# script to manage on and off states for things like
-# {xcompmgr, wallpape reload, xss-lock, xcape, unclutter}
-# TODO: make this script less repetitive and merge this with xinitrc
+## script to manage on and off states for things like:
+## xcape, dunst, dpms, redshift, unclutter, wallpaper, wifi, xcompmgr, xss-lock
+## Dependencies: coreutils(nl), procps-ng(pgrep), dmenu
+## Update 1.1 on 2022-02-13:
+##   - made script less repetitive by adding the toggle function
+##   - add line numbers(L15) for easy selection
+## TODO: merge this with xinitrc
+
 # SYSTEM_DEPENDENT: interface might be different on different machines
 INTERFACE=wlo1
 choice=$(echo "\
@@ -15,16 +20,20 @@ dpms $(xset q | grep -Po 'DPMS is \K\S+')
 xcompmgr $(pgrep xcompmgr | wc -l)
 redshift $(pgrep redshift | wc -l)
 dunst
-" | dmenu -l 20)
+" | nl -s" " -v0 -w1 | dmenu -l 20)
+
+toggle(){
+	cmd="$1"; shift
+	if pgrep "$cmd"; then
+		pkill "$cmd"
+	else
+		command -v "$cmd" >/dev/null && exec "$cmd" "$@" &
+	fi
+}
 
 case $choice in
 	xcape*)
-		if pgrep xcape; then
-			pkill xcape
-		else
-			xcape -e 'Control_L=Escape'
-		fi
-		;;
+		toggle xcape -e 'Control_L=Escape' -t 100 ;;
 	wifi*)
 		if nmcli device status | grep "^$INTERFACE.* connected"; then
 			nmcli device disconnect "$INTERFACE"
@@ -33,21 +42,10 @@ case $choice in
 		fi
 		;;
 	xss-lock*)
-		if pgrep xss-lock; then
-			pkill xss-lock
-		else
-			xss-lock -n 'bright -i -5' -l lock
-		fi
-		;;
+		toggle xss-lock -n 'bright -i -5' -l lock ;;
 	unclutter*)
-		if pgrep unclutter;then
-			pkill unclutter
-		else
-			type unclutter>/dev/null && \
-				unclutter --timeout 2 --jitter 40 \
-					--start-hidden --ignore-scrolling &
-		fi
-		;;
+		toggle unclutter --timeout 2 --jitter 40 \
+					--start-hidden --ignore-scrolling & ;;
 	wallpaper)
 		feh --no-fehbg --bg-fill "$(xdg-user-dir PICTURES)"/current.*
 		;;
@@ -59,22 +57,14 @@ case $choice in
 		fi
 		;;
 	xcompmgr*)
-		if pgrep xcompmgr; then
-			pkill xcompmgr
-		else
-			xcompmgr &
-		fi
+		toggle xcompmgr
 		;;
 	redshift*)
-		if pgrep redshift; then
-			pkill redshift
-		else
-			redshift -l 23.5:78.5 &
-		fi
-		;;
+		toggle redshift -l 23.5:78.5 & ;;
 	dunst)
 		# Reload
-		pkill dunst && dunst &
-		;;
+		pkill dunst && dunst & ;;
+	*)
+		exit 1 ;;
 esac
 # vim: noet
