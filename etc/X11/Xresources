@@ -1,7 +1,9 @@
 ! Vedant36 Xresources
 ! all themes are now seperated into seperate files
-#include "themes/palenight"
+#include "themes/tokyonight"
 Xcursor.theme: Breeze_Snow
+!! Only way Ive found to set the cursor theme
+! Appearence {{{1
 *.fading: 5
 ! *.alpha: 0.97
 ! *.font:           xft:Agave Nerd Font:style=Regular:     size=9
@@ -49,31 +51,3 @@ URxvt.matcher.button: 1
 URxvt.matcher.launcher: /usr/bin/brave-browser-stable
 URxvt.iso14755:         false
 URxvt.iso14755_52:      false
-! rofi {{{1
-! rofi.fake-transparency:              true
-rofi.font: Futura 11
-rofi.modi: window,run,ssh,windowcd,drun,combi,keys
-! rofi -show combi -combi-modi drun,run
-rofi.matching: fuzzy
-rofi.lines: 20
-rofi.eh: 1
-rofi.combi-modi: drun,run
-rofi.run-shell-command: kitty -1 ranger
-rofi.case-sensitive: false
-! rofi.padding: 200
-! rofi.fullscreen: true
-rofi.bw: 0
-! rofi.separator-style: none ! depracated
-! rofi.hide-scrollbar: true
-
-! !                  'background', 'border', 'separator'
-! rofi.color-window: argb:e82d303b, #7c8389, #1d1f21
-! ! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
-! rofi.color-normal: argb:031d1f21, #f3f4f5, argb:031d1f21, argb:031d1f21, #9575cd
-! rofi.color-urgent: argb:031d1f21, #f3f4f5, argb:bc303541, argb:031d1f21, #9575cd
-! rofi.color-active: argb:031d1f21, #f3f4f5, argb:031d1f21, argb:031d1f21, #9575cd
-! st {{{1
-st.alpha: 1
-st.alphaOffset: 0.3
-st.font: Iosevka Term
-st.borderpx: 0

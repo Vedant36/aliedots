@@ -64,7 +64,7 @@ case $1 in
     install) # {{{2
         no-root
         pushd "$PREFIX"
-        # Important links {{{3
+        # Linking {{{3
         ce "Linking the script itself"
         ln -sf "$PREFIX"/lib/dotfiles/setup.bash "$PREFIX"/bin/
         ce "Linking zshenv and pam_environment(for environment variables..."
@@ -112,6 +112,11 @@ case $1 in
         # Neovim {{{3
         ce "The Neovim plugins will auto-install after opening the editor"
         ce "with a working internet connection(when i finally setup lua)"
+
+        # Misc {{{3
+        mkdir -p etc/MediaHuman
+        cp "$PREFIX/lib/dotfiles/YouTube to MP3.conf" etc/MediaHuman/
+        cp "$PREFIX"/lib/dotfiles/bookmarks share/ranger
 
         # End }}}3
         popd

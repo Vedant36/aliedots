@@ -6,10 +6,10 @@
 !environment.d/*
 !git/*
 !kitty/*
-!MediaHuman/YouTube to MP3.conf
 !mpd/mpd.conf
 !mpv/**
-mpv/watch_later
+mpv/watch_later/
+mpv/scripts/
 !ncmpcpp/bindings
 !ncmpcpp/config
 !neofetch/*
@@ -24,7 +24,7 @@ nvim/.netrwhist
 __pycache__/
 ranger/plugins/__init__.py
 !root/**
-!X11/*
+!X11/**
 !yay/config.json
 !zathura/*
 !zsh/*

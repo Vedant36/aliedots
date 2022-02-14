@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-tor-browser --dir=$HOME/.local/opt/torb $@

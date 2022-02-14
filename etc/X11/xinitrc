@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # builtin default config {{{
 userresources="$XDG_CONFIG_HOME"/X11/Xresources
 # usermodmap=$XDG_CONFIG_HOME/X11/Xmodmap
@@ -28,48 +28,32 @@ xset m 4 0 # mouse
 xset dpms 720 720 720
 
 # startup programs {{{1
-type unclutter>/dev/null && unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
-artha &
-pactl set-source-mute @DEFAULT_SOURCE@ 1
-feh --no-fehbg --bg-fill "$(xdg-user-dir PICTURES)"/current.*
-dunst &
-xcompmgr &
+# X only programs
+type unclutter>/dev/null && \  # removes cursor from screen after a set itme
+    unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
+pgrep artha || artha &  # offline dictionary
+feh --no-fehbg --bg-fill ~/pix/current*
+dunst | sed s/^/dunst: / &  # notification server
+xcompmgr &  # compositor
 xss-lock -n 'bright -i -5' -l lock &
 redshift -l 23.5:78.5 &
+# display agnostic programs
+pactl set-source-mute @DEFAULT_SOURCE@ 1
 [ ! -s "$XDG_LIB_HOME"/mpd/pid ] && mpd
-pgrep mpdscribble || mpdscribble --conf /home/vn36/.local/lib/private/lastfm.conf &
-eval "$(ssh-agent -s)"
+pgrep mpdscribble || \
+    mpdscribble --conf "$HOME"/.local/lib/private/lastfm.conf &
+pgrep ssh-agent || eval "$(ssh-agent -s)"
 
 # window manager {{{1
 while xsetroot -name "$(bar.sh)"; do
     # synchronize dwmblocks with the time
-    sleep $((60-$(date +%S))) &
-	echo $! > "${XDG_STATE_HOME:-$HOME/.cache}"/sleep_pid
+    sleep $((60-$(date +%s)%60)) &
+	echo $! > "$XDG_STATE_HOME"/sleep_pid
 	wait $!
 done &
 
 while true; do
 	# Log to a file
-	env XDG_CURRENT_DESKTOP=dwm dwm >"$HOME"/.local/var/log/dwm.log || exit
+	env XDG_CURRENT_DESKTOP=dwm dwm >"$XDG_LOG_HOME"/dwm.log || exit
 done
-
-# misc stuff i dont use now/dont work {{{1
-# if [ "${XDG_VTNR}" -eq 1 ]; then
-#   betterlockscreen -l blur
-# fi
-# relaunch DWM if the binary changes, otherwise bail
-# csum=""
-# new_csum=$(sha1sum $(which dwm))
-# while true
-# do
-# 	if [ "$csum" != "$new_csum" ]
-# 	then
-# 		csum=$new_csum
-# 		dwm &>$HOME/.local/var/log/dwm.log
-# 	else
-# 		exit 0
-# 	fi
-# 	new_csum=$(sha1sum $(which dwm))
-# 	sleep 0.5
-# done
 

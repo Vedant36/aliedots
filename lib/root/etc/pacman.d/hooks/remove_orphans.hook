@@ -1,0 +1,8 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = *
+[Action]
+Description = Looking for orphans...
+When = PostTransaction
+Exec = /usr/bin/sh -c "/usr/bin/pacman -Qtd || /usr/bin/echo '=> None found.'"

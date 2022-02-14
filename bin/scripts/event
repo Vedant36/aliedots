@@ -5,10 +5,12 @@
 ##     <date>=<summary>=<body>
 ## Crontab:
 ##     */5 * * * * "$HOME"/.local/bin/scripts/event
+## Dependencies: notify-send(and a notification server)
 ## Update 1.2 on 2022-02-13:
 ##   - changed function name to field
 ##   - added now_time optimisation
 ##   - changed if branch to a `&&`
+## TODO: add way to set period of reminder(eg. for daily reminders)
 
 # when calling from crontab, need to export this to make notify-send work
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"

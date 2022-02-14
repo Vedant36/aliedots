@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Iosevka Nerd Font:pixelsize=13:antialias=true:autohint=true";
+static char *font = "Iosevka Mayukai CodePro:pixelsize=13:antialias=true:autohint=true";
 static int borderpx = 0;
 
 /*
@@ -94,35 +94,35 @@ char *termname = "st-256color";
 unsigned int tabspaces = 4;
 
 /* bg opacity */
-float alpha = 0.9;
+float alpha = 0.8;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"#15161E",
-	"#f7768e",
-	"#9ece6a",
-	"#e0af68",
-	"#7aa2f7",
-	"#bb9af7",
-	"#7dcfff",
-	"#a9b1d6",
+	"#282d3e",
+	"#F07178",
+	"#C3E88D",
+	"#FFCB6B",
+	"#82AAFF",
+	"#C792EA",
+	"#89DDFF",
+	"#D0D0D0",
 
 	/* 8 bright colors */
-	"#414868",
-	"#f7768e",
-	"#9ece6a",
-	"#e0af68",
-	"#7aa2f7",
-	"#bb9af7",
-	"#7dcfff",
-	"#c0caf5",
+	"#434758",
+	"#FF8B92",
+	"#DDFFA7",
+	"#FFE585",
+	"#9CC4FF",
+	"#E1ACFF",
+	"#A3F7FF",
+	"#FFFFFF",
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#1a1b26",
-	"#c0caf5",
+	"#282d3e",
+	"#959DCB",
 };
 
 
@@ -142,7 +142,7 @@ static unsigned int defaultrcs = 256;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 6;
 
 /*
  * Default columns and rows numbers

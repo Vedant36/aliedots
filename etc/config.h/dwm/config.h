@@ -5,22 +5,25 @@ static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int snap      = 4;       /* snap pixel */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Iosevka Term:size=10" };
-static const char dmenufont[]       = "Iosevka Term:size=10";
-/* static const char col_gray3[]       = "#545c7e"; */
+static const char *fonts[]          = { "Iosevka Mayukai CodePro:size=10" };
+static const char dmenufont[]       = "Iosevka Mayukai CodePro:size=10";
 static const char col_gray1[]       = "#1a1b26";
 static const char col_gray2[]       = "#1f2335";
 static const char col_gray3[]       = "#a9b1d6";
 static const char col_gray4[]       = "#c0caf5";
 static const char col_cyan[]        = "#33467c";
+/* static const char col_gray1[]       = "#434758"; */
+/* static const char col_gray2[]       = "#434758"; */
+/* static const char col_gray3[]       = "#D0D0D0"; */
+/* static const char col_gray4[]       = "#FFFFFF"; */
+/* static const char col_cyan[]        = "#282d3e"; */
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
-// tagging {{{1
-static const char *tags[] = { "", "", "", "", "", "ﭮ", "", "﫸" };
+static const char *tags[] = { "", "", "爵", "", "", "ﭮ", "", "﫸" };
 
 // Rules {{{1
 static const Rule rules[] = {
@@ -70,42 +73,41 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *desktop_dmenucmd[] = { "dmenu_drun", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1,
 	"-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "20", "-p", "$", NULL };
 static const char *termcmd[] = { "kitty", "-1", NULL };
-static const char *fmcmd[] = { "kitty", "-1", "ranger", NULL };
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+2%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-2%",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
 
 static Key keys[] = {
 	/* modifier                     key               function        argument */
 	{ MODKEY,                       XK_p,             spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          {.v = desktop_dmenucmd } },
-	{ MODKEY|ControlMask,           XK_q,             spawn,          SHCMD("echo -e 'poweroff\nreboot' | dmenu -l 20 | sh") },
+    /* Terminal {{{2 */
 	{ MODKEY,                       XK_q,             spawn,          {.v = termcmd} },
 	{ MODKEY,                       XK_r,             spawn,          SHCMD("st -n ncmpcpp ncmpcpp") },
-	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
-
-	{ MODKEY,                       XK_a,             spawn,          {.v = fmcmd} },
+	{ MODKEY,                       XK_a,             spawn,          SHCMD("st ranger") },
+	{ MODKEY,                       XK_v,             spawn,          SHCMD("kitty -1 nvim") },
+	{ MODKEY|ControlMask,           XK_p,             spawn,          SHCMD("st pulsemixer") },
+	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD("st bc -l") },
+	{ MODKEY,                       XK_F1,            spawn,          SHCMD("st nvim ~/.local/opt/dwm/config.h") },
 	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && kitty -1 nvim todo.md data.md sites.md") },
+    /* Custom Scripts {{{2 */
+	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
 	{ MODKEY|ShiftMask,             XK_s,             spawn,          SHCMD("state") },
 	{ MODKEY|ShiftMask,             XK_m,             spawn,          SHCMD("dmenu_mount") },
-	{ MODKEY,                       XK_v,             spawn,          SHCMD("kitty -1 nvim") },
-	{ MODKEY|ShiftMask,             XK_p,             spawn,          SHCMD("kitty -1 pulseaudio") },
-	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD("kitty -1 bc -l") },
 	{ MODKEY,                       XK_z,             spawn,          SHCMD("boomer") },
-
+	{ MODKEY,                       XK_F2,            spawn,          SHCMD("bright -i -5") },
+	{ MODKEY,                       XK_F3,            spawn,          SHCMD("bright -i 5") },
+    /* Dwmblocks {{{2 */
 	{ MODKEY,                       XK_b,             togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_b,             spawn,          SHCMD("pkill sleep") },
-
+    /* Browsers {{{2 */
+	{ MODKEY,                       XK_w,             spawn,          SHCMD("qutebrowser") },
+	{ MODKEY|ShiftMask,             XK_w,             spawn,          SHCMD("/usr/bin/qutebrowser --temp-basedir --set content.private_browsing true --config-py $XDG_CONFIG_HOME/qutebrowser/config.py") },
+	{ MODKEY|ControlMask,           XK_w,             spawn,          SHCMD("tor-browser") },
+	{ MODKEY|ShiftMask|ControlMask, XK_w,             spawn,          SHCMD("surf \"$(cat $XDG_CONFIG_HOME/qutebrowser/quickmarks | cut -d\" \" -f2- | dmenu)\"") },
+    /* Other Apps {{{2 */
 	{ MODKEY,                       XK_d,             spawn,          SHCMD("discord") },
 	{ MODKEY,                       XK_e,             spawn,          SHCMD("lock") },
 	{ MODKEY|ShiftMask,             XK_e,             spawn,          SHCMD("systemctl suspend") },
 	{ MODKEY|ControlMask,           XK_e,             spawn,          SHCMD("event") },
-
-	{ MODKEY,                       XK_w,             spawn,          SHCMD("qutebrowser") },
-	{ MODKEY|ShiftMask,             XK_w,             spawn,          SHCMD("/usr/bin/qutebrowser --temp-basedir --set content.private_browsing true --config-py $XDG_CONFIG_HOME/qutebrowser/config.py") },
-	{ MODKEY|ControlMask,           XK_w,             spawn,          SHCMD("torb") },
-	{ MODKEY|ShiftMask|ControlMask, XK_w,             spawn,          SHCMD("surf \"$(dmenu)\"") },
-
+    /* Stack/Layout {{{2 */
 	{ MODKEY,                       XK_j,             focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,             focusstack,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,             incnmaster,     {.i = +1 } },
@@ -115,24 +117,19 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return,        zoom,           {0} },
 	{ MODKEY,                       XK_Tab,           view,           {0} },
 
-	{ MODKEY,                       XK_x,             killclient,     {0} },
-	{ MODKEY|ShiftMask,             XK_x,             spawn,          SHCMD("xdotool getwindowfocus windowkill") },
-	{ MODKEY|ControlMask,           XK_x,             spawn,          SHCMD("pkill -x Xorg") },
-	{ MODKEY|ShiftMask|ControlMask, XK_x,             spawn,          SHCMD("xkill") },
-
 	{ MODKEY,                       XK_t,             setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,             setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,             setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,         setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,         togglefloating, {0} },
-
+    /* Gaps(smh) {{{2 */
 	{ MODKEY,                       XK_minus,         setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,         setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,         setgaps,        {.i = 0  } },
-
-	{ MODKEY,                       XK_bracketleft,   spawn,          {.v = downvol } },
-	{ MODKEY,                       XK_bracketright,  spawn,          {.v = upvol   } },
-	{ MODKEY,                       XK_backslash,     spawn,          {.v = mutevol } },
+    /* Audio/Music {{{2 */
+	{ MODKEY,                       XK_bracketleft,   spawn,          SHCMD("pactl set-sink-volume 0 +2%") },
+	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("pactl set-sink-volume 0 -2%") },
+	{ MODKEY,                       XK_backslash,     spawn,          SHCMD("pactl set-sink-mute 0 toggle") },
 	{ MODKEY|ShiftMask,             XK_bracketleft,   spawn,          SHCMD("mpc -q volume -2") },
 	{ MODKEY|ShiftMask,             XK_bracketright,  spawn,          SHCMD("mpc -q volume +2") },
 	{ MODKEY|ShiftMask,             XK_backslash,     spawn,          SHCMD("mpc -q toggle") },
@@ -140,12 +137,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period,        spawn,          SHCMD("mpc -q next") },
 	{ MODKEY,                       XK_comma,         spawn,          SHCMD("mpc -q seek -1") },
 	{ MODKEY,                       XK_period,        spawn,          SHCMD("mpc -q seek +1") },
-
-	{ MODKEY,                       XK_F1,            spawn,          SHCMD("kitty -1 nvim ~/.local/opt/dwm/config.h") },
-	{ MODKEY,                       XK_F2,            spawn,          SHCMD("bright -i -5") },
-	{ MODKEY,                       XK_F3,            spawn,          SHCMD("bright -i 5") },
-
+    /* Switching between tags {{{2 */
+    // toggles with the last layout
 	{ MODKEY,                       XK_0,             view,           {.ui = ~0 } },
+    // Views all tags
 	{ MODKEY|ShiftMask,             XK_0,             tag,            {.ui = ~0 } },
 	TAGKEYS(                        XK_grave,                  0)
 	TAGKEYS(                        XK_1,                      1)
@@ -156,11 +151,19 @@ static Key keys[] = {
 	TAGKEYS(                        XK_6,                      6)
 	TAGKEYS(                        XK_7,                      7)
 	TAGKEYS(                        XK_8,                      8)
+    /* Closing and quiting {{{2 */
+	{ MODKEY,                       XK_x,             killclient,     {0} },
+	{ MODKEY|ShiftMask,             XK_x,             spawn,          SHCMD("xdotool getwindowfocus windowkill") },
+	{ MODKEY|ControlMask,           XK_x,             spawn,          SHCMD("pkill -x Xorg") },
+	{ MODKEY|ShiftMask|ControlMask, XK_x,             spawn,          SHCMD("xkill") },
+	{ MODKEY|ControlMask,           XK_q,             spawn,          SHCMD("echo -e 'poweroff\nreboot' | dmenu -l 20 | sh") },
 	{ MODKEY|ShiftMask,             XK_q,             quit,           {0} },
+    /* Screenshotting {{{2 */
 	{ 0,                            XK_Print,         spawn,          SHCMD("scrot \"$HOME/pix/screenshots/ss_%F_%H-%M-%S.png\"") },
 	{ ShiftMask,                    XK_Print,         spawn,          SHCMD("scrot -s -f \"$HOME/pix/screenshots/ss_%F_%H-%M-%S.png\"") },
 	{ ControlMask,                  XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -e 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
 	{ ControlMask|ShiftMask,        XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -s -f -e 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
+    /* }}}2 */
 };
 
 // button definitions {{{1

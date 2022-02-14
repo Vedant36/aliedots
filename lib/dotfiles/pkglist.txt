@@ -43,6 +43,7 @@ fortune-mod
 fzf
 gcr
 gdb
+ghc
 git
 gnu-netcat
 gnuchess
@@ -91,6 +92,7 @@ mpv
 mupdf
 mupdf-tools
 mypaint
+nasm
 ncdu
 ncmpcpp
 neofetch
@@ -125,6 +127,7 @@ python-pandas
 python-pillow
 python-pip
 python-pycodestyle
+python-pylint
 python-wheel
 qemu
 qutebrowser
@@ -180,6 +183,7 @@ xorg-xfontsel
 xorg-xinit
 xsel
 xss-lock
+xtrlock
 yt-dlp
 zathura
 zathura-djvu

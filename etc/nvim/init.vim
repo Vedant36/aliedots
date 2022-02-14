@@ -66,17 +66,21 @@ nn <silent> <m-9> :bl<cr>
 nn <silent> <tab> :bn<cr>
 nn <silent> <s-tab> :bp<cr>
 " quick move between most used files {{{2
-nn <silent> <leader>ox :e $XDG_CONFIG_HOME/X11/xinitrc<cr>
-nn <silent> <leader>on :e $XDG_CONFIG_HOME/nvim/init.vim<cr>
-nn <silent> <leader>oa :e $XDG_CONFIG_HOME/zsh/.zshaliases<cr>
-nn <silent> <leader>oe :e $XDG_CONFIG_HOME/zsh/.zshenv<cr>
-nn <silent> <leader>of :e $XDG_CONFIG_HOME/zsh/.zshfunctions<cr>
-nn <silent> <leader>oz :e $XDG_CONFIG_HOME/zsh/.zshrc<cr>
-nn <silent> <leader>od :e $HOME/.local/opt/dwm/config.h<cr>
-nn <silent> <leader>oh :e $HISTFILE<cr>
-nn <silent> <leader>ol :e ~/dox/CPlus/c/begin.c<cr>
-nn <silent> <leader>oy :e ~/dox/zmisc_code/02-Plat.py<cr>
-nn <silent> <leader>ov :e ~/dl/dotfiles/dot.sh<cr>
+nn <silent>gtv  :e $XDG_CONFIG_HOME/nvim/init.vim<cr>
+nn <silent>gtx  :e $XDG_CONFIG_HOME/X11/xinitrc<cr>
+nn <silent>gtX  :e $XDG_CONFIG_HOME/X11/Xresources<cr>
+nn <silent>gtz  :e $XDG_CONFIG_HOME/zsh/.zshrc<cr>
+nn <silent>gtza :e $XDG_CONFIG_HOME/zsh/.zshaliases<cr>
+nn <silent>gtze :e $XDG_CONFIG_HOME/zsh/.zshenv<cr>
+nn <silent>gtzf :e $XDG_CONFIG_HOME/zsh/.zshfunctions<cr>
+nn <silent>gtt  :e $XDG_CONFIG_HOME/kitty/kitty.conf<cr>
+nn <silent>gtd  :e $HOME/.local/opt/dwm/config.h<cr>
+nn <silent>gte  :e $HOME/.local/lib/dotfiles/event.log<cr>
+nn <silent>gts  :e $HOME/.local/lib/dotfiles/setup.bash<cr>
+nn <silent>gth  :e $HISTFILE<cr>
+nn <silent>gty  :e ~/dox/zmisc_code/02-Plat.py<cr>
+" Note: there is currently no way to automatically set global marks
+"   so I have to overwrite gt(goto is nice to remember and who uses tabs?)
 " window management {{{2
 nn <C-j> <C-w>w
 nn <C-k> <C-w>W
@@ -131,7 +135,8 @@ nn <expr><silent> cot ':<c-u>set tabstop='.v:count1.'<cr>'
 " autocmd {{{1
 augroup _custom
     au bufwritepost $XDG_CONFIG_HOME/X11/Xresources silent !xrdb $XDG_CONFIG_HOME/X11/Xresources
-    au bufwritepost config.h :make PREFIX=$HOME/.local clean install
+    " manually edit PREFIX in config.mk
+    au bufwritepost config.h :make clean install
     au TermOpen * startinsert
     " au TextChanged,TextChangedI <buffer> silent write
     au TextYankPost * silent! lua require'vim.highlight'.on_yank({higroup='Visual', timeout=50, on_visual=false})
@@ -257,7 +262,9 @@ endfunction
 au filetype diff,gitcommit setl foldmethod=expr foldexpr=DiffFold(v:lnum)
 function! DiffFold(lnum)
   let line = getline(a:lnum)
-  if line =~ '^diff '
+  if line =~ '^$'
+      return 0
+  elseif line =~ '^diff '
     return ">1"
   elseif line =~ '^@@'
     return ">2"
@@ -376,6 +383,7 @@ try
 	Plug 'tpope/vim-unimpaired'
 	Plug 'google/vim-searchindex'
 
+    Plug 'folke/zen-mode.nvim'
 	Plug 'samirettali/shebang.nvim'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
@@ -528,10 +536,12 @@ EOF
 " nvim-lint config {{{2
 lua << EOF
 require('lint').linters_by_ft = {
-	-- python = {'pycodestyle'}
+    -- markdown = {'vale'},
+    -- haskell = {'hlint'},
     sh = {'shellcheck'},
     bash = {'shellcheck'},
-    python = {'pylint'}
+	-- python = {'pycodestyle'},
+    python = {'pylint'},
 }
 EOF
 " Gitsigns {{{2

@@ -6,11 +6,10 @@
 # Inspired by unwrap un ayekat/dotfiles
 # Written by Vedant36
 
-set -x
 cmd="$1"
 full_path="$(which "$1")"
 shift
-for i in $(which -as "$cmd" | grep -Po '((.* -> )*)?\K.*');do
+for i in $(which -a "$cmd");do
     if [ "$i" = "$full_path" ]; then
         continue
     else

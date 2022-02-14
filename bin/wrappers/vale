@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+exec unwrap vale --config "$XDG_CONFIG_HOME"/vale.ini $@

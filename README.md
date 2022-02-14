@@ -55,15 +55,23 @@ $HOME
     * symbolic links might be better
     * a PKGBUILD is a possibility will not be cross distro compatible
 - the user and the(currently non-existent) root crontab will be available in lib/dotfiles/crontab
-- if a different XDG_CONFIG_HOME is used, the variable at the line matching `^set preview_script ` in $XDG_CONFIG_HOME/ranger/rc.conf needs to be changed
+- if a different XDG_CONFIG_HOME is used, the variable at the line matching `^set preview_script` in $XDG_CONFIG_HOME/ranger/rc.conf needs to be changed
+
+## Tags that can be found in comments throughout the scripts and config
+- `TODO` for procrastinating
+= `REWRITE` if the script/other file needs rewriting later
+- `IDEA` or `IDEAS`
+- `SYSTEM_DEPENDENT` for code that might not work on other systems
+- `Dependencies`
+- `Temporary` for changes that might be reverted later
 
 ## problematic files
 - share/ranger/bookmarks: only first line changes pretty quickly(mark ' is saved there)
 - share/zsh/.zsh_history: very long and has unneccesarily long diffs when commiting
 - etc/MediaHuman/YouTube to MP3.conf: same as above except this file is much less useful
-- etc/environment.d/*: don't know a way to transfer them to shell variables
 
 ## TODO
+- etc/environment.d/*: don't know a way to transfer them to shell variables
 - complete setup.sh
 - find better way to profile shell scripts than adding the snippet from .zshrc and passind the resulting file to sort-timings.zsh
 

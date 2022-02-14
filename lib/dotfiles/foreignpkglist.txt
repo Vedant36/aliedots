@@ -10,6 +10,7 @@ chromium-widevine
 colorpicker
 ebtables
 find-the-command
+hlint-bin
 htmlq-bin
 i3lock-color-git
 icecat-bin
@@ -31,7 +32,6 @@ soulseekqt
 spotify
 task-spooler
 tor-browser
-veusz
 windscribe-cli
 xcursor-breeze
 xorg-meta

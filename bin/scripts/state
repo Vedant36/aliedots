@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/env sh
 ## script to manage on and off states for things like:
 ## xcape, dunst, dpms, redshift, unclutter, wallpaper, wifi, xcompmgr, xss-lock
 ## Dependencies: coreutils(nl), procps-ng(pgrep), dmenu
@@ -19,8 +19,13 @@ wallpaper
 dpms $(xset q | grep -Po 'DPMS is \K\S+')
 xcompmgr $(pgrep xcompmgr | wc -l)
 redshift $(pgrep redshift | wc -l)
-dunst
+dunst(Reload)
+mpdscribble(Reload)
 " | nl -s" " -v0 -w1 | dmenu -l 20)
+[ -z "$choice" ] && exit 0
+
+# Temporary: logging to know the perfect order
+echo "$choice" >> "$XDG_STATE_HOME"/state.log
 
 toggle(){
 	cmd="$1"; shift
@@ -32,38 +37,40 @@ toggle(){
 }
 
 case $choice in
-	xcape*)
+	*xcape*)
 		toggle xcape -e 'Control_L=Escape' -t 100 ;;
-	wifi*)
+	*wifi*)
 		if nmcli device status | grep "^$INTERFACE.* connected"; then
 			nmcli device disconnect "$INTERFACE"
 		else
 			nmcli device connect "$INTERFACE"
 		fi
 		;;
-	xss-lock*)
+	*xss-lock*)
 		toggle xss-lock -n 'bright -i -5' -l lock ;;
-	unclutter*)
+	*unclutter*)
 		toggle unclutter --timeout 2 --jitter 40 \
 					--start-hidden --ignore-scrolling & ;;
-	wallpaper)
-		feh --no-fehbg --bg-fill "$(xdg-user-dir PICTURES)"/current.*
-		;;
-	dpms*)
+	*wallpaper)
+		feh --no-fehbg --bg-fill ~/pix/current* ;;
+	*dpms*)
 		if [ "$(xset q | grep -Po 'DPMS is \K\S+')" = "Enabled" ]; then
 			xset -dpms
 		else
 			xset +dpms
 		fi
 		;;
-	xcompmgr*)
+	*xcompmgr*)
 		toggle xcompmgr
 		;;
-	redshift*)
+	*redshift*)
 		toggle redshift -l 23.5:78.5 & ;;
-	dunst)
+	*dunst*)
 		# Reload
 		pkill dunst && dunst & ;;
+	*mpdscribble*)
+		pkill mpdscribble && \
+			mpdscribble --conf "$HOME"/.local/lib/private/lastfm.conf & ;;
 	*)
 		exit 1 ;;
 esac
