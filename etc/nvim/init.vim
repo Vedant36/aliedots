@@ -443,7 +443,6 @@ let g:material_terminal_italics = 1
 let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
 let g:material_style = "palenight"
-au BufRead,BufWritePost <buffer> lua require('lint').try_lint()
 colorscheme palenight
 " keybinds {{{2
 nn <silent><c-p> :Telescope git_files<cr>
@@ -482,7 +481,7 @@ let g:lightline = {
 	" \ 'subseparator': { 'left': '', 'right': '' },
 " Telescope config {{{2
 lua <<EOF
-require('telescope').setup{
+check'telescope'.setup{
   defaults = {
     -- ...
   },
@@ -504,7 +503,7 @@ require('telescope').setup{
 EOF
 " colorizer config {{{2
 lua <<EOF
-require 'colorizer'.setup ({
+check'colorizer'.setup ({
 	-- '*';
 	-- '!markdown';
 }, {
@@ -522,7 +521,7 @@ require 'colorizer'.setup ({
 EOF
 " treesitter highlighting config {{{2
 lua << EOF
-require'nvim-treesitter.configs'.setup {
+check'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,              -- false will disable the whole extension
   },
@@ -535,7 +534,7 @@ require'nvim-treesitter.configs'.setup {
 EOF
 " nvim-lint config {{{2
 lua << EOF
-require('lint').linters_by_ft = {
+check'lint'.linters_by_ft = {
     -- markdown = {'vale'},
     -- haskell = {'hlint'},
     sh = {'shellcheck'},
@@ -543,11 +542,14 @@ require('lint').linters_by_ft = {
 	-- python = {'pycodestyle'},
     python = {'pylint'},
 }
+if check'lint'.ok then
+  vim.cmd [[ au BufRead,BufWritePost <buffer> lua require('lint').try_lint() ]]
+end
 EOF
 " Gitsigns {{{2
 " TODO: switch to vim.keymap.set when 0.7 releases(preferably when switched to init.lua)
 lua <<EOF
-require('gitsigns').setup {
+check'gitsigns'.setup {
   signcolumn = false,
   numhl      = true,
   on_attach = function(bufnr)
