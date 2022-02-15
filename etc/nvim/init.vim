@@ -67,7 +67,7 @@ nn <silent> <tab> :bn<cr>
 nn <silent> <s-tab> :bp<cr>
 " quick move between most used files {{{2
 nn <silent>gtv  :e $XDG_CONFIG_HOME/nvim/init.vim<cr>
-nn <silent>gtx  :e $XDG_CONFIG_HOME/X11/xinitrc<cr>
+nn <silent>gtx  :e $XDG_CONFIG_HOME/sx/sxrc<cr>
 nn <silent>gtX  :e $XDG_CONFIG_HOME/X11/Xresources<cr>
 nn <silent>gtz  :e $XDG_CONFIG_HOME/zsh/.zshrc<cr>
 nn <silent>gtza :e $XDG_CONFIG_HOME/zsh/.zshaliases<cr>
@@ -193,7 +193,7 @@ augroup end
 " Custom plugins {{{1
 " trim trailing whitespace {{{2
 function! <SID>StripTrailingWhitespaces()
-  if !&binary && &filetype != 'diff'
+  if !&binary && &filetype != 'diff' && &filetype != 'gitcommit'
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
@@ -350,7 +350,7 @@ endfunction
 " }}}1
 " useful commands {{{1
 " from https://vim.fandom.com/wiki/Load_multiple_files_with_a_single_command
-com! -complete=file -nargs=* Edit silent! exec "!vim --servername " . v:servername . " --remote-silent <args>"
+" com! -complete=file -nargs=* Edit silent! exec "!vim --servername " . v:servername . " --remote-silent <args>"
 " :w !diff % - " to view diff with the original file
 " :w ++enc=utf-8 " to write to file in utf-8 to solve CONVERSION ERROR
 " plugins {{{1
@@ -364,9 +364,6 @@ try
 	Plug 'github/copilot.vim', { 'on': 'Copilot' }
 	" Plug 'tom-doerr/vim_codex', { 'on': 'CreateCompletionLine' }
 	" Plug 'jessfraz/openai.vim' " for completions from openai
-	" Plug 'nvim-lualine/lualine.nvim'
-	Plug 'kyazdani42/nvim-web-devicons'
-	" Plug 'https://github.com/shaunsingh/nord.nvim'
 
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
@@ -383,6 +380,8 @@ try
 	Plug 'tpope/vim-unimpaired'
 	Plug 'google/vim-searchindex'
 
+    " lua plugins
+	" Plug 'nvim-lualine/lualine.nvim'
     Plug 'folke/zen-mode.nvim'
 	Plug 'samirettali/shebang.nvim'
 	Plug 'nvim-lua/plenary.nvim'
@@ -391,6 +390,8 @@ try
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'p00f/nvim-ts-rainbow'
 	Plug 'mfussenegger/nvim-lint'
+	Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'windwp/nvim-autopairs'
 
 	" Themes {{{2
 	Plug 'drewtempelmeyer/palenight.vim'
@@ -399,6 +400,8 @@ try
 	Plug 'sainnhe/sonokai'
 	Plug 'glepnir/zephyr-nvim'
 
+    Plug 'tomasr/molokai'
+    Plug 'crusoexia/vim-monokai'
     Plug 'marko-cerovac/material.nvim'
     Plug 'RRethy/nvim-base16'
     Plug 'JoosepAlviste/palenightfall.nvim'
@@ -584,4 +587,11 @@ check'gitsigns'.setup {
 }
 EOF
 " }}}2
+" nvim-autopairs {{{2
+lua<<EOF
+require('nvim-autopairs').setup{
+    ignored_next_char = "[^$]"
+    -- ignored_next_char = "[%w%.%$]"
+}
+EOF
 " }}}1

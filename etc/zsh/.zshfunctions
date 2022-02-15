@@ -30,19 +30,35 @@ es(){(
 	popd
 )}
 # px: package manager wrapper(s) {{{1
-pex() {
-	pak=$( ($PM -Qem && $PM -Qen) \
-        | fzf -n1 --preview "$PM -Qi {1}" --height 100% \
-        | cut -d" " -f1 \
-        | tr '\n' ' ')
-	[ "$pak" ] && eval "$PM -Rcns ${pak% *}"
-}
 px() {
-	pak=$( ($PM -Qm && $PM -Qn) \
-        | fzf -n1 --preview "$PM -Qi {1}" --height 100% \
-        | cut -d" " -f1 \
-        | tr '\n' ' ')
-	[ "$pak" ] && eval "$PM -Rcns ${pak% *}"
+    set -x
+    # Checking against /var/pacman/lib because it is the only file alongside
+    #   /var/log/pacman.log that changes every time a package change happens
+    # The check is: if either the file size is zero, file doesn't exist or it
+    #   is older than /var/pacman/lib, update the file
+    if [ "$1" = "-a" ]; then
+        # show all packages
+        file="$XDG_CACHE_HOME"/fullpackagelist
+        {[ ! -s $file ] || [ /var/pacman/lib -nt "$file" ]} \
+            && {$PM -Qqm && $PM -Qqn}>"$file"
+        cat $file
+    else
+        # show only explicitly installed packages
+        pkglist="$HOME"/.local/lib/dotfiles/pkglist.txt
+        {[ ! -s $pkglist ] || [ /var/pacman/lib -nt "$pkglist" ]} \
+            && $PM -Qqen>"$pkglist"
+        fpkglist="$HOME"/.local/lib/dotfiles/foreignpkglist.txt
+        {[ ! -s $fpkglist ] || [ /var/pacman/lib -nt "$fpkglist" ]} \
+            && $PM -Qqem>"$fpkglist"
+        cat "$fpkglist" "$pkglist"
+    fi  | fzf -m --preview "$PM -Si {}" --height 100% \
+        | tr '\n' ' ' \
+        | read -r pak
+	# pak=$(echo $list | fzf -n1 --preview "$PM -Si {}" --height 100%)
+    # formatted=$(echo $pak | tr '\n' ' ')
+    echo ">${pak}<"
+    # $pak is in the form pkg1\npkg2\npkg3 and we need to tr '\n' ' ' it
+	[ "$pak" ] && eval "$PM -Rcns $pak"
 }
 # extract directory {{{1
 exdir(){
@@ -62,11 +78,14 @@ So rest assured that I will not be in the way of your gaming and socializing exp
 
 I see you play mini games? I am a mini-game aficionado, so I would be happy to assist you in games. Platonically of course, unless you (like many others) change your mind on that. I look forward to our future together (as friends of course.)
 EOF
+        echo "\e[1;91mFATAL ERROR: Can't touch woman\e[m"
         return 1
     elif [[ "$1" == "grass" ]]; then
         echo "GO OUT AND TOUCH SOME FUCKING GRASS"
+        echo "\e[1;91mFATAL ERROR: Can't touch grass\e[m"
+        return 1
     else
-        $(which -ap touch) $@
+        command touch $@
     fi
 }
 # # troll rm version {{{1

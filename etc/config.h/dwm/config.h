@@ -78,8 +78,8 @@ static Key keys[] = {
 	/* modifier                     key               function        argument */
 	{ MODKEY,                       XK_p,             spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          {.v = desktop_dmenucmd } },
-    /* Terminal {{{2 */
 	{ MODKEY,                       XK_q,             spawn,          {.v = termcmd} },
+    /* Terminal {{{2 */
 	{ MODKEY,                       XK_r,             spawn,          SHCMD("st -n ncmpcpp ncmpcpp") },
 	{ MODKEY,                       XK_a,             spawn,          SHCMD("st ranger") },
 	{ MODKEY,                       XK_v,             spawn,          SHCMD("kitty -1 nvim") },
@@ -127,8 +127,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_equal,         setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,         setgaps,        {.i = 0  } },
     /* Audio/Music {{{2 */
-	{ MODKEY,                       XK_bracketleft,   spawn,          SHCMD("pactl set-sink-volume 0 +2%") },
-	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("pactl set-sink-volume 0 -2%") },
+	{ MODKEY,                       XK_bracketleft,   spawn,          SHCMD("pactl set-sink-volume 0 -2%") },
+	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("pactl set-sink-volume 0 +2%") },
 	{ MODKEY,                       XK_backslash,     spawn,          SHCMD("pactl set-sink-mute 0 toggle") },
 	{ MODKEY|ShiftMask,             XK_bracketleft,   spawn,          SHCMD("mpc -q volume -2") },
 	{ MODKEY|ShiftMask,             XK_bracketright,  spawn,          SHCMD("mpc -q volume +2") },

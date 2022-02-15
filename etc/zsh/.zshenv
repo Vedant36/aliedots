@@ -26,15 +26,14 @@ export BIN_HOME="$HOME/.local/bin"
 export XDG_CONFIG_HOME="$HOME/.local/etc"
 export XDG_CACHE_HOME="$HOME/.local/var/cache"
 export XDG_DATA_HOME="$HOME/.local/share"
-
 export XDG_STATE_HOME="$HOME/.local/var/lib"
+# Non-standard
 export XDG_LIB_HOME="$HOME/.local/lib"
 export XDG_LOG_HOME="$HOME/.local/var/log"
 # ~ Cleanup {{{1
 export _FASD_DATA="$XDG_DATA_HOME"/fasd
 mkdir -p "$XDG_DATA_HOME/wine/default"
 export WINEPREFIX="$XDG_DATA_HOME/wine/default"
-export CALCHISTFILE="$XDG_DATA_HOME/calc_histfile"
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo

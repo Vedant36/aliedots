@@ -1,0 +1,3 @@
+#!/bin/sh -
+[ -s "$XDG_CONFIG_HOME/wgetrc" ] && WGETRC="$XDG_CONFIG_HOME/wgetrc"
+exec env unwrap wget --hsts-file="$XDG_CACHE_HOME/wget-hsts" "$@"

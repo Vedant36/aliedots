@@ -4,14 +4,18 @@ alias ls='exa'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 # imp {{{1
-# alias ad='git --git-dir=$HOME/dox/aliedots --work-tree=$HOME'
 alias sudo='doas'
 alias sudoedit='doas nvim'
+alias se='doas nvim'
 alias pls='doas'
+alias g=git
+alias ga='git add'
+alias gs='git status'
+alias gc='git commit'
 alias gh='git add . && git commit -a && git push'
 alias linedo="xargs -d '\n' -I {}"
 alias ah='ad commit -a && ad push'
-alias l='exa --icons -alhgF'
+alias l='exa --icons -alhgF --group-directories-first'
 alias lg='exa -x --icons --git --group-directories-first'
 alias v=nvim
 alias y='ipython --autocall=2 --nosep'

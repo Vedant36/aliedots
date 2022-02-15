@@ -56,7 +56,7 @@ case $1 in
         no-root
         ce "Checking repositories in opt..."
         pushd "$PREFIX"/opt
-            for i in dmenu dwm slock st surf tabbed;do
+            for i in dmenu dwm scroll slock st surf tabbed;do
                 pushd "$i" && git status -su no && popd
             done
         popd
@@ -68,8 +68,8 @@ case $1 in
         ce "Linking the script itself"
         ln -sf "$PREFIX"/lib/dotfiles/setup.bash "$PREFIX"/bin/
         ce "Linking zshenv and pam_environment(for environment variables..."
-        ln -sf "$PREFIX"/lib/dotfiles/.pam_environment ~
-        ln -sf "$PREFIX"/lib/dotfiles/.zshenv ~
+        ln -sf "$PREFIX"/lib/dotfiles/pam_environment ~/.pam_environment
+        ln -sf "$PREFIX"/lib/dotfiles/zshenv ~/.zshenv
 
         # Crontab {{{3
         ce "Installing crontab..."
@@ -88,6 +88,7 @@ case $1 in
         pushd opt
             ic https://git.suckless.org/dwm
             ic https://git.suckless.org/st
+            ic https://git.suckless.org/scroll
             # [ -d patches ] && pushd dwm && patch -Np1 <../patches/dwm/*
             ce "Patch dwm and st manually until patches get version controlled"
             ic https://git.suckless.org/dmenu
@@ -136,20 +137,30 @@ case $1 in
 
     update) # {{{2
         no-root
+        pushd "$PREFIX"
+
+        ce "Updating Package lists..."
+        pacman -Qqen>lib/dotfiles/pkglist.txt
+        pacman -Qqem>lib/dotfiles/foreignpkglist.txt
+
         ce "Updating zsh plugins..."
-        pushd "$PREFIX"/share/zsh/plugins
+        pushd share/zsh/plugins
             pushd fast-syntax-highlighting && git pull && popd
             pushd zsh-autosuggestions && git pull && popd
         popd
 
+        ce "Updating ranger plugins..."
+        pushd etc/ranger/plugins/ranger_devicons/ && git pull && popd
+
         ce "Updating mpv scripts..."
-        mkdir -p "$PREFIX"/etc/mpv/scripts && pushd "$PREFIX"/etc/mpv/scripts
-            curl -O 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_client_osc.lua'
-            curl -O 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_server.lua'
-            curl -O 'https://codeberg.org/jouni/mpv_sponsorblock_minimal/raw/branch/master/sponsorblock_minimal.lua'
-            curl -O 'https://raw.githubusercontent.com/jonniek/mpv-filenavigator/master/navigator.lua'
+        mkdir -p etc/mpv/scripts && pushd etc/mpv/scripts
+            curl -OL 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_client_osc.lua'
+            curl -OL 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_server.lua'
+            curl -OL 'https://codeberg.org/jouni/mpv_sponsorblock_minimal/raw/branch/master/sponsorblock_minimal.lua'
+            curl -OL 'https://raw.githubusercontent.com/jonniek/mpv-filenavigator/master/navigator.lua'
         popd
 
+        popd
         ce "Manually update locally compiled tools for now"
         ce "Don't forget to update your system using your package manager"
         ;;

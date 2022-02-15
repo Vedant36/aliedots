@@ -1,18 +1,11 @@
 # Vedant36's .zshrc
 # shellcheck disable=SC1091,SC2148
-[[ "$-" != *i* ]] && return # if aint runnin interactively dont do anything
+[[ "$-" != *i* ]] && exit # if aint runnin interactively dont do anything
 # if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 # 	# exec 'startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1 2>&1 | tee ~/.local/var/log/x.log'
 # 	exec startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1
 # fi
-# # timing code to be used with sort_timings.zsh {{{1
-# zmodload zsh/datetime
-# setopt PROMPT_SUBST
-# PS4='+$EPOCHREALTIME %N:%i> '
-# logfile=$(mktemp /tmp/zsh_profile.XXXXXXXX)
-# echo "Logging to $logfile"
-# exec 3>&2 2>$logfile
-# setopt XTRACE
+zmodload zsh/zprof
 # run-help {{{1
 unalias run-help
 autoload run-help
@@ -24,7 +17,20 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zmodload zsh/complist
 _comp_options+=(globdots)
-compinit -u
+# next 13 lines' source: https://htr3n.github.io/2018/07/faster-zsh/
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit -u
+else
+	compinit -C
+fi
+# Execute code in the background to not affect the current session
+{
+  # Compile zcompdump, if modified, to increase startup speed.
+  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+  if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+    zcompile "$zcompdump"
+  fi
+} &!
 autoload -U bashcompinit && bashcompinit # support bash-completions
 # vi mode {{{1
 bindkey -v
@@ -98,19 +104,19 @@ setopt hist_ignore_space    # remove command line from history list when first c
 setopt hist_reduce_blanks   # remove superflous blanks
 setopt hist_no_store
 
-# sourcings(7) fastest to slowest {{{1
-eval "$(fasd --init posix-alias zsh-hook)" # minimal(without tab completion)
-# eval "$(fasd --init auto)"
+# # sourcings(7) fastest to slowest {{{1
+# eval "$(fasd --init posix-alias zsh-hook)" # minimal(without tab completion)
+# # eval "$(fasd --init auto)"
 . "${ZDOTDIR:-~}"/.zshaliases
 . "${ZDOTDIR:-~}"/.zshfunctions
-. /usr/share/doc/find-the-command/ftc.zsh quiet
+# . /usr/share/doc/find-the-command/ftc.zsh quiet
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
-export ZSH_PLUGINS="$XDG_DATA_HOME"/zsh/plugins
-# url: https://github.com/zsh-users/zsh-autosuggestions
-. "$ZSH_PLUGINS"/zsh-autosuggestions/zsh-autosuggestions.zsh
-# url: https://github.com/zdharma/fast-syntax-highlighting
-. "$ZSH_PLUGINS"/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null # colors commands and hex color codes
+# export ZSH_PLUGINS="$XDG_DATA_HOME"/zsh/plugins
+# # url: https://github.com/zsh-users/zsh-autosuggestions
+# . "$ZSH_PLUGINS"/zsh-autosuggestions/zsh-autosuggestions.zsh
+# # url: https://github.com/zdharma/fast-syntax-highlighting
+# . "$ZSH_PLUGINS"/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null # colors commands and hex color codes
 # setopts {{{1
 autoload colors && colors
 setopt auto_cd              # type bare dir name and cd to it e.g. `$ /`
@@ -130,26 +136,24 @@ typeset -U PATH             # remove duplicate paths
 # prompt {{{1
 # TODO: custom git info script(put on rprompt)
 preexec() {
-  ini=$(($(date +%s%0N)/1000000))
+  start_time=$(date +%s)
   echo -ne '\e[5 q'
 }
 
 precmd() {
-  if [ $ini ]; then
-    now=$(($(date +%s%0N)/1000000))
-    total=$((now-ini))"ms"
-    unset ini now
+  if [ $start_time ]; then
+    end_time=$(date +%s)
+    diff=$((end_time-start_time))
+    time="$(date -u -d @"$diff" +'%-Mm%-Ss')"
+    unset start_time end_time diff
   fi
-  export RPROMPT="%(?..%F{red}[%?]%f) %F{cyan}${total}%f"
-  unset total
+  export RPROMPT="%(?..%F{red}[%?] %f)%F{cyan}${time}%f"
+  unset time
 }
 #export PROMPT=" %F{green}[%F{magenta}%n@%M%f %F{blue}%~%f%F{green}]$%f "
 #echo -e "\033[0;32m$(fortune -a | sed 's/^/\t/')\033[0m"
 export PROMPT=" %F{magenta}%~%f%F{blue}>%f "
 
-# # from :2,7 {{{1
-# unsetopt XTRACE
-# exec 2>&3 3>&-
 # to print {{{1
 lsmod | grep uvcvideo
 echo -n # to avoid getting the error return value

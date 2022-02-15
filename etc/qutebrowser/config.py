@@ -91,6 +91,7 @@ c.url.searchengines = {
     'gh': 'https://github.com/{}',
     'gl': 'https://github.com/Vedant36/{}',
     'glot': 'https://glot.io/new/{}',
+    'manga': 'https://mangareader.to/search?keyword={}',
     'm2': 'https://man.archlinux.org/{}',  # arch man pages
     'm': 'https://linux.die.net/man/1/{}',  # man pages
     'mw': 'https://www.merriam-webster.com/dictionary/{}',
@@ -165,10 +166,11 @@ c.bindings.commands["normal"] = {
     "l":  "tab-next",
     "ya": "yank inline '<a href={url}>{title}</a>'",
     "yw": "fake-key <ctrl-a>",
+    ";n": "hint links spawn -d st nvim {hint-url}",
 
     # Binds to open current url in mpv/upmpv
-    ",M": "hint links spawn -d mpv {hint-url}",
     ",m": "spawn -d mpv {url}",
+    ",M": "hint links spawn -d mpv {hint-url}",
     "M":  "spawn -d umpv {url}",
     "2M": "spawn -d umpv -p 2 {url}",
     ";M": "hint --rapid links spawn umpv {hint-url}",
