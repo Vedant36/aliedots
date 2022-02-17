@@ -1,0 +1,5 @@
+[Nicotine]
+title=Nicotine
+description=Nicotine+ Soulseek client
+ports=2234/tcp
+

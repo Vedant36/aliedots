@@ -5,19 +5,12 @@
 # systemd-environment-d-generator(8) loads the environment.d(5) files from the
 # right place (this solves the chicken-or-egg problem for setting
 # XDG_CONFIG_HOME).
-# Written by: ayekat
-# Modified by: Vedant36
 
 # Ugly workaround for Debian (as they ship an ancient version of PAM):
 HOME                  DEFAULT="/home/@{PAM_USER}" OVERRIDE="@{HOME}"
 
 # Set XDG_CONFIG_HOME:
 XDG_CONFIG_HOME       DEFAULT="${HOME}/.local/etc"
-
-# set others because i have no idea how to import env variables to shell
-XDG_CACHE_HOME        DEFAULT="${HOME}/.local/var/cache"
-XDG_DATA_HOME         DEFAULT="${HOME}/.local/share"
-XDG_STATE_HOME        DEFAULT="${HOME}/.local/var/lib"
 
 # Set ZDOTDIR:
 ZDOTDIR               DEFAULT="${XDG_CONFIG_HOME}/zsh"

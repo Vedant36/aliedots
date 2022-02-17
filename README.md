@@ -5,46 +5,45 @@ To use the dots, on a fresh installation of Arch linux(not tested on other distr
 cd ~
 git clone https://github.com/Vedant36/aliedots .local
 ```
-link .local/lib/dotfiles/{.zshenv,.pam_environment} to home
+link .local/lib/dotfiles/pam_environment to home
 ```
-ln -s ~/.local/lib/dotfiles/{.zshenv,.pam_environment} .
+ln -s ~/.local/lib/dotfiles/pam_environment ~/.pam_environment
 ```
-to get a wallpaper, link an image to ~/pix/current.* (check ~/.local/etc/X11/xinitrc to change this)
+to get a wallpaper, link an image to `~/pix/current*` (check ~/.local/etc/X11/xinitrc to change this)
 
 execute the xinit wrapper `x` on the shell to start the x server
 
 ## Home Directory structure
 
-```markdown
+```
 $HOME
-	.local/
-		bin/                <!-- added to PATH -->
-			experimental/   <!-- for unused and experiemental scripts -->
-			scripts/        <!-- added to PATH -->
-			wrappers/       <!-- added to PATH -->
-		etc/                <!-- XDG_CONFIG_HOME -->
-		lib/                <!-- XDG_LIB_HOME(non-standard) -->
-			dotfiles/       <!-- archived files or for the install script -->
-			python/         <!-- contains startup.py -->
-			root/           <!-- root files -->
-		mnt/                <!-- directory for mtp(android mounting) -->
-		opt/                <!-- contains local repos like dwm, dmenu, etc -->
-		share/              <!-- XDG_DATA_HOME -->
-		tmp/                <!-- for temporary files and unused xdg-user-dirs(etc/user-dirs.dirs) -->
-			desktop/
-			public/
-			templates/
-		var/
-			cache/          <!-- XDG_CACHE_HOME -->
-			lib/            <!-- XDG_STATE_HOME(non-standard) -->
-			log/            <!-- XDG_LOG_HOME(non-standard) -->
-	dl/
-	dox/
-	melum/
-	pix/
-	vids/
-	.pam_environment
-	.zshenv
+|---.local/
+|   |---bin/                <!-- added to PATH -->
+|   |   |---experimental/   <!-- for unused and experiemental scripts -->
+|   |   |---scripts/        <!-- added to PATH -->
+|   |   |---wrappers/       <!-- added to PATH -->
+|   |---etc/                <!-- XDG_CONFIG_HOME -->
+|   |---lib/                <!-- XDG_LIB_HOME(non-standard) -->
+|   |   |---dotfiles/       <!-- archived files or for the install script -->
+|   |   |---python/         <!-- contains startup.py -->
+|   |   |---root/           <!-- root files -->
+|   |---mnt/                <!-- directory for mtp(android mounting) -->
+|   |---opt/                <!-- contains local repos like dwm, dmenu, etc -->
+|   |---share/              <!-- XDG_DATA_HOME -->
+|   |---tmp/                <!-- for temporary files and unused xdg-user-dirs(etc/user-dirs.dirs) -->
+|   |   |---desktop/
+|   |   |---public/
+|   |   |---templates/
+|   |---var/
+|   |   |---cache/          <!-- XDG_CACHE_HOME -->
+|   |   |---lib/            <!-- XDG_STATE_HOME(non-standard) -->
+|   |   |---log/            <!-- XDG_LOG_HOME(non-standard) -->
+|---dl/
+|---dox/
+|---melum/
+|---pix/
+|---vids/
+|---.pam_environment
 ```
 
 ## Notes
@@ -59,7 +58,8 @@ $HOME
 
 ## Tags that can be found in comments throughout the scripts and config
 - `TODO` for procrastinating
-= `REWRITE` if the script/other file needs rewriting later
+- `REWRITE` if the script/other file needs rewriting later
+- `Source` indicating the original source of a part of the script
 - `IDEA` or `IDEAS`
 - `SYSTEM_DEPENDENT` for code that might not work on other systems
 - `Dependencies`

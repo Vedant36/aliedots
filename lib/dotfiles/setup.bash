@@ -7,6 +7,7 @@
 #   github and an unneccesary use of pushd and popd
 # This script is meant to be idempotent(can be run multiple times without side
 # effects)
+# TODOO: add way to update/install updated repos/plugins for specific sections like zsh, qutebrowser, suckless, etc
 # TODO: need to prob add the script to backup to my external harddrive
 ## Update 0.3 on 2022-02-14:
 ##   - added wrappers for pushd and popd
@@ -81,6 +82,7 @@ case $1 in
                 pushd share/zsh/plugins
             ic https://github.com/zdharma-continuum/fast-syntax-highlighting
             ic https://github.com/zsh-users/zsh-autosuggestions
+            ic https://github.com/skywind3000/z.lua
         popd
 
         # Suckless {{{3
@@ -147,6 +149,7 @@ case $1 in
         pushd share/zsh/plugins
             pushd fast-syntax-highlighting && git pull && popd
             pushd zsh-autosuggestions && git pull && popd
+            pushd z.lua && git pull && popd
         popd
 
         ce "Updating ranger plugins..."

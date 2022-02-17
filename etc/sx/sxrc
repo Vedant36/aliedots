@@ -29,31 +29,35 @@ xset dpms 720 720 720
 
 # startup programs {{{1
 # X only programs
-type unclutter>/dev/null && \  # removes cursor from screen after a set itme
-    unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
-pgrep artha || artha &  # offline dictionary
-feh --no-fehbg --bg-fill ~/pix/current*
-dunst | sed s/^/dunst: / &  # notification server
-xcompmgr &  # compositor
+# TODO: write wrapper to check if the command exists and log them with a prefix
+# removes cursor from screen after a set itme
+unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
+pgrep artha || artha &	# offline dictionary
+feh --no-fehbg --bg-fill ~/pix/current* &
+dunst &	 # notification server
+xcompmgr &	# compositor
 xss-lock -n 'bright -i -5' -l lock &
 redshift -l 23.5:78.5 &
 # display agnostic programs
 pactl set-source-mute @DEFAULT_SOURCE@ 1
 [ ! -s "$XDG_LIB_HOME"/mpd/pid ] && mpd
 pgrep mpdscribble || \
-    mpdscribble --conf "$HOME"/.local/lib/private/lastfm.conf &
-pgrep ssh-agent || eval "$(ssh-agent -s)"
+	mpdscribble --conf "$HOME"/.local/lib/private/lastfm.conf &
+# pgrep ssh-agent || eval "$(ssh-agent -s)"
 
 # window manager {{{1
-while xsetroot -name "$(bar.sh)"; do
-    # synchronize dwmblocks with the time
-    sleep $((60-$(date +%s)%60)) &
-	echo $! > "$XDG_STATE_HOME"/sleep_pid
-	wait $!
-done &
-
+# its in a loop so i can reload configuration by just killing dwm
+# and close X by doing pkill -x Xorg
+# TODO: write a better clean() function for trap to clean-up startup processes
+trap 'kill $bar' SIGKILL
 while true; do
-	# Log to a file
-	env XDG_CURRENT_DESKTOP=dwm dwm >"$XDG_LOG_HOME"/dwm.log || exit
+	while xsetroot -name "$(bar.sh)"; do
+		# synchronize dwmblocks with the time
+		sleep $((60-$(date +%s)%60)) &
+		echo $! > "$XDG_STATE_HOME"/sleep_pid
+		wait $!
+	done &
+	bar=$!
+	env XDG_CURRENT_DESKTOP=dwm ssh-agent dwm >"$XDG_LOG_HOME"/dwm.log || exit
 done
 

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+case $(file --brief --mime-type "$1") in
+    inode/directory)
+        exa -al "$1" ;;
+    image/*|video/*)
+        mediainfo "$1" ;;
+    *)
+        bat --color=always --style=numbers "$1" || file -b "$1" ;;
+esac

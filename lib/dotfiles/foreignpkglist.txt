@@ -27,7 +27,6 @@ shellcheck-bin
 simple-mtpfs
 soulseekqt
 spotify
-task-spooler
 tor-browser
 windscribe-cli
 xcursor-breeze

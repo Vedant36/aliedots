@@ -11,7 +11,6 @@ config.load_autoconfig(False)
 c.auto_save.session = True
 c.backend = 'webengine'
 c.completion.cmd_history_max_items = 1000
-c.completion.open_categories = ["searchengines", "history"]
 c.completion.shrink = True
 c.completion.use_best_match = True
 c.content.cookies.accept = 'no-3rdparty'

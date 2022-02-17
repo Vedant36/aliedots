@@ -70,12 +70,12 @@ nn <silent>gtv  :e $XDG_CONFIG_HOME/nvim/init.vim<cr>
 nn <silent>gtx  :e $XDG_CONFIG_HOME/sx/sxrc<cr>
 nn <silent>gtX  :e $XDG_CONFIG_HOME/X11/Xresources<cr>
 nn <silent>gtz  :e $XDG_CONFIG_HOME/zsh/.zshrc<cr>
-nn <silent>gtza :e $XDG_CONFIG_HOME/zsh/.zshaliases<cr>
-nn <silent>gtze :e $XDG_CONFIG_HOME/zsh/.zshenv<cr>
-nn <silent>gtzf :e $XDG_CONFIG_HOME/zsh/.zshfunctions<cr>
+nn <silent>gta :e $XDG_CONFIG_HOME/zsh/.zshaliases<cr>
+nn <silent>gte :e $XDG_CONFIG_HOME/zsh/.zshenv<cr>
+nn <silent>gtf :e $XDG_CONFIG_HOME/zsh/.zshfunctions<cr>
 nn <silent>gtt  :e $XDG_CONFIG_HOME/kitty/kitty.conf<cr>
 nn <silent>gtd  :e $HOME/.local/opt/dwm/config.h<cr>
-nn <silent>gte  :e $HOME/.local/lib/dotfiles/event.log<cr>
+nn <silent>gtE  :e $HOME/.local/lib/dotfiles/event.log<cr>
 nn <silent>gts  :e $HOME/.local/lib/dotfiles/setup.bash<cr>
 nn <silent>gth  :e $HISTFILE<cr>
 nn <silent>gty  :e ~/dox/zmisc_code/02-Plat.py<cr>
@@ -542,6 +542,7 @@ check'lint'.linters_by_ft = {
     -- haskell = {'hlint'},
     sh = {'shellcheck'},
     bash = {'shellcheck'},
+    zsh = {'shellcheck'},
 	-- python = {'pycodestyle'},
     python = {'pylint'},
 }
@@ -590,8 +591,7 @@ EOF
 " nvim-autopairs {{{2
 lua<<EOF
 require('nvim-autopairs').setup{
-    ignored_next_char = "[^$]"
-    -- ignored_next_char = "[%w%.%$]"
+    ignored_next_char = "[%w%.%$]"
 }
 EOF
 " }}}1

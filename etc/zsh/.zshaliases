@@ -1,29 +1,52 @@
 # Vedant36's zsh aliases
 # color hmmmmmm {{{1
-alias ls='exa'
+alias ls='ls --color-auto'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
-# imp {{{1
-alias sudo='doas'
-alias sudoedit='doas nvim'
-alias se='doas nvim'
-alias pls='doas'
-alias g=git
-alias ga='git add'
-alias gs='git status'
-alias gc='git commit'
-alias gh='git add . && git commit -a && git push'
+alias ip='ip --color=auto'
+# Generic {{{1
+alias cp='cp -i'
+alias mv='mv -i'
+alias watch='watch '
+alias doas='doas '
 alias linedo="xargs -d '\n' -I {}"
-alias ah='ad commit -a && ad push'
-alias l='exa --icons -alhgF --group-directories-first'
-alias lg='exa -x --icons --git --group-directories-first'
-alias v=nvim
 alias y='ipython --autocall=2 --nosep'
 # Note: replace startx with `exec startx` if wanting to exit shell after logout. hmmm security
-alias x='startx |& tee ~/.local/var/log/x.log'
+alias x='sx 2>&1 >~/.local/var/log/x.log'
 alias path='echo $PATH | tr -s ":" "\n"'
 alias pn='ping 1.1.1.1'
 alias python='env PYTHONSTARTUP=$XDG_LIB_HOME/python/startup.py python'
+alias cc='gcc -std=c11 -pedantic -Wall -Wextra -Wbad-function-cast -Wcast-align -Wcast-qual -Wconversion -Wfloat-equal -Wformat=2 -Wlogical-op -Wmissing-declarations -Wmissing-prototypes -Wpointer-arith -Wshadow -Wstrict-prototypes -Wwrite-strings'
+# ls {{{1
+alias l='ls -alhgF --group-directories-first'
+alias ll='ls -lh --time-style=long-iso'
+alias ls='ls -A --color=auto --quoting-style=literal'
+alias lt='ll -t'
+# doas {{{1
+alias sudo='doas'
+alias sudoedit='doas nvim'
+alias se='doas nvim'
+# contractions {{{1
+alias e=echo
+alias s=doas
+alias m=man
+alias f=find
+alias v=nvim
+alias c='bat --paging=never'
+alias n=neofetch
+# Git {{{1
+alias g='git'
+alias ga='git add'
+alias gc='git commit'
+alias gcv='git commit -v'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gp='git push'
+alias gpf='git push -f'
+alias gr='git restore'
+alias grs='git restore --staged'
+alias gs='git status'
+alias gh='git add . && git commit && git push'
 # Global {{{1
 alias -g noerr='2>/dev/null'
 alias -g A='| awk'
@@ -66,17 +89,18 @@ alias cl='cd ~/dox/CPlus'
 alias ct='cd ~/dox/textfiles/'
 alias cy='cd ~/dox/Python'
 alias cx='cd ~/dox'
+alias cz='cd $ZDOTDIR'
 # vim editing files {{{1
-vv(){ nvim $1_$(date '+%F_%H%M%S'); }
+vv(){ nvim "$1"_"$(date '+%F_%H%M%S')"; }
 alias vh='nvim $HISTFILE'
 alias vb='nvim $HOME/.local/bin'
 alias vz='nvim ${ZDOTDIR-$HOME}/.zshrc'
 alias vn='nvim $XDG_CONFIG_HOME/nvim/init.vim'
 alias va='nvim ${ZDOTDIR-$HOME}/.zshaliases'
 alias ve='nvim ${ZDOTDIR-$HOME}/.zshenv'
-alias vf='nvim ${ZDOTDIR-$HOME}/.zshfunctions'
-alias vx='nvim $XDG_CONFIG_HOME/X11/xinitrc'
+alias vf='nvim $ZDOTDIR/.zshfunctions'
+alias vx='nvim $XDG_CONFIG_HOME/sx/sxrc'
 # windscribe {{{1
 alias ws='windscribe'
-alias wa='sudo windscribe start && windscribe connect'
-alias wb='windscribe disconnect && sudo windscribe stop'
+alias wa='doas windscribe start && windscribe connect'
+alias wb='windscribe disconnect && doas windscribe stop'

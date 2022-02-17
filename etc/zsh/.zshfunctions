@@ -31,33 +31,25 @@ es(){(
 )}
 # px: package manager wrapper(s) {{{1
 px() {
-    set -x
-    # Checking against /var/pacman/lib because it is the only file alongside
+    # Checking against /var/lib/pacman because it is the only file alongside
     #   /var/log/pacman.log that changes every time a package change happens
     # The check is: if either the file size is zero, file doesn't exist or it
-    #   is older than /var/pacman/lib, update the file
+    #   is older than /var/lib/pacman , update the file
     if [ "$1" = "-a" ]; then
         # show all packages
         file="$XDG_CACHE_HOME"/fullpackagelist
-        {[ ! -s $file ] || [ /var/pacman/lib -nt "$file" ]} \
-            && {$PM -Qqm && $PM -Qqn}>"$file"
+        [ $file -ot /var/lib/pacman/ ] && {$PM -Qqm && $PM -Qqn}>"$file"
         cat $file
     else
         # show only explicitly installed packages
         pkglist="$HOME"/.local/lib/dotfiles/pkglist.txt
-        {[ ! -s $pkglist ] || [ /var/pacman/lib -nt "$pkglist" ]} \
-            && $PM -Qqen>"$pkglist"
+        [ $pkglist -ot /var/lib/pacman/ ] && $PM -Qqen>"$pkglist"
         fpkglist="$HOME"/.local/lib/dotfiles/foreignpkglist.txt
-        {[ ! -s $fpkglist ] || [ /var/pacman/lib -nt "$fpkglist" ]} \
-            && $PM -Qqem>"$fpkglist"
+        [ $fpkglist -ot /var/lib/pacman/ ] && $PM -Qqem>"$fpkglist"
         cat "$fpkglist" "$pkglist"
-    fi  | fzf -m --preview "$PM -Si {}" --height 100% \
+    fi  | fzf -m --preview "$PM -Qi {}" --height 100% \
         | tr '\n' ' ' \
         | read -r pak
-	# pak=$(echo $list | fzf -n1 --preview "$PM -Si {}" --height 100%)
-    # formatted=$(echo $pak | tr '\n' ' ')
-    echo ">${pak}<"
-    # $pak is in the form pkg1\npkg2\npkg3 and we need to tr '\n' ' ' it
 	[ "$pak" ] && eval "$PM -Rcns $pak"
 }
 # extract directory {{{1

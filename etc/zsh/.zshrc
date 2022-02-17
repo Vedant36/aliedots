@@ -1,11 +1,6 @@
+#!/usr/bin/env
 # Vedant36's .zshrc
 # shellcheck disable=SC1091,SC2148
-[[ "$-" != *i* ]] && exit # if aint runnin interactively dont do anything
-# if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-# 	# exec 'startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1 2>&1 | tee ~/.local/var/log/x.log'
-# 	exec startx "$XDG_CONFIG_HOME/X11/xinitrc" -- "$XDG_CONFIG_HOME/X11/xserverrc" vt1
-# fi
-zmodload zsh/zprof
 # run-help {{{1
 unalias run-help
 autoload run-help
@@ -112,11 +107,19 @@ setopt hist_no_store
 # . /usr/share/doc/find-the-command/ftc.zsh quiet
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
-# export ZSH_PLUGINS="$XDG_DATA_HOME"/zsh/plugins
-# # url: https://github.com/zsh-users/zsh-autosuggestions
-# . "$ZSH_PLUGINS"/zsh-autosuggestions/zsh-autosuggestions.zsh
-# # url: https://github.com/zdharma/fast-syntax-highlighting
-# . "$ZSH_PLUGINS"/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null # colors commands and hex color codes
+export ZSH_PLUGINS="$XDG_DATA_HOME"/zsh/plugins
+# Source: https://github.com/zsh-users/zsh-autosuggestions
+. "$ZSH_PLUGINS"/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Source: https://github.com/zdharma/fast-syntax-highlighting
+. "$ZSH_PLUGINS"/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null # colors commands and hex color codes
+# Source: https://github.com/skywind3000/z.lua
+export _ZL_DATA="$XDG_DATA_HOME"/zlua _ZL_ROOT_MARKERS=".git,.svn,.hg,.root,package.json"
+eval "$(lua "$ZSH_PLUGINS"/z.lua/z.lua --init zsh enhanced once fzf)"
+alias zi='z -i'      # cd with interactive selection
+alias zc='z -c'      # restrict matches to subdirs of $PWD
+alias zf='z -I'      # use fzf to select in multiple matches
+alias zb='z -b'      # quickly cd to the parent directory
+alias zt='z -t'      # cd to most recently accessed dir
 # setopts {{{1
 autoload colors && colors
 setopt auto_cd              # type bare dir name and cd to it e.g. `$ /`

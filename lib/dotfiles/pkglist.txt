@@ -2,7 +2,6 @@ acpi
 acpid
 amdvlk
 android-tools
-arandr
 aria2
 aspell
 base
@@ -19,7 +18,6 @@ cronie
 discord
 dmidecode
 dnsmasq
-dpkg
 drawing
 dunst
 edk2-ovmf
@@ -63,7 +61,6 @@ linux-lts
 linux-zen
 linux-zen-headers
 lostfiles
-lshw
 ltrace
 lua
 lutris
@@ -71,7 +68,6 @@ macchanger
 man-db
 man-pages
 mediainfo
-mesa-utils
 mlocate
 moreutils
 mpc
@@ -83,15 +79,17 @@ nasm
 ncdu
 ncmpcpp
 neofetch
+net-tools
 nethogs
 networkmanager
+nicotine+
+nmap
 nnn
 noto-fonts-emoji
 ntfs-3g
 ntp
 nuspell
 opendoas
-otf-ipafont
 p7zip
 pacman-contrib
 pdfjs
@@ -162,5 +160,6 @@ yt-dlp
 zathura
 zathura-djvu
 zathura-pdf-mupdf
+zathura-ps
 zip
 zsh
