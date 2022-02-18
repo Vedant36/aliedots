@@ -16,7 +16,7 @@ local options={
     tabstop=4, softtabstop=4, shiftwidth=4, cindent=true, joinspaces=false,
     -- textwidth=79,
     inccommand="split",
-    colorcolumn="80,160", cursorline=true,
+    colorcolumn="80,160",
     scrolloff=5,
     showmatch=true, matchtime=1,
     list=true,

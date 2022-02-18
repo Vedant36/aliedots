@@ -50,6 +50,8 @@ map('n', '<m-6>', '<Plug>lightline#bufferline#go(7)')
 map('n', '<m-7>', '<Plug>lightline#bufferline#go(8)')
 map('n', '<m-8>', '<Plug>lightline#bufferline#go(9)')
 map('n', '<m-9>', '<Cmd>bl<cr>')
+map('n', '<tab>', '<Cmd>bn<cr>')
+map('n', '<s-tab>', '<Cmd>bp<cr>')
 map('n', 'L', '<Cmd>bn<cr>')
 map('n', 'H', '<Cmd>bp<cr>')
 -- window management {{{1
@@ -63,7 +65,7 @@ map('n', '<m-h>', '<Cmd>vertical resize -2<cr>')
 map('n', '<m-l>', '<Cmd>vertical resize +2<cr>')
 -- quick move between most used files {{{1
 -- TODO: convert this to an operator because vim doesn't wait for keys after gt
-map('n', 'gtv', '<Cmd>e $XDG_CONFIG_HOME/nvim/init.vim<cr>')
+map('n', 'gtv', '<Cmd>e $XDG_CONFIG_HOME/nvim/init.lua<cr>')
 map('n', 'gtx', '<Cmd>e $XDG_CONFIG_HOME/sx/sxrc<cr>')
 map('n', 'gtX', '<Cmd>e $XDG_CONFIG_HOME/X11/Xresources<cr>')
 map('n', 'gtz', '<Cmd>e $XDG_CONFIG_HOME/zsh/.zshrc<cr>')
@@ -79,30 +81,6 @@ map('n', 'gth', '<Cmd>e $HISTFILE<cr>')
 map('n', 'gty', '<Cmd>e ~/dox/zmisc_code/02-Plat.py<cr>')
 -- Note: there is currently no way to automatically set global marks
 --   so I have to overwrite gt(goto is nice to remember and who uses tabs?)
--- sus {{{1
-local sussy=[[
-⠀⠀⠀⡯⡯⡾⠝⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢊⠘⡮⣣⠪⠢⡑⡌
-⠀⠀⠀⠟⠝⠈⠀⠀⠀⠡⠀⠠⢈⠠⢐⢠⢂⢔⣐⢄⡂⢔⠀⡁⢉⠸⢨⢑⠕⡌
-⠀⠀⡀⠁⠀⠀⠀⡀⢂⠡⠈⡔⣕⢮⣳⢯⣿⣻⣟⣯⣯⢷⣫⣆⡂⠀⠀⢐⠑⡌
-⢀⠠⠐⠈⠀⢀⢂⠢⡂⠕⡁⣝⢮⣳⢽⡽⣾⣻⣿⣯⡯⣟⣞⢾⢜⢆⠀⡀⠀⠪
-⣬⠂⠀⠀⢀⢂⢪⠨⢂⠥⣺⡪⣗⢗⣽⢽⡯⣿⣽⣷⢿⡽⡾⡽⣝⢎⠀⠀⠀⢡
-⣿⠀⠀⠀⢂⠢⢂⢥⢱⡹⣪⢞⡵⣻⡪⡯⡯⣟⡾⣿⣻⡽⣯⡻⣪⠧⠑⠀⠁⢐
-⣿⠀⠀⠀⠢⢑⠠⠑⠕⡝⡎⡗⡝⡎⣞⢽⡹⣕⢯⢻⠹⡹⢚⠝⡷⡽⡨⠀⠀⢔
-⣿⡯⠀⢈⠈⢄⠂⠂⠐⠀⠌⠠⢑⠱⡱⡱⡑⢔⠁⠀⡀⠐⠐⠐⡡⡹⣪⠀⠀⢘
-⣿⣽⠀⡀⡊⠀⠐⠨⠈⡁⠂⢈⠠⡱⡽⣷⡑⠁⠠⠑⠀⢉⢇⣤⢘⣪⢽⠀⢌⢎
-⣿⢾⠀⢌⠌⠀⡁⠢⠂⠐⡀⠀⢀⢳⢽⣽⡺⣨⢄⣑⢉⢃⢭⡲⣕⡭⣹⠠⢐⢗
-⣿⡗⠀⠢⠡⡱⡸⣔⢵⢱⢸⠈⠀⡪⣳⣳⢹⢜⡵⣱⢱⡱⣳⡹⣵⣻⢔⢅⢬⡷
-⣷⡇⡂⠡⡑⢕⢕⠕⡑⠡⢂⢊⢐⢕⡝⡮⡧⡳⣝⢴⡐⣁⠃⡫⡒⣕⢏⡮⣷⡟
-⣷⣻⣅⠑⢌⠢⠁⢐⠠⠑⡐⠐⠌⡪⠮⡫⠪⡪⡪⣺⢸⠰⠡⠠⠐⢱⠨⡪⡪⡰
-⣯⢷⣟⣇⡂⡂⡌⡀⠀⠁⡂⠅⠂⠀⡑⡄⢇⠇⢝⡨⡠⡁⢐⠠⢀⢪⡐⡜⡪⡊
-⣿⢽⡾⢹⡄⠕⡅⢇⠂⠑⣴⡬⣬⣬⣆⢮⣦⣷⣵⣷⡗⢃⢮⠱⡸⢰⢱⢸⢨⢌
-⣯⢯⣟⠸⣳⡅⠜⠔⡌⡐⠈⠻⠟⣿⢿⣿⣿⠿⡻⣃⠢⣱⡳⡱⡩⢢⠣⡃⠢⠁
-⡯⣟⣞⡇⡿⣽⡪⡘⡰⠨⢐⢀⠢⢢⢄⢤⣰⠼⡾⢕⢕⡵⣝⠎⢌⢪⠪⡘⡌⠀
-⡯⣳⠯⠚⢊⠡⡂⢂⠨⠊⠔⡑⠬⡸⣘⢬⢪⣪⡺⡼⣕⢯⢞⢕⢝⠎⢻⢼⣀⠀
-⠁⡂⠔⡁⡢⠣⢀⠢⠀⠅⠱⡐⡱⡘⡔⡕⡕⣲⡹⣎⡮⡏⡑⢜⢼⡱⢩⣗⣯⣟
-⢀⢂⢑⠀⡂⡃⠅⠊⢄⢑⠠⠑⢕⢕⢝⢮⢺⢕⢟⢮⢊⢢⢱⢄⠃⣇⣞⢞⣞⢾
-⢀⠢⡑⡀⢂⢊⠠⠁⡂⡐⠀⠅⡈⠪⠪⠪⠣⠫⠑⡁⢔⠕⣜⣜⢦⡰⡎⡯⡾⡽]]
-map('n', '<c-s>', '<Cmd>lua print(sussy)<cr>')
 -- categorized but less so misc {{{1
 map('n', ',', 'za')
 map('x', ',', 'zf')

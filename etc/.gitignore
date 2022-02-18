@@ -13,9 +13,11 @@ mpv/scripts/
 !ncmpcpp/bindings
 !ncmpcpp/config
 !neofetch/config.conf
-!nvim/**
-nvim/spell
-nvim/.netrwhist
+!nvim/init.lua
+!nvim/lua/**
+nvim/lua/*
+!nvim/lua/vn36
+!nvim/syntax/log.vim
 !pulse/daemon.conf
 !qutebrowser/greasemonkey/*
 !qutebrowser/config.py

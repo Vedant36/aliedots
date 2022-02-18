@@ -38,6 +38,7 @@ vim.cmd [[
     au Filetype json,yaml setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
     au Filetype help,man nn <buffer><silent> q ZQ<cr>
     au Filetype lua nn <buffer><silent> <F7> :sp \| term time lua %:S<cr>
+    au Filetype lua se sw=2
     au Filetype man set nobuflisted
     au Filetype netrw setl bufhidden=wipe
     au Filetype netrw nmap <buffer>l <cr>2j | nmap <buffer>h -
