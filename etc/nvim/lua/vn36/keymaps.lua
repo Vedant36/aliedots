@@ -64,23 +64,34 @@ map('n', '<m-k>', '<Cmd>resize +2<cr>')
 map('n', '<m-h>', '<Cmd>vertical resize -2<cr>')
 map('n', '<m-l>', '<Cmd>vertical resize +2<cr>')
 -- quick move between most used files {{{1
--- TODO: convert this to an operator because vim doesn't wait for keys after gt
-map('n', 'gtv', '<Cmd>e $XDG_CONFIG_HOME/nvim/init.lua<cr>')
-map('n', 'gtx', '<Cmd>e $XDG_CONFIG_HOME/sx/sxrc<cr>')
-map('n', 'gtX', '<Cmd>e $XDG_CONFIG_HOME/X11/Xresources<cr>')
-map('n', 'gtz', '<Cmd>e $XDG_CONFIG_HOME/zsh/.zshrc<cr>')
-map('n', 'gta', '<Cmd>e $XDG_CONFIG_HOME/zsh/.zshaliases<cr>')
-map('n', 'gte', '<Cmd>e $XDG_CONFIG_HOME/zsh/.zshenv<cr>')
-map('n', 'gtf', '<Cmd>e $XDG_CONFIG_HOME/zsh/.zshfunctions<cr>')
-map('n', 'gtt', '<Cmd>e $XDG_CONFIG_HOME/kitty/kitty.conf<cr>')
-map('n', 'gtq', '<Cmd>e $XDG_CONFIG_HOME/qutebrowser/config.py<cr>')
-map('n', 'gtd', '<Cmd>e $HOME/.local/opt/dwm/config.h<cr>')
-map('n', 'gtE', '<Cmd>e $HOME/.local/lib/dotfiles/event.log<cr>')
-map('n', 'gts', '<Cmd>e $HOME/.local/lib/dotfiles/setup.bash<cr>')
-map('n', 'gth', '<Cmd>e $HISTFILE<cr>')
-map('n', 'gty', '<Cmd>e ~/dox/zmisc_code/02-Plat.py<cr>')
--- Note: there is currently no way to automatically set global marks
---   so I have to overwrite gt(goto is nice to remember and who uses tabs?)
+local bookmark_table = {
+  v = '$XDG_CONFIG_HOME/nvim/init.lua',
+  x = '$XDG_CONFIG_HOME/sx/sxrc',
+  X = '$XDG_CONFIG_HOME/X11/Xresources',
+  z = '$XDG_CONFIG_HOME/zsh/.zshrc',
+  a = '$XDG_CONFIG_HOME/zsh/.zshaliases',
+  e = '$XDG_CONFIG_HOME/zsh/.zshenv',
+  f = '$XDG_CONFIG_HOME/zsh/.zshfunctions',
+  t = '$XDG_CONFIG_HOME/kitty/kitty.conf',
+  q = '$XDG_CONFIG_HOME/qutebrowser/config.py',
+  d = '$HOME/.local/opt/dwm/config.h',
+  E = '$HOME/.local/lib/dotfiles/event.log',
+  s = '$HOME/.local/lib/dotfiles/setup.bash',
+  h = '$HISTFILE',
+  y = '~/dox/zmisc_code/02-Plat.py',
+}
+local function bookmark()
+  print("Available bookmarks: adeEfhqstvxXyz> ")
+  local str = vim.fn.getcharstr()
+  local val = bookmark_table[str]
+  if val == nil then
+    io.write("\rNo such bookmark exists yet!")
+  else
+    vim.cmd("edit "..val)
+  end
+  print(" ")
+end
+map('n', 'gt', bookmark)
 -- categorized but less so misc {{{1
 map('n', ',', 'za')
 map('x', ',', 'zf')
