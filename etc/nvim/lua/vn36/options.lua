@@ -45,6 +45,7 @@ o.shortmess:append"mrwsIcF" -- avoid longer messages and stuff
 o.completeopt:append"menuone"
 o.path:append"**"
 
+vim.g.loaded_python3_provider = 0
 vim.g.diff_translations=0
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 1

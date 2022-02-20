@@ -5,31 +5,34 @@ telescope.setup {
     -- ...
   },
   pickers = {
-    autocommands = { theme = "dropdown" },
-    buffers      = { theme = "dropdown" },
-    colorscheme  = { theme = "dropdown" },
-    find_files   = { theme = "dropdown" },
-    live_grep    = { theme = "dropdown" },
-    git_files    = { theme = "dropdown" },
-    help_tags    = { theme = "dropdown" },
-    man_pages    = { theme = "dropdown" },
-    oldfiles     = { theme = "dropdown" }
+    find_files   = {
+      find_command = { "fd", "--type", "f", "--strip-cwd-prefix" }
+    },
   },
   extensions = {
-    -- ...
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+    }
   }
 }
+require('telescope').load_extension('fzf')
 
 local builtin = require 'telescope.builtin'
-vim.keymap.set('n', '<leader>fa', builtin.autocommands)
-vim.keymap.set('n', '<leader>fb', builtin.buffers)
-vim.keymap.set('n', '<leader>fc', builtin.colorscheme)
--- vim.keymap.set('n', '<leader>ff', builtin.find_files)
-vim.keymap.set('n', '<leader>fg', builtin.live_grep)
-vim.keymap.set('n', '<leader>fh', builtin.help_tags)
-vim.keymap.set('n', '<leader>fm', builtin.man_pages)
-vim.keymap.set('n', '<c-p>', function()
-  local ok = builtin.git_files()
+local map = vim.keymap.set
+map('n', '<leader>fa', builtin.autocommands)
+map('n', '<leader>fb', builtin.buffers)
+map('n', '<leader>fc', builtin.colorscheme)
+map('n', '<leader>ff', builtin.find_files)
+map('n', '<leader>fg', builtin.live_grep)
+map('n', '<leader>fh', builtin.help_tags)
+map('n', '<leader>fm', function()
+  builtin.man_pages {sections={"1","2","3","4","5","6","7","8","9"}}
+end)
+map('n', '<leader>fo', builtin.oldfiles)
+map('n', '<leader>fs', function() builtin.grep_string {search = ''} end)
+map('n', '<c-p>', function()
+  local ok = pcall(builtin.git_files)
   if not ok then builtin.find_files() end
 end)
-vim.keymap.set('n', '<c-n>', builtin.oldfiles)

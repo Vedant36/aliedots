@@ -1,13 +1,21 @@
 -- Vedant36's nvim init.lua
 -- TODO: look into indent, smartindent, cindent after lsp setup
+-- FIXME: nvim-autopairs doesn't work properly
+
+-- impatient.nvim: improve startup {{{1
+local _, impatient = pcall(require, 'impatient')
+impatient.enable_profile() -- :LuaCacheProfile
+-- }}}1
 -- setup a default colorscheme too so i don't have to look at the horrible vim one
-vim.cmd [[ colorscheme slate ]]
-pcall(vim.cmd, "colorscheme palenight")
+if not pcall(vim.cmd, "colorscheme palenight") then
+  vim.cmd [[ colorscheme slate ]]
+end
 
 require 'vn36.autocmd'
 require 'vn36.options'
 require 'vn36.keymaps'
 require 'vn36.plugins'
+
 
 -- Custom plugins {{{1
 vim.cmd [[
@@ -138,35 +146,11 @@ let g:copilot_filetypes = {
 	\ 'vim': v:true,
 	\ }
 
-let g:lightline#bufferline#enable_nerdfont = 1
-let g:lightline#bufferline#show_number = 2
-" let g:lightline#bufferline#unicode_symbols = 1
-let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#min_buffer_count = 2
-" let g:lightline#bufferline#auto_hide = 400
-
-let bufferline = get(g:, 'bufferline', {})
-let bufferline.auto_hide = v:true
-
-let g:bufferline_rotate = 2
-
-let g:vim_markdown_folding_disabled = 0
-let g:vim_markdown_folding_style_pythonic = 1
-let g:markdown_fenced_languages = [ 'c++=cpp', 'viml=vim', 'bash=sh', 'ini=dosini', 'js=javascript', 'ts=typescript', 'py=python' ]
-
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
-" let g:tokyonight_transparent_background = 0
-let g:palenight_terminal_italics=1
 let g:gruvbox_italic = 1
 let g:material_terminal_italics = 1
 let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
 let g:material_style = "palenight"
-" keybinds {{{2
-nmap <leader>i <Plug>CommentaryLine
-nmap <leader>u <Plug>Commentary<Plug>Commentary
-vmap <leader>i <Plug>Commentary
 " lightline config {{{2
 let g:lightline = {
 	\ 'colorscheme': "palenight",

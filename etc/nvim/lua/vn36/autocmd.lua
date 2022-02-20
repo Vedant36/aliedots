@@ -26,9 +26,9 @@ vim.cmd [[
     " macro to convert url to markdown: url -> [|](url), where | is the cursor
     au Filetype markdown nn <buffer> <leader>1 A)<esc>I[](<esc>hi
     au Filetype markdown setl cc=
-    au Filetype markdown nn <silent>zq :Toc<cr>
+    au Filetype markdown nn <buffer> <silent> zq :Toc<cr>
     " to immediately close the quickfix list after choosing an option
-    au Filetype markdown au filetype qf nn <silent><cr> <cr>:lcl<cr>
+    au Filetype markdown  au Filetype qf nn <buffer> <silent> <cr> <cr>:lcl<cr>
   augroup end
 
   augroup _filetype
@@ -36,17 +36,18 @@ vim.cmd [[
     au Filetype crontab setlocal commentstring=#\ %s
     au Filetype diff if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
     au Filetype json,yaml setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
-    au Filetype help,man nn <buffer><silent> q ZQ<cr>
-    au Filetype lua nn <buffer><silent> <F7> :sp \| term time lua %:S<cr>
+    au Filetype help,man nn <buffer> <silent> q ZQ<cr>
+    au Filetype lua nn <buffer> <silent> <F7> :sp \| term time lua %:S<cr>
     au Filetype lua se sw=2
     au Filetype man set nobuflisted
     au Filetype netrw setl bufhidden=wipe
-    au Filetype netrw nmap <buffer>l <cr>2j | nmap <buffer>h -
-    au Filetype python nn <buffer><silent> <F7> :sp \| term time python %:S<cr>
+    au Filetype netrw nmap <buffer> l <cr>2j | nmap <buffer>h -
+    au Filetype python nn <buffer> <silent> <F7> :sp \| term time python %:S<cr>
+    au Filetype python se expandtab sw=4
     au Filetype upstart setlocal commentstring=#\ %s
-    au Filetype vim nn <buffer> <leader>1 oPlug ''<esc>h
+    au Filetype vim nn <buffer> <leader>1 ouse ''<left>
     au Filetype xdefaults setlocal commentstring=!\ %s
-    au Filetype qf nn <silent>q :lcl<cr>
+    au Filetype qf nn <buffer> <silent> q :lcl<cr>
   augroup END
 
   " "" to make any background transparent

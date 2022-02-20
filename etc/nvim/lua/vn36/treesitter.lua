@@ -26,7 +26,10 @@ treesitter.setup {
     enable = true,              -- false will disable the whole extension
     additional_vim_regex_highlighting = true,
   },
-  indent = { enable = true },
+  -- indent = { enable = true },
+  context_commentstring = {
+    enable = true
+  },
   rainbow = {
     enable = true,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean

@@ -50,8 +50,6 @@ map('n', '<m-6>', '<Plug>lightline#bufferline#go(7)')
 map('n', '<m-7>', '<Plug>lightline#bufferline#go(8)')
 map('n', '<m-8>', '<Plug>lightline#bufferline#go(9)')
 map('n', '<m-9>', '<Cmd>bl<cr>')
-map('n', '<tab>', '<Cmd>bn<cr>')
-map('n', '<s-tab>', '<Cmd>bp<cr>')
 map('n', 'L', '<Cmd>bn<cr>')
 map('n', 'H', '<Cmd>bp<cr>')
 -- window management {{{1
@@ -66,6 +64,8 @@ map('n', '<m-l>', '<Cmd>vertical resize +2<cr>')
 -- quick move between most used files {{{1
 local bookmark_table = {
   v = '$XDG_CONFIG_HOME/nvim/init.lua',
+  p = '$XDG_CONFIG_HOME/nvim/lua/vn36/plugins.lua',
+  k = '$XDG_CONFIG_HOME/nvim/lua/vn36/keymaps.lua',
   x = '$XDG_CONFIG_HOME/sx/sxrc',
   X = '$XDG_CONFIG_HOME/X11/Xresources',
   z = '$XDG_CONFIG_HOME/zsh/.zshrc',
@@ -81,11 +81,11 @@ local bookmark_table = {
   y = '~/dox/zmisc_code/02-Plat.py',
 }
 local function bookmark()
-  print("Available bookmarks: adeEfhqstvxXyz> ")
+  print("Available bookmarks: adeEfhkpqstvxXyz> ")
   local str = vim.fn.getcharstr()
   local val = bookmark_table[str]
   if val == nil then
-    io.write("\rNo such bookmark exists yet!")
+    vim.notify("No such bookmark exists yet!", "warn")
   else
     vim.cmd("edit "..val)
   end
