@@ -1,6 +1,23 @@
 #!/bin/sh
-# cant use xcape while im trying to sprint hit
-pkill xcape
-"$HOME"/.local/opt/UltimMC/UltimMC
-xcape -e 'Control_L=Escape' -t 100
+# minecraft wrapper script
+set -x
+case "$1" in
+-u|update)
+    temp=$(mktemp -d)
+    cd "$temp" || exit 1
+    curl -OL "https://nightly.link/AfoninZ/MultiMC5-Cracked/workflows/main/develop/mmc-cracked-lin64.zip"
+    unzip "mmc-cracked-lin64.zip"
+    cp -rT UltimMC/ ~/.local/opt/UltimMC
+    chmod +x ~/.local/opt/UltimMC/UltimMC
+    rm -rf -- *
+    cd ..
+    rmdir "$temp"
+    ;;
+*)
+    # cant use xcape while im trying to sprint hit
+    pkill xcape
+    "$HOME"/.local/opt/UltimMC/UltimMC
+    xcape -e 'Control_L=Escape' -t 100
+    ;;
+esac
 
