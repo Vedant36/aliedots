@@ -36,21 +36,18 @@ px() {
     # The check is: if either the file size is zero, file doesn't exist or it
     #   is older than /var/lib/pacman , update the file
     if [ "$1" = "-a" ]; then
-        # show all packages
-        file="$XDG_CACHE_HOME"/fullpackagelist
-        [ $file -ot /var/lib/pacman/ ] && {$PM -Qqm && $PM -Qqn}>"$file"
-        cat $file
+        pacman -Qq
     else
         # show only explicitly installed packages
         pkglist="$HOME"/.local/lib/dotfiles/pkglist.txt
-        [ $pkglist -ot /var/lib/pacman/ ] && $PM -Qqen>"$pkglist"
+        [ ! -s "$pkglist" ] || [ "$pkglist" -ot /var/lib/pacman/ ] && $PM -Qqen>"$pkglist"
         fpkglist="$HOME"/.local/lib/dotfiles/foreignpkglist.txt
-        [ $fpkglist -ot /var/lib/pacman/ ] && $PM -Qqem>"$fpkglist"
+        [ ! -s "$fpkglist" ] || [ "$fpkglist" -ot /var/lib/pacman/ ] && $PM -Qqem>"$fpkglist"
         cat "$fpkglist" "$pkglist"
     fi  | fzf -m --preview "$PM -Qi {}" --height 100% \
         | tr '\n' ' ' \
         | read -r pak
-	[ "$pak" ] && eval "$PM -Rcns $pak"
+    [ "$pak" ] && eval "$PM -Rcns $pak"
 }
 # extract directory {{{1
 exdir(){

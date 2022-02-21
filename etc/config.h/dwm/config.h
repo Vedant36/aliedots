@@ -42,6 +42,7 @@ static const Rule rules[] = {
 	{ "discord",      NULL,        NULL,       1 << 5,     0,          -1 },
 	{ "Minecraft* 1.16.5", NULL,   NULL,       1 << 6,     0,          -1 },
 	{ "Minecraft* 1.17.1", NULL,   NULL,       1 << 6,     0,          -1 },
+	{ "Minecraft* 1.18.1", NULL,   NULL,       1 << 6,     0,          -1 },
 	{ "transmission", NULL,        NULL,       1 << 7,     0,          -1 },
 };
 // layout(s) {{{1
@@ -81,7 +82,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_q,             spawn,          {.v = termcmd} },
     /* Terminal {{{2 */
 	{ MODKEY,                       XK_r,             spawn,          SHCMD("st -n ncmpcpp ncmpcpp") },
-	{ MODKEY,                       XK_a,             spawn,          SHCMD("st ranger") },
+	{ MODKEY,                       XK_a,             spawn,          SHCMD("kitty ranger") },
 	{ MODKEY,                       XK_v,             spawn,          SHCMD("kitty -1 nvim") },
 	{ MODKEY|ControlMask,           XK_p,             spawn,          SHCMD("st pulsemixer") },
 	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD("st bc -l") },
@@ -127,11 +128,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_equal,         setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,         setgaps,        {.i = 0  } },
     /* Audio/Music {{{2 */
-	{ MODKEY,                       XK_bracketleft,   spawn,          SHCMD("pactl set-sink-volume 0 -2%") },
-	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("pactl set-sink-volume 0 +2%") },
+	{ MODKEY,                       XK_bracketleft,   spawn,          SHCMD("pactl set-sink-volume 0 -1%") },
+	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("pactl set-sink-volume 0 +1%") },
 	{ MODKEY,                       XK_backslash,     spawn,          SHCMD("pactl set-sink-mute 0 toggle") },
-	{ MODKEY|ShiftMask,             XK_bracketleft,   spawn,          SHCMD("mpc -q volume -2") },
-	{ MODKEY|ShiftMask,             XK_bracketright,  spawn,          SHCMD("mpc -q volume +2") },
+	{ MODKEY|ShiftMask,             XK_bracketleft,   spawn,          SHCMD("mpc -q volume -1") },
+	{ MODKEY|ShiftMask,             XK_bracketright,  spawn,          SHCMD("mpc -q volume +1") },
 	{ MODKEY|ShiftMask,             XK_backslash,     spawn,          SHCMD("mpc -q toggle") },
 	{ MODKEY|ShiftMask,             XK_comma,         spawn,          SHCMD("mpc -q prev") },
 	{ MODKEY|ShiftMask,             XK_period,        spawn,          SHCMD("mpc -q next") },

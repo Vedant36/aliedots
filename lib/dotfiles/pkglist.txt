@@ -14,6 +14,7 @@ btop
 ccze
 cmake
 cmus
+cppcheck
 cronie
 discord
 dmidecode
@@ -26,7 +27,6 @@ exa
 exfat-utils
 exiv2
 expac
-fasd
 fd
 feh
 firefox
@@ -63,6 +63,7 @@ linux-zen-headers
 lostfiles
 ltrace
 lua
+luarocks
 lutris
 macchanger
 man-db
@@ -85,6 +86,7 @@ networkmanager
 nicotine+
 nmap
 nnn
+nodejs
 noto-fonts-emoji
 ntfs-3g
 ntp

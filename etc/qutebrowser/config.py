@@ -79,9 +79,15 @@ c.aliases["sleep"] = "later"
 c.url.searchengines = {
     'DEFAULT': 'https://www.duckduckgo.com/?q={}',
     '4': 'https://4chan.org/{}',
+
     'a': 'https://wiki.archlinux.org/index.php?search={}',
-    'ap': 'https://animixplay.to/?q={}',  # anime
     'aur': 'https://aur.archlinux.org/packages/{}',
+    'al': 'https://archlinux.org/packages/{}',
+    'ala': 'https://archlinux.org/packages/core/x86_64/{}',
+    'alc': 'https://archlinux.org/packages/community/x86_64/{}',
+    'ale': 'https://archlinux.org/packages/extra/x86_64/{}',
+
+    'ap': 'https://animixplay.to/?q={}',  # anime
     'b': 'https://1lib.in/s/{}',
     'b2': 'https://www.pdfdrive.com/search?q={}',
     'b3': 'https://libgen.me/search?query={}',
@@ -229,7 +235,7 @@ for line in filter(lambda l: l.startswith("*"), lines):
 BG = xresources["*.background"]
 FG = xresources["*.foreground"]
 
-# c.colors.webpage.bg = '#292d3e'
+c.colors.webpage.bg = 'grey'
 c.colors.statusbar.normal.bg = BG
 c.colors.statusbar.command.bg = BG
 c.colors.statusbar.command.fg = FG

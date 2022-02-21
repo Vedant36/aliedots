@@ -71,7 +71,7 @@ $HOME
 - etc/MediaHuman/YouTube to MP3.conf: same as above except this file is much less useful
 
 ## TODO
+- this might be a really bad idea but what if i could symlink `/` to `lib/root` then just use gitignore to track only the files i need. can't really think of any security issues at the moment but somehow this oculd be bad
 - etc/environment.d/*: don't know a way to transfer them to shell variables
 - complete setup.sh
-- find better way to profile shell scripts than adding the snippet from .zshrc and passind the resulting file to sort-timings.zsh
 

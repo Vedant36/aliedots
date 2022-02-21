@@ -115,6 +115,7 @@ case $1 in
         # Neovim {{{3
         ce "The Neovim plugins will auto-install after opening the editor"
         ce "with a working internet connection(when i finally setup lua)"
+        nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
         # Misc {{{3
         mkdir -p etc/MediaHuman

@@ -18,6 +18,7 @@ mpv/scripts/
 nvim/lua/*
 !nvim/lua/vn36
 !nvim/syntax/log.vim
+!pacman/makepkg.conf
 !pulse/daemon.conf
 !qutebrowser/greasemonkey/*
 !qutebrowser/config.py

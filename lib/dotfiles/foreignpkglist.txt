@@ -12,6 +12,7 @@ ebtables
 find-the-command
 i3lock-color-git
 lf-bin
+luacheck
 lutris-wine-meta
 mpdscribble
 multitime
@@ -25,7 +26,6 @@ python-snakeviz
 ranger-git
 shellcheck-bin
 simple-mtpfs
-soulseekqt
 spotify
 tor-browser
 windscribe-cli

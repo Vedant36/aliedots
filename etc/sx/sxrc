@@ -18,7 +18,6 @@ xrandr --output Virtual-1 --mode 1920x1080_60.00
 # keyboard
 setxkbmap -option altwin:swap_alt_win
 setxkbmap -option ctrl:nocaps
-xcape -e 'Control_L=Escape' -t 100
 # for another mod key
 #clear mod3
 #keysym F8 = Hyper_R
@@ -31,6 +30,7 @@ xset dpms 720 720 720
 # X only programs
 # TODO: write wrapper to check if the command exists and log them with a prefix
 # removes cursor from screen after a set itme
+xcape -e 'Control_L=Escape' -t 100
 unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
 pgrep artha || artha &	# offline dictionary
 feh --no-fehbg --bg-fill ~/pix/current* &
@@ -49,7 +49,6 @@ pgrep mpdscribble || \
 # its in a loop so i can reload configuration by just killing dwm
 # and close X by doing pkill -x Xorg
 # TODO: write a better clean() function for trap to clean-up startup processes
-trap 'kill $bar' SIGKILL
 while true; do
 	while xsetroot -name "$(bar.sh)"; do
 		# synchronize dwmblocks with the time
@@ -58,6 +57,9 @@ while true; do
 		wait $!
 	done &
 	bar=$!
-	env XDG_CURRENT_DESKTOP=dwm ssh-agent dwm >"$XDG_LOG_HOME"/dwm.log || exit
+    eval "$(ssh-agent)"
+	env XDG_CURRENT_DESKTOP=dwm dwm >"$XDG_LOG_HOME"/dwm.log || exit
+    pkill ssh-agent
+    kill $bar
 done
 

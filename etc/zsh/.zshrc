@@ -71,7 +71,7 @@ bindkey '^[[4~' end-of-line
 bindkey '^[[F' end-of-line
 bindkey '^[[H' beginning-of-line
 bindkey -s "^Z" "^Ufg^M"
-bindkey -s "^[#" " ^[[H: ^M"
+bindkey -s "^[#" " ^[[H ^M" # insert a space at the start and execute it
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^X^E' edit-command-line
 # readline keybinds
