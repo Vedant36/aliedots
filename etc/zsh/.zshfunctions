@@ -47,7 +47,7 @@ px() {
     fi  | fzf -m --preview "$PM -Qi {}" --height 100% \
         | tr '\n' ' ' \
         | read -r pak
-    [ "$pak" ] && eval "$PM -Rcns $pak"
+    [ "$pak" ] && eval "$PM -Rns $pak"
 }
 # extract directory {{{1
 exdir(){
