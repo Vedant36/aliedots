@@ -64,8 +64,20 @@ map('n', '<m-l>', '<Cmd>vertical resize +2<cr>')
 -- quick move between most used files {{{1
 local bookmark_table = {
   v = '$XDG_CONFIG_HOME/nvim/init.lua',
+  l = {
+    a = '$XDG_CONFIG_HOME/nvim/lua/vn36/autocmd.lua',
+    c = '$XDG_CONFIG_HOME/nvim/lua/vn36/colorscheme.lua',
+    g = '$XDG_CONFIG_HOME/nvim/lua/vn36/gitsigns.lua',
+    k = '$XDG_CONFIG_HOME/nvim/lua/vn36/keymaps.lua',
+    l = '$XDG_CONFIG_HOME/nvim/lua/vn36/lualine.lua',
+    o = '$XDG_CONFIG_HOME/nvim/lua/vn36/options.lua',
+    t = {
+      e = '$XDG_CONFIG_HOME/nvim/lua/vn36/telescope.lua',
+      r = '$XDG_CONFIG_HOME/nvim/lua/vn36/treesitter.lua',
+    },
+  },
   p = '$XDG_CONFIG_HOME/nvim/lua/vn36/plugins.lua',
-  k = '$XDG_CONFIG_HOME/nvim/lua/vn36/keymaps.lua',
+
   x = '$XDG_CONFIG_HOME/sx/sxrc',
   X = '$XDG_CONFIG_HOME/X11/Xresources',
   z = '$XDG_CONFIG_HOME/zsh/.zshrc',
@@ -74,22 +86,34 @@ local bookmark_table = {
   f = '$XDG_CONFIG_HOME/zsh/.zshfunctions',
   t = '$XDG_CONFIG_HOME/kitty/kitty.conf',
   q = '$XDG_CONFIG_HOME/qutebrowser/config.py',
+  Q = '$XDG_CONFIG_HOME/qutebrowser/quickmarks',
   d = '$HOME/.local/opt/dwm/config.h',
   E = '$HOME/.local/lib/dotfiles/event.log',
   s = '$HOME/.local/lib/dotfiles/setup.bash',
   h = '$HISTFILE',
-  y = '~/dox/zmisc_code/02-Plat.py',
+  y = '~/dox/Python/platformer_2/Plat.py',
 }
-local function bookmark()
-  print("Available bookmarks: adeEfhkpqstvxXyz> ")
-  local str = vim.fn.getcharstr()
-  local val = bookmark_table[str]
+local function bookmark(arg)
+  local bookmarks = arg or bookmark_table
+  -- print keys in alphabetical order
+  local prompt="Available keys: "
+  for i=97,122 do
+    local tmp = string.char(i)
+    if bookmarks[tmp] then prompt = prompt..tmp end
+    if bookmarks[tmp:upper()] then prompt = prompt..tmp:upper() end
+  end
+  print(prompt..'> ')
+  local ok, str = pcall(vim.fn.getcharstr)
+  if not ok then print(" ") return end -- Keyboard interrupt
+  local val = bookmarks[str]
   if val == nil then
     vim.notify("No such bookmark exists yet!", "warn")
+  elseif type(val) == 'table' then
+    bookmark(val)
   else
-    vim.cmd("edit "..val)
+    pcall(vim.cmd, "edit "..val)
+    print(" ")
   end
-  print(" ")
 end
 map('n', 'gt', bookmark)
 -- categorized but less so misc {{{1
