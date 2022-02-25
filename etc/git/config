@@ -3,7 +3,7 @@
 	name = Vedant36
 [core]
     editor = nvim
-	pager = nvim
+	pager = less
 [color]
 	pager = no
 [credential]
@@ -18,7 +18,7 @@
 	  insteadOf = "aur:"
 [url "ssh://aur@aur.archlinux.org/"]
 	  pushInsteadOf = "aur:"
-[alias]
-	gud = !echo git gud nerd
 [init]
 	defaultBranch = main
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative

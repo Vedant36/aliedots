@@ -77,48 +77,54 @@ c.aliases["echo"] = "message-info"
 c.aliases["sleep"] = "later"
 # Search Engines {{{1
 c.url.searchengines = {
+    # actual search engines
     'DEFAULT': 'https://www.duckduckgo.com/?q={}',
-    '4': 'https://4chan.org/{}',
-
-    'a': 'https://wiki.archlinux.org/index.php?search={}',
-    'aur': 'https://aur.archlinux.org/packages/{}',
-    'al': 'https://archlinux.org/packages/{}',
-    'ala': 'https://archlinux.org/packages/core/x86_64/{}',
-    'alc': 'https://archlinux.org/packages/community/x86_64/{}',
-    'ale': 'https://archlinux.org/packages/extra/x86_64/{}',
-
-    'ap': 'https://animixplay.to/?q={}',  # anime
-    'b': 'https://1lib.in/s/{}',
-    'b2': 'https://www.pdfdrive.com/search?q={}',
-    'b3': 'https://libgen.me/search?query={}',
     'd': 'https://html.duckduckgo.com/html?q={}',  # nojs version of duckduckgo
+    '4': 'https://4chan.org/{}',
     'g': 'https://www.google.com/search?hl=en&q={}',
-    'gh': 'https://github.com/{}',
-    'gl': 'https://github.com/Vedant36/{}',
-    'glot': 'https://glot.io/new/{}',
-    'manga': 'https://mangareader.to/search?keyword={}',
-    'm2': 'https://man.archlinux.org/{}',  # arch man pages
-    'm': 'https://linux.die.net/man/1/{}',  # man pages
     'mw': 'https://www.merriam-webster.com/dictionary/{}',
     'l': 'https://lyrics.com/lyrics/{}',  # lyric finding engine
-    'o': 'http://oeis.org/search?q={}',
-    'oa': 'http://oeis.org/A{}',
-    'ob': 'http://oeis.org/b{}.txt',
-    'p': 'https://thepiratebay.org/search.php?q={}',
-    'p2': 'https://tpb.one/search.php?q={}',
-    'py': 'https://pypi.org/search/?q={}',
     'r': 'https://reddit.com/r/{}',
     's': 'https://open.spotify.com/search/{}',
     'su': 'https://steamunlocked.net/?s={}',
     'wiby': 'https://wiby.me/?q={}',
-    'wa': 'https://www.wolframalpha.com/input/?i={}',
-    'wm': 'https://mathworld.wolfram.com/search/index.html?query={}',
-    'xiny': 'https://learnxinyminutes.com/docs/{}',
-    'x': 'https://searx.xyz/search?q={}',
-    'y': 'https://youtube.com/search?q={}',
-    'yw': 'https://tube.cadence.moe/watch?v={}',
     'scp': 'https://scp-wiki.wikidot.com/scp-{}',
     'mc': 'https://minecraft.fandom.com/wiki/{}',
+    'x': 'https://searx.xyz/search?q={}',
+    'y': 'https://youtube.com/search?q={}',
+    'yw': 'https://youtube.com/watch?v={}',
+    'y2': 'https://yewtu.be/search?q={}',  # invidious
+    # books
+    'b': 'https://1lib.in/s/{}',
+    'b2': 'https://www.pdfdrive.com/search?q={}',
+    'b3': 'https://libgen.me/search?query={}',
+    # math
+    'o': 'http://oeis.org/search?q={}',
+    'oa': 'http://oeis.org/A{}',
+    'ob': 'http://oeis.org/b{}.txt',
+    'wa': 'https://www.wolframalpha.com/input/?i={}',
+    'wm': 'https://mathworld.wolfram.com/search/index.html?query={}',
+    # linux
+    'a': 'https://wiki.archlinux.org/index.php?search={}',
+    'm': 'https://linux.die.net/man/1/{}',  # man pages
+    'm2': 'https://man.archlinux.org/{}',  # arch man pages
+    'aur': 'https://aur.archlinux.org/packages/{}',
+    'al': 'https://archlinux.org/packages/?q={}',
+    'ala': 'https://archlinux.org/packages/core/x86_64/{}',
+    'alc': 'https://archlinux.org/packages/community/x86_64/{}',
+    'ale': 'https://archlinux.org/packages/extra/x86_64/{}',
+    # programming
+    'gh': 'https://github.com/{}',
+    'gl': 'https://github.com/Vedant36/{}',
+    'glot': 'https://glot.io/new/{}',  # online code editor without login
+    'grep': 'https://grep.app/search?q={}',  # search for code examples
+    'py': 'https://pypi.org/search/?q={}',
+    'xiny': 'https://learnxinyminutes.com/docs/{}',  # learning new prog.lang.
+    # films and shows
+    'ap': 'https://animixplay.to/?q={}',  # anime
+    'manga': 'https://mangareader.to/search?keyword={}',
+    'p': 'https://thepiratebay.org/search.php?q={}',
+    'p2': 'https://tpb.one/search.php?q={}',
 }
 # Youtube/Ad Blocking {{{1
 c.content.javascript.enabled = True

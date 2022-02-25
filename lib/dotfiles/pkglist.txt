@@ -21,6 +21,7 @@ dmidecode
 dnsmasq
 drawing
 dunst
+ed
 edk2-ovmf
 efibootmgr
 exa
@@ -30,11 +31,12 @@ expac
 fd
 feh
 firefox
+flake8
 fzf
+gcr
 gdb
 ghc
 git
-gnu-netcat
 gnuplot
 grub
 hq
@@ -63,6 +65,7 @@ linux-zen-headers
 lostfiles
 ltrace
 lua
+luakit
 luarocks
 lutris
 macchanger
@@ -80,7 +83,6 @@ nasm
 ncdu
 ncmpcpp
 neofetch
-net-tools
 nethogs
 networkmanager
 nicotine+
@@ -91,6 +93,7 @@ noto-fonts-emoji
 ntfs-3g
 ntp
 nuspell
+openbsd-netcat
 opendoas
 p7zip
 pacman-contrib
@@ -123,6 +126,7 @@ subdl
 sx
 sxiv
 systemd-sysvcompat
+thunar
 tlp
 tmux
 tor
@@ -140,6 +144,7 @@ unrar
 unzip
 upower
 virt-manager
+virt-viewer
 vnstat
 vulkan-radeon
 w3m

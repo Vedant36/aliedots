@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+exec env NQDIR=/tmp/nq unwrap nq "$@"

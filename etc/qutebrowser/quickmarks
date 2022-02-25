@@ -52,3 +52,6 @@ packer https://github.com/wbthomason/packer.nvim
 mp3cut https://mp3cut.net/
 nlg https://github.com/nanotee/nvim-lua-guide
 lark https://www.youtube.com/watch?v=SQh0l240dfQ
+nvim https://github.com/neovim/neovim
+alt https://github.com/mayfrost/guides/blob/master/ALTERNATIVES.md
+linux https://github.com/torvalds/linux

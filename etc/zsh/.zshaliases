@@ -16,6 +16,7 @@ alias x='sx 2>&1 >~/.local/var/log/x.log'
 alias path='echo $PATH | tr -s ":" "\n"'
 alias pn='ping 1.1.1.1'
 alias python='env PYTHONSTARTUP=$XDG_LIB_HOME/python/startup.py python'
+alias todo='rg "TODO|FIXME" ~/.local'
 alias cc='gcc -std=c11 -pedantic -Wall -Wextra -Wbad-function-cast -Wcast-align -Wcast-qual -Wconversion -Wfloat-equal -Wformat=2 -Wlogical-op -Wmissing-declarations -Wmissing-prototypes -Wpointer-arith -Wshadow -Wstrict-prototypes -Wwrite-strings'
 # ls {{{1
 alias l='ls -alhgF --group-directories-first'
@@ -30,7 +31,7 @@ alias se='doas nvim'
 alias e=echo
 alias s=doas
 alias m=man
-alias f=find
+alias f=fd
 alias v=nvim
 alias c='bat --paging=never'
 alias n=neofetch

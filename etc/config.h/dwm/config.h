@@ -1,6 +1,8 @@
 /* See LICENSE file for copyright and license details. */
+// [How to maintain dwm configuration and customization in git](https://dwm.suckless.org/customisation/patches_in_git/)
+// TODO: dwm-keymodes-vim and flextile patches
 // appearance {{{1
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int snap      = 4;       /* snap pixel */
 static const int showbar            = 0;        /* 0 means no bar */
@@ -34,6 +36,7 @@ static const Rule rules[] = {
 	/* class          instance     title       tags mask   isfloating  monitor */
 	{ NULL,           NULL,   "TLauncher 2.8", 1 << 0,     0,          -1 },
 	{ NULL,           NULL,   "TLauncher",     1 << 0,     0,          -1 },
+	{ NULL,           NULL,   "textfiles",     1 << 3,     0,          -1 },
 	{ "Popcorn-Time", NULL,        NULL,       1 << 0,     0,          -1 },
 	{ "Zathura",      NULL,        NULL,       1 << 1,     0,          -1 },
 	{ "qutebrowser",  NULL,        NULL,       1 << 2,     0,          -1 },
@@ -87,7 +90,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_p,             spawn,          SHCMD("st pulsemixer") },
 	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD("st bc -l") },
 	{ MODKEY,                       XK_F1,            spawn,          SHCMD("st nvim ~/.local/opt/dwm/config.h") },
-	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && kitty -1 nvim todo.md data.md sites.md") },
+	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && kitty -T textfiles nvim todo.md data.md sites.md") },
     /* Custom Scripts {{{2 */
 	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
 	{ MODKEY|ShiftMask,             XK_s,             spawn,          SHCMD("state") },

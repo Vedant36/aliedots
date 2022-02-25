@@ -5,20 +5,20 @@
 ## Update 1.1 on 2022-02-13:
 ##   - made script less repetitive by adding the toggle function
 ##   - add line numbers(L15) for easy selection
-## TODO: merge this with xinitrc
+## TODO: merge this with xinitrc(write in lua?!?!?!?!?, yes pls)
 
 # SYSTEM_DEPENDENT: interface might be different on different machines
 INTERFACE=wlo1
 choice=$(echo "\
-xcape $(pgrep xcape | wc -l)
+xcape $(pgrep -xc xcape)
 wifi $(nmcli device status | grep -c "^$INTERFACE.* connected") \
 $(nmcli connection show --active 2>&1 | grep -Po "Neema(?=.* $INTERFACE)")
-xss-lock $(pgrep xss-lock | wc -l)
-unclutter $(pgrep unclutter | wc -l)
+xss-lock $(pgrep -xc xss-lock)
+unclutter $(pgrep -xc unclutter)
 wallpaper
 dpms $(xset q | grep -Po 'DPMS is \K\S+')
-xcompmgr $(pgrep xcompmgr | wc -l)
-redshift $(pgrep redshift | wc -l)
+xcompmgr $(pgrep -xc xcompmgr)
+redshift $(pgrep -xc redshift)
 dunst(Reload)
 mpdscribble(Reload)
 " | nl -s" " -v0 -w1 | dmenu -l 20)
@@ -29,8 +29,8 @@ echo "$choice" >> "$XDG_STATE_HOME"/state.log
 
 toggle(){
 	cmd="$1"; shift
-	if pgrep "$cmd"; then
-		pkill "$cmd"
+	if pgrep -x "$cmd" >/dev/null; then
+		pkill -x "$cmd"
 	else
 		command -v "$cmd" >/dev/null && exec "$cmd" "$@" &
 	fi
@@ -67,11 +67,11 @@ case $choice in
 		toggle redshift -l 23.5:78.5 & ;;
 	*dunst*)
 		# Reload
-		pkill dunst && dunst & ;;
+		killall dunst; dunst & ;;
 	*mpdscribble*)
 		pkill mpdscribble && \
 			mpdscribble --conf "$HOME"/.local/lib/private/lastfm.conf & ;;
 	*)
-		exit 1 ;;
+		toggle $choice ;;
 esac
 # vim: noet

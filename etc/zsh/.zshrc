@@ -1,4 +1,3 @@
-#!/usr/bin/env
 # Vedant36's .zshrc
 # shellcheck disable=SC1091,SC2148
 # run-help {{{1
@@ -102,9 +101,7 @@ setopt hist_no_store
 # # sourcings(7) fastest to slowest {{{1
 # eval "$(fasd --init posix-alias zsh-hook)" # minimal(without tab completion)
 # # eval "$(fasd --init auto)"
-. "${ZDOTDIR:-~}"/.zshaliases
-. "${ZDOTDIR:-~}"/.zshfunctions
-# . /usr/share/doc/find-the-command/ftc.zsh quiet
+. /usr/share/doc/find-the-command/ftc.zsh quiet
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
 export ZSH_PLUGINS="$XDG_DATA_HOME"/zsh/plugins
@@ -120,6 +117,8 @@ alias zc='z -c'      # restrict matches to subdirs of $PWD
 alias zf='z -I'      # use fzf to select in multiple matches
 alias zb='z -b'      # quickly cd to the parent directory
 alias zt='z -t'      # cd to most recently accessed dir
+. "${ZDOTDIR:-~}"/.zshaliases
+. "${ZDOTDIR:-~}"/.zshfunctions
 # setopts {{{1
 autoload colors && colors
 setopt auto_cd              # type bare dir name and cd to it e.g. `$ /`
