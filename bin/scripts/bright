@@ -30,11 +30,11 @@ EOF
 # handle commandline options
 p=1 i='' # percentage and no increment by default
 case $1 in
+	-h|--help) help; exit ;;
 	-i) i=1 p=1; shift ;;
 	-r) p=''; shift ;;
 	-ri) p='' i=1; shift ;;
 	-p) echo $((100 * BRIGHTNESS / MAX_BRIGHTNESS)); exit ;;
-	-h|--help|*) help; exit ;;
 esac
 
 # check for bad input
