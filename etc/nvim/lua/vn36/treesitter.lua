@@ -1,13 +1,11 @@
-local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
-if not ok then
-  return
-end
+local treesitter = require 'nvim-treesitter.configs'
 
 treesitter.setup {
   ensure_installed = {
     "bash",
     "cpp",
     "css",
+    "go",
     "haskell",
     "html",
     "javascript",
@@ -30,10 +28,10 @@ treesitter.setup {
   context_commentstring = {
     enable = true
   },
-  rainbow = {
-    enable = true,
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
-  }
+  -- -- just stopped working and im sleepy, aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  -- rainbow = {
+  --   enable = true,
+  --   extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+  -- }
 }
 

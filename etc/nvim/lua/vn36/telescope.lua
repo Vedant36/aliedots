@@ -10,6 +10,16 @@ telescope.setup {
     },
   },
   extensions = {
+    file_browser = {
+      theme = "ivy",
+      mappings = {
+        ["n"] = {
+          -- ["h"] = "change_cwd",
+          ["l"] = "select_default",
+          -- ["."] = "toggle_hidden"
+        },
+      }
+    },
     fzf = {
       fuzzy = true,
       override_generic_sorter = true,
@@ -17,22 +27,37 @@ telescope.setup {
     }
   }
 }
+require("telescope").load_extension "file_browser"
 require('telescope').load_extension('fzf')
 
 local builtin = require 'telescope.builtin'
+local themes = require 'telescope.themes'
 local map = vim.keymap.set
-map('n', '<leader>fa', builtin.autocommands)
-map('n', '<leader>fb', builtin.buffers)
-map('n', '<leader>fc', builtin.colorscheme)
-map('n', '<leader>ff', builtin.find_files)
-map('n', '<leader>fg', builtin.live_grep)
-map('n', '<leader>fh', builtin.help_tags)
+-- wrapper to set theme ivy to all pickers
+local wrap = setmetatable({}, {
+  __index = function(_, picker)
+    return function(opts)
+      opts = themes.get_ivy(opts)
+      builtin[picker](opts)
+    end
+  end
+})
+
+map('n', '<leader>e' , telescope.extensions.file_browser.file_browser)
+map('n', '<leader>fa', wrap.autocommands)
+map('n', '<leader>fb', wrap.buffers)
+map('n', '<leader>fc', wrap.colorscheme)
+map('n', '<leader>ff', wrap.find_files)
+map('n', '<leader>fg', wrap.live_grep)
+map('n', '<leader>fh', wrap.help_tags)
+-- giv me thems all yer fookin manuals
 map('n', '<leader>fm', function()
-  builtin.man_pages {sections={"1","2","3","4","5","6","7","8","9"}}
+  wrap.man_pages {sections={"1","2","3","4","5","6","7","8","9"}}
 end)
-map('n', '<leader>fo', builtin.oldfiles)
-map('n', '<leader>fs', function() builtin.grep_string {search = ''} end)
+map('n', '<leader>fo', wrap.oldfiles)
+map('n', '<leader>fs', function() wrap.grep_string {search = ''} end)
+-- if in a git repo run git_files else find_files
 map('n', '<c-p>', function()
-  local ok = pcall(builtin.git_files)
-  if not ok then builtin.find_files() end
+  local ok = pcall(wrap.git_files)
+  if not ok then wrap.find_files() end
 end)

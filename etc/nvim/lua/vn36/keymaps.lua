@@ -78,13 +78,22 @@ local bookmark_table = {
   },
   p = '$XDG_CONFIG_HOME/nvim/lua/vn36/plugins.lua',
 
+  t = {
+    t = '~/dox/textfiles/todo.md',
+    d = '~/dox/textfiles/data.md',
+    s = '~/dox/textfiles/sites.md',
+    a = '~/dox/textfiles/autocmd.md',
+    m = '~/dox/textfiles/movies.md',
+  },
+
   x = '$XDG_CONFIG_HOME/sx/sxrc',
   X = '$XDG_CONFIG_HOME/X11/Xresources',
   z = '$XDG_CONFIG_HOME/zsh/.zshrc',
   a = '$XDG_CONFIG_HOME/zsh/.zshaliases',
   e = '$XDG_CONFIG_HOME/zsh/.zshenv',
   f = '$XDG_CONFIG_HOME/zsh/.zshfunctions',
-  t = '$XDG_CONFIG_HOME/kitty/kitty.conf',
+  k = '$XDG_CONFIG_HOME/kitty/kitty.conf',
+  c = '$XDG_CONFIG_HOME/kitty/palenight.conf',
   q = '$XDG_CONFIG_HOME/qutebrowser/config.py',
   Q = '$XDG_CONFIG_HOME/qutebrowser/quickmarks',
   d = '$HOME/.local/opt/dwm/config.h',
@@ -103,17 +112,21 @@ local function bookmark(arg)
     if bookmarks[tmp:upper()] then prompt = prompt..tmp:upper() end
   end
   print(prompt..'> ')
+  -- posibble errors: Keyboard Interrupt
   local ok, str = pcall(vim.fn.getcharstr)
-  if not ok then print(" ") return end -- Keyboard interrupt
-  local val = bookmarks[str]
-  if val == nil then
-    vim.notify("No such bookmark exists yet!", "warn")
-  elseif type(val) == 'table' then
-    bookmark(val)
-  else
-    pcall(vim.cmd, "edit "..val)
-    print(" ")
+  if ok then
+    local val = bookmarks[str]
+    if str == '\n' or str == '\r' then
+      P(bookmarks)
+    elseif val == nil then
+      vim.notify("No such bookmark exists yet!", "warn")
+    elseif type(val) == 'table' then
+      bookmark(val)
+    else
+      pcall(vim.cmd, "edit "..val)
+    end
   end
+  print(" ") -- clear commandline after ending
 end
 map('n', 'gt', bookmark)
 -- categorized but less so misc {{{1

@@ -3,11 +3,16 @@ vim.cmd [[
     au Bufwritepost $XDG_CONFIG_HOME/X11/Xresources silent !xrdb $XDG_CONFIG_HOME/X11/Xresources
     " manually edit PREFIX in config.mk
     au Bufwritepost config.h :make clean install
-    au TermOpen * startinsert
     " au TextChanged,TextChangedI <buffer> silent write
     au TextYankPost * silent! lua require'vim.highlight'.on_yank({higroup='Visual', timeout=50, on_visual=false})
     au VimResized * tabdo wincmd =
   augroup end
+
+  augroup _terminal
+    autocmd Bufnewfile,Bufread term://* setf terminal
+    autocmd TermOpen,WinEnter term://* startinsert
+    autocmd TermOpen term://* setf terminal
+  augroup END
 
   augroup _custom_filetype_setting
     au!
@@ -17,7 +22,6 @@ vim.cmd [[
     au Bufnewfile,Bufread .gitignore setlocal commentstring=#\ %s
     au Bufnewfile,Bufread *.qss setf css
     au Bufnewfile,Bufread *.rasi setf rasi
-    au Termopen term://* setf terminal
   augroup end
 
   augroup _markdown
@@ -34,8 +38,8 @@ vim.cmd [[
   augroup _filetype
     au!
     au Filetype crontab setlocal commentstring=#\ %s
+    au Filetype c set shiftwidth=8 tabstop=8 noexpandtab
     au Filetype diff if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
-    au Filetype json,yaml setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
     au Filetype help,man nn <buffer> <silent> q ZQ<cr>
     au Filetype lua nn <buffer> <silent> <F7> :sp \| term time lua %:S<cr>
     au Filetype lua se sw=2

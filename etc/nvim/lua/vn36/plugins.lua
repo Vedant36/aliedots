@@ -51,14 +51,9 @@ return packer.startup {function(use)
     end
   }
   use 'google/vim-searchindex'
-  use {
-    'junegunn/fzf',
-    cmd = ':Rg',
-    -- The post-hook gives the error /usr/share/vim/vimfiles/install not found
-    -- run = ':call fzf#install()'
-  }
-  use 'junegunn/fzf.vim'
   -- Other Lua Plugins {{{1
+  -- improves commit buffer
+  use 'rhysd/committia.vim'
   use 'folke/zen-mode.nvim'
   use { 'samirettali/shebang.nvim', event = 'BufNewFile' } -- auto add shebangs
   use {
@@ -71,6 +66,7 @@ return packer.startup {function(use)
   -- Gitsigns {{{1
   use {
     'lewis6991/gitsigns.nvim',
+    event = 'VimEnter',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function() require 'vn36.gitsigns' end
   }
@@ -120,15 +116,13 @@ let g:bufferline_rotate = 2
     config = function()
       require 'indent_blankline'.setup {
         show_current_context = true,
-        filetype_exclude = { "markdown", "help" }
+        filetype_exclude = { "markdown", "man", "help", "terminal" }
       }
     end
   }
   -- Linting {{{1
   use {
     'mfussenegger/nvim-lint',
-    ft = { 'c', 'cpp', 'lua', 'sh', 'bash', 'zsh', 'python' },
-    event = {'BufWritePost', 'InsertLeave'},
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
@@ -138,31 +132,51 @@ let g:bufferline_rotate = 2
         sh = {'shellcheck'},
         bash = {'shellcheck'},
         zsh = {'shellcheck'},
-        python = {'pylint'},
+        python = {'flake8'},
       }
-      lint.linters.luacheck.args = { '--globals', 'vim', '--formatter', 'plain', '--codes', '--ranges', '-' }
-      vim.cmd [[ autocmd BufWritePost,InsertLeave <buffer> lua require('lint').try_lint() ]]
+      lint.linters.luacheck.args = {
+        '--globals', 'vim',     -- vim api
+        '--globals', 'M',       -- module
+        '--formatter', 'plain', '--codes', '--ranges', '-'
+      }
+      vim.cmd [[
+        augroup linter
+          autocmd!
+          autocmd BufWritePost,InsertLeave * lua require('lint').try_lint()
+        augroup END
+      ]]
     end
   }
+
   -- Telescope {{{1
   use {
     'nvim-telescope/telescope.nvim',
     keys = {'<c-p>', '<leader>fa', '<leader>fb', '<leader>fc', '<leader>ff',
-      '<leader>fg', '<leader>fh', '<leader>fm', '<leader>fo', '<leader>fs'},
-    requires = { 'nvim-lua/plenary.nvim' },
+      '<leader>fg', '<leader>fh', '<leader>fm', '<leader>fo', '<leader>fs',
+      '<leader>e'},
+    cmd = ":Telescope",
+    requires = {
+      'nvim-lua/plenary.nvim',
+      -- reverse-dependencies
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      { 'nvim-telescope/telescope-file-browser.nvim' },
+    },
     config = function() require 'vn36.telescope' end
   }
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   -- Treesitter {{{1
+  local treesitter_ft = {
+    "bash", "cpp", "css", "go", "haskell", "html", "javascript", "java", "json",
+    "latex", "lua", "make", "python", "rust", "vim", "yaml", "sh"
+  }
   use {
     'nvim-treesitter/nvim-treesitter',
-    -- causes error :<
-    --ft = { "bash", "cpp", "css", "haskell", "html", "javascript", "java",
-    --  "json", "latex", "lua", "make", "python", "rust", "vim", "yaml", },
+    -- can't make lazy loading work yet, maybe there's no need
+    ft = treesitter_ft,
     run = ':TSUpdate',
     requires = {
-      'p00f/nvim-ts-rainbow', -- rainbow brackets
-      'JoosepAlviste/nvim-ts-context-commentstring'
+      -- reverse-dependencies
+      { 'p00f/nvim-ts-rainbow', ft = treesitter_ft }, -- rainbow brackets
+      { 'JoosepAlviste/nvim-ts-context-commentstring', ft = treesitter_ft }
     },
     config = function() require 'vn36.treesitter' end
   }
@@ -170,7 +184,6 @@ let g:bufferline_rotate = 2
   -- why is this so buggy
   use {
     'windwp/nvim-autopairs',
-    opt = true,
     config = function()
       require 'nvim-autopairs'.setup {
         -- check_ts = true,
@@ -202,30 +215,17 @@ let g:bufferline_rotate = 2
   }
 
   -- Color Schemes {{{1
-  use {
-    'drewtempelmeyer/palenight.vim',
-    config = function()
-      vim.g.palenight_terminal_italics=1
-    end
-  }
-  use {
-    'ghifarit53/tokyonight-vim',
-    config = function()
-      vim.g.tokyonight_style = 'night' -- available: night, storm
-      vim.g.tokyonight_enable_italic = 1
-      -- vim.g.tokyonight_transparent_background = 0
-    end
-  }
+  use 'drewtempelmeyer/palenight.vim'
+  use 'ghifarit53/tokyonight-vim'
   use 'morhetz/gruvbox'
   use 'sainnhe/sonokai'
-  use 'sainnhe/everforest'
   -- includes: aurora,codemonkey,darkplus,onedarker,spacedark,system76,tomorrow
-  use "lunarvim/colorschemes"
+  -- use "lunarvim/colorschemes"
 
   use 'tomasr/molokai'
   use 'crusoexia/vim-monokai'
   use 'marko-cerovac/material.nvim'
-  use 'RRethy/nvim-base16'
+  -- use 'RRethy/nvim-base16'
 
   -- Bootstrap end {{{1
   -- Automatically set up your configuration after cloning packer.nvim

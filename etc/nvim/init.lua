@@ -1,27 +1,44 @@
 -- Vedant36's nvim init.lua
+-- TODOO: configure autopairs
+-- TODO: switch to lualine and a lua-based buftabline
+-- TODO: setup and configure nvim-cmp and lsp
 -- TODO: look into indent, smartindent, cindent after lsp setup
--- FIXME: nvim-autopairs doesn't work properly
+-- TODO: reduce memory usage of nvim, especially for the textfiles window
+-- FIXME: nvim-autopairs behaves unpredictably
+-- FIXME: when resourcing(<F3>), plugin configuration doesn't reload
+-- FIXME: loading the ts-rainbow plugin causes the E13 error when writing any file
+-- IDEA: move all plugin configuration into a seperate folder in lua/
 
 -- impatient.nvim: improve startup {{{1
-local _, impatient = pcall(require, 'impatient')
-impatient.enable_profile() -- :LuaCacheProfile
--- }}}1
--- setup a default colorscheme too so i don't have to look at the horrible vim one
-if not pcall(vim.cmd, "colorscheme palenight") then
-  vim.cmd [[ colorscheme slate ]]
+local ok, impatient = pcall(require, 'impatient')
+if ok then impatient.enable_profile() end -- :LuaCacheProfile
+
+-- globals {{{1
+function P(...)
+  vim.notify(vim.inspect(...))
 end
+function R(module)
+  package.loaded[module] = nil
+  require(module)
+end
+-- }}}1
 
 require 'vn36.autocmd'
 require 'vn36.options'
 require 'vn36.keymaps'
 require 'vn36.plugins'
+require 'vn36.colorscheme'
+
+if not pcall(vim.cmd, "colorscheme palenight") then
+  vim.cmd [[ colorscheme slate ]]
+end
 
 
 -- Custom plugins {{{1
 vim.cmd [[
 " trim trailing whitespace {{{2
 function! StripTrailingWhitespaces()
-  if !&binary && &filetype != 'diff' && &filetype != 'gitcommit'
+  if !&binary && &filetype != 'diff' && &filetype != 'gitcommit' && &filetype != 'git'
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
@@ -45,6 +62,7 @@ set foldtext=NeatFoldText()
 " better indent folding https://learnvimscriptthehardway.stevelosh.com/chapters/49.html {{{2
 " au filetype python setl foldmethod=expr foldexpr=PythonIndent(v:lnum)
 " au bufnewfile,bufread config.py setl foldmethod=marker
+au Filetype json,yaml setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
 function! IndentLevel(lnum)
 	return indent(a:lnum) / &shiftwidth
 endfunction
@@ -53,25 +71,21 @@ function! BetterIndent(lnum)
     return '-1'
   endif
   if getline(a:lnum) =~ '\v^\s*[}\])],?$'
-    " return '-1'
     return IndentLevel(a:lnum-1)
   endif
 
   let this_indent = IndentLevel(a:lnum)
   let next_indent = IndentLevel(a:lnum+1)
-  " let next_indent = IndentLevel(NextNonBlankLine(a:lnum))
 
-  if next_indent == this_indent
-    return this_indent
-  elseif next_indent < this_indent
-    return this_indent
-  elseif next_indent > this_indent
+  if next_indent > this_indent
     return '>' . next_indent
+  else
+    return this_indent
   endif
 endfunction
 
 " folding for diff from vimwiki https://vim.fandom.com/wiki/Folding_for_diff_files {{{2
-au filetype diff,gitcommit setl foldmethod=expr foldexpr=DiffFold(v:lnum)
+autocmd FileType diff,gitcommit,git setl foldmethod=expr foldexpr=DiffFold(v:lnum)
 function! DiffFold(lnum)
   let line = getline(a:lnum)
   if line =~ '^$'
@@ -129,29 +143,12 @@ endfunction
 ]]
 -- }}}1
 -- useful commands {{{1
+--   :w !diff % - " to view diff with the original file
+--   :w ++enc=utf-8 " to write to file in utf-8 to solve CONVERSION ERROR
+-- from https://vim.fandom.com/wiki/Load_multiple_files_with_a_single_command
+--   com! -complete=file -nargs=* Edit silent! exec "!vim --servername " . v:servername . " --remote-silent <args>"
+-- lightline config {{{1
 vim.cmd [[
-" from https://vim.fandom.com/wiki/Load_multiple_files_with_a_single_command
-" com! -complete=file -nargs=* Edit silent! exec "!vim --servername " . v:servername . " --remote-silent <args>"
-" :w !diff % - " to view diff with the original file
-" :w ++enc=utf-8 " to write to file in utf-8 to solve CONVERSION ERROR
-]]
--- non-lua plugin config that i can't be bothered to convert now {{{1
-vim.cmd [[
-" settings/variables {{{2
-let g:copilot_filetypes = {
-	\ '*': v:false,
-	\ 'sh': v:true,
-	\ 'zsh': v:true,
-	\ 'python': v:true,
-	\ 'vim': v:true,
-	\ }
-
-let g:gruvbox_italic = 1
-let g:material_terminal_italics = 1
-let g:monokai_term_italic = 1
-let g:monokai_gui_italic = 1
-let g:material_style = "palenight"
-" lightline config {{{2
 let g:lightline = {
 	\ 'colorscheme': "palenight",
 	\ 'active': {
