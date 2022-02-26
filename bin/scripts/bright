@@ -1,38 +1,57 @@
 #!/usr/bin/env sh
 ## Dependencies: need to able to edit brightness
-##  ^Refer to: /home/vn36/.local/lib/root/etc/udev/rules.d/backlight.rules
-## Update 0.2 on 2022-02-14
-##   - shellchecked
-##   - print brightness
-##   - switched from bc to internal sh calculations
-##   - uppercased constants
+##  ^Refer to: lib/root/etc/udev/rules.d/backlight.rules
+## TODO: add way to decrease gamma using xrandr for lower lit environments
 
-help() {
-	cat<<EOF
-Usage:
-  $(basename "$0") [-i] value
-  sets brightness to value in percentage
-  using -i increments brightness(accepts negative values)
-  Current brightness: $((BRIGHTNESS / MAX_BRIGHTNESS))
-EOF
-	[ "$1" = "-e" ] && exit
-	exit 1
-}
-
-[ "$1" ] || help
-
+# SYSTEM_DEPENDENT: the backlight folder might be different
 BACKLIGHT="/sys/class/backlight/amdgpu_bl0"
 MAX_BRIGHTNESS=$(cat $BACKLIGHT/max_brightness)
 BRIGHTNESS=$(cat $BACKLIGHT/brightness)
+RUNNAME="$(basename "$0")"
 
+help() {
+	cat<<EOF
+Usage: $(basename "$0") [-h|-i|-p|-r|-ri] VALUE
+Sets the brightness in percentage by default
+
+Options:
+  -h   Display this help
+  -i   Increment instead of set
+  -p   Just print the current brightness in percentage
+  -r   Set brightness to a raw value
+  -ri  Increment in raw value
+
+Values passed for incrementing can be negative
+Current brightness: $((100 * BRIGHTNESS / MAX_BRIGHTNESS))%
+Raw brightness: $BRIGHTNESS / $MAX_BRIGHTNESS
+EOF
+}
+
+# handle commandline options
+p=1 i='' # percentage and no increment by default
 case $1 in
-	-h) help -e ;;
-	-i) new_brightness=$(("$2" * MAX_BRIGHTNESS / 100 + BRIGHTNESS)) ;;
-	-p) echo "$BRIGHTNESS"; exit ;;
-	*) new_brightness=$((MAX_BRIGHTNESS * "$1" / 100)) ;;
+	-i) i=1 p=1; shift ;;
+	-r) p=''; shift ;;
+	-ri) p='' i=1; shift ;;
+	-p) echo $((100 * BRIGHTNESS / MAX_BRIGHTNESS)); exit ;;
+	-h|--help|*) help; exit ;;
 esac
 
-[ "$new_brightness" -lt 0 ] && new_brightness=0
-[ "$new_brightness" -gt "$MAX_BRIGHTNESS" ] && new_brightness=$MAX_BRIGHTNESS
-echo "$new_brightness" > $BACKLIGHT/brightness
+# check for bad input
+case $1 in
+	[0-9]*) ;;
+	-[0-9]*) ;;
+	*)
+		echo "Invalid argument: '$1'" >&2
+		echo "Do '$RUNNAME -h' for help" >&2
+		exit 1
+		;;
+esac
 
+new="$1"
+[ "$p" ] && new="$((new * MAX_BRIGHTNESS / 100))"
+[ "$i" ] && new="$((new + BRIGHTNESS))"
+[ "$new" -lt 0 ] && new=0
+[ "$new" -gt "$MAX_BRIGHTNESS" ] && new=$MAX_BRIGHTNESS
+echo "$new" > $BACKLIGHT/brightness
+# vim: noet
