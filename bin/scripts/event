@@ -6,11 +6,17 @@
 ## Crontab:
 ##     */5 * * * * "$HOME"/.local/bin/scripts/event
 ## Dependencies: notify-send(and a notification server)
-## Update 1.2 on 2022-02-13:
-##   - changed function name to field
-##   - added now_time optimisation
-##   - changed if branch to a `&&`
 ## TODO: add way to set period of reminder(eg. for daily reminders)
+
+EVENT_FILE="$HOME"/.local/lib/dotfiles/event.log
+
+# add events to the list like `event 'next monday' message to put`
+# if i put just next monday in the date field in the file, it'll never trigger
+[ "$1" ] && {
+	time="$(date -d "$1")" || exit; shift
+	echo "$time" = "$@" >> "$EVENT_FILE"
+	exit
+}
 
 # when calling from crontab, need to export this to make notify-send work
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
@@ -21,7 +27,7 @@ field(){
 }
 
 now_time="$(date +%s)"
-grep -vE '(^/\*.*\*/|^$)' "$HOME"/.local/lib/dotfiles/event.log | \
+grep -vE '(^/\*.*\*/|^$)' "$EVENT_FILE" | \
 	while read -r i;do
 	# send a notification if $i is greater than today's date in epoch time
 	[ "$now_time" -gt "$(date +%s -d "$(field 1 "$i")")" ] && \
