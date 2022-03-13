@@ -1,13 +1,12 @@
 #!/usr/bin/lua
 -- vim options
-o=vim.opt
+local o=vim.opt
 
--- listchars="tab:❯\ ,trail:-,nbsp:+",
--- listchars="tab:→\ ,eol:\ ,trail:·",
 local options={
     history=500,
     compatible=false,
     termguicolors=true,
+    mouse="a",
     pastetoggle="<F10>",
     pumheight=10,
     autoread=true,
@@ -17,10 +16,9 @@ local options={
     -- textwidth=79,
     inccommand="split",
     colorcolumn="80,160",
-    scrolloff=5,
+    scrolloff=3,
     showmatch=true, matchtime=1,
     list=true,
-    listchars="tab:| ,eol: ,trail:·",
     splitbelow=true, splitright=true,
     hlsearch=true, ignorecase=true, incsearch=true, smartcase=true,
     updatetime=300, timeoutlen=300,
@@ -44,6 +42,8 @@ end
 o.shortmess:append"mrwsIcF" -- avoid longer messages and stuff
 o.completeopt:append"menuone"
 o.path:append"**"
+-- Nice looking tab chracters: ▏│❯>→
+o.listchars:append"tab:▏ "
 
 vim.g.loaded_python3_provider = 0
 vim.g.diff_translations=0

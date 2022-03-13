@@ -56,6 +56,7 @@ map('n', '<leader>fm', function()
 end)
 map('n', '<leader>fo', wrap.oldfiles)
 map('n', '<leader>fs', function() wrap.grep_string {search = ''} end)
+map('n', '<leader>ft', wrap.treesitter)
 -- if in a git repo run git_files else find_files
 map('n', '<c-p>', function()
   local ok = pcall(wrap.git_files)

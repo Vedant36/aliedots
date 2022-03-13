@@ -1,5 +1,7 @@
+-- TODO: convert to vim.api.nvim_create_au{group,tocmd}
 vim.cmd [[
   augroup _custom
+    autocmd!
     au Bufwritepost $XDG_CONFIG_HOME/X11/Xresources silent !xrdb $XDG_CONFIG_HOME/X11/Xresources
     " manually edit PREFIX in config.mk
     au Bufwritepost config.h :make clean install
@@ -9,9 +11,9 @@ vim.cmd [[
   augroup end
 
   augroup _terminal
-    autocmd Bufnewfile,Bufread term://* setf terminal
-    autocmd TermOpen,WinEnter term://* startinsert
-    autocmd TermOpen term://* setf terminal
+    autocmd!
+    autocmd Bufnewfile,Bufread,TermOpen term://* setf terminal
+    autocmd TermOpen,BufEnter term://* startinsert
   augroup END
 
   augroup _custom_filetype_setting
@@ -25,28 +27,29 @@ vim.cmd [[
   augroup end
 
   augroup _markdown
-    au Filetype markdown nn <buffer> j gj
-    au Filetype markdown nn <buffer> k gk
+    autocmd!
+    autocmd Filetype markdown nn <buffer> j gj
+    autocmd Filetype markdown nn <buffer> k gk
     " macro to convert url to markdown: url -> [|](url), where | is the cursor
-    au Filetype markdown nn <buffer> <leader>1 A)<esc>I[](<esc>hi
-    au Filetype markdown setl cc=
-    au Filetype markdown nn <buffer> <silent> zq :Toc<cr>
+    autocmd Filetype markdown nn <buffer> <leader>1 A)<esc>I[](<esc>hi
+    autocmd Filetype markdown setl cc=
+    autocmd Filetype markdown nn <buffer> <silent> zq :Toc<cr>
     " to immediately close the quickfix list after choosing an option
-    au Filetype markdown  au Filetype qf nn <buffer> <silent> <cr> <cr>:lcl<cr>
+    autocmd Filetype markdown  au Filetype qf nn <buffer> <silent> <cr> <cr>:lcl<cr>
   augroup end
 
   augroup _filetype
     au!
     au Filetype crontab setlocal commentstring=#\ %s
-    au Filetype c set shiftwidth=8 tabstop=8 noexpandtab
+    au Filetype c,cpp setl shiftwidth=8 tabstop=8 noexpandtab
     au Filetype diff if &readonly | set noreadonly | setl readonly foldmethod=manual | endif
-    au Filetype help,man nn <buffer> <silent> q ZQ<cr>
-    au Filetype lua nn <buffer> <silent> <F7> :sp \| term time lua %:S<cr>
+    au Filetype help,man nn <buffer> <silent> q ZZ<cr>
+    au Filetype lua nn <buffer> <silent> <F7> :sp \| term time lua %:p:S<cr>
     au Filetype lua se sw=2
     au Filetype man set nobuflisted
     au Filetype netrw setl bufhidden=wipe
     au Filetype netrw nmap <buffer> l <cr>2j | nmap <buffer>h -
-    au Filetype python nn <buffer> <silent> <F7> :sp \| term time python %:S<cr>
+    au Filetype python nn <buffer> <silent> <F7> :sp \| term time python %:p:S<cr>
     au Filetype python se expandtab sw=4
     au Filetype upstart setlocal commentstring=#\ %s
     au Filetype vim nn <buffer> <leader>1 ouse ''<left>

@@ -19,16 +19,17 @@ function P(...)
 end
 function R(module)
   package.loaded[module] = nil
-  require(module)
+  return require(module)
 end
 -- }}}1
 
-require 'vn36.autocmd'
-require 'vn36.options'
-require 'vn36.keymaps'
-require 'vn36.plugins'
-require 'vn36.colorscheme'
+R 'vn36.autocmd'
+R 'vn36.options'
+R 'vn36.keymaps'
+R 'vn36.plugins'
+R 'vn36.colorscheme'
 
+-- vim.opt.background = "light"
 if not pcall(vim.cmd, "colorscheme palenight") then
   vim.cmd [[ colorscheme slate ]]
 end
@@ -44,7 +45,10 @@ function! StripTrailingWhitespaces()
     call winrestview(l:save)
   endif
 endfun
-au BufWritePre * call StripTrailingWhitespaces()
+augroup _trimwhitespace
+  autocmd!
+  autocmd BufWritePre * call StripTrailingWhitespaces()
+augroup END
 " Neat foldtext {{{2
 " Credit: https://dhruvasagar.com/2013/03/28/vim-better-foldtext https://www.reddit.com/r/vim/comments/fzcz5b
 function! NeatFoldText()
@@ -57,12 +61,11 @@ function! NeatFoldText()
 	let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
 	return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfunction
-set foldtext=NeatFoldText()
+" set foldtext=NeatFoldText()
 
 " better indent folding https://learnvimscriptthehardway.stevelosh.com/chapters/49.html {{{2
 " au filetype python setl foldmethod=expr foldexpr=PythonIndent(v:lnum)
 " au bufnewfile,bufread config.py setl foldmethod=marker
-au Filetype json,yaml setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
 function! IndentLevel(lnum)
 	return indent(a:lnum) / &shiftwidth
 endfunction
@@ -70,7 +73,7 @@ function! BetterIndent(lnum)
   if getline(a:lnum) =~? '\v^\s*$'
     return '-1'
   endif
-  if getline(a:lnum) =~ '\v^\s*[}\])],?$'
+  if getline(a:lnum) =~ '\v^\s*[}\])],?;?$'
     return IndentLevel(a:lnum-1)
   endif
 
@@ -83,9 +86,16 @@ function! BetterIndent(lnum)
     return this_indent
   endif
 endfunction
+augroup _indent
+  autocmd!
+  autocmd Filetype c,cpp,json,yaml setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
+augroup END
 
 " folding for diff from vimwiki https://vim.fandom.com/wiki/Folding_for_diff_files {{{2
-autocmd FileType diff,gitcommit,git setl foldmethod=expr foldexpr=DiffFold(v:lnum)
+augroup _difffold
+  autocmd!
+  autocmd FileType diff,gitcommit,git setl foldmethod=expr foldexpr=DiffFold(v:lnum)
+augroup END
 function! DiffFold(lnum)
   let line = getline(a:lnum)
   if line =~ '^$'
@@ -150,7 +160,7 @@ endfunction
 -- lightline config {{{1
 vim.cmd [[
 let g:lightline = {
-	\ 'colorscheme': "palenight",
+	\ 'colorscheme': colors_name,
 	\ 'active': {
 	\ 	 'left': [ [ 'mode', 'paste' ], [ 'filename', 'modified' ] ],
 	\ 	 'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'charvaluehex', 'filetype', 'linecount', 'fileinfo' ] ]

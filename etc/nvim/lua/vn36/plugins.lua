@@ -41,7 +41,7 @@ return packer.startup {function(use)
       vim.keymap.set('v', '<leader>i', '<Plug>Commentary')
     end
   }
-  -- use 'tpope/vim-repeat'
+  use 'tpope/vim-repeat'
   use {
     'preservim/vim-markdown',
     ft = 'markdown',
@@ -52,6 +52,11 @@ return packer.startup {function(use)
   }
   use 'google/vim-searchindex'
   -- Other Lua Plugins {{{1
+  use {
+    'andweeb/presence.nvim',
+    module = 'presence',
+    config = function() require("presence"):setup{} end
+  }
   -- improves commit buffer
   use 'rhysd/committia.vim'
   use 'folke/zen-mode.nvim'
@@ -66,7 +71,6 @@ return packer.startup {function(use)
   -- Gitsigns {{{1
   use {
     'lewis6991/gitsigns.nvim',
-    event = 'VimEnter',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function() require 'vn36.gitsigns' end
   }
@@ -114,15 +118,23 @@ let g:bufferline_rotate = 2
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
+      vim.opt.listchars:append"tab:  "
       require 'indent_blankline'.setup {
-        show_current_context = true,
-        filetype_exclude = { "markdown", "man", "help", "terminal" }
+        char = '▏',
+        max_indent_increase = 1,
+        show_first_indent_level = false,
+        -- show_current_context = false,
+        filetype_exclude = {
+          "lspinfo", "packer", "checkhealth", "help", "",
+          "markdown", "man", "help", "terminal",
+        }
       }
     end
   }
   -- Linting {{{1
   use {
     'mfussenegger/nvim-lint',
+    ft = { 'c', 'cpp', 'lua', 'sh', 'bash', 'zsh', 'python' },
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
@@ -142,7 +154,7 @@ let g:bufferline_rotate = 2
       vim.cmd [[
         augroup linter
           autocmd!
-          autocmd BufWritePost,InsertLeave * lua require('lint').try_lint()
+          autocmd BufWritePost * lua require('lint').try_lint()
         augroup END
       ]]
     end
@@ -153,7 +165,7 @@ let g:bufferline_rotate = 2
     'nvim-telescope/telescope.nvim',
     keys = {'<c-p>', '<leader>fa', '<leader>fb', '<leader>fc', '<leader>ff',
       '<leader>fg', '<leader>fh', '<leader>fm', '<leader>fo', '<leader>fs',
-      '<leader>e'},
+      '<leader>ft', '<leader>e'},
     cmd = ":Telescope",
     requires = {
       'nvim-lua/plenary.nvim',
@@ -165,14 +177,14 @@ let g:bufferline_rotate = 2
   }
   -- Treesitter {{{1
   local treesitter_ft = {
-    "bash", "cpp", "css", "go", "haskell", "html", "javascript", "java", "json",
-    "latex", "lua", "make", "python", "rust", "vim", "yaml", "sh"
+    "bash", "c", "cpp", "css", "go", "haskell", "html", "javascript", "java",
+    "json", "lua", "make", "python", "rust", "sh", "vim", "yaml"
   }
   use {
     'nvim-treesitter/nvim-treesitter',
-    -- can't make lazy loading work yet, maybe there's no need
-    ft = treesitter_ft,
     run = ':TSUpdate',
+    ft = treesitter_ft,
+    cmd = ':TSInstall',
     requires = {
       -- reverse-dependencies
       { 'p00f/nvim-ts-rainbow', ft = treesitter_ft }, -- rainbow brackets
@@ -181,7 +193,6 @@ let g:bufferline_rotate = 2
     config = function() require 'vn36.treesitter' end
   }
 
-  -- why is this so buggy
   use {
     'windwp/nvim-autopairs',
     config = function()
@@ -217,8 +228,9 @@ let g:bufferline_rotate = 2
   -- Color Schemes {{{1
   use 'drewtempelmeyer/palenight.vim'
   use 'ghifarit53/tokyonight-vim'
-  use 'morhetz/gruvbox'
+  -- use 'morhetz/gruvbox'
   use 'sainnhe/sonokai'
+  use 'ellisonleao/gruvbox.nvim'
   -- includes: aurora,codemonkey,darkplus,onedarker,spacedark,system76,tomorrow
   -- use "lunarvim/colorschemes"
 
@@ -243,6 +255,6 @@ config = {
   },
   profile = {
     enable = true,
-    threshold = 0,
+    threshold = 1,
   }
 }}
