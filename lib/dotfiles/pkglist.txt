@@ -16,14 +16,16 @@ cmake
 cmus
 cppcheck
 cronie
+dash
+dietlibc
 discord
 dmidecode
 dnsmasq
-drawing
 dunst
 ed
 edk2-ovmf
 efibootmgr
+emacs
 exa
 exfat-utils
 exiv2
@@ -63,6 +65,7 @@ linux-lts
 linux-zen
 linux-zen-headers
 lostfiles
+love
 ltrace
 lua
 luakit
@@ -79,6 +82,9 @@ mpd
 mpv
 mupdf
 mupdf-tools
+musl
+mypaint
+nano
 nasm
 ncdu
 ncmpcpp
@@ -126,6 +132,8 @@ subdl
 sx
 sxiv
 systemd-sysvcompat
+texlive-bin
+texlive-core
 thunar
 tlp
 tmux
@@ -143,6 +151,7 @@ unclutter
 unrar
 unzip
 upower
+valgrind
 virt-manager
 virt-viewer
 vnstat

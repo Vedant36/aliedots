@@ -1,10 +1,10 @@
 /* just put timestamps for daily reminder */
-01 Mar 2022 = check deadlines for other colleges
+02 Jun 2022 1300 = check deadlines for other colleges
 01 Apr 2022 = gib test for cmi and isi
-01 Mar 2022 = CMI & ISI = application forms for cmi and isi
 
 /* CMI */
-28 Feb 2022 = CMI = check cmi site(further details about application forms)
+21 Mar 2022 = CMI = applications start
+23 Apr 2022 = CMI = applications last date on 30 Apr
 22 Apr 2022 = CMI = test on 22 May 2022
 
 /* ISI */
@@ -13,13 +13,13 @@
 /* Shows/Films */
 01 Jan 2023 = Jujustu Kaisen Season 2
 08 Apr 2022 = Fantastic Beasts: The Secrets of Dumbledore
-09 Mar 2022 = flash s08e06
-02 Mar 2022 = jujutsu kaisen film release
-04 Mar 2022 = batman
-28 Feb 2022 0030 = attack on titan e7
-28 Feb 2022 1000 = euphoria season 2
+18 Mar 2022 0630 = flash s08e06
+02 Apr 2022 = jujutsu kaisen film release
+19 Apr 2022 = batman HBO release
+14 Mar 2022 0030 = attack on titan e7
 
 /* other */
 /* 2330 = sleep */
-26 Feb 2022 1700 = cash money = get pan card and bank account NOW
-07 Mar 2022 = check ~/.local/lib/var/state.log
+17 Mar 2022 0800 = get black ball pens(many) and toothpaste
+
+/* set from commandline */

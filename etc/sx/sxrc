@@ -12,6 +12,7 @@ unset f
 
 # X configuration {{{1
 # resolution
+#cvt 1920 1080 60 # put the modeline from this after `xrandr --newmode` as in the next line
 xrandr --newmode "1920x1080_60.00" 173.00 1920 2048 2248 2576 1080 1083 1088 1120 -hsync +vsync
 xrandr --addmode Virtual-1 1920x1080_60.00
 xrandr --output Virtual-1 --mode 1920x1080_60.00
@@ -21,10 +22,15 @@ setxkbmap -option ctrl:nocaps
 # for another mod key
 #clear mod3
 #keysym F8 = Hyper_R
-xset r rate 200 200
-xset -r 36 # turn off repeat for return key
-xset m 4 0 # mouse
-xset dpms 720 720 720
+xset r rate 200 200 # key delay and repeat
+xset m 4 0 # mouse speed
+# turn off repeat for return and tab
+xset -r 36
+# screen deactivate and turn off times
+xset s 300 0
+xset s noexpose
+xset s noblank
+xset dpms 450 450 450
 
 # startup programs {{{1
 # X only programs
@@ -48,18 +54,20 @@ pgrep mpdscribble || \
 # window manager {{{1
 # its in a loop so i can reload configuration by just killing dwm
 # and close X by doing pkill -x Xorg
-# TODO: write a better clean() function for trap to clean-up startup processes
+# TODO: find way to properly stop dwm_bar and artha when Xorg dies
+dwm_bar() {
+    while xsetroot -name "$(bar.sh)"; do
+        # synchronize dwmblocks with the time
+        sleep $((60-$(date +%s)%60)) &
+        echo $! > "$XDG_STATE_HOME"/sleep_pid
+        wait $!
+        [ -z "$DISPLAY" ] && return
+    done
+}
+# eval "$(ssh-agent)"
 while true; do
-	while xsetroot -name "$(bar.sh)"; do
-		# synchronize dwmblocks with the time
-		sleep $((60-$(date +%s)%60)) &
-		echo $! > "$XDG_STATE_HOME"/sleep_pid
-		wait $!
-	done &
-	bar=$!
-    eval "$(ssh-agent)"
-	env XDG_CURRENT_DESKTOP=dwm dwm >"$XDG_LOG_HOME"/dwm.log || exit
-    pkill ssh-agent
-    kill $bar
+	dwm_bar &
+	ssh-agent dwm >"$XDG_LOG_HOME"/dwm.log || exit
 done
+trap 'pkill "$SSH_AGENT_PID";' EXIT HUP TERM QUIT
 

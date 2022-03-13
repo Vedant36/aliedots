@@ -114,12 +114,14 @@ c.url.searchengines = {
     'alc': 'https://archlinux.org/packages/community/x86_64/{}',
     'ale': 'https://archlinux.org/packages/extra/x86_64/{}',
     # programming
+    'c': 'https://duckduckgo.com/?sites=cppreference.com&q={}',
+    'cl': 'https://en.cppreference.com/w/c/language/{}',
     'gh': 'https://github.com/{}',
     'gl': 'https://github.com/Vedant36/{}',
-    'glot': 'https://glot.io/new/{}',  # online code editor without login
+    'ide': 'https://glot.io/new/{}',  # online code editor without login
     'grep': 'https://grep.app/search?q={}',  # search for code examples
     'py': 'https://pypi.org/search/?q={}',
-    'xiny': 'https://learnxinyminutes.com/docs/{}',  # learning new prog.lang.
+    'xy': 'https://learnxinyminutes.com/docs/{}',  # learning new prog.lang.
     # films and shows
     'ap': 'https://animixplay.to/?q={}',  # anime
     'manga': 'https://mangareader.to/search?keyword={}',
@@ -178,6 +180,8 @@ c.bindings.commands["normal"] = {
     "ya": "yank inline '<a href={url}>{title}</a>'",
     "yw": "fake-key <ctrl-a>",
     ";n": "hint links spawn -d st nvim {hint-url}",
+    ";s": "hint links spawn -d surf {hint-url}",
+    "S": "spawn -d surf {url}",
 
     # Binds to open current url in mpv/upmpv
     ",m": "spawn -d mpv {url}",
@@ -241,7 +245,7 @@ for line in filter(lambda l: l.startswith("*"), lines):
 BG = xresources["*.background"]
 FG = xresources["*.foreground"]
 
-c.colors.webpage.bg = 'grey'
+c.colors.webpage.bg = '#ccc7bb'
 c.colors.statusbar.normal.bg = BG
 c.colors.statusbar.command.bg = BG
 c.colors.statusbar.command.fg = FG

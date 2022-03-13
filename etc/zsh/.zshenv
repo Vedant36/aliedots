@@ -1,9 +1,10 @@
-#!/usr/bin/env zsh
+# Vedant36's zshenv
 # settings {{{1
+[ "$ZSHENV_SET" ] && return
+export ZSHENV_SET=1
 export skip_global_compinit=1
 export BROWSER="qutebrowser"
 export PM=yay # package manager
-export QT_QPA_PLATFORMTHEME=qt5ct
 
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -12,12 +13,17 @@ export LESS='--RAW-CONTROL-CHARS --squeeze-blank-lines --quit-on-intr --quit-if-
 export PAGER="nvim -"
 export MANPAGER="nvim +Man\!"
 export RANGER_LOAD_DEFAULT_RC=FALSE
+export SSH_ASKPASS='pinentry'
 
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 # XDG and other HOME dirs {{{1
-export PATH="$HOME/.local/bin/scripts:$HOME/.local/bin/wrappers:$HOME/.local/bin:$PATH"
+## I should probably loop through every element to check if something is already
+## added, but this works for now so no need to increase complexity
+[ -z "$PATH_SET" ] &&
+    export PATH="$HOME/.local/bin/scripts:$HOME/.local/bin/wrappers:$HOME/.local/bin:$PATH"
+export PATH_SET=1
 export DATASETS="$HOME/dox/_Other/datasets"
 export BIN_HOME="$HOME/.local/bin"
 export XDG_CONFIG_HOME="$HOME/.local/etc"
@@ -44,7 +50,7 @@ export LESSHISTFILE=$XDG_DATA_HOME/lesshst
 # fzf {{{1
 export FZF_{DEFAULT,CTRL_T}_COMMAND='fd -H -E "\.git/"'
 export FZF_ALT_C_COMMAND='fd -H --type d -E "\.git/"'
-export FZF_DEFAULT_OPTS="-m --reverse --info=inline"
+export FZF_DEFAULT_OPTS="-m --reverse --info=inline --tiebreak=index"
 export FZF_CTRL_T_OPTS="--tiebreak=begin --preview 'preview {}'"
 export  FZF_ALT_C_OPTS="--tiebreak=begin --preview 'preview {}'"
 export FZF_CTRL_R_OPTS="--tiebreak=index"

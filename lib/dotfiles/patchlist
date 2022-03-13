@@ -1,7 +1,9 @@
 dmenu-center-4.8.diff
+dwm-autoresize-20160718-56a31dc.diff
 dwm-custom.diff
 dwm-hide_vacant_tags-6.3.diff
 dwm-fullgaps-20200508-7b77734.diff
+dwm-noborderfloatingfix-6.2.diff
 dwm-nomonitor.diff
 slock-terminalkeys-20160618-65b8d52.diff
 st-alpha-0.8.2.diff

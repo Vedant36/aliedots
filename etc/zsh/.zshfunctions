@@ -23,7 +23,7 @@ es(){(
         tar xf ${SE}.tar && rm ${SE}.tar
         ranger $SE
     fi
-	[ -d ${SE} ]
+	[ -d ${SE} ] || exit
     tar c ${SE} | gpg -r "Vedant Neema" -e>${SE}.tar.gpg
 	rm -rf $SE
     cp ${SE}.tar.gpg ~/.local/lib/private/${SE}-post.tar.gpg

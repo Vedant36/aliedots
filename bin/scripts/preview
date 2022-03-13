@@ -5,5 +5,5 @@ case $(file --brief --mime-type "$1") in
     image/*|video/*)
         mediainfo "$1" ;;
     *)
-        bat --color=always --style=numbers "$1" || file -b "$1" ;;
+        bat --color=always --style=numbers "$1" 2>/dev/null || file -b "$1" ;;
 esac

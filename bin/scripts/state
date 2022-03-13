@@ -10,22 +10,18 @@
 # SYSTEM_DEPENDENT: interface might be different on different machines
 INTERFACE=wlo1
 choice=$(echo "\
+redshift $(pgrep -xc redshift)
+wallpaper
 xcape $(pgrep -xc xcape)
 wifi $(nmcli device status | grep -c "^$INTERFACE.* connected") \
 $(nmcli connection show --active 2>&1 | grep -Po "Neema(?=.* $INTERFACE)")
-xss-lock $(pgrep -xc xss-lock)
-unclutter $(pgrep -xc unclutter)
-wallpaper
-dpms $(xset q | grep -Po 'DPMS is \K\S+')
 xcompmgr $(pgrep -xc xcompmgr)
-redshift $(pgrep -xc redshift)
 dunst(Reload)
+unclutter $(pgrep -xc unclutter)
+dpms $(xset q | grep -Po 'DPMS is \K\S+')
+xss-lock $(pgrep -xc xss-lock)
 mpdscribble(Reload)
-" | nl -s" " -v0 -w1 | dmenu -l 20)
-[ -z "$choice" ] && exit 0
-
-# Temporary: logging to know the perfect order
-echo "$choice" >> "$XDG_STATE_HOME"/state.log
+" | nl -s" " -v0 -w1 | dmenu -l 20) || exit 0
 
 toggle(){
 	cmd="$1"; shift

@@ -87,6 +87,18 @@ bindkey -a '^X' vi-append-x-selection
 vi-yank-x-selection () { print -rn -- "$CUTBUFFER" | xsel -i -p; }
 zle -N vi-yank-x-selection
 bindkey -a '^Y' vi-yank-x-selection
+# https://wiki.archlinux.org/title/Zsh#Clear_the_backbuffer_using_a_key_binding
+function clear-screen-and-scrollback() {
+    echoti civis >"$TTY"
+    printf '%b' '\e[H\e[2J\e[3J' >"$TTY"
+    zle .reset-prompt
+    zle -R
+    # printf '%b' '\e[3J' >"$TTY"
+    echoti cnorm >"$TTY"
+}
+
+zle -N clear-screen-and-scrollback
+bindkey '^X^L' clear-screen-and-scrollback
 
 # history settings {{{1
 export HISTSIZE=100000      # Nearly infinite history; essential to building a cli 'library' to use with fzf/etc
@@ -117,6 +129,11 @@ alias zc='z -c'      # restrict matches to subdirs of $PWD
 alias zf='z -I'      # use fzf to select in multiple matches
 alias zb='z -b'      # quickly cd to the parent directory
 alias zt='z -t'      # cd to most recently accessed dir
+# Source: https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
+. "$ZSH_PLUGINS"/fzf-git/functions.sh
+bindkey -r '^G'      # remove default ^G bind so fzf-git can use it
+. "$ZSH_PLUGINS"/fzf-git/key-binding.zsh
+# load personal scripts last to avoid conflicts with other plugins
 . "${ZDOTDIR:-~}"/.zshaliases
 . "${ZDOTDIR:-~}"/.zshfunctions
 # setopts {{{1

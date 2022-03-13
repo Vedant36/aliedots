@@ -35,5 +35,6 @@ set font "Iosevka Nerd Font"
 map b toggle_statusbar
 map , navigate next
 map . navigate previous
+map D set first-page-column\ 1
 set pages-per-row 2
 # vim: ft=conf

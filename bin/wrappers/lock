@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # feels like slock is better anyway
-slock
-exit 0
+exec slock
 
 # TODO: complete update() in the script or replace the whole thing with slock
 # Original Author : Pavan Jadhaw
@@ -28,7 +27,7 @@ font="iosevka mayukai codepro"
 locktext="100 seconds to midnight"
 time_format='%H:%M:%S'
 picture="$HOME"/pix/current
-converted="$XDG_CACHE_HOME"/alie/lockscreen.png
+converted="$XDG_STATE_HOME"/alie/lockscreen.png
 
 lock() {
 	mpc -q pause
@@ -37,6 +36,7 @@ lock() {
 
 	i3lock \
 		-n \
+		-e \
 		-c 00000000 \
 		-t -i "$converted" \
 		--time-pos='x+110:h-70' \

@@ -3,6 +3,7 @@
 !anacrontab
 !config.h/**
 !dunst/dunstrc
+!emacs/init.el
 !environment.d/xdg.conf
 !git/config
 !kitty/*
@@ -27,6 +28,7 @@ nvim/lua/*
 !ranger/*
 ranger/plugins
 !sx/sxrc
+!transmission/settings.json
 !X11/**
 !yay/config.json
 !zathura/zathurarc

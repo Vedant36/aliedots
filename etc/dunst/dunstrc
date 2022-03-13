@@ -69,17 +69,17 @@ mouse_middle_click = open_url
 mouse_right_click = close_all
 
 [urgency_low]
-background = "#1D918B"
+background = "#E1ACFF"
 foreground = "#1a1b26"
 timeout = 5
 
 [urgency_normal]
-background = "#C792EA"
+background = "#C3E88D"
 foreground = "#1a1b26"
 timeout = 10
 
 [urgency_critical]
-background = "#db4b4b"
+background = "#FF8B92"
 foreground = "#1a1b26"
 timeout = 0
 

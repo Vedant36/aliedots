@@ -132,7 +132,8 @@ case $1 in
         # IDEA: print the script to run to the terminal and let the user run it
         ce "I'm still debating on whether I should make this part"
         ce "must run 'pacman-key --init' as root before first running pacman"
-        ce "remove cron.deny if exists"
+        ce "remove /etc/cron.deny if exists"
+        ce "chown root:root for all files in lib/root"
         ce "hard link/symlink files in $PREFIX/lib/root/ to /"
         ce err "Unimplemented"
         exit $EUNIMPLEMENTED
@@ -151,6 +152,10 @@ case $1 in
             pushd fast-syntax-highlighting && git pull && popd
             pushd zsh-autosuggestions && git pull && popd
             pushd z.lua && git pull && popd
+            mkdir -p fzf-git && pushd fzf-git
+                curl -OL 'https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236/raw/f23942b51333b8e8bcd6816fc063cf54beb8b97f/functions.sh'
+                curl -OL 'https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236/raw/f23942b51333b8e8bcd6816fc063cf54beb8b97f/key-binding.zsh'
+            popd
         popd
 
         ce "Updating ranger plugins..."

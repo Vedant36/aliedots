@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Script that outputs the thing to put in dwmblocks(statusbar)
 # Rewritten by Vedant too late in the night(202202110249)
+# Dependencies: git, upower, mpd and mpc
 
 # lines of changes in my dotfiles
 dot=" $(git --git-dir="$HOME"/.local/.git --work-tree="$HOME"/.local \
@@ -9,7 +10,7 @@ dot=" $(git --git-dir="$HOME"/.local/.git --work-tree="$HOME"/.local \
 uptime=" $(uptime | grep -Po 'up \K.*(?=,\s+\d+ user)' | xargs)"
 
 # the packages are updated in a cache everyday using anacrontab
-[ -s "$XDG_LOG_HOME"/packages.log ] && \
+[ -r "$XDG_LOG_HOME"/packages.log ] && \
     packages=" $(wc -l <"$XDG_LOG_HOME"/packages.log 2>/dev/null || printf 0)"
 
 # unreadable code to get battery percentage and time to full/empty

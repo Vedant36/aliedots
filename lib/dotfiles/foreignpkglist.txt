@@ -9,6 +9,7 @@ boomer-git
 chromium-widevine
 colorpicker
 find-the-command
+geogebra-5
 i3lock-color-git
 lf-bin
 lua-inspect
@@ -26,6 +27,7 @@ popcorntime-bin
 python-openai
 python-snakeviz
 ranger-git
+sdl2-manpage-git
 shellcheck-bin
 simple-mtpfs
 spotify
@@ -36,3 +38,4 @@ xorg-meta
 xxd-standalone
 yay-bin
 youtube-to-mp3
+ytfzf
