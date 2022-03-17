@@ -1,7 +1,6 @@
 #!/bin/bash
 # Description {{{1
 # shellcheck disable=SC2164
-# Status: Incomplete(do not run, might create black hole)
 # Written by Vedant36 hours before going to eat burger at McDonalds
 # This script contains the setup required after cloning the repository from
 #   github and an unneccesary use of pushd and popd
@@ -9,14 +8,6 @@
 # effects)
 # TODOO: add way to update/install updated repos/plugins for specific sections like zsh, qutebrowser, suckless, etc
 # TODO: need to prob add the script to backup to my external harddrive
-## Update 0.3 on 2022-02-14:
-##   - added wrappers for pushd and popd
-##   - improved ce(colored echo)
-##   - added check and help subcommand
-##   - added error codes
-##   - added markers for vim folding
-##   - added mpv scripts
-##   - added no-root() to avoid running part of script as root
 # }}}1
 
 # Here, the prefix directory is assumed to be "$PREFIX"
@@ -29,17 +20,28 @@ EUNIMPLEMENTED=3  # Feature Unimplemented
 ENOTDIR=20  # Directory doesn't exist or can't popd to this directory
 ECANCELED=125  # Operation cancelled
 
+# wrappers suggested by https://github.com/koalaman/shellcheck/wiki/SC2164
 pushd(){ command pushd "$1" >/dev/null || exit $ENOTDIR; }
 popd(){ command popd >/dev/null || exit $ENOTDIR; }
-# idempotent version of git clone $1
-ic(){ [ -d "${1##*/}" ] || git clone "$1"; }
+
+# idempotent version of git clone {{{1
+ic(){
+    pull=1
+    [ "$1" == "-n" ] && pull='' && shift
+    dir="${1##*/}"
+    if [ -d "$dir" ]; then
+        [ "$pull" ] && pushd "$dir" && git pull && popd
+    else
+        git clone "$1"
+    fi
+}
 
 # to avoid running parts of script as root {{{1
 no-root(){
-    [ "$(id -u)" -eq 0 ] && (
+    [[ "$(id -u)" -eq 0 ]] && {
         echo err "Don't run this as root"
         exit $ECANCELED
-    )
+    }
 }
 
 # colored echo to seperate status reports from command output {{{1
@@ -50,10 +52,14 @@ ce(){
         *)   echo -e "[\e[1;92mINFO\e[m] $1" 1>&2 ;;
     esac
 }
-
-# Subcommands' implementation {{{1
+# ce-end }}}1
+# Subcommands' implementation
 case $1 in
-    check) # {{{2
+    backup) # {{{1
+        crontab -l > "$PREFIX"/lib/dotfiles/crontab
+        ;;
+
+    check) # {{{1
         no-root
         ce "Checking repositories in opt..."
         pushd "$PREFIX"/opt
@@ -62,40 +68,44 @@ case $1 in
             done
         popd
         ;;
-    install) # {{{2
+
+    install) # {{{1
         no-root
         pushd "$PREFIX"
-        # Linking {{{3
-        ce "Linking the script itself"
+        # Linking {{{2
+        ce "Linking the script itself into PATH..."
         ln -sf "$PREFIX"/lib/dotfiles/setup.bash "$PREFIX"/bin/
         ce "Linking zshenv and pam_environment(for environment variables..."
         ln -sf "$PREFIX"/lib/dotfiles/pam_environment ~/.pam_environment
-        ln -sf "$PREFIX"/lib/dotfiles/zshenv ~/.zshenv
 
-        # Crontab {{{3
+        # Crontab {{{2
         ce "Installing crontab..."
         crontab < "$PREFIX"/lib/dotfiles/crontab
 
-        # Zsh {{{3
-        ce "Cloning zsh plugins..."
+        # Zsh {{{2
+        ce "Cloning/Updating zsh plugins..."
         mkdir -p share/zsh/plugins && \
                 pushd share/zsh/plugins
             ic https://github.com/zdharma-continuum/fast-syntax-highlighting
             ic https://github.com/zsh-users/zsh-autosuggestions
             ic https://github.com/skywind3000/z.lua
+            mkdir -p fzf-git && pushd fzf-git
+                curl -OL 'https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236/raw/f23942b51333b8e8bcd6816fc063cf54beb8b97f/functions.sh'
+                curl -OL 'https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236/raw/f23942b51333b8e8bcd6816fc063cf54beb8b97f/key-binding.zsh'
+            popd
         popd
 
-        # Suckless {{{3
+        # Suckless {{{2
         ce "Cloning locally compiled tools..."
         pushd opt
-            ic https://git.suckless.org/dwm
-            ic https://git.suckless.org/st
-            ic https://git.suckless.org/scroll
+            ic -n https://git.suckless.org/dwm
+            ic -n https://git.suckless.org/st
+            ic -n https://git.suckless.org/scroll
             # [ -d patches ] && pushd dwm && patch -Np1 <../patches/dwm/*
             ce "Patch dwm and st manually until patches get version controlled"
-            ic https://git.suckless.org/dmenu
-            ic https://git.suckless.org/surf
-            ic https://git.suckless.org/slock
+            ic -n https://git.suckless.org/dmenu
+            ic -n https://git.suckless.org/surf
+            ic -n https://git.suckless.org/slock
         popd
 
         ce "Linking their configs..."
@@ -103,32 +113,53 @@ case $1 in
             ln -sf "${file}" "${file/etc\/config.h/opt}"
         done
 
-        # Qutebrowser {{{3
+        # Qutebrowser {{{2
         #   spellcheck
+        ce "Downloading spellcheck for qutebrowser..."
         /usr/share/qutebrowser/scripts/dictcli.py install en-US
         #   4Chan-X
-        ce "Install 4Chan-X greasemonkey script"
-        mkdir -p share/qutebrowser/greasemonkey
-        curl --output-dir share/qutebrowser/greasemonkey \
-            -O 'https://www.4chan-x.net/builds/4chan-X.user.js'
+        ce "Downloading greasemonkey scripts..."
+        mkdir -p share/qutebrowser/greasemonkey &&
+            pushd share/qutebrowser/greasemonkey
+            curl -OL 'https://www.4chan-x.net/builds/4chan-X.user.js'
+            curl -OL 'https://greasyfork.org/scripts/394820-mouseover-popup-image-viewer/code/Mouseover%20Popup%20Image%20Viewer.user.js'
+        popd
 
-        # Neovim {{{3
-        ce "The Neovim plugins will auto-install after opening the editor"
-        ce "with a working internet connection(when i finally setup lua)"
+        # MPV {{{2
+        ce "Downloading mpv scripts..."
+        mkdir -p etc/mpv/scripts && pushd etc/mpv/scripts
+            curl -OL 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_client_osc.lua'
+            curl -OL 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_server.lua'
+            curl -OL 'https://codeberg.org/jouni/mpv_sponsorblock_minimal/raw/branch/master/sponsorblock_minimal.lua'
+            curl -OL 'https://raw.githubusercontent.com/jonniek/mpv-filenavigator/master/navigator.lua'
+        popd
+
+        # Neovim {{{2
+        ce "Installing Neovim plugins..."
         nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-        # Misc {{{3
-        mkdir -p etc/MediaHuman
-        cp "$PREFIX/lib/dotfiles/YouTube to MP3.conf" etc/MediaHuman/
+        # Ranger {{{2
+        ce "Updating ranger plugins..."
+        pushd etc/ranger/plugins/ranger_devicons/ && git pull && popd
         cp "$PREFIX"/lib/dotfiles/bookmarks share/ranger
 
-        # End }}}3
+        # Misc {{{2
+        ce "Copying youtube-to-mp3 config..."
+        mkdir -p etc/MediaHuman
+        cp "$PREFIX/lib/dotfiles/YouTube to MP3.conf" etc/MediaHuman/
+
+        ce "Updating Package lists..."
+        pacman -Qqen>lib/dotfiles/pkglist.txt
+        pacman -Qqem>lib/dotfiles/foreignpkglist.txt
+
+        # End }}}2
         popd
+        ce "Manually update locally compiled tools for now"
         ce "Reboot for the environment variables to take effect"
-        ce "Then, you should run $(basename "$0") update"
+        ce "Don't forget to update your system using your package manager"
         ;;
 
-    install-root) # {{{2
+    install-root) # {{{1
         # IDEA: print the script to run to the terminal and let the user run it
         ce "I'm still debating on whether I should make this part"
         ce "must run 'pacman-key --init' as root before first running pacman"
@@ -139,51 +170,16 @@ case $1 in
         exit $EUNIMPLEMENTED
         ;;
 
-    update) # {{{2
-        no-root
-        pushd "$PREFIX"
-
-        ce "Updating Package lists..."
-        pacman -Qqen>lib/dotfiles/pkglist.txt
-        pacman -Qqem>lib/dotfiles/foreignpkglist.txt
-
-        ce "Updating zsh plugins..."
-        pushd share/zsh/plugins
-            pushd fast-syntax-highlighting && git pull && popd
-            pushd zsh-autosuggestions && git pull && popd
-            pushd z.lua && git pull && popd
-            mkdir -p fzf-git && pushd fzf-git
-                curl -OL 'https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236/raw/f23942b51333b8e8bcd6816fc063cf54beb8b97f/functions.sh'
-                curl -OL 'https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236/raw/f23942b51333b8e8bcd6816fc063cf54beb8b97f/key-binding.zsh'
-            popd
-        popd
-
-        ce "Updating ranger plugins..."
-        pushd etc/ranger/plugins/ranger_devicons/ && git pull && popd
-
-        ce "Updating mpv scripts..."
-        mkdir -p etc/mpv/scripts && pushd etc/mpv/scripts
-            curl -OL 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_client_osc.lua'
-            curl -OL 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_server.lua'
-            curl -OL 'https://codeberg.org/jouni/mpv_sponsorblock_minimal/raw/branch/master/sponsorblock_minimal.lua'
-            curl -OL 'https://raw.githubusercontent.com/jonniek/mpv-filenavigator/master/navigator.lua'
-        popd
-
-        popd
-        ce "Manually update locally compiled tools for now"
-        ce "Don't forget to update your system using your package manager"
-        ;;
-
-    help|*) # {{{2
+    help|*) # {{{1
         cat<<-EOF
 Usage $(basename "$0") SUBCOMMAND
 SUBCOMMANDS:
+    backup       : execute some backup commands
     check        : performs pre-defined checks on the repository
-    install      : installs the configuration for the first time
+    install      : does the necessary installation / upgrade(if some things are
+                   already installed)
     install-root : installs the root config(UNIMPLEMENTED)
-    update       : updates the dotfiles(plugins)
 EOF
         [ "$1" = help ] || ce err "Unknown subcommand \"$1\""
         ;;
 esac # }}}1
-

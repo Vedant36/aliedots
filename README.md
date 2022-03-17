@@ -48,7 +48,7 @@ $HOME
 
 ## Notes
 - Using the xdg variable structure inspired from [ayekat's dotfiles](https://github.com/ayekat/dotfiles)
-- the set-up script(still in developement) is lib/dotfiles/setup.sh, although that is not necessary to get the aliedots experience
+- the set-up script is lib/dotfiles/setup.sh, although that is not necessary to get the aliedots experience
 - {packages,foreign packages} i use are in lib/dotfiles/{pkglist,foreignpkglist}.txt
 - lib/root contains files that should be hard linked to / with the same folder structure
     * symbolic links might be better
@@ -73,5 +73,4 @@ $HOME
 ## TODO
 - this might be a really bad idea but what if i could symlink `/` to `lib/root` then just use gitignore to track only the files i need. can't really think of any security issues now
 - etc/environment.d/*: don't know a way to transfer them to shell variables
-- complete setup.sh
 
