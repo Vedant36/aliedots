@@ -98,6 +98,7 @@ c.url.searchengines = {
     'b': 'https://1lib.in/s/{}',
     'b2': 'https://www.pdfdrive.com/search?q={}',
     'b3': 'https://libgen.me/search?query={}',
+    'b4': 'https://libgen.is/search.php?req={}',
     # math
     'o': 'http://oeis.org/search?q={}',
     'oa': 'http://oeis.org/A{}',
@@ -106,6 +107,7 @@ c.url.searchengines = {
     'wm': 'https://mathworld.wolfram.com/search/index.html?query={}',
     # linux
     'a': 'https://wiki.archlinux.org/index.php?search={}',
+    'gw': 'https://wiki.gentoo.org/index.php?search={}',
     'm': 'https://linux.die.net/man/1/{}',  # man pages
     'm2': 'https://man.archlinux.org/{}',  # arch man pages
     'aur': 'https://aur.archlinux.org/packages/{}',
@@ -114,8 +116,10 @@ c.url.searchengines = {
     'alc': 'https://archlinux.org/packages/community/x86_64/{}',
     'ale': 'https://archlinux.org/packages/extra/x86_64/{}',
     # programming
+    'asm': 'https://www.felixcloutier.com/x86/{}',
     'c': 'https://duckduckgo.com/?sites=cppreference.com&q={}',
     'cl': 'https://en.cppreference.com/w/c/language/{}',
+    'dd': 'https://devdocs.io/{}',
     'gh': 'https://github.com/{}',
     'gl': 'https://github.com/Vedant36/{}',
     'ide': 'https://glot.io/new/{}',  # online code editor without login
@@ -147,7 +151,8 @@ c.content.blocking.adblock.lists = [
 ]
 c.content.blocking.enabled = True
 c.content.blocking.hosts.lists = [
-    'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts'
+    "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
+    "https://blocklistproject.github.io/Lists/everything.txt",
 ]
 c.content.blocking.method = 'adblock'
 
@@ -195,9 +200,9 @@ c.bindings.commands["normal"] = {
     # config-cycle
     ",b": "config-cycle content.blocking.enabled;; reload",
     ",p": "config-cycle content.proxy socks://localhost:9050/ system",
-    ",s": "config-cycle statusbar.show never always",
-    ",t": "config-cycle tabs.show multiple never",
-    ",u": "config-cycle statusbar.show never always;; config-cycle tabs.show never multiple",
+    ",s": "config-cycle -t statusbar.show never always",
+    ",t": "config-cycle -t tabs.show multiple never",
+    ",u": "config-cycle -t statusbar.show never always;; config-cycle tabs.show never multiple",
 
     # to change playback rate on youtube
     ",y": "set-cmd-text -s :jseval -q document.getElementsByTagName('video')[0].playbackRate =",

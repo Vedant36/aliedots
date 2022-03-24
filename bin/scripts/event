@@ -13,7 +13,10 @@ EVENT_FILE="$HOME"/.local/lib/dotfiles/event.log
 # add events to the list like `event 'next monday' message to put`
 # if i put just next monday in the date field in the file, it'll never trigger
 [ "$1" ] && {
-	time="$(date -d "$1")" || exit; shift
+	time="$(date -d "$1")" || {
+		notify-send "Invalid Date" "'$1'"
+		exit
+	}; shift
 	echo "$time" = "$@" >> "$EVENT_FILE"
 	exit
 }

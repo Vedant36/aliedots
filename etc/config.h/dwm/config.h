@@ -55,9 +55,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
+	{ "[M]",      monocle },    /* first entry is default */
+	{ "[]=",      tile },
 	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
 };
 // key definitions {{{1
 #define MODKEY Mod4Mask
@@ -66,10 +66,10 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-// helper for spawning shell commands in the pre dwm-5.0 fashion {{{1
+// commands {{{1
+// helper for spawning shell commands in the pre dwm-5.0 fashion
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 #include <X11/XF86keysym.h>
-// commands {{{1
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1,
 	"-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "20", "-p", "$", NULL };
@@ -122,9 +122,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return,        zoom,           {0} },
 	{ MODKEY,                       XK_Tab,           view,           {0} },
 
-	{ MODKEY,                       XK_t,             setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,             setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,             setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_m,             setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,                       XK_t,             setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_f,             setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,         setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,         togglefloating, {0} },
     /* Gaps(smh) {{{2 */
@@ -132,9 +132,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_equal,         setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,         setgaps,        {.i = 0  } },
     /* Audio/Music {{{2 */
-	{ MODKEY,                       XK_bracketleft,   spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1%") },
-	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1%") },
-	{ MODKEY,                       XK_backslash,     spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
+	{ MODKEY,                       XK_bracketleft,   spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1%; restart-bar") },
+	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1%; restart-bar") },
+	{ MODKEY,                       XK_backslash,     spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle; restart-bar") },
 	{ MODKEY|ControlMask,           XK_bracketleft,   spawn,          SHCMD("pactl set-source-volume @DEFAULT_SOURCE@ -1%") },
 	{ MODKEY|ControlMask,           XK_bracketright,  spawn,          SHCMD("pactl set-source-volume @DEFAULT_SOURCE@ +1%") },
 	{ MODKEY|ControlMask,           XK_backslash,     spawn,          SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
@@ -145,6 +145,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period,        spawn,          SHCMD("mpc -q next") },
 	{ MODKEY,                       XK_comma,         spawn,          SHCMD("mpc -q seek -1") },
 	{ MODKEY,                       XK_period,        spawn,          SHCMD("mpc -q seek +1") },
+	{ MODKEY,                       XK_BackSpace,     spawn,          SHCMD("mpc -q seek 0") },
     /* Switching between tags {{{2 */
     // toggles with the last layout
 	{ MODKEY,                       XK_0,             view,           {.ui = ~0 } },

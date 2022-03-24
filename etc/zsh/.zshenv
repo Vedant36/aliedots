@@ -47,6 +47,7 @@ export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgreprc
 mkdir -p "$XDG_DATA_HOME"/zsh
 export HISTFILE=$XDG_DATA_HOME/zsh/.zsh_history
 export LESSHISTFILE=$XDG_DATA_HOME/lesshst
+export MAGICK_TEMPORARY_PATH=$XDG_CACHE_HOME/ImageMagick/
 # fzf {{{1
 export FZF_{DEFAULT,CTRL_T}_COMMAND='fd -H -E "\.git/"'
 export FZF_ALT_C_COMMAND='fd -H --type d -E "\.git/"'

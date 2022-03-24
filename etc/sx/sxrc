@@ -43,7 +43,7 @@ feh --no-fehbg --bg-fill ~/pix/current* &
 dunst &	 # notification server
 xcompmgr &	# compositor
 xss-lock -n 'bright -i -5' -l lock &
-redshift -l 23.5:78.5 &
+redshift -l 23.5:78.5 -m randr &
 # display agnostic programs
 pactl set-source-mute @DEFAULT_SOURCE@ 1
 [ ! -s "$XDG_LIB_HOME"/mpd/pid ] && mpd
@@ -61,13 +61,13 @@ dwm_bar() {
         sleep $((60-$(date +%s)%60)) &
         echo $! > "$XDG_STATE_HOME"/sleep_pid
         wait $!
-        [ -z "$DISPLAY" ] && return
+        # stop if X not alive
+        xset q >/dev/null 2>&1 || return
     done
 }
-# eval "$(ssh-agent)"
 while true; do
 	dwm_bar &
-	ssh-agent dwm >"$XDG_LOG_HOME"/dwm.log || exit
+	ssh-agent dwm >"$XDG_LOG_HOME"/dwm.log 2>&1 || exit
 done
 trap 'pkill "$SSH_AGENT_PID";' EXIT HUP TERM QUIT
 

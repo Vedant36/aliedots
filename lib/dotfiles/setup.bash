@@ -122,7 +122,7 @@ case $1 in
         mkdir -p share/qutebrowser/greasemonkey &&
             pushd share/qutebrowser/greasemonkey
             curl -OL 'https://www.4chan-x.net/builds/4chan-X.user.js'
-            curl -OL 'https://greasyfork.org/scripts/394820-mouseover-popup-image-viewer/code/Mouseover%20Popup%20Image%20Viewer.user.js'
+            # curl -OL 'https://greasyfork.org/scripts/394820-mouseover-popup-image-viewer/code/Mouseover%20Popup%20Image%20Viewer.user.js'
         popd
 
         # MPV {{{2

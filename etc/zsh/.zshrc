@@ -110,9 +110,7 @@ setopt hist_ignore_space    # remove command line from history list when first c
 setopt hist_reduce_blanks   # remove superflous blanks
 setopt hist_no_store
 
-# # sourcings(7) fastest to slowest {{{1
-# eval "$(fasd --init posix-alias zsh-hook)" # minimal(without tab completion)
-# # eval "$(fasd --init auto)"
+# sourcings(7) fastest to slowest {{{1
 . /usr/share/doc/find-the-command/ftc.zsh quiet
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
@@ -131,8 +129,10 @@ alias zb='z -b'      # quickly cd to the parent directory
 alias zt='z -t'      # cd to most recently accessed dir
 # Source: https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
 . "$ZSH_PLUGINS"/fzf-git/functions.sh
-bindkey -r '^G'      # remove default ^G bind so fzf-git can use it
+# bindkey -r '^G'      # remove default ^G bind so fzf-git can use it
 . "$ZSH_PLUGINS"/fzf-git/key-binding.zsh
+# autojump: https://github.com/wting/autojump
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 # load personal scripts last to avoid conflicts with other plugins
 . "${ZDOTDIR:-~}"/.zshaliases
 . "${ZDOTDIR:-~}"/.zshfunctions

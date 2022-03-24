@@ -21,6 +21,8 @@ bat_state="$(upower -i "$(cat "$XDG_STATE_HOME"/BAT)" \
 state="▲"; [[ "$bat_state" =~ discharging ]] && state="▼"
 bat="${state} $(tail -n2 <<< "$bat_state" | tac | paste -sd ' ')"
 
+volume="墳 $(pactl list sinks | grep -Po '^\s*Volume:.*/\s*\K.*?(?=\s*/)')"
+
 time=" $(date '+%H:%M')"
 date=" $(date '+%a %F')"
 
@@ -33,6 +35,7 @@ sections=(
 	"$packages"
 	"$music"
 	"$bat"
+    "$volume"
 	"$date"
 	"$time"
 )

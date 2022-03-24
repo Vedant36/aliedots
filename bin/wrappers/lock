@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# feels like slock is better anyway
-exec slock
-
 # TODO: complete update() in the script or replace the whole thing with slock
 # Original Author : Pavan Jadhaw
 # Github Profile : https://github.com/pavanjadhaw
@@ -34,7 +31,9 @@ lock() {
 	pkill xdotool
 	dunstctl set-paused true
 
-	i3lock \
+	# feels like slock is better anyway
+	slock
+	: i3lock \
 		-n \
 		-e \
 		-c 00000000 \

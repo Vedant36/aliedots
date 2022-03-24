@@ -11,11 +11,13 @@ bc
 bdf-unifont
 bridge-utils
 btop
+ccache
 ccze
 cmake
 cmus
 cppcheck
 cronie
+ctags
 dash
 dietlibc
 discord
@@ -121,6 +123,7 @@ python-pylint
 python-wheel
 qemu
 qutebrowser
+ranger
 redshift
 ripgrep
 rsync

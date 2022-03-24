@@ -26,7 +26,6 @@ pandoc-bin
 popcorntime-bin
 python-openai
 python-snakeviz
-ranger-git
 sdl2-manpage-git
 shellcheck-bin
 simple-mtpfs
