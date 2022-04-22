@@ -43,6 +43,7 @@ alias n=neofetch
 # Git {{{1
 alias g='git'
 alias ga='git add'
+alias gb='git branch'
 alias gc='git commit'
 alias gcv='git commit -v'
 alias gch='git checkout'

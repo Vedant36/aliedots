@@ -1,15 +1,18 @@
-':/home/vn36/.local/lib
+l:/home/vn36/.local
 j:/home/vn36/dl
 d:/home/vn36/dox
-t:/home/vn36/dox/textfiles
-g:/home/vn36/dox/CPlus/c
+C:/home/vn36/dox/CPlus/c/learn
 y:/home/vn36/dox/Python
 u:/home/vn36/dox/study/math
+t:/home/vn36/dox/textfiles
+Z:/home/vn36/dox/zmisc_code
 m:/home/vn36/melum
 p:/home/vn36/pix
+M:/home/vn36/pix/memes
+P:/home/vn36/pix/memes/pepe
+S:/home/vn36/pix/screenshots
 w:/home/vn36/pix/wallpapers
 v:/home/vn36/vids
-l:/home/vn36/.local
 b:/home/vn36/.local/bin/scripts
 e:/home/vn36/.local/etc
 x:/home/vn36/.local/etc/X11
@@ -18,10 +21,11 @@ n:/home/vn36/.local/etc/nvim
 q:/home/vn36/.local/etc/qutebrowser
 f:/home/vn36/.local/etc/ranger
 z:/home/vn36/.local/etc/zsh
+r:/home/vn36/.local/lib/dotfiles
+R:/home/vn36/.local/lib/root
+i:/home/vn36/.local/opt/UltimMC/instances
 o:/home/vn36/.local/opt/dwm
 s:/home/vn36/.local/share
 a:/home/vn36/.local/share/nvim/site/pack/packer/start
 c:/home/vn36/.local/var/cache
-i:/home/vn36/.local/opt/UltimMC/instances
-r:/home/vn36/.local/lib/dotfiles
 h:/media/vn36/Seagate Expansion Drive/36Vedant

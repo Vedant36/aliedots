@@ -1,6 +1,6 @@
 # GRUB boot loader configuration
 
-GRUB_DEFAULT=0
+GRUB_DEFAULT=saved
 GRUB_TIMEOUT=1
 GRUB_DISTRIBUTOR="Arch"
 GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 acpi_osi=Linux acpi_backlight=video CONFIG_FW_LOADER_COMPRESS mitigations=off page_alloc.shuffle=1"

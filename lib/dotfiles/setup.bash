@@ -15,6 +15,9 @@
 # automatically detect it if running the script from within the repository
 PREFIX="$HOME"/.local
 # PREFIX="$(git rev-parse --show-toplevel)"
+# Downloader program
+DL='curl -OL'
+command -v wget >/dev/null || DL='curl -OL'
 
 EUNIMPLEMENTED=3  # Feature Unimplemented
 ENOTDIR=20  # Directory doesn't exist or can't popd to this directory
@@ -57,6 +60,10 @@ ce(){
 case $1 in
     backup) # {{{1
         crontab -l > "$PREFIX"/lib/dotfiles/crontab
+        mkdir -p ~/dl/tocopy/zsh/
+        cp -f "$PREFIX"/share/zsh/.zsh_history ~/dl/tocopy/zsh/.zsh_history-"$(date +%s)"
+        grep -v "^':" "$PREFIX"/share/ranger/bookmarks \
+            | sort -t: -k2 -V > "$PREFIX"/lib/dotfiles/bookmarks
         ;;
 
     check) # {{{1
@@ -70,6 +77,8 @@ case $1 in
         ;;
 
     install) # {{{1
+        # TODO: convert subcommands into a funciton for more modularity
+        command "$0" backup
         no-root
         pushd "$PREFIX"
         # Linking {{{2
@@ -90,8 +99,8 @@ case $1 in
             ic https://github.com/zsh-users/zsh-autosuggestions
             ic https://github.com/skywind3000/z.lua
             mkdir -p fzf-git && pushd fzf-git
-                curl -OL 'https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236/raw/f23942b51333b8e8bcd6816fc063cf54beb8b97f/functions.sh'
-                curl -OL 'https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236/raw/f23942b51333b8e8bcd6816fc063cf54beb8b97f/key-binding.zsh'
+                $DL 'https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236/raw/f23942b51333b8e8bcd6816fc063cf54beb8b97f/functions.sh'
+                $DL 'https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236/raw/f23942b51333b8e8bcd6816fc063cf54beb8b97f/key-binding.zsh'
             popd
         popd
 
@@ -121,17 +130,20 @@ case $1 in
         ce "Downloading greasemonkey scripts..."
         mkdir -p share/qutebrowser/greasemonkey &&
             pushd share/qutebrowser/greasemonkey
-            curl -OL 'https://www.4chan-x.net/builds/4chan-X.user.js'
-            # curl -OL 'https://greasyfork.org/scripts/394820-mouseover-popup-image-viewer/code/Mouseover%20Popup%20Image%20Viewer.user.js'
+            $DL 'https://www.4chan-x.net/builds/4chan-X.user.js'
+            $DL 'https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js'
+            $DL 'https://raw.githubusercontent.com/xthexder/wide-github/master/build/wide-github.user.js'
+            $DL 'https://greasyfork.org/scripts/438625-arch-wiki-old-skin/code/Arch%20Wiki%20old%20skin.user.js'
+            # $DL 'https://greasyfork.org/scripts/394820-mouseover-popup-image-viewer/code/Mouseover%20Popup%20Image%20Viewer.user.js'
         popd
 
         # MPV {{{2
         ce "Downloading mpv scripts..."
         mkdir -p etc/mpv/scripts && pushd etc/mpv/scripts
-            curl -OL 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_client_osc.lua'
-            curl -OL 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_server.lua'
-            curl -OL 'https://codeberg.org/jouni/mpv_sponsorblock_minimal/raw/branch/master/sponsorblock_minimal.lua'
-            curl -OL 'https://raw.githubusercontent.com/jonniek/mpv-filenavigator/master/navigator.lua'
+            $DL 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_client_osc.lua'
+            $DL 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_server.lua'
+            $DL 'https://codeberg.org/jouni/mpv_sponsorblock_minimal/raw/branch/master/sponsorblock_minimal.lua'
+            $DL 'https://raw.githubusercontent.com/jonniek/mpv-filenavigator/master/navigator.lua'
         popd
 
         # Neovim {{{2

@@ -2,10 +2,11 @@
 static const char *user  = "vn36";
 static const char *group = "vn36";
 
+/* colors from tokyonight */
 static const char *colorname[NUMCOLS] = {
-	[INIT] =   "#282d3e",     /* after initialization */
-	[INPUT] =  "#82AAFF",   /* during input */
-	[FAILED] = "#c792ea",   /* wrong password */
+	[INIT] =   "#32344a",     /* after initialization */
+	[INPUT] =  "#7da6ff",   /* during input */
+	[FAILED] = "#ad8ee6",   /* wrong password */
 };
 
 /* treat a cleared input like a wrong password (color) */

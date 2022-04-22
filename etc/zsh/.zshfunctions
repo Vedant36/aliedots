@@ -1,6 +1,13 @@
 # Vedant36's zsh functions
 # simple recursive cd that matches the directory name(really inconsistent) {{{1
-j() { cd "$(fd -H --max-results 1 --type d -E "\.git/" "$1" .)"; }
+j () {
+    if [ "$1" ]; then
+        cd "$(fd -uu -H --full-path --max-results 1 --type d -E "\.git/" "$1" .)"
+    else
+        cd ~
+    fi
+}
+ji() { cd "$(fd -uu -H --full-path --type d -E "\.git/" "$1" . | fzf +m)"; }
 # f(file manager): ranger wrapper from arch wiki {{{1
 r(){
 	if [[ -z "$RANGER_LEVEL" ]];then

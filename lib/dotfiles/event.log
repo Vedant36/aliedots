@@ -1,26 +1,31 @@
 /* just put timestamps for daily reminder */
 02 Jun 2022 1300 = check deadlines for other colleges
-01 Apr 2022 = gib test for cmi and isi
+23 Apr 2022 0800 = gib test for cmi and isi
 
 /* CMI */
 23 Apr 2022 0800 = CMI = applications last date on 30 Apr
-22 Apr 2022 0800 = CMI = test on 22 May 2022
+10 May 2022 0800 = CMI = test on 22 May 2022
+23 May 2022 0800 = #autocmd:34
 
 /* ISI */
-08 Apr 2022 = ISI = test on 8 May 2022
+25 Apr 2022 0800 = ISI = test on 8 May 2022
+22 Apr 2022 1800 = ISI = admit card printout
 
 /* Shows/Films */
+01 Oct 2022 = learn haskell and commonlisp = https://www.reddit.com/r/AskComputerScience/comments/u0vr0r/comment/i4hpgba/?utm_source=share&utm_medium=web2x&context=3
 01 Jan 2023 = Jujustu Kaisen Season 2
+01 Jan 2023 = attack on titan conclusion arc
 23 May 2022 = MIRACULOUS SEASON 5 AAAAAAAAAAAA
-28 May 2022 = stranger things
-08 Apr 2022 = Fantastic Beasts: The Secrets of Dumbledore
-25 Mar 2022 0630 = flash s08e08
-02 Apr 2022 = jujutsu kaisen film release
-19 Apr 2022 = batman HBO release
-28 Mar 2022 0030 = attack on titan e7
+28 May 2022 = stranger things volume 1
+01 Jul 2022 = stranger things volume 2
+30 May 2022 = Fantastic Beasts: The Secrets of Dumbledore HBO Release
+09 May 2022 1030 = flash s08e 12-13
+15 Jun 2022 = jujutsu kaisen film release
 
 /* other */
 /* 2330 = sleep */
 23 May 2022 = mak mandelbrot with sidu #autocmd:28 and learn more c and c++
+23 Apr 2022 0800 = turn off phone
+2200 = close laptop
 
 /* set from commandline */

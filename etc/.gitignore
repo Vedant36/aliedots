@@ -3,6 +3,8 @@
 !anacrontab
 !config.h/**
 !dunst/dunstrc
+!emacs/
+emacs/*
 !emacs/init.el
 !environment.d/xdg.conf
 !git/config
@@ -18,7 +20,7 @@ mpv/scripts/
 !nvim/lua/**
 nvim/lua/*
 !nvim/lua/vn36
-!nvim/syntax/log.vim
+!nvim/syntax/*
 !pacman/makepkg.conf
 !pulse/daemon.conf
 !qutebrowser/greasemonkey/*

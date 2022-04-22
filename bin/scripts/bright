@@ -7,7 +7,6 @@
 BACKLIGHT="/sys/class/backlight/amdgpu_bl0"
 MAX_BRIGHTNESS=$(cat $BACKLIGHT/max_brightness)
 BRIGHTNESS=$(cat $BACKLIGHT/brightness)
-RUNNAME="$(basename "$0")"
 
 help() {
 	cat<<EOF
@@ -28,7 +27,8 @@ EOF
 }
 
 # handle commandline options
-p=1 i='' # percentage and no increment by default
+p=1 # percentage and no increment by default
+i=''
 case $1 in
 	-h|--help) help; exit ;;
 	-i) i=1 p=1; shift ;;
@@ -41,9 +41,10 @@ esac
 case $1 in
 	[0-9]*) ;;
 	-[0-9]*) ;;
+	'') help; exit ;;
 	*)
 		echo "Invalid argument: '$1'" >&2
-		echo "Do '$RUNNAME -h' for help" >&2
+		help
 		exit 1
 		;;
 esac

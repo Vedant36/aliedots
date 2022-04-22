@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Credit:
-# https://github.com/ayekat/dotfiles/blob/master/lib/dotfiles/wrappers/firefox
+# Credit: https://github.com/ayekat/dotfiles/blob/master/lib/dotfiles/wrappers/firefox
 set -uf
 
 xdg_download_dir()
@@ -14,10 +13,9 @@ xdg_download_dir()
 
 MOZDIR=${MOZDIR:-$XDG_STATE_HOME/mozilla}
 XDG_DOWNLOAD_DIR=$(xdg_download_dir) || exit $?
-MOZDIR_DOWNLOAD_DIR=$MOZDIR/${XDG_DOWNLOAD_DIR#$HOME}
-readonly MOZDIR XDG_DOWNLOAD_DIR MOZDIR_DOWNLOAD_DIR
+readonly MOZDIR XDG_DOWNLOAD_DIR
 
 mkdir -p "$MOZDIR"
-ln -sf "$XDG_DOWNLOAD_DIR" "$MOZDIR_DOWNLOAD_DIR"
+ln -sf -t "$MOZDIR" "$XDG_DOWNLOAD_DIR"
 
 exec env HOME="$MOZDIR" MOZ_USE_XINPUT2=1 unwrap firefox "$@"

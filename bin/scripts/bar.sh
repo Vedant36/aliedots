@@ -4,8 +4,7 @@
 # Dependencies: git, upower, mpd and mpc
 
 # lines of changes in my dotfiles
-dot=" $(git --git-dir="$HOME"/.local/.git --work-tree="$HOME"/.local \
-    diff origin/main ~/.local/{bin,etc,lib,README.md} | wc -l)"
+dot=" $(git --git-dir="$HOME"/.local/.git --work-tree="$HOME"/.local diff origin/main | wc -l)"
 
 uptime=" $(uptime | grep -Po 'up \K.*(?=,\s+\d+ user)' | xargs)"
 

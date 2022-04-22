@@ -29,7 +29,6 @@ xset -r 36
 # screen deactivate and turn off times
 xset s 300 0
 xset s noexpose
-xset s noblank
 xset dpms 450 450 450
 
 # startup programs {{{1

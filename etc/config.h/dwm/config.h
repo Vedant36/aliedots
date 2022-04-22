@@ -1,6 +1,5 @@
 /* See LICENSE file for copyright and license details. */
 // [How to maintain dwm configuration and customization in git](https://dwm.suckless.org/customisation/patches_in_git/)
-// TODO: dwm-keymodes-vim and flextile patches
 // appearance {{{1
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 0;        /* gaps between windows */
@@ -68,6 +67,9 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 // commands {{{1
 // helper for spawning shell commands in the pre dwm-5.0 fashion
+#define TERM "kitty"
+#define TERMARG "-1"
+#define TERMLIGHT "st"
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 #include <X11/XF86keysym.h>
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
@@ -75,7 +77,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 	"-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "20", "-p", "$", NULL };
 static const char *desktop_dmenucmd[] = { "dmenu_drun", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1,
 	"-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "20", "-p", "$", NULL };
-static const char *termcmd[] = { "kitty", "-1", NULL };
+static const char *termcmd[] = { TERM, TERMARG, NULL };
 
 static Key keys[] = {
 	/* modifier                     key               function        argument */
@@ -83,13 +85,13 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          {.v = desktop_dmenucmd } },
 	{ MODKEY,                       XK_q,             spawn,          {.v = termcmd} },
     /* Terminal {{{2 */
-	{ MODKEY,                       XK_r,             spawn,          SHCMD("st -n ncmpcpp ncmpcpp") },
-	{ MODKEY,                       XK_a,             spawn,          SHCMD("kitty ranger") },
-	{ MODKEY,                       XK_v,             spawn,          SHCMD("kitty -1 nvim") },
-	{ MODKEY|ControlMask,           XK_p,             spawn,          SHCMD("st pulsemixer") },
-	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD("st bc -l") },
-	{ MODKEY,                       XK_F1,            spawn,          SHCMD("st nvim ~/.local/opt/dwm/config.h") },
-	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && kitty -T textfiles nvim todo.md data.md sites.md") },
+	{ MODKEY,                       XK_r,             spawn,          SHCMD(TERMLIGHT " -n ncmpcpp ncmpcpp") },
+	{ MODKEY,                       XK_a,             spawn,          SHCMD(TERM " " TERMARG " ranger") },
+	{ MODKEY,                       XK_v,             spawn,          SHCMD(TERM " " TERMARG " nvim") },
+	{ MODKEY|ControlMask,           XK_p,             spawn,          SHCMD(TERMLIGHT " pulsemixer") },
+	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD(TERMLIGHT " bc -l") },
+	{ MODKEY,                       XK_F1,            spawn,          SHCMD(TERMLIGHT " nvim ~/.local/opt/dwm/config.h") },
+	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && " TERM " -T textfiles nvim todo.md data.md sites.md autocmd.md") },
     /* Custom Scripts {{{2 */
 	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
 	{ MODKEY|ShiftMask,             XK_s,             spawn,          SHCMD("state") },
@@ -192,4 +194,4 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 // }}}1
-// vim: fdm=marker
+// vim: fdm=marker ts=4

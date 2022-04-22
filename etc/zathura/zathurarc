@@ -1,5 +1,5 @@
 # from https://gitlab.com/listout/dots/-/blob/master/.config/zathura/genzathurarc {{{
-set recolor "true"
+#set recolor "true"
 set recolor-lightcolor "#1c1c1c"
 set recolor-darkcolor "#b5b4c9"
 set default-bg "#1c1c1c"

@@ -31,7 +31,7 @@ c.downloads.location.suggestion = 'both'
 c.downloads.remove_finished = 1
 c.editor.command = [*TERMCMD, 'nvim', '-c', 'norm {line}G{column0}l', '{file}']
 c.hints.border = '0'
-c.hints.chars = 'asdfjkl;ghnmxcvbziowerutyqp'
+c.hints.chars = 'asdfjkl;ghnmxcvbziowerut'
 c.hints.padding = {"bottom": 1, "left": 1, "right": 1, "top": 1}
 c.input.insert_mode.auto_load = True
 c.scrolling.bar = 'when-searching'
@@ -51,7 +51,7 @@ c.url.open_base_url = True
 c.window.hide_decoration = True
 c.window.transparent = True
 
-c.fileselect.handler = "external"
+c.fileselect.handler = "default"
 c.fileselect.single_file.command = [*TERMCMD, 'ranger', '--choosefile', '{}']
 c.fileselect.multiple_files.command = [*TERMCMD, 'ranger', '--choosefiles', '{}']
 c.fileselect.folder.command = [*TERMCMD, 'ranger', '--choosedir', '{}']
@@ -90,10 +90,11 @@ c.url.searchengines = {
     'wiby': 'https://wiby.me/?q={}',
     'scp': 'https://scp-wiki.wikidot.com/scp-{}',
     'mc': 'https://minecraft.fandom.com/wiki/{}',
-    'x': 'https://searx.xyz/search?q={}',
+    'x': 'https://swag.pw/search?q={}',
     'y': 'https://youtube.com/search?q={}',
     'yw': 'https://youtube.com/watch?v={}',
     'y2': 'https://yewtu.be/search?q={}',  # invidious
+    'sp': 'https://www.smartprix.com/products/?q={}',
     # books
     'b': 'https://1lib.in/s/{}',
     'b2': 'https://www.pdfdrive.com/search?q={}',
@@ -108,6 +109,7 @@ c.url.searchengines = {
     # linux
     'a': 'https://wiki.archlinux.org/index.php?search={}',
     'gw': 'https://wiki.gentoo.org/index.php?search={}',
+    'ig': 'https://wiki.installgentoo.com/index.php?search={}',
     'm': 'https://linux.die.net/man/1/{}',  # man pages
     'm2': 'https://man.archlinux.org/{}',  # arch man pages
     'aur': 'https://aur.archlinux.org/packages/{}',
@@ -117,7 +119,7 @@ c.url.searchengines = {
     'ale': 'https://archlinux.org/packages/extra/x86_64/{}',
     # programming
     'asm': 'https://www.felixcloutier.com/x86/{}',
-    'c': 'https://duckduckgo.com/?sites=cppreference.com&q={}',
+    'c': 'https://duckduckgo.com/?q=site%3Acppreference.com%2Fw%2Fc+{}',
     'cl': 'https://en.cppreference.com/w/c/language/{}',
     'dd': 'https://devdocs.io/{}',
     'gh': 'https://github.com/{}',
@@ -180,11 +182,12 @@ c.bindings.commands["normal"] = {
     # like gi but clears text too(on most sites)
     "gI": "hint inputs --first;; mode-enter insert;; fake-key <ctrl-a><backspace>",
     "gw": "open https://web.archive.org/web/*/{url:pretty}",
+    ";w": "hint links run :open https://web.archive.org/web/*/{hint-url}",
     "h":  "tab-prev",
     "l":  "tab-next",
     "ya": "yank inline '<a href={url}>{title}</a>'",
     "yw": "fake-key <ctrl-a>",
-    ";n": "hint links spawn -d st nvim {hint-url}",
+    ";n": "hint links spawn -d kitty nvim {hint-url}",
     ";s": "hint links spawn -d surf {hint-url}",
     "S": "spawn -d surf {url}",
 
