@@ -29,10 +29,9 @@ treesitter.setup {
   context_commentstring = {
     enable = true
   },
-  -- -- just stopped working and im sleepy, aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-  -- rainbow = {
-  --   enable = true,
-  --   extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-  -- }
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+  }
 }
 

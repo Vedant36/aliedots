@@ -41,6 +41,7 @@ map('!', '<m-b>', '<C-Left>',  {noremap = true})
 map('!', '<m-f>', '<C-Right>', {noremap = true})
 map('i', '<c-g><c-a>', '<C-O>I',    {noremap = true})
 map('i', '<c-g><c-e>', '<C-O>A',    {noremap = true})
+map('i', '<c-g><c-k>', '<C-O>D',    {noremap = true})
 -- buffer switching {{{1
 map('n', '<m-`>', '<Plug>lightline#bufferline#go(1)')
 map('n', '<m-1>', '<Plug>lightline#bufferline#go(2)')
@@ -65,6 +66,7 @@ map('n', '<m-h>', '<Cmd>vertical resize -2<cr>')
 map('n', '<m-l>', '<Cmd>vertical resize +2<cr>')
 -- quick move between most used files {{{1
 local bookmark_table = {
+  b = '~/.local/bin/scripts/',
   v = '$XDG_CONFIG_HOME/nvim/init.lua',
   l = {
     __prefix = '$XDG_CONFIG_HOME/nvim/lua/vn36/',
@@ -134,7 +136,7 @@ local function bookmark(arg, _prefix)
     if str == '\n' or str == '\r' then
       P(bookmarks)
     elseif val == nil then
-      vim.notify("No such bookmark exists yet!", "warn")
+      vim.notify("No bookmark named `"..str.."` exists yet!", "warn")
     elseif type(val) == 'table' then
       bookmark(val, prefix)
     else
@@ -159,6 +161,8 @@ foldrefresh('zi')
 foldrefresh('zO')
 -- categorized but less so misc {{{1
 -- map('n', ',', 'za')
+map('n', '[t', '<cmd>tp<cr>')
+map('n', ']t', '<cmd>tn<cr>')
 map('x', ',', 'zf')
 map('x', '>', '>gv')
 map('x', '<', '<gv')

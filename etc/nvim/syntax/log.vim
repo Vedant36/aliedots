@@ -46,6 +46,7 @@ syn match logDate '^20\d\{6}'
 " Matches Fri Jan 09 or Feb 11 or Apr  3 or Sun 3
 syn keyword logDate Mon Tue Wed Thu Fri Sat Sun Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec nextgroup=logDateDay
 syn match logDateDay '\d\{1,2}' contained
+" this line is my edited version of the online available syntax file
 syn match logDate '\(\(Mon\|Tue\|Wed\|Thu\|Fri\|Sat\|Sun\) \)\?\([0-9 ]\d \)\?\(Jan\|Feb\|Mar\|Apr\|May\|Jun\|Jul\|Aug\|Sep\|Oct\|Nov\|Dec\)\(\S\d\{1,4}\)\?'
 " Matches 12:09:38 or 00:03:38.129Z or 01:32:12.102938 +0700
 syn match logTime '\d\{2}:\d\{2}:\d\{2}\(\.\d\{2,6}\)\?\(\s\?[-+]\d\{2,4}\|Z\)\?\>' nextgroup=logTimeZone,logSysColumns skipwhite

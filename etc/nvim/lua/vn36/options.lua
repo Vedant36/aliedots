@@ -6,17 +6,16 @@ local options={
     history=500,
     compatible=false,
     termguicolors=true,
-    mouse="a",
     pastetoggle="<F10>",
     pumheight=10,
     autoread=true,
     modelines=1,
     expandtab=true, shiftround=false,
-    tabstop=4, softtabstop=4, shiftwidth=4, cindent=true, joinspaces=false,
+    tabstop=4, softtabstop=4, shiftwidth=4, joinspaces=false,
     -- textwidth=79,
     inccommand="split",
     colorcolumn="80,160",
-    scrolloff=3,
+    scrolloff=2,
     showmatch=true, matchtime=1,
     list=true,
     splitbelow=true, splitright=true,
@@ -24,13 +23,14 @@ local options={
     updatetime=300, timeoutlen=300,
     number=true, relativenumber=true,
     switchbuf="usetab",
-    nrformats="alpha,bin,hex,octal",
+    nrformats="alpha,bin,hex",
     title=true, lazyredraw=true, showmode=false, hidden=true,
     autochdir=true,
     numberwidth=4,
     grepprg="rg --vimgrep",
     fileformats="unix,dos,mac",
     showtabline=2,
+    laststatus=3,
     omnifunc="syntaxcomplete#Complete",
     sessionoptions="buffers,curdir,folds,tabpages,globals",
     foldmethod="marker", fillchars="fold:-",
@@ -45,7 +45,8 @@ o.path:append"**"
 -- Nice looking tab chracters: ▏│❯>→
 o.listchars:append"tab:▏ "
 
-vim.g.loaded_python3_provider = 0
+-- vim.g.loaded_python3_provider = 0
+vim.g.python3_host_prog = '/usr/bin/python3'
 vim.g.diff_translations=0
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 1

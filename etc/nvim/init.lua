@@ -29,10 +29,12 @@ R 'vn36.keymaps'
 R 'vn36.plugins'
 R 'vn36.colorscheme'
 
--- vim.opt.background = "light"
-if not pcall(vim.cmd, "colorscheme palenight") then
+vim.opt.background = "dark"
+if vim.env.DISPLAY == nil or not pcall(vim.cmd, "colorscheme palenight") then
+  vim.opt.termguicolors = false
   vim.cmd [[ colorscheme slate ]]
 end
+-- list of colorschemes i use for completion: palenight, tokyonight, gruvbox
 
 
 -- Custom plugins {{{1
@@ -71,10 +73,13 @@ function! IndentLevel(lnum)
 endfunction
 function! BetterIndent(lnum)
   if getline(a:lnum) =~? '\v^\s*$'
-    return '-1'
+    return '='
+  endif
+  if (IndentLevel(a:lnum) == 0)
+    return ">1"
   endif
   if getline(a:lnum) =~ '\v^\s*[}\])],?;?$'
-    return IndentLevel(a:lnum-1)
+    return IndentLevel(a:lnum-1) - 1
   endif
 
   let this_indent = IndentLevel(a:lnum)
@@ -86,9 +91,10 @@ function! BetterIndent(lnum)
     return this_indent
   endif
 endfunction
-augroup _indent
+augroup _foldexpr
   autocmd!
-  autocmd Filetype c,cpp,json,yaml setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
+  autocmd Filetype json,yaml setl foldmethod=expr foldexpr=BetterIndent(v:lnum)
+  autocmd Filetype c,cpp setl foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
 augroup END
 
 " folding for diff from vimwiki https://vim.fandom.com/wiki/Folding_for_diff_files {{{2

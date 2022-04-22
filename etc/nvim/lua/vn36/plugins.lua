@@ -30,7 +30,21 @@ return packer.startup {function(use)
   use 'dstein64/vim-startuptime' -- profiling startup time
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
+  -- Custom {{{1
+  use {
+    '~/dox/zmisc_code/pa/editor/vim',
+    as = 'vim-pa'
+  }
   -- Non-lua Plugins {{{1
+  -- use 'whonore/Coqtail' -- needs pynvim
+  use 'ollykel/v-vim'
+  use {
+    'junegunn/rainbow_parentheses.vim',
+    config = function()
+      vim.g["rainbow#pairs"] = {{'(', ')'}, {'[', ']'}, {'{', '}'}}
+    end
+  }
+  use 'chrisbra/csv.vim'
   use 'tpope/vim-unimpaired' -- lots of useful keybinds
   use 'tpope/vim-surround'
   use {
@@ -81,12 +95,12 @@ return packer.startup {function(use)
     'mengelbrecht/lightline-bufferline',
     config = function()
       vim.cmd [[
-let g:lightline#bufferline#enable_nerdfont = 1
-let g:lightline#bufferline#show_number = 2
-" let g:lightline#bufferline#unicode_symbols = 1
-let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#min_buffer_count = 2
-" let g:lightline#bufferline#auto_hide = 400
+        let g:lightline#bufferline#enable_nerdfont = 1
+        let g:lightline#bufferline#show_number = 2
+        " let g:lightline#bufferline#unicode_symbols = 1
+        let g:lightline#bufferline#enable_devicons = 1
+        let g:lightline#bufferline#min_buffer_count = 2
+        " let g:lightline#bufferline#auto_hide = 400
       ]]
     end
   }
@@ -96,9 +110,9 @@ let g:lightline#bufferline#min_buffer_count = 2
     opt = true,
     config = function()
       vim.cmd [[
-let bufferline = get(g:, 'bufferline', {})
-let bufferline.auto_hide = v:true
-let g:bufferline_rotate = 2
+        let bufferline = get(g:, 'bufferline', {})
+        let bufferline.auto_hide = v:true
+        let g:bufferline_rotate = 2
       ]]
     end
   }
@@ -121,7 +135,7 @@ let g:bufferline_rotate = 2
       vim.opt.listchars:append"tab:  "
       require 'indent_blankline'.setup {
         char = '▏',
-        max_indent_increase = 1,
+        -- max_indent_increase = 1,
         show_first_indent_level = false,
         -- show_current_context = false,
         filetype_exclude = {
@@ -163,10 +177,6 @@ let g:bufferline_rotate = 2
   -- Telescope {{{1
   use {
     'nvim-telescope/telescope.nvim',
-    keys = {'<c-p>', '<leader>fa', '<leader>fb', '<leader>fc', '<leader>ff',
-      '<leader>fg', '<leader>fh', '<leader>fm', '<leader>fo', '<leader>fs',
-      '<leader>ft', '<leader>e'},
-    cmd = ":Telescope",
     requires = {
       'nvim-lua/plenary.nvim',
       -- reverse-dependencies
@@ -178,7 +188,7 @@ let g:bufferline_rotate = 2
   -- Treesitter {{{1
   local treesitter_ft = {
     "bash", "c", "cpp", "css", "go", "haskell", "html", "javascript", "java",
-    "json", "lua", "make", "python", "rust", "sh", "vim", "yaml"
+    "json", "lua", "make", "python", "rust", "sh", "vim", "yaml", "lisp"
   }
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -198,7 +208,7 @@ let g:bufferline_rotate = 2
     config = function()
       require 'nvim-autopairs'.setup {
         -- check_ts = true,
-        ignored_next_char = '[^)}%]\'"$]'
+        ignored_next_char = '[^)}%]\'"%$]'
       }
     end
   }
