@@ -22,6 +22,7 @@ BASEDIR = os.getenv("XDG_CONFIG_HOME", os.path.join(os.getenv('HOME'), '.config'
 # TODO: darkmode and better-duckduckgo not working
 c.content.user_stylesheets = [
     f'{BASEDIR}/qutebrowser/fix-tooltips.qss',
+    f'{BASEDIR}/qutebrowser/wikipedia.user.css',
     # f'{BASEDIR}/qutebrowser/darkmode.qss',
     # f'{BASEDIR}/qutebrowser/better-duckduckgo.css'
 ]
@@ -91,10 +92,11 @@ c.url.searchengines = {
     'scp': 'https://scp-wiki.wikidot.com/scp-{}',
     'mc': 'https://minecraft.fandom.com/wiki/{}',
     'x': 'https://swag.pw/search?q={}',
-    'y': 'https://youtube.com/search?q={}',
-    'yw': 'https://youtube.com/watch?v={}',
-    'y2': 'https://yewtu.be/search?q={}',  # invidious
+    'y': 'https://yewtu.be/search?q={}',  # invidious
+    'yw': 'https://yewtu.be/watch?v={}',
+    'y2': 'https://youtube.com/search?q={}',
     'sp': 'https://www.smartprix.com/products/?q={}',
+    'gf': 'https://greasyfork.org/en/scripts?q={}',
     # books
     'b': 'https://1lib.in/s/{}',
     'b2': 'https://www.pdfdrive.com/search?q={}',
@@ -130,7 +132,7 @@ c.url.searchengines = {
     'xy': 'https://learnxinyminutes.com/docs/{}',  # learning new prog.lang.
     # films and shows
     'ap': 'https://animixplay.to/?q={}',  # anime
-    'manga': 'https://mangareader.to/search?keyword={}',
+    'mr': 'https://mangareader.to/search?keyword={}',
     'p': 'https://thepiratebay.org/search.php?q={}',
     'p2': 'https://tpb.one/search.php?q={}',
 }
@@ -183,6 +185,8 @@ c.bindings.commands["normal"] = {
     "gI": "hint inputs --first;; mode-enter insert;; fake-key <ctrl-a><backspace>",
     "gw": "open https://web.archive.org/web/*/{url:pretty}",
     ";w": "hint links run :open https://web.archive.org/web/*/{hint-url}",
+    ";W": "hint links run :open -t https://web.archive.org/web/*/{hint-url}",
+    ";D": "hint --rapid links download",
     "h":  "tab-prev",
     "l":  "tab-next",
     "ya": "yank inline '<a href={url}>{title}</a>'",
@@ -190,6 +194,7 @@ c.bindings.commands["normal"] = {
     ";n": "hint links spawn -d kitty nvim {hint-url}",
     ";s": "hint links spawn -d surf {hint-url}",
     "S": "spawn -d surf {url}",
+    ",f": "spawn -d firefox {url}",
 
     # Binds to open current url in mpv/upmpv
     ",m": "spawn -d mpv {url}",

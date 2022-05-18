@@ -110,6 +110,7 @@ noto-fonts-emoji
 ntfs-3g
 ntp
 nuspell
+octave
 openbsd-netcat
 opendoas
 p7zip
@@ -117,9 +118,11 @@ pacman-contrib
 pdfjs
 picom
 pinta
+pipewire-alsa
+pipewire-jack
+pipewire-pulse
 powertop
 ps_mem
-pulseaudio
 pulsemixer
 pv
 pypy3
@@ -134,7 +137,9 @@ python-pygame
 python-pylint
 python-regex
 python-wheel
-qemu
+qemu-desktop
+qjackctl
+qutebrowser
 ranger
 redshift
 ripgrep
@@ -142,6 +147,7 @@ rlwrap
 rsync
 sbcl
 scrot
+seamonkey
 socat
 speedtest-cli
 strace

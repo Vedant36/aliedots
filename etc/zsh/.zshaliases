@@ -10,8 +10,8 @@ export LS_COLORS
 # Generic {{{1
 alias cp='cp -i'
 alias mv='mv -i'
+alias time='time '
 alias watch='watch '
-alias doas='doas '
 alias linedo="xargs -d '\n' -I {}"
 alias y='ipython --autocall=2 --nosep'
 # Note: replace startx with `exec startx` if wanting to exit shell after logout. hmmm security
@@ -28,13 +28,14 @@ alias l='ls -alhgF --group-directories-first'
 alias ll='ls -lh --time-style=long-iso'
 alias ls='ls -A --color=auto --quoting-style=literal'
 alias lt='ll -t'
-# doas {{{1
-alias sudo='doas'
-alias sudoedit='doas nvim'
-alias se='doas nvim'
+# rootdo {{{1
+alias rdo='rdo '
+alias sudo='rdo'
+alias sudoedit='sudo nvim'
+alias se='sudo nvim'
 # contractions {{{1
 alias e=echo
-alias s=doas
+alias s=rdo
 alias m=man
 alias f=fd
 alias v=nvim
@@ -117,5 +118,5 @@ alias vf='nvim $ZDOTDIR/.zshfunctions'
 alias vx='nvim $XDG_CONFIG_HOME/sx/sxrc'
 # windscribe {{{1
 alias ws='windscribe'
-alias wa='doas windscribe start && windscribe connect'
-alias wb='windscribe disconnect && doas windscribe stop'
+alias wa='sudo windscribe start && windscribe connect'
+alias wb='windscribe disconnect && sudo windscribe stop'

@@ -1,5 +1,6 @@
 # Vedant36's .zshrc
 # shellcheck disable=SC1091,SC2148
+#zmodload zsh/zprof
 # run-help {{{1
 unalias run-help
 autoload run-help
@@ -119,20 +120,10 @@ export ZSH_PLUGINS="$XDG_DATA_HOME"/zsh/plugins
 . "$ZSH_PLUGINS"/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Source: https://github.com/zdharma/fast-syntax-highlighting
 . "$ZSH_PLUGINS"/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null # colors commands and hex color codes
-# Source: https://github.com/skywind3000/z.lua
-export _ZL_DATA="$XDG_DATA_HOME"/zlua _ZL_ROOT_MARKERS=".git,.svn,.hg,.root,package.json"
-eval "$(lua "$ZSH_PLUGINS"/z.lua/z.lua --init zsh enhanced once fzf)"
-alias zi='z -i'      # cd with interactive selection
-alias zc='z -c'      # restrict matches to subdirs of $PWD
-alias zf='z -I'      # use fzf to select in multiple matches
-alias zb='z -b'      # quickly cd to the parent directory
-alias zt='z -t'      # cd to most recently accessed dir
 # Source: https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
-. "$ZSH_PLUGINS"/fzf-git/functions.sh
+#. "$ZSH_PLUGINS"/fzf-git/functions.sh
 # bindkey -r '^G'      # remove default ^G bind so fzf-git can use it
-. "$ZSH_PLUGINS"/fzf-git/key-binding.zsh
-# autojump: https://github.com/wting/autojump
-[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+#. "$ZSH_PLUGINS"/fzf-git/key-binding.zsh
 # load personal scripts last to avoid conflicts with other plugins
 . "${ZDOTDIR:-~}"/.zshaliases
 . "${ZDOTDIR:-~}"/.zshfunctions
@@ -169,9 +160,9 @@ precmd() {
   export RPROMPT="%(?..%F{red}[%?] %f)%F{cyan}${time}%f"
   unset time
 }
-#export PROMPT=" %F{green}[%F{magenta}%n@%M%f %F{blue}%~%f%F{green}]$%f "
 #echo -e "\033[0;32m$(fortune -a | sed 's/^/\t/')\033[0m"
-export PROMPT=" %F{magenta}%~%f%F{blue}>%f "
+# export PROMPT=" %F{magenta}%~%f%F{blue}>%f "
+export PROMPT='[%n@%M %F{blue}%~%f]$ '
 
 # to print {{{1
 lsmod | grep uvcvideo

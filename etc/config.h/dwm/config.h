@@ -91,7 +91,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_p,             spawn,          SHCMD(TERMLIGHT " pulsemixer") },
 	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD(TERMLIGHT " bc -l") },
 	{ MODKEY,                       XK_F1,            spawn,          SHCMD(TERMLIGHT " nvim ~/.local/opt/dwm/config.h") },
-	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && " TERM " -T textfiles nvim todo.md data.md sites.md autocmd.md") },
+	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && " TERM " -T textfiles nvim math.md todo.md data.md sites.md autocmd.md") },
     /* Custom Scripts {{{2 */
 	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
 	{ MODKEY|ShiftMask,             XK_s,             spawn,          SHCMD("state") },
@@ -108,7 +108,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_w,             spawn,          SHCMD("qutebrowser") },
 	{ MODKEY|ShiftMask,             XK_w,             spawn,          SHCMD("/usr/bin/qutebrowser --temp-basedir --set content.private_browsing true --config-py $XDG_CONFIG_HOME/qutebrowser/config.py") },
 	{ MODKEY|ControlMask,           XK_w,             spawn,          SHCMD("tor-browser") },
-	{ MODKEY|ShiftMask|ControlMask, XK_w,             spawn,          SHCMD("surf \"$(cat $XDG_CONFIG_HOME/qutebrowser/quickmarks | cut -d\" \" -f2- | dmenu)\"") },
+	{ MODKEY|ShiftMask|ControlMask, XK_w,             spawn,          SHCMD("surf \"$(cat $XDG_CONFIG_HOME/qutebrowser/quickmarks | cut -d\" \" -f2- | dmenu -p 'surf:')\"") },
     /* Other Apps {{{2 */
 	{ MODKEY,                       XK_d,             spawn,          SHCMD("discord") },
 	{ MODKEY,                       XK_e,             spawn,          SHCMD("lock") },

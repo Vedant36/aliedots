@@ -6,14 +6,19 @@
 	     '("melpa" . "https://melpa.org/packages/"))
 ;; use https://github.com/jwiegley/use-package for convinience??
 
-;;; builtin features
+;;; builtins
+;;;   interface cleanup
 (setq inhibit-startup-screen t)
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(ido-mode 1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
 (set-frame-font "Iosevka Mayukai CodePro-10")
 (display-line-numbers-mode 1)
 (setq display-line-numbers 'relative)
+;;;   convinience stuff
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 (windmove-default-keybindings 'meta)
 
 ;;; smex

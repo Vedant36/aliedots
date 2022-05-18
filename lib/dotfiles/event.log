@@ -1,15 +1,17 @@
 /* just put timestamps for daily reminder */
 02 Jun 2022 1300 = check deadlines for other colleges
-23 Apr 2022 0800 = gib test for cmi and isi
 
 /* CMI */
-23 Apr 2022 0800 = CMI = applications last date on 30 Apr
-10 May 2022 0800 = CMI = test on 22 May 2022
-23 May 2022 0800 = #autocmd:34
+19 May 2022 0800 = CMI = test on 22 May 2022
+19 May 2022 0800 = CMI = get admit card printed
+23 May 2022 0800 = #autocmd:34 spy x family
 
 /* ISI */
-25 Apr 2022 0800 = ISI = test on 8 May 2022
-22 Apr 2022 1800 = ISI = admit card printout
+23 May 2022 0800 = ISI = answer key
+15 Jun 2022 0800 = ISI = merit list
+
+/* other college */
+23 May 2022 = Institute of Mathematics and Applications IMA, Bhubaneshwar last date: 17 Jun 2022 https://iomaorissa.ac.in/admissions/
 
 /* Shows/Films */
 01 Oct 2022 = learn haskell and commonlisp = https://www.reddit.com/r/AskComputerScience/comments/u0vr0r/comment/i4hpgba/?utm_source=share&utm_medium=web2x&context=3
@@ -19,13 +21,27 @@
 28 May 2022 = stranger things volume 1
 01 Jul 2022 = stranger things volume 2
 30 May 2022 = Fantastic Beasts: The Secrets of Dumbledore HBO Release
-09 May 2022 1030 = flash s08e 12-13
+26 May 2022 1800 = flash s08e 15-16
 15 Jun 2022 = jujutsu kaisen film release
 
+16 Dec 2022 = Avatar 2: the way of the water
+20 Dec 2024 = Avatar 3: the seed bearer
+18 Dec 2026 = Avatar 4: the tulkun rider
+22 Dec 2028 = Avatar 5: the quest for eywa
+
+/* celestial event */
+/*   lunar eclispe: https://www.timeanddate.com/eclipse/list.html?region=indian-ocean */
+08 Nov 2022 = Total Lunar Eclipse
+05 May 2023 = Penumbral Lunar Eclipse
+07 Sep 2025 = Total Lunar Eclipse
+03 Mar 2026 = Total Lunar Eclipse
+
 /* other */
-/* 2330 = sleep */
+/* 2200 = sleep */
 23 May 2022 = mak mandelbrot with sidu #autocmd:28 and learn more c and c++
-23 Apr 2022 0800 = turn off phone
-2200 = close laptop
+25 May 2022 0800 = discord send shrey friend request
+Sun May 27 17:30 IST 2022 = chess tournament starting on 2035
+/* 2022-05-06 0600 = Meditate = you mind has been messed up for a few days. you still can't tell how good of an effect it had last time on you. it could really help with the headaches and not being able to think clearly. if not for yourself, do it for the past yourself */
+20 May 2022 = middle of the night pop punk version. proof: https://yewtu.be/watch?v=_xV-srwRR5o
 
 /* set from commandline */

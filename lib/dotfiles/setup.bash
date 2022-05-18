@@ -97,7 +97,6 @@ case $1 in
                 pushd share/zsh/plugins
             ic https://github.com/zdharma-continuum/fast-syntax-highlighting
             ic https://github.com/zsh-users/zsh-autosuggestions
-            ic https://github.com/skywind3000/z.lua
             mkdir -p fzf-git && pushd fzf-git
                 $DL 'https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236/raw/f23942b51333b8e8bcd6816fc063cf54beb8b97f/functions.sh'
                 $DL 'https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236/raw/f23942b51333b8e8bcd6816fc063cf54beb8b97f/key-binding.zsh'
@@ -130,11 +129,13 @@ case $1 in
         ce "Downloading greasemonkey scripts..."
         mkdir -p share/qutebrowser/greasemonkey &&
             pushd share/qutebrowser/greasemonkey
-            $DL 'https://www.4chan-x.net/builds/4chan-X.user.js'
             $DL 'https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js'
             $DL 'https://raw.githubusercontent.com/xthexder/wide-github/master/build/wide-github.user.js'
             $DL 'https://greasyfork.org/scripts/438625-arch-wiki-old-skin/code/Arch%20Wiki%20old%20skin.user.js'
             # $DL 'https://greasyfork.org/scripts/394820-mouseover-popup-image-viewer/code/Mouseover%20Popup%20Image%20Viewer.user.js'
+            # 4chins
+            $DL 'https://www.4chan-x.net/builds/4chan-X.user.js'
+            $DL 'https://github.com/g-gundam/4chan-ghostpostmixer/raw/master/4chan-ghostpostmixer.user.js'
         popd
 
         # MPV {{{2

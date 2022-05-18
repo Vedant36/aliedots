@@ -12,7 +12,7 @@ RANDOM_DELAY=45
 #1	5	cron.daily		nice run-parts /etc/cron.daily
 #7	25	cron.weekly		nice run-parts /etc/cron.weekly
 #@monthly 45	cron.monthly		nice run-parts /etc/cron.monthly
-1	5	todo	echo $(date "+%F") $(wc -l "$HOME"/dox/textfiles/todo.md | awk '{print $1}') >> "$HOME"/.local/var/log/todo.log
+1	5	todo	echo "$(date "+%F")\t$(wc -l "$HOME"/dox/textfiles/todo.md | awk '{print $1}')" >> "$HOME"/.local/var/log/todo.log
 1	5	pkglist.sync	pacman -Qqen>"$HOME"/.local/lib/dotfiles/pkglist.txt
 1	5	foreignpkg.sync pacman -Qqem>"$HOME"/.local/lib/dotfiles/foreignpkglist.txt
 1	5	checkupdates.sync	checkupdates > ~/.local/var/log/packages.log

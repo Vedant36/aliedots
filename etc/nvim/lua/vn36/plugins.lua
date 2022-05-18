@@ -32,18 +32,28 @@ return packer.startup {function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
   -- Custom {{{1
   use {
-    '~/dox/zmisc_code/pa/editor/vim',
+    '~/dox/math/pa/editor/vim',
     as = 'vim-pa'
   }
   -- Non-lua Plugins {{{1
+  use {
+    'github/copilot.vim',
+    cmd = 'Copilot'
+  }
   -- use 'whonore/Coqtail' -- needs pynvim
   use 'ollykel/v-vim'
   use {
-    'junegunn/rainbow_parentheses.vim',
+    'luochen1990/rainbow',
     config = function()
-      vim.g["rainbow#pairs"] = {{'(', ')'}, {'[', ']'}, {'{', '}'}}
+      vim.g.rainbow_active = 0
     end
   }
+  -- use {
+  --   'junegunn/rainbow_parentheses.vim',
+  --   config = function()
+  --     vim.g["rainbow#pairs"] = {{'(', ')'}, {'[', ']'}, {'{', '}'}}
+  --   end
+  -- }
   use 'chrisbra/csv.vim'
   use 'tpope/vim-unimpaired' -- lots of useful keybinds
   use 'tpope/vim-surround'
@@ -68,8 +78,12 @@ return packer.startup {function(use)
   -- Other Lua Plugins {{{1
   use {
     'andweeb/presence.nvim',
-    module = 'presence',
-    config = function() require("presence"):setup{} end
+    opt = true,
+    config = function()
+      require("presence"):setup{
+            auto_update         = false,
+      }
+    end
   }
   -- improves commit buffer
   use 'rhysd/committia.vim'

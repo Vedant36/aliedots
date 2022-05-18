@@ -27,8 +27,9 @@ xset m 4 0 # mouse speed
 # turn off repeat for return and tab
 xset -r 36
 # screen deactivate and turn off times
-xset s 300 0
-xset s noexpose
+xset s expose
+xset s noblank
+xset s 400 0
 xset dpms 450 450 450
 
 # startup programs {{{1
