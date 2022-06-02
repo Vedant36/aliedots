@@ -44,6 +44,7 @@ static const Rule rules[] = {
 	{ "Minecraft* 1.16.5", NULL,      NULL,        1 << 6,    0,          -1 },
 	{ "Minecraft* 1.17.1", NULL,      NULL,        1 << 6,    0,          -1 },
 	{ "Minecraft* 1.18.1", NULL,      NULL,        1 << 6,    0,          -1 },
+	{ "Minecraft* 1.18.2", NULL,      NULL,        1 << 6,    0,          -1 },
 	{ "transmission",      NULL,      NULL,        1 << 7,    0,          -1 },
 };
 // layout(s) {{{1
@@ -91,7 +92,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_p,             spawn,          SHCMD(TERMLIGHT " pulsemixer") },
 	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD(TERMLIGHT " bc -l") },
 	{ MODKEY,                       XK_F1,            spawn,          SHCMD(TERMLIGHT " nvim ~/.local/opt/dwm/config.h") },
-	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && " TERM " -T textfiles nvim math.md todo.md data.md sites.md autocmd.md") },
+	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && " TERM " -T textfiles nvim todo.md data.md sites.md autocmd.md") },
     /* Custom Scripts {{{2 */
 	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
 	{ MODKEY|ShiftMask,             XK_s,             spawn,          SHCMD("state") },

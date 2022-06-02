@@ -82,9 +82,10 @@ c.url.searchengines = {
     'DEFAULT': 'https://www.duckduckgo.com/?q={}',
     'd': 'https://html.duckduckgo.com/html?q={}',  # nojs version of duckduckgo
     '4': 'https://4chan.org/{}',
+    'l': 'https://www.lainchan.org/{}',
     'g': 'https://www.google.com/search?hl=en&q={}',
     'mw': 'https://www.merriam-webster.com/dictionary/{}',
-    'l': 'https://lyrics.com/lyrics/{}',  # lyric finding engine
+    'ly': 'https://lyrics.com/lyrics/{}',  # lyric finding engine
     'r': 'https://reddit.com/r/{}',
     's': 'https://open.spotify.com/search/{}',
     'su': 'https://steamunlocked.net/?s={}',
@@ -121,7 +122,8 @@ c.url.searchengines = {
     'ale': 'https://archlinux.org/packages/extra/x86_64/{}',
     # programming
     'asm': 'https://www.felixcloutier.com/x86/{}',
-    'c': 'https://duckduckgo.com/?q=site%3Acppreference.com%2Fw%2Fc+{}',
+    'c': 'https://duckduckgo.com/?q=site%3Acppreference.com/w/c+{}',
+    'nlab': 'https://www.google.com/search?as_q={}&as_sitesearch=https://ncatlab.org/nlab',
     'cl': 'https://en.cppreference.com/w/c/language/{}',
     'dd': 'https://devdocs.io/{}',
     'gh': 'https://github.com/{}',

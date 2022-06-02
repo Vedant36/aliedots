@@ -162,7 +162,7 @@ return packer.startup {function(use)
   -- Linting {{{1
   use {
     'mfussenegger/nvim-lint',
-    ft = { 'c', 'cpp', 'lua', 'sh', 'bash', 'zsh', 'python' },
+    ft = { 'c', 'cpp', 'lua', 'sh', 'bash', 'zsh' },
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {

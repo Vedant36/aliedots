@@ -1,10 +1,9 @@
 ; Vedant36's emacs configuration
 
 (package-initialize)
-;(require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
-;; use https://github.com/jwiegley/use-package for convinience??
+;; use https://github.com/jwiegley/use-package ?
 
 ;;; builtins
 ;;;   interface cleanup
@@ -13,13 +12,26 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (set-frame-font "Iosevka Mayukai CodePro-10")
-(display-line-numbers-mode 1)
+(global-display-line-numbers-mode)
 (setq display-line-numbers 'relative)
+;(display-line-numbers-mode)
 ;;;   convinience stuff
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
-(windmove-default-keybindings 'meta)
+(windmove-default-keybindings)
+
+;;; org-mode
+;; [Babel: Languages](https://orgmode.org/worg/org-contrib/babel/languages/index.html)
+(org-babel-do-load-languages
+  'org-babel-load-languages
+  '((python . t)
+    (C . t)
+    (lisp . t)))
+
+;;; rainbow-delimiters
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;;; smex
 (global-set-key (kbd "M-x") 'smex)
@@ -41,6 +53,7 @@
 ;;; [highlight-indent-guides](https://github.com/DarthFennec/highlight-indent-guides)
 (setq highlight-indent-guides-method 'character)
 (highlight-indent-guides-mode)
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 ;;(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
 ;; Save the "emacs autosaving" files to a seperate directory
@@ -83,17 +96,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(gruber-darker))
+ '(custom-enabled-themes '(monokai))
  '(custom-safe-themes
-   '("3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
+   '("78e6be576f4a526d212d5f9a8798e5706990216e9be10174e3f3b015b8662e27" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
  '(package-selected-packages
-   '(lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+   '(org-bullets rainbow-delimiters monokai-theme lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 ;; (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))
@@ -125,3 +132,42 @@
 ;;       (goto-char 0))))
 
 ;; (provide 'free-keys)
+
+(defvar infu-bionic-reading-face nil "a face for `infu-bionic-reading-region'.")
+
+(setq infu-bionic-reading-face 'error)
+;; try
+;; 'bold
+;; 'error
+;; 'warning
+;; 'highlight
+;; or any value of M-x list-faces-display
+
+(defun infu-bionic-reading-buffer ()
+  "Bold the first few chars of every word in current buffer.
+Version 2022-05-21"
+  (interactive)
+  (infu-bionic-reading-region (point-min) (point-max)))
+
+(defun infu-bionic-reading-region (Begin End)
+  "Bold the first few chars of every word in region.
+Version 2022-05-21"
+  (interactive "r")
+  (let (xBounds xWordBegin xWordEnd  )
+    (save-restriction
+      (narrow-to-region Begin End)
+      (goto-char (point-min))
+      (while (forward-word)
+        ;; bold the first half of the word to the left of cursor
+        (setq xBounds (bounds-of-thing-at-point 'word))
+        (setq xWordBegin (car xBounds))
+        (setq xWordEnd (cdr xBounds))
+        (setq xBoldEndPos (+ xWordBegin (1+ (/ (- xWordEnd xWordBegin) 2))))
+        (put-text-property xWordBegin xBoldEndPos
+                           'font-lock-face infu-bionic-reading-face)))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

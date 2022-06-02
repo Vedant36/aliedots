@@ -1,5 +1,6 @@
 acpi
 acpid
+age
 alsa-utils
 amdvlk
 android-tools
@@ -49,6 +50,7 @@ ghc
 git
 gnuplot
 grub
+hashcat
 hq
 hspell
 htop
@@ -136,6 +138,7 @@ python-pycodestyle
 python-pygame
 python-pylint
 python-regex
+python-sympy
 python-wheel
 qemu-desktop
 qjackctl

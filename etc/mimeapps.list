@@ -5,6 +5,7 @@ application/css=nvim.desktop;
 application/x-shockwave-flash=mpv.desktop;
 image/jpeg=sxiv.desktop;
 image/png=sxiv.desktop;
+inode/directory=sxiv.desktop;
 
 [Default Applications]
 text/html=org.qutebrowser.qutebrowser.desktop;

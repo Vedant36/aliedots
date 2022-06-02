@@ -29,8 +29,8 @@ xset -r 36
 # screen deactivate and turn off times
 xset s expose
 xset s noblank
-xset s 400 0
-xset dpms 450 450 450
+xset s 450 0
+xset dpms 600 600 600
 
 # startup programs {{{1
 # X only programs
