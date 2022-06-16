@@ -20,14 +20,25 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 (windmove-default-keybindings)
+(electric-pair-mode 1)
+
 
 ;;; org-mode
+;; Add this to get >greentext in your org-mode documents
+(defun u/greentext ()
+  "Highlight >greentext in current buffer."
+  (interactive)
+  (highlight-lines-matching-regexp "^>" 'hi-green-b))
+
+(add-hook 'org-mode-hook #'u/greentext)
 ;; [Babel: Languages](https://orgmode.org/worg/org-contrib/babel/languages/index.html)
 (org-babel-do-load-languages
   'org-babel-load-languages
   '((python . t)
     (C . t)
     (lisp . t)))
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;;; rainbow-delimiters
 (require 'rainbow-delimiters)
@@ -49,6 +60,26 @@
 
 ;;; SLIME
 (setq inferior-lisp-program "sbcl")
+;; syntax highlighting in slime
+;; (defvar slime-repl-font-lock-keywords lisp-font-lock-keywords-2)
+;; (defun slime-repl-font-lock-setup ()
+;;   (setq font-lock-defaults
+;;         '(slime-repl-font-lock-keywords
+;;          ;; From lisp-mode.el
+;;          nil nil (("+-*/.<>=!?$%_&~^:@" . "w")) nil
+;;          (font-lock-syntactic-face-function
+;;          . lisp-font-lock-syntactic-face-function))))
+
+;; (add-hook 'slime-repl-mode-hook 'slime-repl-font-lock-setup)
+
+;; (defadvice slime-repl-insert-prompt (after font-lock-face activate)
+;;   (let ((inhibit-read-only t))
+;;     (add-text-properties
+;;      slime-repl-prompt-start-mark (point)
+;;      '(font-lock-face
+;;       slime-repl-prompt-face
+;;       rear-nonsticky
+;;       (slime-repl-prompt read-only font-lock-face intangible)))))
 
 ;;; [highlight-indent-guides](https://github.com/DarthFennec/highlight-indent-guides)
 (setq highlight-indent-guides-method 'character)
@@ -96,11 +127,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(monokai))
+ '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
-   '("78e6be576f4a526d212d5f9a8798e5706990216e9be10174e3f3b015b8662e27" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
+   '("fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" "78e6be576f4a526d212d5f9a8798e5706990216e9be10174e3f3b015b8662e27" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
+ '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(org-bullets rainbow-delimiters monokai-theme lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
+   '(dracula-theme org-bullets rainbow-delimiters monokai-theme lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 ;; (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))

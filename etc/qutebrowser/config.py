@@ -92,12 +92,14 @@ c.url.searchengines = {
     'wiby': 'https://wiby.me/?q={}',
     'scp': 'https://scp-wiki.wikidot.com/scp-{}',
     'mc': 'https://minecraft.fandom.com/wiki/{}',
+    'sd': 'https://stardewvalleywiki.com/{}',
     'x': 'https://swag.pw/search?q={}',
     'y': 'https://yewtu.be/search?q={}',  # invidious
     'yw': 'https://yewtu.be/watch?v={}',
-    'y2': 'https://youtube.com/search?q={}',
+    'yt': 'https://youtube.com/search?q={}',
     'sp': 'https://www.smartprix.com/products/?q={}',
     'gf': 'https://greasyfork.org/en/scripts?q={}',
+    'w': 'https://wikiless.org/w/index.php?search={}',
     # books
     'b': 'https://1lib.in/s/{}',
     'b2': 'https://www.pdfdrive.com/search?q={}',

@@ -41,6 +41,7 @@ expac
 fasm
 fd
 feh
+ffmpegthumbnailer
 firefox
 flake8
 fzf
@@ -64,10 +65,13 @@ irssi
 jdk-openjdk
 jq
 jre8-openjdk-headless
+keepassxc
 kitty
+kolourpaint
 krita
 lib32-vulkan-radeon
 libnotify
+libreoffice-still
 libvoikko
 linux
 linux-firmware
@@ -112,9 +116,9 @@ noto-fonts-emoji
 ntfs-3g
 ntp
 nuspell
+nyxt
 octave
 openbsd-netcat
-opendoas
 p7zip
 pacman-contrib
 pdfjs
@@ -142,6 +146,7 @@ python-sympy
 python-wheel
 qemu-desktop
 qjackctl
+quicklisp
 qutebrowser
 ranger
 redshift
@@ -177,7 +182,6 @@ unclutter
 unrar
 unzip
 upower
-valgrind
 virt-manager
 virt-viewer
 vnstat

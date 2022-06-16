@@ -1,7 +1,7 @@
 [Added Associations]
-application/zip=nvim.desktop;
-application/text=nvim.desktop;
-application/css=nvim.desktop;
+application/zip=emacs.desktop;
+application/text=emacs.desktop;
+application/css=emacs.desktop;
 application/x-shockwave-flash=mpv.desktop;
 image/jpeg=sxiv.desktop;
 image/png=sxiv.desktop;
