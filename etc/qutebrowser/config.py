@@ -86,7 +86,7 @@ c.url.searchengines = {
     'g': 'https://www.google.com/search?hl=en&q={}',
     'mw': 'https://www.merriam-webster.com/dictionary/{}',
     'ly': 'https://lyrics.com/lyrics/{}',  # lyric finding engine
-    'r': 'https://reddit.com/r/{}',
+    'r': 'https://old.reddit.com/r/{}',
     's': 'https://open.spotify.com/search/{}',
     'su': 'https://steamunlocked.net/?s={}',
     'wiby': 'https://wiby.me/?q={}',
@@ -167,12 +167,13 @@ c.content.blocking.method = 'adblock'
 # Bindings {{{1
 c.bindings.commands = {}
 c.bindings.commands["normal"] = {
-    "!":  "set-cmd-text :open !",
-    "A":  "set-cmd-text :open {url:pretty}",
-    "H":  "fake-key <left>",
-    "J":  "back",
-    "K":  "forward",
-    "L":  "fake-key <right>",
+    "d": "nop",
+    "!": "set-cmd-text :open !",
+    "A": "set-cmd-text :open {url:pretty}",
+    "H": "fake-key <left>",
+    "J": "back",
+    "K": "forward",
+    "L": "fake-key <right>",
     "ZA": "quit --save",
     "ZQ": "close",
     "ZZ": "save;; close",

@@ -27,6 +27,9 @@ fi
   fi
 } &!
 autoload -U bashcompinit && bashcompinit # support bash-completions
+# auto escape urls
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
 # vi mode {{{1
 bindkey -v
 export KEYTIMEOUT=1

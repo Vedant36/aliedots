@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+## sorts events in eventfile according to recency
+IFS=$'\n'
+EVENT_FILE="$HOME"/.local/lib/dotfiles/event.log
+while read -r line; do
+    date="$(cut -d= -f1 <<< "$line")"
+    info="$(cut -d= -f2- <<< "$line")"
+    echo "$(date -d "$date" +%s) =$info"
+done < <(grep -v '/\*.*\*/' "$EVENT_FILE" | grep -v '^\s*$') | sort |
+    while read -r line; do
+        date="$(cut -d= -f1 <<< "$line")"
+        info="$(cut -d= -f2- <<< "$line")"
+        echo "$(date -d "@$date" '+%a %F %H:%M') =$info"
+    done
+

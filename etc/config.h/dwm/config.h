@@ -98,6 +98,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_s,             spawn,          SHCMD("state") },
 	{ MODKEY|ShiftMask,             XK_m,             spawn,          SHCMD("dmenu_mount") },
 	{ MODKEY,                       XK_z,             spawn,          SHCMD("boomer") },
+	/* Brightness {{{2 */
 	{ MODKEY,                       XK_F2,            spawn,          SHCMD("bright -ri -1") },
 	{ MODKEY,                       XK_F3,            spawn,          SHCMD("bright -ri 1") },
 	{ MODKEY|ControlMask,           XK_F2,            spawn,          SHCMD("bright -i -1") },

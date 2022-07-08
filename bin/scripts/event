@@ -6,7 +6,9 @@
 ## Crontab:
 ##     */5 * * * * "$HOME"/.local/bin/scripts/event
 ## Dependencies: notify-send(and a notification server)
-## TODO: add way to set period of reminder(eg. for daily reminders)
+## TODO:
+##   - add way to set period of reminder(eg. for daily reminders)
+##   - add way to check for all events before a time(tomorrow, this week, etc)
 
 EVENT_FILE="$HOME"/.local/lib/dotfiles/event.log
 

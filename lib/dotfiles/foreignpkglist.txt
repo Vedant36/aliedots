@@ -1,4 +1,3 @@
-amd-ucode-git
 ani-cli-git
 artha
 aseprite-git
@@ -34,6 +33,7 @@ shellcheck-bin
 simple-mtpfs
 spotify
 stapler
+sublime-text-4
 tor-browser
 vlang-bin
 windscribe-cli

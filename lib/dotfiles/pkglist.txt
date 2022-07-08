@@ -2,6 +2,7 @@ acpi
 acpid
 age
 alsa-utils
+amd-ucode
 amdvlk
 android-tools
 archlinux-contrib
@@ -106,6 +107,7 @@ ncdu
 ncmpcpp
 nemo
 neofetch
+net-tools
 nethogs
 networkmanager
 nicotine+
