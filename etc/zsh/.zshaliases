@@ -10,6 +10,7 @@ export LS_COLORS
 # Generic {{{1
 alias cp='cp -i'
 alias mv='mv -i'
+alias rm='rm -i'
 alias time='time '
 alias watch='watch '
 alias linedo="xargs -d '\n' -I {}"

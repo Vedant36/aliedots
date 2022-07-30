@@ -133,6 +133,7 @@ c.url.searchengines = {
     'ide': 'https://glot.io/new/{}',  # online code editor without login
     'grep': 'https://grep.app/search?q={}',  # search for code examples
     'py': 'https://pypi.org/search/?q={}',
+    'pg': 'https://www.pygame.org/docs/ref/{}.html',
     'xy': 'https://learnxinyminutes.com/docs/{}',  # learning new prog.lang.
     # films and shows
     'ap': 'https://animixplay.to/?q={}',  # anime
@@ -216,6 +217,7 @@ c.bindings.commands["normal"] = {
     ",s": "config-cycle -t statusbar.show never always",
     ",t": "config-cycle -t tabs.show multiple never",
     ",u": "config-cycle -t statusbar.show never always;; config-cycle tabs.show never multiple",
+    "\\": "config-cycle -t statusbar.show never always;; config-cycle tabs.show never multiple",
 
     # to change playback rate on youtube
     ",y": "set-cmd-text -s :jseval -q document.getElementsByTagName('video')[0].playbackRate =",

@@ -41,7 +41,7 @@ unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
 pgrep artha || artha &	# offline dictionary
 feh --no-fehbg --bg-fill ~/pix/current* &
 dunst &	 # notification server
-xcompmgr &	# compositor
+#xcompmgr &	# compositor
 xss-lock -n 'bright -i -5' -l lock &
 redshift -l 23.5:78.5 -m randr &
 # display agnostic programs

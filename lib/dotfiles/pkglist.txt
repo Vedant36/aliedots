@@ -39,6 +39,7 @@ exa
 exfat-utils
 exiv2
 expac
+ext3grep
 fasm
 fd
 feh
@@ -157,10 +158,10 @@ rlwrap
 rsync
 sbcl
 scrot
-seamonkey
 socat
 speedtest-cli
 strace
+stumpwm
 subdl
 sx
 sxiv
