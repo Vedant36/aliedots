@@ -39,7 +39,7 @@ exa
 exfat-utils
 exiv2
 expac
-ext3grep
+ext4magic
 fasm
 fd
 feh
@@ -50,10 +50,12 @@ fzf
 gcr
 gdb
 ghc
+ghc-static
 git
 gnuplot
 grub
 hashcat
+haskell-base-prelude
 hq
 hspell
 htop
@@ -101,6 +103,7 @@ mpv
 mupdf
 mupdf-tools
 musl
+mutt
 mypaint
 nano
 nasm
@@ -125,7 +128,6 @@ openbsd-netcat
 p7zip
 pacman-contrib
 pdfjs
-picom
 pinta
 pipewire-alsa
 pipewire-jack
@@ -166,6 +168,7 @@ subdl
 sx
 sxiv
 systemd-sysvcompat
+testdisk
 texlive-bin
 texlive-core
 thunar
@@ -187,6 +190,7 @@ unzip
 upower
 virt-manager
 virt-viewer
+vis
 vnstat
 vulkan-radeon
 w3m

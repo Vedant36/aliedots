@@ -15,7 +15,6 @@ fingerpaint
 flashpoint-bin
 geogebra-5
 i3lock-color-git
-librewolf-bin
 lua-inspect
 lutris-wine-meta
 magicrescue
@@ -29,7 +28,6 @@ networkmanager-dispatcher-ntpd
 nq-git
 pandoc-bin
 popcorntime-bin
-python-openai
 python-snakeviz
 rdo
 sdl2-manpage-git
@@ -46,4 +44,4 @@ xorg-meta
 xxd-standalone
 yay-bin
 youtube-to-mp3
-ytfzf
+zoom

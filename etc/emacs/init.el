@@ -132,7 +132,7 @@
    '("fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" "78e6be576f4a526d212d5f9a8798e5706990216e9be10174e3f3b015b8662e27" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(dracula-theme org-bullets rainbow-delimiters monokai-theme lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
+   '(haskell-mode dracula-theme org-bullets rainbow-delimiters monokai-theme lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 ;; (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))

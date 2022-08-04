@@ -8,9 +8,9 @@ export PM=yay # package manager
 
 export EDITOR="nvim"
 export VISUAL="nvim"
-export SUDO="doas"
+export SUDO="rdo"
 export LESS='--RAW-CONTROL-CHARS --squeeze-blank-lines --quit-on-intr --quit-if-one-screen --no-init' # --mouse
-export PAGER="nvim -"
+export PAGER=less
 export MANPAGER="nvim +Man\!"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export SSH_ASKPASS='pinentry'
