@@ -12,6 +12,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (set-frame-font "Iosevka Mayukai CodePro-10")
+(setq-default cursor-type 'bar)
 (global-display-line-numbers-mode)
 (setq display-line-numbers 'relative)
 ;(display-line-numbers-mode)
@@ -22,9 +23,14 @@
 (windmove-default-keybindings)
 (electric-pair-mode 1)
 
+;; Enable Evil
+(require 'evil)
+(evil-mode 1)
+(evil-emacs-state)
+(setq evil-default-state 'emacs)
 
 ;;; org-mode
-;; Add this to get >greentext in your org-mode documents
+;; to get >greentext in org-mode documents
 (defun u/greentext ()
   "Highlight >greentext in current buffer."
   (interactive)
@@ -127,12 +133,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(TeX-view-program-selection
+   '(((output-dvi has-no-display-manager)
+      "dvi2tty")
+     ((output-dvi style-pstricks)
+      "dvips and gv")
+     (output-dvi "xdvi")
+     (output-pdf "Zathura")
+     (output-html "xdg-open")))
  '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
    '("fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" "78e6be576f4a526d212d5f9a8798e5706990216e9be10174e3f3b015b8662e27" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(haskell-mode dracula-theme org-bullets rainbow-delimiters monokai-theme lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
+   '(evil auctex haskell-mode dracula-theme org-bullets rainbow-delimiters monokai-theme lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 ;; (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))

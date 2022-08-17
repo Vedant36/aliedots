@@ -11,6 +11,7 @@ aspell
 atool
 base
 bash-completion
+bashtop
 bat
 bc
 bind
@@ -29,6 +30,7 @@ dietlibc
 discord
 dmidecode
 dnsmasq
+dpkg
 dunst
 ed
 edk2-ovmf
@@ -51,11 +53,13 @@ gcr
 gdb
 ghc
 ghc-static
+gimp
 git
 gnuplot
 grub
 hashcat
 haskell-base-prelude
+haskell-random
 hq
 hspell
 htop
@@ -115,6 +119,7 @@ net-tools
 nethogs
 networkmanager
 nicotine+
+nm-connection-editor
 nmap
 nnn
 nodejs
@@ -158,6 +163,7 @@ redshift
 ripgrep
 rlwrap
 rsync
+sagemath
 sbcl
 scrot
 socat

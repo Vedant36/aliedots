@@ -16,7 +16,7 @@ c.completion.use_best_match = True
 c.content.cookies.accept = 'no-3rdparty'
 c.content.fullscreen.window = False
 c.content.notifications.enabled = False
-c.content.pdfjs = True
+c.content.pdfjs = False
 c.content.private_browsing = False
 BASEDIR = os.getenv("XDG_CONFIG_HOME", os.path.join(os.getenv('HOME'), '.config'))
 # TODO: darkmode and better-duckduckgo not working
@@ -101,6 +101,7 @@ c.url.searchengines = {
     'gf': 'https://greasyfork.org/en/scripts?q={}',
     'w': 'https://wikiless.org/w/index.php?search={}',
     # books
+    'lib': 'https://library.cmi.ac.in/cgi-bin/koha/opac-search.pl?q={}',
     'b': 'https://1lib.in/s/{}',
     'b2': 'https://www.pdfdrive.com/search?q={}',
     'b3': 'https://libgen.me/search?query={}',

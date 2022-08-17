@@ -1,11 +1,7 @@
 /* just put timestamps for daily reminder */
-/* Colleges */
-07 Aug 2022 1300 = do bank shit if alive
-01 Jan 2025 0800 = axis bank card expires
-
 /* Shows/Films */
-16 Aug 2022 0800 = better call saul s06e10
-11 Aug 2022 2200 = miraculous s05e03
+18 Aug 2022 2200 = miraculous s05e03
+04 Sep 2022 0800 = rick and morty
 07 Oct 2022 2130 = spyxfamily rest 13 episodes
 01 Nov 2022 = miraculous awakening
 01 Oct 2022 = learn haskell and commonlisp = https://www.reddit.com/r/AskComputerScience/comments/u0vr0r/comment/i4hpgba/?utm_source=share&utm_medium=web2x&context=3
@@ -23,6 +19,10 @@
 07 Sep 2025 = Total Lunar Eclipse
 03 Mar 2026 = Total Lunar Eclipse
 
+/* college events */
+
 /* other */
+21 Aug 2022 1000 = do bank shit if alive
+01 Jan 2025 0800 = axis bank card expires
 
 /* set from commandline */

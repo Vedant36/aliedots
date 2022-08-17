@@ -15,6 +15,7 @@ fingerpaint
 flashpoint-bin
 geogebra-5
 i3lock-color-git
+liberica-jre-8-full-bin
 lua-inspect
 lutris-wine-meta
 magicrescue
