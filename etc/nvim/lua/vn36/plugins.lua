@@ -36,10 +36,10 @@ return packer.startup {function(use)
     as = 'vim-pa'
   }
   -- Non-lua Plugins {{{1
-  use {
-    'github/copilot.vim',
-    cmd = 'Copilot'
-  }
+  -- use {
+  --   'github/copilot.vim',
+  --   cmd = 'Copilot'
+  -- }
   -- use 'whonore/Coqtail' -- needs pynvim
   use 'ollykel/v-vim'
   use {

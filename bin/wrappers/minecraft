@@ -1,25 +1,5 @@
 #!/bin/sh
 # minecraft wrapper script
-
-case "$1" in
--u|update)
-    temp=$(mktemp -d)
-    cleanup() {
-        rm -rf -- "$temp"
-    }
-    trap cleanup EXIT
-
-    cd "$temp" || exit 1
-    curl -OL "https://nightly.link/AfoninZ/MultiMC5-Cracked/workflows/main/develop/mmc-cracked-lin64.zip"
-    unzip "mmc-cracked-lin64.zip"
-    cp -rT UltimMC/ ~/.local/opt/UltimMC
-    chmod +x ~/.local/opt/UltimMC/UltimMC
-    ;;
-*)
-    # cant use xcape while im trying to sprint hit
-    pkill xcape
-    "$HOME"/.local/opt/UltimMC/UltimMC
-    xcape -e 'Control_L=Escape' -t 100
-    ;;
-esac
-
+pkill xcape
+ultimmc
+xcape -e 'Control_L=Escape' -t 100

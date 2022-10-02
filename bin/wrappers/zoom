@@ -1,0 +1,2 @@
+#!/bin/sh
+exec env HOME="$HOME/.local/var/lib/zoom" unwrap zoom

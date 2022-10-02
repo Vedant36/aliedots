@@ -1,6 +1,7 @@
 acpi
 acpid
 age
+aircrack-ng
 alsa-utils
 amd-ucode
 amdvlk
@@ -17,6 +18,7 @@ bc
 bind
 bridge-utils
 btop
+calibre
 ccache
 ccze
 cloc
@@ -36,6 +38,7 @@ ed
 edk2-ovmf
 efibootmgr
 emacs
+ethtool
 evtest
 exa
 exfat-utils
@@ -72,8 +75,10 @@ irqbalance
 irssi
 jdk-openjdk
 jq
+jre17-openjdk
 jre8-openjdk-headless
 keepassxc
+kernel-modules-hook
 kitty
 kolourpaint
 krita
@@ -122,7 +127,6 @@ nicotine+
 nm-connection-editor
 nmap
 nnn
-nodejs
 noto-fonts-emoji
 ntfs-3g
 ntp
@@ -173,6 +177,7 @@ stumpwm
 subdl
 sx
 sxiv
+syncthing
 systemd-sysvcompat
 testdisk
 texlive-bin

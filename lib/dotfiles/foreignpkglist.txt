@@ -8,6 +8,7 @@ boomer-git
 brave-bin
 chromium-widevine
 colorpicker
+ferium-bin
 ffmpeg-compat-57
 ffmpeg-compat-58
 find-the-command
@@ -30,6 +31,7 @@ nq-git
 pandoc-bin
 popcorntime-bin
 python-snakeviz
+quickemu
 rdo
 sdl2-manpage-git
 shellcheck-bin
@@ -38,6 +40,7 @@ spotify
 stapler
 sublime-text-4
 tor-browser
+ultimmc-bin
 vlang-bin
 windscribe-cli
 xcursor-breeze

@@ -1,4 +1,5 @@
 ; Vedant36's emacs configuration
+;;; probuse packages: flycheck(syntax checker, )
 
 (package-initialize)
 (add-to-list 'package-archives
@@ -8,11 +9,12 @@
 ;;; builtins
 ;;;   interface cleanup
 (setq inhibit-startup-screen t)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
+(menu-bar-mode 0)
+(if window-system
+    (scroll-bar-mode 0))
+(tool-bar-mode 0)
 (set-frame-font "Iosevka Mayukai CodePro-10")
-(setq-default cursor-type 'bar)
+;; (setq-default cursor-type 'bar)
 (global-display-line-numbers-mode)
 (setq display-line-numbers 'relative)
 ;(display-line-numbers-mode)
@@ -23,13 +25,17 @@
 (windmove-default-keybindings)
 (electric-pair-mode 1)
 
-;; Enable Evil
-(require 'evil)
-(evil-mode 1)
-(evil-emacs-state)
-(setq evil-default-state 'emacs)
+;;; bindings
+nil
+
+;; ;; Enable Evil
+;; (require 'evil)
+;; (evil-mode 1)
+;; (evil-emacs-state)
+;; (setq evil-default-state 'emacs)
 
 ;;; org-mode
+(setq org-special-ctrl-a/e t)
 ;; to get >greentext in org-mode documents
 (defun u/greentext ()
   "Highlight >greentext in current buffer."
@@ -43,8 +49,9 @@
   '((python . t)
     (C . t)
     (lisp . t)))
-(require 'org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+;;; LaTeX
+(add-hook 'LaTeX-mode-hook #'turn-on-cdlatex)
 
 ;;; rainbow-delimiters
 (require 'rainbow-delimiters)
@@ -66,32 +73,11 @@
 
 ;;; SLIME
 (setq inferior-lisp-program "sbcl")
-;; syntax highlighting in slime
-;; (defvar slime-repl-font-lock-keywords lisp-font-lock-keywords-2)
-;; (defun slime-repl-font-lock-setup ()
-;;   (setq font-lock-defaults
-;;         '(slime-repl-font-lock-keywords
-;;          ;; From lisp-mode.el
-;;          nil nil (("+-*/.<>=!?$%_&~^:@" . "w")) nil
-;;          (font-lock-syntactic-face-function
-;;          . lisp-font-lock-syntactic-face-function))))
-
-;; (add-hook 'slime-repl-mode-hook 'slime-repl-font-lock-setup)
-
-;; (defadvice slime-repl-insert-prompt (after font-lock-face activate)
-;;   (let ((inhibit-read-only t))
-;;     (add-text-properties
-;;      slime-repl-prompt-start-mark (point)
-;;      '(font-lock-face
-;;       slime-repl-prompt-face
-;;       rear-nonsticky
-;;       (slime-repl-prompt read-only font-lock-face intangible)))))
 
 ;;; [highlight-indent-guides](https://github.com/DarthFennec/highlight-indent-guides)
 (setq highlight-indent-guides-method 'character)
 (highlight-indent-guides-mode)
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-;;(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
 ;; Save the "emacs autosaving" files to a seperate directory
 ;(setq backup-directory-alist '(("." . "~/.emacs_saves")))
@@ -143,10 +129,10 @@
      (output-html "xdg-open")))
  '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
-   '("fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" "78e6be576f4a526d212d5f9a8798e5706990216e9be10174e3f3b015b8662e27" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
+   '("b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" "fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" "78e6be576f4a526d212d5f9a8798e5706990216e9be10174e3f3b015b8662e27" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(evil auctex haskell-mode dracula-theme org-bullets rainbow-delimiters monokai-theme lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
+   '(gruvbox-theme cdlatex flycheck evil auctex haskell-mode dracula-theme rainbow-delimiters monokai-theme lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 ;; (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))
@@ -199,7 +185,7 @@ Version 2022-05-21"
   "Bold the first few chars of every word in region.
 Version 2022-05-21"
   (interactive "r")
-  (let (xBounds xWordBegin xWordEnd  )
+  (let (xBounds xWordBegin xWordEnd)
     (save-restriction
       (narrow-to-region Begin End)
       (goto-char (point-min))

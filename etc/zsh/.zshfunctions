@@ -23,7 +23,7 @@ r(){
 es(){(
 	set -e
 	pushd "$HOME"/dox
-	local SE=sec
+	local SE=sec2
     mkdir -p ~/.local/lib/private
     if [ -s ${SE}.tar.gpg ];then
         gpg -d ${SE}.tar.gpg>${SE}.tar

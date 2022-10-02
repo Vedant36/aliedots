@@ -34,6 +34,7 @@ static const Rule rules[] = {
 	 */
 	/* class               instance   title        tags mask  isfloating  monitor */
 	{ NULL,                NULL,      "textfiles", 1 << 3,    0,          -1 },
+	{ "Emacs",             NULL,      NULL,        1 << 4,    0,          -1 },
 	{ "Lutris",            NULL,      NULL,        1 << 0,    0,          -1 },
 	{ "Popcorn-Time",      NULL,      NULL,        1 << 0,    0,          -1 },
 	{ "Zathura",           NULL,      NULL,        1 << 1,    0,          -1 },
@@ -42,10 +43,7 @@ static const Rule rules[] = {
 	{ NULL,                "ncmpcpp", NULL,        1 << 3,    0,          -1 },
 	{ "mpv",               NULL,      NULL,        1 << 4,    0,          -1 },
 	{ "discord",           NULL,      NULL,        1 << 5,    0,          -1 },
-	{ "Minecraft* 1.16.5", NULL,      NULL,        1 << 6,    0,          -1 },
-	{ "Minecraft* 1.17.1", NULL,      NULL,        1 << 6,    0,          -1 },
-	{ "Minecraft* 1.18.1", NULL,      NULL,        1 << 6,    0,          -1 },
-	{ "Minecraft* 1.18.2", NULL,      NULL,        1 << 6,    0,          -1 },
+	{ "Minecraft",         NULL,      NULL,        1 << 6,    0,          -1 },
 	{ "stardew valley.exe",NULL,      NULL,        1 << 6,    0,          -1 },
 	{ "transmission",      NULL,      NULL,        1 << 7,    0,          -1 },
 };
@@ -94,7 +92,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_p,             spawn,          SHCMD(TERMLIGHT " pulsemixer") },
 	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD(TERMLIGHT " bc -l") },
 	{ MODKEY,                       XK_F1,            spawn,          SHCMD(TERMLIGHT " nvim ~/.local/opt/dwm/config.h") },
-	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && " TERM " -T textfiles nvim todo.md data.md sites.md autocmd.md colleges.md math.md") },
+	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && " TERM " -T textfiles nvim todo.md data.md sites.md autocmd.md math.md") },
     /* Custom Scripts {{{2 */
 	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
 	{ MODKEY|ShiftMask,             XK_s,             spawn,          SHCMD("state") },
@@ -115,8 +113,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask|ControlMask, XK_w,             spawn,          SHCMD("surf \"$(cat $XDG_CONFIG_HOME/qutebrowser/quickmarks | cut -d\" \" -f2- | dmenu -p 'surf:')\"") },
     /* Other Apps {{{2 */
 	{ MODKEY,                       XK_d,             spawn,          SHCMD("discord") },
-	{ MODKEY,                       XK_e,             spawn,          SHCMD("lock") },
-	{ MODKEY|ShiftMask,             XK_e,             spawn,          SHCMD("systemctl suspend") },
+	{ MODKEY,                       XK_e,             spawn,          SHCMD("emacs") },
+	{ MODKEY|ShiftMask,             XK_e,             spawn,          SHCMD("lock") },
 	{ MODKEY|ControlMask,           XK_e,             spawn,          SHCMD("event") },
     /* Stack/Layout {{{2 */
 	{ MODKEY,                       XK_j,             focusstack,     {.i = +1 } },

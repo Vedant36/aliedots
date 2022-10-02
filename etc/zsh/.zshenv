@@ -11,7 +11,6 @@ export VISUAL="nvim"
 export SUDO="rdo"
 export LESS='--RAW-CONTROL-CHARS --squeeze-blank-lines --quit-on-intr --quit-if-one-screen --no-init' # --mouse
 export PAGER=less
-export MANPAGER="nvim +Man\!"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export SSH_ASKPASS='pinentry'
 
@@ -35,20 +34,25 @@ export XDG_LIB_HOME="$HOME/.local/lib"
 export XDG_LOG_HOME="$HOME/.local/var/log"
 # ~ Cleanup {{{1
 export _FASD_DATA="$XDG_DATA_HOME"/fasd
-mkdir -p "$XDG_DATA_HOME/wine/default"
-export WINEPREFIX="$XDG_DATA_HOME/wine/default"
+mkdir -p "$XDG_DATA_HOME"/zsh
+export HISTFILE=$XDG_DATA_HOME/zsh/.zsh_history
+mkdir -p "$XDG_CONFIG_HOME"/ipython
+export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython
+export DOT_SAGE="$XDG_CONFIG_HOME"/sage
+mkdir -p "$XDG_CONFIG_HOME"/java
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export LESSHISTFILE=$XDG_DATA_HOME/lesshst
+export MAGICK_TEMPORARY_PATH=$XDG_CACHE_HOME/ImageMagick/
+export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgreprc
 export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
-# export PYTHONSTARTUP=$XDG_LIB_HOME/python/startup.py
-mkdir -p "$XDG_CONFIG_HOME"/ipython
-export IPYTHONDIR="$XDG_CONFIG_HOME"/ipython
-export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgreprc
-mkdir -p "$XDG_DATA_HOME"/zsh
-export HISTFILE=$XDG_DATA_HOME/zsh/.zsh_history
-export LESSHISTFILE=$XDG_DATA_HOME/lesshst
-export MAGICK_TEMPORARY_PATH=$XDG_CACHE_HOME/ImageMagick/
+export TEXMFHOME=$XDG_DATA_HOME/texmf
+export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
+export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 export VCACHE=$XDG_CACHE_HOME/vmodules
+mkdir -p "$XDG_DATA_HOME/wine/default"
+export WINEPREFIX="$XDG_DATA_HOME/wine/default"
 # fzf {{{1
 export FZF_{DEFAULT,CTRL_T}_COMMAND='fd -H -E "\.git/"'
 export FZF_ALT_C_COMMAND='fd -H --type d -E "\.git/"'

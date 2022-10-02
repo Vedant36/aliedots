@@ -34,6 +34,7 @@ local options={
     omnifunc="syntaxcomplete#Complete",
     sessionoptions="buffers,curdir,folds,tabpages,globals",
     foldmethod="marker", fillchars="fold:-",
+    mouse="",
 }
 
 for k, v in pairs(options) do

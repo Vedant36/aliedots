@@ -1,0 +1,3 @@
+#!/bin/sh
+mkdir "$XDG_CONFIG_HOME"/irssi
+exec unwrap irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi "$@"
