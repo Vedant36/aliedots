@@ -13,7 +13,7 @@ setInterval(() => {
     }
     const ad = [...document.querySelectorAll('.ad-showing')][0];
     if (ad) {
-        document.querySelector('video').playbackRate = 100;
+        document.querySelector('video').playbackRate = 49;
     }
 }, 50)
 

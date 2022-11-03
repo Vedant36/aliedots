@@ -115,6 +115,13 @@ setopt hist_reduce_blanks   # remove superflous blanks
 setopt hist_no_store
 
 # sourcings(7) fastest to slowest {{{1
+export FZF_DEFAULT_COMMAND="fd -H -E '\.git/'"
+export  FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export   FZF_ALT_C_COMMAND='fd -H --type d -E "\.git/"'
+export FZF_DEFAULT_OPTS="--height=20 -m --reverse --info=inline --tiebreak=index"
+export  FZF_CTRL_T_OPTS="--tiebreak=begin --preview 'preview {}'"
+export   FZF_ALT_C_OPTS="--tiebreak=begin --preview 'preview {}'"
+export  FZF_CTRL_R_OPTS="--tiebreak=index"
 . /usr/share/doc/find-the-command/ftc.zsh quiet
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
@@ -125,7 +132,7 @@ export ZSH_PLUGINS="$XDG_DATA_HOME"/zsh/plugins
 . "$ZSH_PLUGINS"/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null # colors commands and hex color codes
 # Source: https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
 #. "$ZSH_PLUGINS"/fzf-git/functions.sh
-# bindkey -r '^G'      # remove default ^G bind so fzf-git can use it
+#bindkey -r '^G'      # remove default ^G bind so fzf-git can use it
 #. "$ZSH_PLUGINS"/fzf-git/key-binding.zsh
 # load personal scripts last to avoid conflicts with other plugins
 . "${ZDOTDIR:-~}"/.zshaliases

@@ -36,6 +36,7 @@ xset dpms 600 600 600
 # X only programs
 # TODO: write wrapper to check if the command exists and log them with a prefix
 # removes cursor from screen after a set itme
+emacs --daemon > "$XDG_LOG_HOME"/emacs.log 2>&1 &
 xcape -e 'Control_L=Escape' -t 100
 unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
 pgrep artha || artha &	# offline dictionary

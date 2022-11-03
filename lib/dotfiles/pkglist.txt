@@ -28,6 +28,7 @@ cppcheck
 cronie
 ctags
 dash
+dialog
 dietlibc
 discord
 dmidecode
@@ -121,6 +122,7 @@ ncmpcpp
 nemo
 neofetch
 net-tools
+netctl
 nethogs
 networkmanager
 nicotine+
@@ -136,6 +138,7 @@ octave
 openbsd-netcat
 p7zip
 pacman-contrib
+pavucontrol
 pdfjs
 pinta
 pipewire-alsa
@@ -192,7 +195,7 @@ tree
 ttf-arphic-uming
 ttf-indic-otf
 ttf-iosevka-nerd
-ttf-nerd-fonts-symbols
+ttf-nerd-fonts-symbols-2048-em
 udisks2
 ufw
 unclutter

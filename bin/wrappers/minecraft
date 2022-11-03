@@ -1,5 +1,5 @@
 #!/bin/sh
 # minecraft wrapper script
 pkill xcape
-ultimmc
+pollymc
 xcape -e 'Control_L=Escape' -t 100

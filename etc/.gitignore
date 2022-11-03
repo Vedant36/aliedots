@@ -10,6 +10,7 @@ emacs/*
 !git/config
 !kitty/*
 !mpd/mpd.conf
+mpd/playlists
 !mpv/**
 mpv/watch_later/
 mpv/scripts/

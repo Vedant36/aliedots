@@ -79,15 +79,16 @@ c.aliases["sleep"] = "later"
 # Search Engines {{{1
 c.url.searchengines = {
     # actual search engines
-    'DEFAULT': 'https://www.duckduckgo.com/?q={}',
-    'd': 'https://html.duckduckgo.com/html?q={}',  # nojs version of duckduckgo
+    'DEFAULT': 'https://www.google.com/search?hl=en&q={}',
+    'd': 'https://www.duckduckgo.com/?q={}',
+    'dh': 'https://html.duckduckgo.com/html?q={}',  # nojs version of duckduckgo
     '4': 'https://4chan.org/{}',
     'l': 'https://www.lainchan.org/{}',
-    'g': 'https://www.google.com/search?hl=en&q={}',
     'mw': 'https://www.merriam-webster.com/dictionary/{}',
     'ly': 'https://lyrics.com/lyrics/{}',  # lyric finding engine
     'r': 'https://old.reddit.com/r/{}',
     's': 'https://open.spotify.com/search/{}',
+    'st': 'https://startpage.com/do/metasearch.pl?query={}',
     'su': 'https://steamunlocked.net/?s={}',
     'wiby': 'https://wiby.me/?q={}',
     'scp': 'https://scp-wiki.wikidot.com/scp-{}',
@@ -130,6 +131,9 @@ c.url.searchengines = {
     'asm': 'https://www.felixcloutier.com/x86/{}',
     'c': 'https://duckduckgo.com/?q=site%3Acppreference.com/w/c+{}',
     'ho': 'https://hoogle.haskell.org/?hoogle={}',
+    'hg': 'https://hoogle.haskell.org/?scope=set%3Aincluded-with-ghc&hoogle={}',
+    'hw': 'https://wiki.haskell.org/{}',
+    'hb': 'https://en.wikibooks.org/wiki/Haskell/{}',
     'nlab': 'https://www.google.com/search?as_q={}&as_sitesearch=https://ncatlab.org/nlab',
     'cl': 'https://en.cppreference.com/w/c/language/{}',
     'dd': 'https://devdocs.io/{}',

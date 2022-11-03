@@ -11,6 +11,7 @@
 INTERFACE=wlo1
 choice=$(echo "\
 redshift $(pgrep -xc redshift)
+emacs $(! test -S /run/user/1000/emacs/server; echo $?)
 wallpaper
 xcape $(pgrep -xc xcape)
 wifi $(nmcli device status | grep -c "^$INTERFACE.* connected") \
@@ -33,6 +34,13 @@ toggle(){
 }
 
 case $choice in
+	*emacs*)
+		if [ ! -S '/run/user/1000/emacs/server' ]; then
+			emacs --daemon > "$XDG_LOG_HOME"/emacs.log 2>&1
+		else
+			emacsclient -e '(client-save-kill-emacs)';
+		fi
+		;;
 	*xcape*)
 		toggle xcape -e 'Control_L=Escape' -t 100 ;;
 	*wifi*)

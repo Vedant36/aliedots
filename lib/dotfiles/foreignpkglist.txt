@@ -29,6 +29,7 @@ neovim-symlinks
 networkmanager-dispatcher-ntpd
 nq-git
 pandoc-bin
+pollymc-bin
 popcorntime-bin
 python-snakeviz
 quickemu
@@ -41,6 +42,7 @@ stapler
 sublime-text-4
 tor-browser
 ultimmc-bin
+ventoy-bin
 vlang-bin
 windscribe-cli
 xcursor-breeze

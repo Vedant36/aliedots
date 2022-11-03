@@ -34,7 +34,7 @@ static const Rule rules[] = {
 	 */
 	/* class               instance   title        tags mask  isfloating  monitor */
 	{ NULL,                NULL,      "textfiles", 1 << 3,    0,          -1 },
-	{ "Emacs",             NULL,      NULL,        1 << 4,    0,          -1 },
+	/* { "Emacs",             NULL,      NULL,        1 << 4,    0,          -1 }, */
 	{ "Lutris",            NULL,      NULL,        1 << 0,    0,          -1 },
 	{ "Popcorn-Time",      NULL,      NULL,        1 << 0,    0,          -1 },
 	{ "Zathura",           NULL,      NULL,        1 << 1,    0,          -1 },
@@ -113,7 +113,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask|ControlMask, XK_w,             spawn,          SHCMD("surf \"$(cat $XDG_CONFIG_HOME/qutebrowser/quickmarks | cut -d\" \" -f2- | dmenu -p 'surf:')\"") },
     /* Other Apps {{{2 */
 	{ MODKEY,                       XK_d,             spawn,          SHCMD("discord") },
-	{ MODKEY,                       XK_e,             spawn,          SHCMD("emacs") },
+	{ MODKEY,                       XK_e,             spawn,          SHCMD("emacsclient --create-frame --alternate-editor=") },
 	{ MODKEY|ShiftMask,             XK_e,             spawn,          SHCMD("lock") },
 	{ MODKEY|ControlMask,           XK_e,             spawn,          SHCMD("event") },
     /* Stack/Layout {{{2 */
@@ -136,12 +136,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_equal,         setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,         setgaps,        {.i = 0  } },
     /* Audio/Music {{{2 */
-	{ MODKEY,                       XK_bracketleft,   spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1%; restart-bar") },
-	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1%; restart-bar") },
+	{ MODKEY,                       XK_bracketleft,   spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1% ; restart-bar") },
+	{ MODKEY,                       XK_bracketright,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1% ; restart-bar") },
 	{ MODKEY,                       XK_backslash,     spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle; restart-bar") },
-	{ MODKEY|ControlMask,           XK_bracketleft,   spawn,          SHCMD("pactl set-source-volume @DEFAULT_SOURCE@ -1%") },
-	{ MODKEY|ControlMask,           XK_bracketright,  spawn,          SHCMD("pactl set-source-volume @DEFAULT_SOURCE@ +1%") },
-	{ MODKEY|ControlMask,           XK_backslash,     spawn,          SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+	{ MODKEY|ControlMask,           XK_bracketleft,   spawn,          SHCMD("pactl set-source-volume @DEFAULT_SOURCE@ -1% ; restart-bar") },
+	{ MODKEY|ControlMask,           XK_bracketright,  spawn,          SHCMD("pactl set-source-volume @DEFAULT_SOURCE@ +1% ; restart-bar") },
+	{ MODKEY|ControlMask,           XK_backslash,     spawn,          SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle; restart-bar") },
 	{ MODKEY|ShiftMask,             XK_bracketleft,   spawn,          SHCMD("mpc -q volume -1") },
 	{ MODKEY|ShiftMask,             XK_bracketright,  spawn,          SHCMD("mpc -q volume +1") },
 	{ MODKEY|ShiftMask,             XK_backslash,     spawn,          SHCMD("mpc -q toggle") },

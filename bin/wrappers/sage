@@ -1,0 +1,3 @@
+#!/bin/sh
+export DOT_SAGE="$XDG_CONFIG_HOME"/sage
+exec unwrap sage "$@"
