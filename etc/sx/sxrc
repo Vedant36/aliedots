@@ -36,7 +36,7 @@ xset dpms 600 600 600
 # X only programs
 # TODO: write wrapper to check if the command exists and log them with a prefix
 # removes cursor from screen after a set itme
-emacs --daemon > "$XDG_LOG_HOME"/emacs.log 2>&1 &
+[ -S '/run/user/1000/emacs/server' ] && nohup emacs --daemon >"$XDG_LOG_HOME"/emacs.log 2>&1
 xcape -e 'Control_L=Escape' -t 100
 unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
 pgrep artha || artha &	# offline dictionary
@@ -49,7 +49,7 @@ redshift -l 23.5:78.5 -m randr &
 pactl set-source-mute @DEFAULT_SOURCE@ 1
 [ ! -s "$XDG_LIB_HOME"/mpd/pid ] && mpd
 pgrep mpdscribble || \
-	mpdscribble --conf "$HOME"/.local/lib/private/lastfm.conf &
+	nohup mpdscribble --conf "$HOME"/.local/lib/private/lastfm.conf
 # pgrep ssh-agent || eval "$(ssh-agent -s)"
 
 # window manager {{{1

@@ -123,7 +123,7 @@ local function bookmark(arg, _prefix)
   local prefix = bookmarks.__prefix or _prefix or ''
   -- print keys in alphabetical order
   local prompt="Available keys: "
-  for i=97,122 do
+  for i=97,122 do -- change this to get more option for keys
     local tmp = string.char(i)
     if bookmarks[tmp] then prompt = prompt..tmp end
     if bookmarks[tmp:upper()] then prompt = prompt..tmp:upper() end
@@ -135,6 +135,8 @@ local function bookmark(arg, _prefix)
     local val = bookmarks[str]
     if str == '\n' or str == '\r' then
       P(bookmarks)
+    elseif string.byte(val) == 27 or string.byte(val) == 7 then
+      do end
     elseif val == nil then
       vim.notify("No bookmark named `"..str.."` exists yet!", "warn")
     elseif type(val) == 'table' then

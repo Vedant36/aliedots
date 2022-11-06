@@ -38,7 +38,7 @@ case $choice in
 		if [ ! -S '/run/user/1000/emacs/server' ]; then
 			emacs --daemon > "$XDG_LOG_HOME"/emacs.log 2>&1
 		else
-			emacsclient -e '(client-save-kill-emacs)';
+			emacsclient -e '(server-shutdown)';
 		fi
 		;;
 	*xcape*)

@@ -129,6 +129,7 @@ nicotine+
 nm-connection-editor
 nmap
 nnn
+noise-suppression-for-voice
 noto-fonts-emoji
 ntfs-3g
 ntp

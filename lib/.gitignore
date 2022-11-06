@@ -1,6 +1,6 @@
 *
-!*/
-!dotfiles/**
-!python/startup.py
-!root/**
-!.gitignore
+!/*/
+!/dotfiles/**
+!/python/startup.py
+!/root/**
+!/.gitignore

@@ -13,18 +13,13 @@ static const char col_gray2[]       = "#1f2335";
 static const char col_gray3[]       = "#a9b1d6";
 static const char col_gray4[]       = "#c0caf5";
 static const char col_cyan[]        = "#33467c";
-/* static const char col_gray1[]       = "#434758"; */
-/* static const char col_gray2[]       = "#434758"; */
-/* static const char col_gray3[]       = "#D0D0D0"; */
-/* static const char col_gray4[]       = "#FFFFFF"; */
-/* static const char col_cyan[]        = "#282d3e"; */
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
-static const char *tags[] = { "", "", "爵", "", "", "ﭮ", "", "﫸" };
+static const char *tags[] = { "", "", "爵", "", "", "ﭮ", "", "﫸", "8", "9" };
 
 // Rules {{{1
 static const Rule rules[] = {
@@ -39,6 +34,7 @@ static const Rule rules[] = {
 	{ "Popcorn-Time",      NULL,      NULL,        1 << 0,    0,          -1 },
 	{ "Zathura",           NULL,      NULL,        1 << 1,    0,          -1 },
 	{ "qutebrowser",       NULL,      NULL,        1 << 2,    0,          -1 },
+	{ "YouTube to MP3",    NULL,      NULL,        1 << 2,    0,          -1 },
 	{ "Surf",              NULL,      NULL,        1 << 2,    0,          -1 },
 	{ NULL,                "ncmpcpp", NULL,        1 << 3,    0,          -1 },
 	{ "mpv",               NULL,      NULL,        1 << 4,    0,          -1 },
@@ -51,7 +47,7 @@ static const Rule rules[] = {
 static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -78,6 +74,14 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 	"-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "20", "-p", "$", NULL };
 static const char *desktop_dmenucmd[] = { "dmenu_drun", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1,
 	"-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "20", "-p", "$", NULL };
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+/* static const char *scratchpadcmd[] = { "kitty", "-1", */
+/* 		"--title", scratchpadname, */
+/* 		"-o", "initial_window_width=960", */
+/* 		"-o", "initial_window_height=540", */
+/* 		"-o", "remember_window_size=no", */
+/* 		NULL }; */
 static const char *termcmd[] = { TERM, TERMARG, NULL };
 
 static Key keys[] = {
@@ -85,6 +89,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,             spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_p,             spawn,          {.v = desktop_dmenucmd } },
 	{ MODKEY,                       XK_q,             spawn,          {.v = termcmd} },
+	{ MODKEY,                       XK_Escape,        togglescratch,  {.v = scratchpadcmd } },
     /* Terminal {{{2 */
 	{ MODKEY,                       XK_r,             spawn,          SHCMD(TERMLIGHT " -n ncmpcpp ncmpcpp") },
 	{ MODKEY,                       XK_a,             spawn,          SHCMD(TERM " " TERMARG " ranger") },
@@ -164,6 +169,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_6,                      6)
 	TAGKEYS(                        XK_7,                      7)
 	TAGKEYS(                        XK_8,                      8)
+	TAGKEYS(                        XK_9,                      8)
     /* Closing and quiting {{{2 */
 	{ MODKEY,                       XK_x,             killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_x,             spawn,          SHCMD("xdotool getwindowfocus windowkill") },

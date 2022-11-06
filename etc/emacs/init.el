@@ -1,4 +1,6 @@
-; Vedant36's emacs configuration
+;;;; Vedant36's emacs configuration
+;;;; TODO: undo tree ->
+;;;; mods: ivy,lsp(has eldoc like thing for other langs)
 
 (package-initialize)
 (add-to-list 'package-archives
@@ -10,14 +12,8 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
-(column-number-mode)
-(add-hook 'after-make-frame-functions
-	  (lambda (frame)
-	    (set-frame-font
-	     :font "Iosevka Mayukai CodePro-10"
-	     :frames `(,frame))))
-;; (setq-default cursor-type 'bar)
-(global-display-line-numbers-mode)
+;; (column-number-mode 1)
+(global-display-line-numbers-mode 1)
 (setq display-line-numbers 'relative)
 ;(display-line-numbers-mode)
 ;;;   convinience stuff
@@ -28,66 +24,113 @@
 (electric-pair-mode 1)
 ;; Save the "emacs autosaving" files to a seperate directory
 (setq backup-directory-alist '(("." . "~/.local/var/cache/emacs")))
+(defun server-shutdown ()
+  "Save buffers, Quit, and Shutdown (kill) server"
+  (interactive)
+  (save-some-buffers)
+  (kill-emacs))
 
-;;; use use-package
+;;; use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
-;; (use-package graphviz-dot-mode
-;;   :ensure t
-;;   :config
-;;   (setq graphviz-dot-indent-width 4))
-;; (use-package company-graphviz-dot)
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 ;;; themes
 (use-package gruber-darker-theme)
-(use-package dracula-theme)
-(use-package monokai-theme)
-(use-package gruvbox-theme)
+(use-package gruvbox-theme
+  :defer t)
 ;;; major modes
 (use-package tex
+  :defer t
   :ensure auctex)
-(use-package evil)
-(use-package graphviz-dot-mode)
-(use-package haskell-mode)
-(use-package highlight-indent-guides
+(use-package evil
+  :commands evil-mode
+  :defer t)
+(use-package graphviz-dot-mode
   :config
-  (setq highlight-indent-guides-method 'character)
-  (highlight-indent-guides-mode)
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+  (setq graphviz-dot-indent-width 4)
+  :defer t)
+(use-package company-graphviz-dot
+  :ensure nil)
+(use-package haskell-mode
+  :commands (haskell-mode
+	     haskell-session-change
+	     haskell-interactive-switch))
+(use-package highlight-indent-guides
+  :hook prog-mode-hook
+  :config
+  (setq highlight-indent-guides-method 'character))
 (use-package lua-mode)
 ;;; minor modes
 (use-package cdlatex
-  :config
-  (add-hook 'LaTeX-mode-hook #'turn-on-cdlatex))
+  :hook (LaTeX-mode-hook . turn-on-cdlatex))
 (use-package multiple-cursors
+  :bind (("C-S-c C-S-c" . mc/edit-lines)
+	 ("C->"         . mc/mark-next-like-this)
+	 ("C-<"         . mc/mark-previous-like-this)
+	 ("C-c C-<"     . mc/mark-all-like-this)
+	 ("C-\""        . mc/skip-to-next-like-this)
+	 ("C-:"         . mc/skip-to-previous-like-this))
   :config
   (require 'multiple-cursors)
-  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-  (global-set-key (kbd "C->")         'mc/mark-next-like-this)
-  (global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
-  (global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
-  (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this))
+  :defer t)
 (use-package rainbow-delimiters
+  :hook prog-mode-hook
   :config
-  (require 'rainbow-delimiters)
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-(use-package slime
+  (require 'rainbow-delimiters))
+(use-package sly
+  :commands (sly sly-mode)
+  :defer t)
+(use-package flycheck
+  :commands flycheck-mode
+  :defer t)
+(use-package company
+  :hook prog-mode
+  :bind (:map company-active-map
+	 ("C-n" . nil)
+	 ("C-p" . nil)
+	 ("M-n" . #'company-select-next)
+	 ("M-p" . #'company-select-previous)))
+(use-package yasnippet
+  :hook (prog-mode-hook . yas-minor-mode)
   :config
-  (setq inferior-lisp-program "sbcl"))
-(use-package flycheck) ; syntax checker
+  (yas-reload-all))
+(use-package ligature
+  :config
+  ;; Enable the "www" ligature in every possible major mode
+  (ligature-set-ligatures 't '("www"))
+  ;; Enable traditional ligature support in eww-mode, if the
+  ;; `variable-pitch' face supports it
+  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+  ;; Enable all Cascadia Code ligatures in programming modes
+  (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                                       ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                       "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                       "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                       "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                       "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                       "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                       "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                       ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                       "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                       "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                       "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                       "\\\\" "://"))
+  ;; Enables ligature checks globally in all buffers.  You can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
 
 ;;; useful
 (use-package smex
-  :config
-  (global-set-key (kbd "M-x") 'smex)
-  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-  (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
-(use-package magit)
+  :bind
+  ("M-x"         . smex)
+  ("M-X"         . smex-major-mode-commands)
+  ("C-c C-c M-x" . execute-extended-command))
+(use-package magit
+  :defer magit)
 
 ;;; bindings
 nil
@@ -105,13 +148,6 @@ nil
   "Highlight >greentext in current buffer."
   (interactive)
   (highlight-lines-matching-regexp "^>" 'hi-green-b))
-
-;;; [Babel: Languages](https://orgmode.org/worg/org-contrib/babel/languages/index.html)
-(org-babel-do-load-languages
-  'org-babel-load-languages
-  '((python . t)
-    (C . t)
-    (lisp . t)))
 
 ;;; lcs: from https://www.kernel.org/doc/html/v4.10/process/coding-style.html
 (defun c-lineup-arglist-tabs-only (ignored)
@@ -160,10 +196,15 @@ nil
      (output-html "xdg-open")))
  '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
-   '("b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" "fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" "78e6be576f4a526d212d5f9a8798e5706990216e9be10174e3f3b015b8662e27" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
+   '("19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" "fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" "78e6be576f4a526d212d5f9a8798e5706990216e9be10174e3f3b015b8662e27" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
+ '(default-frame-alist
+    '((font . "-UKWN-Iosevka Mayukai Codepro-normal-normal-normal-*-13-*-*-*-d-0-iso10646-1")
+      (width . 137)
+      (height . 30)
+      (vertical-scroll-bars)))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(rainbow-delimiters magit use-package graphviz-dot-mode gruvbox-theme cdlatex flycheck evil auctex haskell-mode dracula-theme monokai-theme lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
+   '(ligature sly yasnippet company rainbow-delimiters magit use-package graphviz-dot-mode gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))
