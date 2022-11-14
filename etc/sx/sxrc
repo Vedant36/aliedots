@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 # builtin default config {{{
 userresources="$XDG_CONFIG_HOME"/X11/Xresources
 # usermodmap=$XDG_CONFIG_HOME/X11/Xmodmap
@@ -36,20 +36,20 @@ xset dpms 600 600 600
 # X only programs
 # TODO: write wrapper to check if the command exists and log them with a prefix
 # removes cursor from screen after a set itme
-[ -S '/run/user/1000/emacs/server' ] && nohup emacs --daemon >"$XDG_LOG_HOME"/emacs.log 2>&1
 xcape -e 'Control_L=Escape' -t 100
 unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
-pgrep artha || artha &	# offline dictionary
 feh --no-fehbg --bg-fill ~/pix/current* &
 dunst &	 # notification server
 #xcompmgr &	# compositor
 xss-lock -n 'bright -i -5' -l lock &
-redshift -l 23.5:78.5 -m randr &
 # display agnostic programs
 pactl set-source-mute @DEFAULT_SOURCE@ 1
 [ ! -s "$XDG_LIB_HOME"/mpd/pid ] && mpd
-pgrep mpdscribble || \
+[ -S '/run/user/1000/emacs/server' ] && nohup emacs --daemon >"$XDG_LOG_HOME"/emacs.log 2>&1
+pgrep artha || artha &	# offline dictionary
+pgrep -x mpdscribble > /dev/null || \
 	nohup mpdscribble --conf "$HOME"/.local/lib/private/lastfm.conf
+pgrep -x redshift > /dev/null || redshift -l 23.5:78.5 -m randr &
 # pgrep ssh-agent || eval "$(ssh-agent -s)"
 
 # window manager {{{1
@@ -62,11 +62,10 @@ dwm_bar() {
         sleep $((60-$(date +%s)%60)) &
         echo $! > "$XDG_STATE_HOME"/sleep_pid
         wait $!
-        # stop if X not alive
-        xset q >/dev/null 2>&1 || return
     done
 }
-while true; do
+# loop until X dies
+while xset q 2>/dev/null; do
 	dwm_bar &
 	ssh-agent dwm >"$XDG_LOG_HOME"/dwm.log 2>&1 || exit
 done

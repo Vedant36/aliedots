@@ -29,6 +29,7 @@ export XDG_CONFIG_HOME="$HOME/.local/etc"
 export XDG_CACHE_HOME="$HOME/.local/var/cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/var/lib"
+export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 # Non-standard
 export XDG_LIB_HOME="$HOME/.local/lib"
 export XDG_LOG_HOME="$HOME/.local/var/log"

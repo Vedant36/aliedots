@@ -75,13 +75,13 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *desktop_dmenucmd[] = { "dmenu_drun", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1,
 	"-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "20", "-p", "$", NULL };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
-/* static const char *scratchpadcmd[] = { "kitty", "-1", */
-/* 		"--title", scratchpadname, */
-/* 		"-o", "initial_window_width=960", */
-/* 		"-o", "initial_window_height=540", */
-/* 		"-o", "remember_window_size=no", */
-/* 		NULL }; */
+/* static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL }; */
+static const char *scratchpadcmd[] = { "kitty",
+		"--title", scratchpadname,
+		"-o", "initial_window_width=960",
+		"-o", "initial_window_height=540",
+		"-o", "remember_window_size=no",
+		NULL };
 static const char *termcmd[] = { TERM, TERMARG, NULL };
 
 static Key keys[] = {
@@ -100,6 +100,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && " TERM " -T textfiles nvim todo.md data.md sites.md autocmd.md math.md") },
     /* Custom Scripts {{{2 */
 	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
+	{ MODKEY,                       XK_g,             spawn,          SHCMD("xdotool type \"$(grep -v '^#' ~/.local/lib/dotfiles/shortcuts | dmenu -i -l 50 | cut -d';' -f2-)\"") },
 	{ MODKEY|ShiftMask,             XK_s,             spawn,          SHCMD("state") },
 	{ MODKEY|ShiftMask,             XK_m,             spawn,          SHCMD("dmenu_mount") },
 	{ MODKEY,                       XK_z,             spawn,          SHCMD("boomer") },
@@ -169,7 +170,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_6,                      6)
 	TAGKEYS(                        XK_7,                      7)
 	TAGKEYS(                        XK_8,                      8)
-	TAGKEYS(                        XK_9,                      8)
+	TAGKEYS(                        XK_9,                      9)
     /* Closing and quiting {{{2 */
 	{ MODKEY,                       XK_x,             killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_x,             spawn,          SHCMD("xdotool getwindowfocus windowkill") },

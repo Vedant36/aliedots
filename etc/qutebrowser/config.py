@@ -117,6 +117,7 @@ c.url.searchengines = {
     'wa': 'https://www.wolframalpha.com/input/?i={}',
     'wm': 'https://mathworld.wolfram.com/search/index.html?query={}',
     # linux
+    'm': 'https://melpa.org/#/?q={}',
     'a': 'https://wiki.archlinux.org/index.php?search={}',
     'gw': 'https://wiki.gentoo.org/index.php?search={}',
     'ig': 'https://wiki.installgentoo.com/index.php?search={}',

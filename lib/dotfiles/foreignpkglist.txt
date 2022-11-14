@@ -1,6 +1,6 @@
 ani-cli-git
 artha
-aseprite-git
+aseprite
 base-devel-meta
 bbswitch-ati-dkms-git
 bdf-unifont
@@ -43,7 +43,6 @@ sublime-text-4
 tor-browser
 ultimmc-bin
 ventoy-bin
-vlang-bin
 windscribe-cli
 xcursor-breeze
 xorg-meta

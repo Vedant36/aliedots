@@ -6,6 +6,7 @@ alsa-utils
 amd-ucode
 amdvlk
 android-tools
+arch-install-scripts
 archlinux-contrib
 aria2
 aspell
@@ -222,6 +223,7 @@ xcompmgr
 xdg-user-dirs
 xdotool
 xf86-video-amdgpu
+xmonad
 xorg-xfontsel
 xsel
 xss-lock

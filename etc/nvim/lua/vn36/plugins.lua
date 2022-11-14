@@ -201,8 +201,8 @@ return packer.startup {function(use)
   }
   -- Treesitter {{{1
   local treesitter_ft = {
-    "bash", "c", "cpp", "css", "go", "haskell", "html", "javascript", "java",
-    "json", "lua", "make", "python", "rust", "sh", "vim", "yaml", "lisp"
+    -- "bash", "c", "cpp", "css", "go", "haskell", "html", "javascript", "java",
+    -- "json", "lua", "make", "python", "rust", "sh", "vim", "yaml", "lisp"
   }
   use {
     'nvim-treesitter/nvim-treesitter',

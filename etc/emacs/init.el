@@ -12,9 +12,10 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
-;; (column-number-mode 1)
+(column-number-mode 1)
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers 'relative)
+(setq fill-column 79)
 ;(display-line-numbers-mode)
 ;;;   convinience stuff
 (setq ido-enable-flex-matching t)
@@ -36,8 +37,27 @@
   (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
+(require 'bind-key)
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
+;;; builtins
+(use-package dired
+  :ensure nil
+  :config
+  (add-hook 'dired-mode-hook 'auto-revert-mode)
+  (setq dired-recursive-deletes 'always)
+  (setq dired-recursive-copies 'always))
+(use-package org
+  :ensure nil
+  :init
+  (setq org-html-validation-link nil)
+  (setq org-special-ctrl-a/e t)
+  ;; to get >greentext in org-mode documents
+  (defun u/greentext ()
+    "Highlight >greentext in current buffer."
+    (interactive)
+    (highlight-lines-matching-regexp "^>" 'hi-green-b))
+  (add-hook 'org-mode-hook 'u/greentext))
 ;;; themes
 (use-package gruber-darker-theme)
 (use-package gruvbox-theme
@@ -46,9 +66,6 @@
 (use-package tex
   :defer t
   :ensure auctex)
-(use-package evil
-  :commands evil-mode
-  :defer t)
 (use-package graphviz-dot-mode
   :config
   (setq graphviz-dot-indent-width 4)
@@ -63,7 +80,8 @@
   :hook prog-mode-hook
   :config
   (setq highlight-indent-guides-method 'character))
-(use-package lua-mode)
+(use-package lua-mode
+  :defer t)
 ;;; minor modes
 (use-package cdlatex
   :hook (LaTeX-mode-hook . turn-on-cdlatex))
@@ -75,26 +93,32 @@
 	 ("C-\""        . mc/skip-to-next-like-this)
 	 ("C-:"         . mc/skip-to-previous-like-this))
   :config
-  (require 'multiple-cursors)
-  :defer t)
+  (require 'multiple-cursors))
 (use-package rainbow-delimiters
   :hook prog-mode-hook
   :config
   (require 'rainbow-delimiters))
 (use-package sly
   :commands (sly sly-mode)
-  :defer t)
+  :defer t
+  :config
+  (setq inferior-lisp-program "sbcl")
+  (setq sly-command-switch-to-existing-lisp 'always))
+(use-package sly-quicklisp
+  :commands sly-quickload)
 (use-package flycheck
-  :commands flycheck-mode
-  :defer t)
+  :commands flycheck-mode)
 (use-package company
   :hook prog-mode
   :bind (:map company-active-map
 	 ("C-n" . nil)
 	 ("C-p" . nil)
-	 ("M-n" . #'company-select-next)
-	 ("M-p" . #'company-select-previous)))
+	 ("M-n" . 'company-select-next)
+	 ("M-p" . 'company-select-previous)
+	 ("TAB" . company-complete-selection)
+	 ("RET" . nil)))
 (use-package yasnippet
+  :commands yas-reload-all
   :hook (prog-mode-hook . yas-minor-mode)
   :config
   (yas-reload-all))
@@ -124,6 +148,10 @@
   (global-ligature-mode t))
 
 ;;; useful
+(use-package helpful
+  :bind (("C-h f" . #'helpful-callable)
+	 ("C-h v" . #'helpful-variable)
+	 ("C-h k" . #'helpful-key)))
 (use-package smex
   :bind
   ("M-x"         . smex)
@@ -132,24 +160,17 @@
 (use-package magit
   :defer magit)
 
-;;; bindings
-nil
-
-;; ;; Enable Evil
-;; (require 'evil)
-;; (evil-mode 1)
-;; (evil-emacs-state)
-;; (setq evil-default-state 'emacs)
-
-;;; org-mode
-(setq org-special-ctrl-a/e t)
-;; to get >greentext in org-mode documents
-(defun u/greentext ()
-  "Highlight >greentext in current buffer."
-  (interactive)
-  (highlight-lines-matching-regexp "^>" 'hi-green-b))
+;;; useless
+(use-package evil
+  :commands evil-mode
+  :config
+  (require 'evil)
+  (evil-mode 1)
+  (evil-emacs-state)
+  (setq evil-default-state 'emacs))
 
 ;;; lcs: from https://www.kernel.org/doc/html/v4.10/process/coding-style.html
+(defvar c-syntactic-element)
 (defun c-lineup-arglist-tabs-only (ignored)
   "Line up argument lists by tabs, not spaces"
   (let* ((anchor (c-langelem-pos c-syntactic-element))
@@ -198,13 +219,13 @@ nil
  '(custom-safe-themes
    '("19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" "fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" "78e6be576f4a526d212d5f9a8798e5706990216e9be10174e3f3b015b8662e27" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
  '(default-frame-alist
-    '((font . "-UKWN-Iosevka Mayukai Codepro-normal-normal-normal-*-13-*-*-*-d-0-iso10646-1")
+    '((font . "-UKWN-Iosevka Mayukai CodePro-normal-normal-normal-*-13-*-*-*-d-0-iso10646-1")
       (width . 137)
       (height . 30)
       (vertical-scroll-bars)))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(ligature sly yasnippet company rainbow-delimiters magit use-package graphviz-dot-mode gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides slime multiple-cursors smex gruber-darker-theme)))
+   '(helpful tree-sitter-langs tree-sitter org-drill sly-quicklisp ligature sly yasnippet company rainbow-delimiters magit use-package graphviz-dot-mode gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))
