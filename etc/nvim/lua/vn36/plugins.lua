@@ -36,6 +36,7 @@ return packer.startup {function(use)
     as = 'vim-pa'
   }
   -- Non-lua Plugins {{{1
+  use 'mg979/vim-visual-multi'
   -- use {
   --   'github/copilot.vim',
   --   cmd = 'Copilot'

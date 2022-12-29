@@ -145,6 +145,7 @@ case $1 in
             $DL 'https://github.com/TheAMM/mpv_thumbnail_script/releases/latest/download/mpv_thumbnail_script_server.lua'
             $DL 'https://codeberg.org/jouni/mpv_sponsorblock_minimal/raw/branch/master/sponsorblock_minimal.lua'
             $DL 'https://raw.githubusercontent.com/jonniek/mpv-filenavigator/master/navigator.lua'
+            $DL 'https://github.com/ekisu/mpv-webm/releases/download/latest/webm.lua'
         popd
 
         # Neovim {{{2

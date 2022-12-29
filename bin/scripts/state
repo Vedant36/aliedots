@@ -6,6 +6,7 @@
 ##   - made script less repetitive by adding the toggle function
 ##   - add line numbers(L15) for easy selection
 ## TODO: merge this with xinitrc(write in lua?!?!?!?!?, yes pls)
+## possible tasks for each: start, stop, toggle, kill, restart
 
 # SYSTEM_DEPENDENT: interface might be different on different machines
 INTERFACE=wlo1

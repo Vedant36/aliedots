@@ -75,6 +75,7 @@ iputils
 ipython
 irqbalance
 irssi
+ispell
 jdk-openjdk
 jq
 jre17-openjdk
@@ -142,6 +143,7 @@ p7zip
 pacman-contrib
 pavucontrol
 pdfjs
+pdftk
 pinta
 pipewire-alsa
 pipewire-jack

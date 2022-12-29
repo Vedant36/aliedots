@@ -172,10 +172,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      8)
 	TAGKEYS(                        XK_9,                      9)
     /* Closing and quiting {{{2 */
-	{ MODKEY,                       XK_x,             killclient,     {0} },
-	{ MODKEY|ShiftMask,             XK_x,             spawn,          SHCMD("xdotool getwindowfocus windowkill") },
-	{ MODKEY|ControlMask,           XK_x,             spawn,          SHCMD("pkill -x Xorg") },
-	{ MODKEY|ShiftMask|ControlMask, XK_x,             spawn,          SHCMD("xkill") },
+	{ MODKEY,                       XK_F4,             killclient,     {0} },
+	{ MODKEY|ShiftMask,             XK_F4,             spawn,          SHCMD("xdotool getwindowfocus windowkill") },
+	{ MODKEY|ControlMask,           XK_F4,             spawn,          SHCMD("pkill -x Xorg") },
+	{ MODKEY|ShiftMask|ControlMask, XK_F4,             spawn,          SHCMD("xkill") },
 	{ MODKEY|ControlMask,           XK_q,             spawn,          SHCMD("echo -e 'poweroff\nreboot\nsuspend' | dmenu -l 20 | sh") },
 	{ MODKEY|ShiftMask,             XK_q,             quit,           {0} },
     /* Screenshotting {{{2 */

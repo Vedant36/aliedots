@@ -30,35 +30,35 @@ autoload -U bashcompinit && bashcompinit # support bash-completions
 # auto escape urls
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
-# vi mode {{{1
-bindkey -v
-export KEYTIMEOUT=1
-# Use vim keys in tab complete menu: {{{2
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
+# # vi mode {{{1
+# bindkey -v
+# export KEYTIMEOUT=1
+# # Use vim keys in tab complete menu: {{{2
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey -v '^?' backward-delete-char
 
-# Change cursor shape for different vi modes. {{{2
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
+# # Change cursor shape for different vi modes. {{{2
+# function zle-keymap-select {
+#   if [[ ${KEYMAP} == vicmd ]] ||
+#      [[ $1 = 'block' ]]; then
+#     echo -ne '\e[1 q'
+#   elif [[ ${KEYMAP} == main ]] ||
+#        [[ ${KEYMAP} == viins ]] ||
+#        [[ ${KEYMAP} = '' ]] ||
+#        [[ $1 = 'beam' ]]; then
+#     echo -ne '\e[5 q'
+#   fi
+# }
+# zle -N zle-keymap-select
+# zle-line-init() {
+#     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+#     echo -ne "\e[5 q"
+# }
+# zle -N zle-line-init
+# echo -ne '\e[5 q' # Use beam shape cursor on startup.
 
 # keybinds {{{1
 bindkey "^[[1;5C" forward-word
@@ -73,7 +73,7 @@ bindkey '^[[3~' delete-char # why the ack cant terminals interpret what a delete
 bindkey '^[[4~' end-of-line
 bindkey '^[[F' end-of-line
 bindkey '^[[H' beginning-of-line
-bindkey -s "^Z" "^Ufg^M"
+bindkey -s "^Z" "^A^Kfg^M"
 bindkey -s "^[#" "^[[H ^M" # insert a space at the start and execute it
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^X^E' edit-command-line
@@ -84,13 +84,16 @@ bindkey '^F' forward-char
 bindkey '^B' backward-char
 bindkey '^[f' forward-word
 bindkey '^[b' backward-word
-# https://unix.stackexchange.com/questions/25765/pasting-from-clipboard-to-vi-enabled-zsh-or-bash-shell
-vi-append-x-selection () { RBUFFER="$(xsel -o -p </dev/null)$RBUFFER"; }
-zle -N vi-append-x-selection
-bindkey -a '^X' vi-append-x-selection
-vi-yank-x-selection () { print -rn -- "$CUTBUFFER" | xsel -i -p; }
-zle -N vi-yank-x-selection
-bindkey -a '^Y' vi-yank-x-selection
+bindkey "^[d" kill-word
+bindkey "^_" undo
+# # https://unix.stackexchange.com/questions/25765/pasting-from-clipboard-to-vi-enabled-zsh-or-bash-shell
+# vi-append-x-selection () { RBUFFER="$(xsel -o -p </dev/null)$RBUFFER"; }
+# zle -N vi-append-x-selection
+# bindkey -a '^X' vi-append-x-selection
+# vi-yank-x-selection () { print -rn -- "$CUTBUFFER" | xsel -i -p; }
+# zle -N vi-yank-x-selection
+# bindkey -a '^Y' vi-yank-x-selection
+
 # https://wiki.archlinux.org/title/Zsh#Clear_the_backbuffer_using_a_key_binding
 function clear-screen-and-scrollback() {
     echoti civis >"$TTY"

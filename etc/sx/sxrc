@@ -45,17 +45,15 @@ xss-lock -n 'bright -i -5' -l lock &
 # display agnostic programs
 pactl set-source-mute @DEFAULT_SOURCE@ 1
 [ ! -s "$XDG_LIB_HOME"/mpd/pid ] && mpd
-[ -S '/run/user/1000/emacs/server' ] && nohup emacs --daemon >"$XDG_LOG_HOME"/emacs.log 2>&1
+[ -S '/run/user/1000/emacs/server' ] && (emacs --daemon >"$XDG_LOG_HOME"/emacs.log 2>&1) & disown
 pgrep artha || artha &	# offline dictionary
 pgrep -x mpdscribble > /dev/null || \
-	nohup mpdscribble --conf "$HOME"/.local/lib/private/lastfm.conf
+	mpdscribble --conf "$HOME"/.local/lib/private/lastfm.conf &
 pgrep -x redshift > /dev/null || redshift -l 23.5:78.5 -m randr &
-# pgrep ssh-agent || eval "$(ssh-agent -s)"
 
 # window manager {{{1
 # its in a loop so i can reload configuration by just killing dwm
 # and close X by doing pkill -x Xorg
-# TODO: find way to properly stop dwm_bar and artha when Xorg dies
 dwm_bar() {
     while xsetroot -name "$(bar.sh)"; do
         # synchronize dwmblocks with the time
@@ -65,7 +63,7 @@ dwm_bar() {
     done
 }
 # loop until X dies
-while xset q 2>/dev/null; do
+while xset q &>/dev/null; do
 	dwm_bar &
 	ssh-agent dwm >"$XDG_LOG_HOME"/dwm.log 2>&1 || exit
 done

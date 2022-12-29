@@ -1,6 +1,9 @@
 ;;;; Vedant36's emacs configuration
-;;;; TODO: undo tree ->
+;;;; TODO: undo tree
 ;;;; mods: ivy,lsp(has eldoc like thing for other langs)
+;;;; check out for rgb highlighting: emacs-color, rainbow-mode
+;;;; check out for delemiters rainbow-delimiters: pair-colorizer
+;;;; fix being able to get italics in comments
 
 (package-initialize)
 (add-to-list 'package-archives
@@ -24,7 +27,7 @@
 (windmove-default-keybindings)
 (electric-pair-mode 1)
 ;; Save the "emacs autosaving" files to a seperate directory
-(setq backup-directory-alist '(("." . "~/.local/var/cache/emacs")))
+(setq backup-directory-alist '(("." . "~/.local/var/lib/emacs")))
 (defun server-shutdown ()
   "Save buffers, Quit, and Shutdown (kill) server"
   (interactive)
@@ -47,8 +50,9 @@
   (add-hook 'dired-mode-hook 'auto-revert-mode)
   (setq dired-recursive-deletes 'always)
   (setq dired-recursive-copies 'always))
-(use-package org
+(use-package org-mode
   :ensure nil
+  :defer t
   :init
   (setq org-html-validation-link nil)
   (setq org-special-ctrl-a/e t)
@@ -83,6 +87,7 @@
 (use-package lua-mode
   :defer t)
 ;;; minor modes
+(use-package paredit) ; for S-expr
 (use-package cdlatex
   :hook (LaTeX-mode-hook . turn-on-cdlatex))
 (use-package multiple-cursors
@@ -95,9 +100,18 @@
   :config
   (require 'multiple-cursors))
 (use-package rainbow-delimiters
-  :hook prog-mode-hook
+  :hook (prog-mode-hook . rainbow-delimiters-mode)
   :config
-  (require 'rainbow-delimiters))
+  (require 'rainbow-delimiters)
+  (set-face-foreground 'rainbow-delimiters-depth-1-face "#c66")   ; red
+  (set-face-foreground 'rainbow-delimiters-depth-2-face "#6c6")   ; green
+  (set-face-foreground 'rainbow-delimiters-depth-3-face "#69f")   ; blue
+  (set-face-foreground 'rainbow-delimiters-depth-4-face "#cc6")   ; yellow
+  (set-face-foreground 'rainbow-delimiters-depth-5-face "#6cc")   ; cyan
+  (set-face-foreground 'rainbow-delimiters-depth-6-face "#c6c")   ; magenta
+  (set-face-foreground 'rainbow-delimiters-depth-7-face "#ccc")   ; light gray
+  (set-face-foreground 'rainbow-delimiters-depth-8-face "#999")   ; medium gray
+  (set-face-foreground 'rainbow-delimiters-depth-9-face "#666"))  ; dark gray
 (use-package sly
   :commands (sly sly-mode)
   :defer t
@@ -225,7 +239,7 @@
       (vertical-scroll-bars)))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(helpful tree-sitter-langs tree-sitter org-drill sly-quicklisp ligature sly yasnippet company rainbow-delimiters magit use-package graphviz-dot-mode gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
+   '(paredit helpful tree-sitter-langs tree-sitter org-drill sly-quicklisp ligature sly yasnippet company rainbow-delimiters magit use-package graphviz-dot-mode gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))

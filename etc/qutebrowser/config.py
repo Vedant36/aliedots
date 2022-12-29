@@ -92,8 +92,6 @@ c.url.searchengines = {
     'su': 'https://steamunlocked.net/?s={}',
     'wiby': 'https://wiby.me/?q={}',
     'scp': 'https://scp-wiki.wikidot.com/scp-{}',
-    'mc': 'https://minecraft.fandom.com/wiki/{}',
-    'sd': 'https://stardewvalleywiki.com/{}',
     'x': 'https://swag.pw/search?q={}',
     'y': 'https://yewtu.be/search?q={}',  # invidious
     'yw': 'https://yewtu.be/watch?v={}',
@@ -103,6 +101,9 @@ c.url.searchengines = {
     'ud': 'https://www.urbandictionary.com/define.php?term={}',
     'wl': 'https://wikiless.org/w/index.php?search={}',
     'w': 'https://en.wikipedia.org/w/index.php?search={}',
+    'mc': 'https://minecraft.fandom.com/wiki/{}',
+    'sd': 'https://stardewvalleywiki.com/{}',
+    'f': 'https://wiki.factorio.com/{}',
     # books
     'lib': 'https://library.cmi.ac.in/cgi-bin/koha/opac-search.pl?q={}',
     'b': 'https://libgen.is/search.php?req={}',
@@ -146,7 +147,7 @@ c.url.searchengines = {
     'pg': 'https://www.pygame.org/docs/ref/{}.html',
     'xy': 'https://learnxinyminutes.com/docs/{}',  # learning new prog.lang.
     # films and shows
-    'ap': 'https://animixplay.to/?q={}',  # anime
+    'an': 'https://zoro.to/search?keyword={}',  # anime
     'mr': 'https://mangareader.to/search?keyword={}',
     'p': 'https://thepiratebay.org/search.php?q={}',
     'p2': 'https://tpb.one/search.php?q={}',
