@@ -110,7 +110,8 @@ c.url.searchengines = {
     'bf': 'https://libgen.is/fiction/?q={}',
     'b2': 'https://1lib.in/s/{}',
     'b3': 'https://www.pdfdrive.com/search?q={}',
-    'b4': 'https://libgen.me/search?query={}',
+    'b4': 'https://libgen.rs/search?query={}',
+    'b5': 'https://libgen.st/search?query={}',
     # math
     'o': 'http://oeis.org/search?q={}',
     'oa': 'http://oeis.org/A{}',
@@ -119,7 +120,7 @@ c.url.searchengines = {
     'wm': 'https://mathworld.wolfram.com/search/index.html?query={}',
     # linux
     'm': 'https://melpa.org/#/?q={}',
-    'a': 'https://wiki.archlinux.org/index.php?search={}',
+    'aw': 'https://wiki.archlinux.org/index.php?search={}',
     'gw': 'https://wiki.gentoo.org/index.php?search={}',
     'ig': 'https://wiki.installgentoo.com/index.php?search={}',
     'm': 'https://linux.die.net/man/1/{}',  # man pages

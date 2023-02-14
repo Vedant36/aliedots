@@ -179,6 +179,7 @@ sbcl
 scrot
 socat
 speedtest-cli
+steam
 strace
 stumpwm
 subdl
@@ -194,6 +195,7 @@ tlp
 tmux
 tor
 traceroute
+translate-shell
 transmission-qt
 tree
 ttf-arphic-uming

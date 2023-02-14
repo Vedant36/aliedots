@@ -1,13 +1,12 @@
 /* just put timestamps for daily reminder */
 /* Shows/Films */
-03 Jan 2023 0800 = Cool Doji Danshi E09
-03 Jan 2023 0800 = miraculous
-31 Dec 2022 2230 = spyxfamily ep06 and blue lock
+25 Feb 2023 1600 = miraculous
+20 Feb 2023 2200 = blue lock e16 and cool doji danshi e15
 05 Jul 2023 = miraculous awakening
 13 Apr 2023 0800 = learn haskell and commonlisp (1 year) = https://www.reddit.com/r/AskComputerScience/comments/u0vr0r/comment/i4hpgba/?utm_source=share&utm_medium=web2x&context=3
-01 Jan 2023 = Jujustu Kaisen Season 2
-01 Jan 2023 = attack on titan conclusion arc
-01 Feb 2023 = marvel secret invasion
+01 Jul 2023 = Jujustu Kaisen Season 2
+05 Mar 2023 = attack on titan conclusion arc
+01 May 2023 = marvel secret invasion
 17 Feb 2023 = ant man
 
 /* celestial event */
@@ -17,12 +16,11 @@
 03 Mar 2026 = Total Lunar Eclipse
 
 /* college events */
-/* 22 Nov 2022 1750 = tue library thing 1800-1830 */
-/* 26 Nov 2022 1750 = sat library thing 1800-1830 */
+21 Feb 2023 1750 = tue library thing 1800-1830
+18 Feb 2023 1750 = sat library thing 1800-1830
 
 /* other */
-01 Jan 2025 0800 = axis bank card expires
-01 Jan 2023 0800 = get key from shashwat. get book for madhi
-30 Dec 2022 0800 = learn art and latin
+01 Mar 2023 0800 = check NIUS registration https://nius.hbcse.tifr.res.in/
+20 Apr 2023 0800 = mail spsuresh about type theory course if decides to do reading project
 
 /* set from commandline */

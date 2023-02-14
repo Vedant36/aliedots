@@ -22,7 +22,7 @@ dunst(Reload)
 unclutter $(pgrep -xc unclutter)
 dpms $(xset q | grep -Po 'DPMS is \K\S+')
 xss-lock $(pgrep -xc xss-lock)
-mpdscribble(Reload)
+mpdscribble(Reload)\
 " | nl -s" " -v0 -w1 | dmenu -l 20) || exit 0
 
 toggle(){
@@ -52,7 +52,7 @@ case $choice in
 		fi
 		;;
 	*xss-lock*)
-		toggle xss-lock -n 'bright -i -5' -l lock ;;
+		toggle xss-lock -l lock ;;
 	*unclutter*)
 		toggle unclutter --timeout 2 --jitter 40 \
 					--start-hidden --ignore-scrolling & ;;

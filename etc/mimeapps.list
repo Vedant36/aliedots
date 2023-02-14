@@ -17,3 +17,7 @@ application/pdf=org.pwmt.zathura.desktop
 image/jpeg=sxiv.desktop
 image/png=sxiv.desktop
 text/plain=emacs.desktop
+application/djvu=org.pwmt.zathura.desktop
+application/epub=org.pwmt.zathura.desktop
+application/xps=org.pwmt.zathura.desktop
+application/ps=org.pwmt.zathura.desktop

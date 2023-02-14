@@ -56,6 +56,7 @@
   :init
   (setq org-html-validation-link nil)
   (setq org-special-ctrl-a/e t)
+  (setq org-startup-indented t)
   ;; to get >greentext in org-mode documents
   (defun u/greentext ()
     "Highlight >greentext in current buffer."
@@ -179,11 +180,13 @@
   :commands evil-mode
   :config
   (require 'evil)
-  (evil-mode 1)
+  (evil-mode -1)
   (evil-emacs-state)
   (setq evil-default-state 'emacs))
 
 ;;; lcs: from https://www.kernel.org/doc/html/v4.10/process/coding-style.html
+(add-hook 'c-mode-hook
+	            (lambda () (local-set-key (kbd "C-c C-c") #'compile)))
 (defvar c-syntactic-element)
 (defun c-lineup-arglist-tabs-only (ignored)
   "Line up argument lists by tabs, not spaces"

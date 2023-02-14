@@ -40,6 +40,7 @@ static const Rule rules[] = {
 	{ "mpv",               NULL,      NULL,        1 << 4,    0,          -1 },
 	{ "discord",           NULL,      NULL,        1 << 5,    0,          -1 },
 	{ "Minecraft",         NULL,      NULL,        1 << 6,    0,          -1 },
+	{ NULL,                NULL,      "Factorio",  1 << 6,    0,          -1 },
 	{ "stardew valley.exe",NULL,      NULL,        1 << 6,    0,          -1 },
 	{ "transmission",      NULL,      NULL,        1 << 7,    0,          -1 },
 };
