@@ -1,26 +1,35 @@
 /* just put timestamps for daily reminder */
 /* Shows/Films */
-25 Feb 2023 1600 = miraculous
-20 Feb 2023 2200 = blue lock e16 and cool doji danshi e15
+01 Jun 2023 1600 = miraculous /home/vn36/dl/buffer/miraculous/mira
 05 Jul 2023 = miraculous awakening
-13 Apr 2023 0800 = learn haskell and commonlisp (1 year) = https://www.reddit.com/r/AskComputerScience/comments/u0vr0r/comment/i4hpgba/?utm_source=share&utm_medium=web2x&context=3
-01 Jul 2023 = Jujustu Kaisen Season 2
-05 Mar 2023 = attack on titan conclusion arc
-01 May 2023 = marvel secret invasion
-17 Feb 2023 = ant man
+07 Jul 2023 = Jujustu Kaisen Season 2
+21 Jun 2023 = marvel secret invasion
+17 Jun 2023 = the flash film
+01 Jun 2023 = lazarus s2
+02 Jun 2023 = spider
+10 Apr 2024 0800 = check NIUS registration https://secure.hbcse.tifr.res.in/nius/physics/ https://nius.hbcse.tifr.res.in/
 
 /* celestial event */
 /*   lunar eclispe: https://www.timeanddate.com/eclipse/list.html?region=indian-ocean */
-05 May 2023 = Penumbral Lunar Eclipse
 07 Sep 2025 = Total Lunar Eclipse
 03 Mar 2026 = Total Lunar Eclipse
 
-/* college events */
-21 Feb 2023 1750 = tue library thing 1800-1830
-18 Feb 2023 1750 = sat library thing 1800-1830
+/* library */
+01 Aug 2023 1750 = tue library thing 1800-1830
+05 Aug 2023 1750 = sat library thing 1800-1830
 
 /* other */
-01 Mar 2023 0800 = check NIUS registration https://nius.hbcse.tifr.res.in/
-20 Apr 2023 0800 = mail spsuresh about type theory course if decides to do reading project
+26 May 2023 0800 = phone
+26 May 2023 0800 = cleanup *.md
+08 Jun 2023 0800 = do em convergence program for boundary conditions
+08 Jun 2023 0800 = research
+01 Jun 2023 0800 = discuss with upendra sir, ana and algebra stuff
+01 Jun 2023 0800 = common room library ac:46
+02 Jun 2023 0800 = em reading project: particle physics/general relativity and astronomy https://forum.chennaiastronomyclub.org/ , gauge freedom/fixing
+03 Jun 2023 0800 = learn piano = fallen down: https://www.youtube.com/watch?v=odfelM4xoGM
+05 Jun 2023 0800 = shashwat get ccli mail invite
+07 Jun 2023 0800 = read books = maybe read https://library.cmi.ac.in/cgi-bin/koha/opac-detail.pl?biblionumber=10868 too
+07 Jun 2023 0800 = cmi result
+01 Jul 2023 0800 = type theory reading project
 
 /* set from commandline */

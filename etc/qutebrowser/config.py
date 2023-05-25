@@ -15,6 +15,7 @@ c.completion.shrink = True
 c.completion.use_best_match = True
 c.content.cookies.accept = 'no-3rdparty'
 c.content.fullscreen.window = False
+c.downloads.prevent_mixed_content = False
 c.content.notifications.enabled = False
 c.content.pdfjs = False
 c.content.private_browsing = False
@@ -79,6 +80,8 @@ c.aliases["sleep"] = "later"
 # Search Engines {{{1
 c.url.searchengines = {
     # actual search engines
+    #'DEFAULT': 'https://www.google.com/search?hl=en&q={}',
+    'as': 'https://astiango.com/search.php?q={}',
     'DEFAULT': 'https://www.google.com/search?hl=en&q={}',
     'd': 'https://www.duckduckgo.com/?q={}',
     'dh': 'https://html.duckduckgo.com/html?q={}',  # nojs version of duckduckgo
@@ -104,7 +107,9 @@ c.url.searchengines = {
     'mc': 'https://minecraft.fandom.com/wiki/{}',
     'sd': 'https://stardewvalleywiki.com/{}',
     'f': 'https://wiki.factorio.com/{}',
+    'ns': 'https://netsplit.de/channels/?chat={}',
     # books
+    'aa': 'https://annas-archive.org/search?q={}',
     'lib': 'https://library.cmi.ac.in/cgi-bin/koha/opac-search.pl?q={}',
     'b': 'https://libgen.is/search.php?req={}',
     'bf': 'https://libgen.is/fiction/?q={}',
@@ -112,12 +117,13 @@ c.url.searchengines = {
     'b3': 'https://www.pdfdrive.com/search?q={}',
     'b4': 'https://libgen.rs/search?query={}',
     'b5': 'https://libgen.st/search?query={}',
-    # math
+    # academics
     'o': 'http://oeis.org/search?q={}',
     'oa': 'http://oeis.org/A{}',
     'ob': 'http://oeis.org/b{}.txt',
     'wa': 'https://www.wolframalpha.com/input/?i={}',
     'wm': 'https://mathworld.wolfram.com/search/index.html?query={}',
+    'sh': 'https://sci-hub.ru/{}',
     # linux
     'm': 'https://melpa.org/#/?q={}',
     'aw': 'https://wiki.archlinux.org/index.php?search={}',
@@ -233,7 +239,7 @@ c.bindings.commands["normal"] = {
     "\\": "config-cycle -t statusbar.show never always;; config-cycle tabs.show never multiple",
 
     # to change playback rate on youtube
-    ",y": "set-cmd-text -s :jseval -q document.getElementsByTagName('video')[0].playbackRate =",
+    ",y": "set-cmd-text -s :jseval -q document.querySelector('video').playbackRate =",
 }
 c.bindings.commands["insert"] = {
     "<Ctrl-a>": "fake-key <Home>",

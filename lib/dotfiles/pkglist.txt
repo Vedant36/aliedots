@@ -17,6 +17,7 @@ bashtop
 bat
 bc
 bind
+binwalk
 bridge-utils
 btop
 calibre
@@ -30,7 +31,6 @@ cronie
 ctags
 dash
 dialog
-dietlibc
 discord
 dmidecode
 dnsmasq
@@ -77,9 +77,11 @@ irqbalance
 irssi
 ispell
 jdk-openjdk
+john
 jq
 jre17-openjdk
 jre8-openjdk-headless
+jupyter-notebook
 keepassxc
 kernel-modules-hook
 kitty
@@ -149,16 +151,17 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 powertop
-ps_mem
 pulsemixer
 pv
 pypy3
 python-adblock
+python-astropy
 python-matplotlib
 python-numpy
 python-pandas
 python-pillow
 python-pip
+python-pwntools
 python-pycodestyle
 python-pygame
 python-pylint
@@ -201,7 +204,7 @@ tree
 ttf-arphic-uming
 ttf-indic-otf
 ttf-iosevka-nerd
-ttf-nerd-fonts-symbols-2048-em
+ttf-nerd-fonts-symbols
 udisks2
 ufw
 unclutter
@@ -217,6 +220,7 @@ w3m
 webkit2gtk
 weechat
 wget
+wine
 wine-gecko
 wine-mono
 winetricks

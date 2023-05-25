@@ -17,6 +17,7 @@
 (scroll-bar-mode 0)
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
+(idle-highlight-mode 1)
 (setq display-line-numbers 'relative)
 (setq fill-column 79)
 ;(display-line-numbers-mode)
@@ -242,7 +243,7 @@
       (vertical-scroll-bars)))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(paredit helpful tree-sitter-langs tree-sitter org-drill sly-quicklisp ligature sly yasnippet company rainbow-delimiters magit use-package graphviz-dot-mode gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
+   '(idle-highlight-mode paredit helpful tree-sitter-langs tree-sitter org-drill sly-quicklisp ligature sly yasnippet company rainbow-delimiters magit use-package graphviz-dot-mode gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))

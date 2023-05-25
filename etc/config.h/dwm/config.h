@@ -34,7 +34,7 @@ static const Rule rules[] = {
 	{ "Popcorn-Time",      NULL,      NULL,        1 << 0,    0,          -1 },
 	{ "Zathura",           NULL,      NULL,        1 << 1,    0,          -1 },
 	{ "qutebrowser",       NULL,      NULL,        1 << 2,    0,          -1 },
-	{ "YouTube to MP3",    NULL,      NULL,        1 << 2,    0,          -1 },
+	{ "YouTube to MP3",    NULL,      NULL,        1 << 0,    0,          -1 },
 	{ "Surf",              NULL,      NULL,        1 << 2,    0,          -1 },
 	{ NULL,                "ncmpcpp", NULL,        1 << 3,    0,          -1 },
 	{ "mpv",               NULL,      NULL,        1 << 4,    0,          -1 },
@@ -97,6 +97,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_v,             spawn,          SHCMD(TERM " " TERMARG " nvim") },
 	{ MODKEY|ControlMask,           XK_p,             spawn,          SHCMD(TERMLIGHT " pulsemixer") },
 	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD(TERMLIGHT " bc -l") },
+	{ MODKEY|ShiftMask|ControlMask, XK_b,             spawn,          SHCMD("books.sh") },
 	{ MODKEY,                       XK_F1,            spawn,          SHCMD(TERMLIGHT " nvim ~/.local/opt/dwm/config.h") },
 	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && " TERM " -T textfiles nvim todo.md data.md sites.md autocmd.md math.md") },
     /* Custom Scripts {{{2 */
@@ -181,8 +182,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,             quit,           {0} },
     /* Screenshotting {{{2 */
 	{ 0,                            XK_Print,         spawn,          SHCMD("scrot \"$HOME/pix/screenshots/ss_%F_%H-%M-%S.png\"") },
-	{ ShiftMask,                    XK_Print,         spawn,          SHCMD("scrot -s -f \"$HOME/pix/screenshots/ss_%F_%H-%M-%S.png\"") },
-	{ ControlMask,                  XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -e 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
+	{ ShiftMask,                    XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -e 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
+	{ ControlMask,                  XK_Print,         spawn,          SHCMD("scrot -s -f \"$HOME/pix/screenshots/ss_%F_%H-%M-%S.png\"") },
 	{ ControlMask|ShiftMask,        XK_Print,         spawn,          SHCMD("scrot '/tmp/scrot.png' -s -f -e 'xclip -selection clipboard -t image/png -i $f && rm $f'") },
     /* }}}2 */
 };

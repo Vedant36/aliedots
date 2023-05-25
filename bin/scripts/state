@@ -52,7 +52,7 @@ case $choice in
 		fi
 		;;
 	*xss-lock*)
-		toggle xss-lock -l lock ;;
+		toggle xss-lock -n 'bright -i -5' -l lock ;;
 	*unclutter*)
 		toggle unclutter --timeout 2 --jitter 40 \
 					--start-hidden --ignore-scrolling & ;;
