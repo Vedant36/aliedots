@@ -15,6 +15,7 @@ ffmpeg-compat-54
 ffmpeg-compat-58
 find-the-command
 fingerpaint
+gcc-arm-none-eabi-bin
 geogebra-5
 i3lock-color-git
 liberica-jre-8-full-bin

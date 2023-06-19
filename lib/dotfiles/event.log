@@ -1,12 +1,10 @@
 /* just put timestamps for daily reminder */
 /* Shows/Films */
-01 Jun 2023 1600 = miraculous /home/vn36/dl/buffer/miraculous/mira
-05 Jul 2023 = miraculous awakening
+20 Jun 2023 0000 = miraculous /home/vn36/dl/buffer/miraculous/mira revolution -> representation
+06 Jul 2023 = miraculous awakening
 07 Jul 2023 = Jujustu Kaisen Season 2
 21 Jun 2023 = marvel secret invasion
-17 Jun 2023 = the flash film
-01 Jun 2023 = lazarus s2
-02 Jun 2023 = spider
+01 Jul 2023 = lazarus s2
 10 Apr 2024 0800 = check NIUS registration https://secure.hbcse.tifr.res.in/nius/physics/ https://nius.hbcse.tifr.res.in/
 
 /* celestial event */
@@ -19,17 +17,13 @@
 05 Aug 2023 1750 = sat library thing 1800-1830
 
 /* other */
-26 May 2023 0800 = phone
-26 May 2023 0800 = cleanup *.md
-08 Jun 2023 0800 = do em convergence program for boundary conditions
-08 Jun 2023 0800 = research
-01 Jun 2023 0800 = discuss with upendra sir, ana and algebra stuff
-01 Jun 2023 0800 = common room library ac:46
-02 Jun 2023 0800 = em reading project: particle physics/general relativity and astronomy https://forum.chennaiastronomyclub.org/ , gauge freedom/fixing
-03 Jun 2023 0800 = learn piano = fallen down: https://www.youtube.com/watch?v=odfelM4xoGM
-05 Jun 2023 0800 = shashwat get ccli mail invite
-07 Jun 2023 0800 = read books = maybe read https://library.cmi.ac.in/cgi-bin/koha/opac-detail.pl?biblionumber=10868 too
-07 Jun 2023 0800 = cmi result
+20 Jun 2023 1300 = phone
+20 Jun 2023 0800 = do em convergence program for boundary conditions
+01 Aug 2023 0800 = discuss with upendra sir, ana and algebra stuff
+30 Jun 2023 0800 = common room library ac:46
+20 Jun 2023 1000 = learn piano = fallen down: https://www.youtube.com/watch?v=odfelM4xoGM
 01 Jul 2023 0800 = type theory reading project
+01 Nov 2023 0800 = go to yelagiri or sth
+07 Aug 2023 0800 = fnaf time
 
 /* set from commandline */
