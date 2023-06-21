@@ -9,6 +9,6 @@
 #min hr  dom mon dow command
 0 * * * *   anacron -t "$HOME"/.local/etc/anacrontab -S "$HOME"/.local/var/spool/anacron
 */3 * * * * "$HOME"/.local/bin/scripts/bat_alert.sh
-#*/5 * * * * "$HOME"/.local/bin/experimental/bat_log.sh
+*/5 * * * * "$HOME"/.local/bin/experimental/bat_log.sh
 */5 * * * * "$HOME"/.local/bin/scripts/event
 

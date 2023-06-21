@@ -15,7 +15,8 @@
 # automatically detect it if running the script from within the repository
 PREFIX="$HOME"/.local
 # PREFIX="$(git rev-parse --show-toplevel)"
-# Downloader program
+
+# Check if wget is present, else use curl
 DL='curl -OL'
 command -v wget >/dev/null || DL='curl -OL'
 
@@ -132,6 +133,7 @@ case $1 in
             $DL 'https://github.com/Anarios/return-youtube-dislike/raw/main/Extensions/UserScript/Return%20Youtube%20Dislike.user.js'
             $DL 'https://raw.githubusercontent.com/xthexder/wide-github/master/build/wide-github.user.js'
             $DL 'https://greasyfork.org/scripts/438625-arch-wiki-old-skin/code/Arch%20Wiki%20old%20skin.user.js'
+            $DL 'https://greasyfork.org/scripts/370246-sci-hub-button/code/Sci-hub%20button.user.js'
             # $DL 'https://greasyfork.org/scripts/394820-mouseover-popup-image-viewer/code/Mouseover%20Popup%20Image%20Viewer.user.js'
             # 4chins
             $DL 'https://www.4chan-x.net/builds/4chan-X.user.js'
