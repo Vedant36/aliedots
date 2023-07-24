@@ -170,12 +170,13 @@ precmd() {
     time="$(date -u -d @"$diff" +'%-Mm%-Ss')"
     unset start_time end_time diff
   fi
-  export RPROMPT="%(?..%F{red}[%?] %f)%F{cyan}${time}%f"
+  export RPROMPT="%B%(?..%F{red}[%?] %f)%F{cyan}${time}%f%b"
   unset time
 }
 #echo -e "\033[0;32m$(fortune -a | sed 's/^/\t/')\033[0m"
 # export PROMPT=" %F{magenta}%~%f%F{blue}>%f "
-export PROMPT='[%n@%M %F{blue}%~%f]$ '
+export PROMPT='%B[%n@%M %F{blue}%~%f]$%b '
+# export PROMPT=' %B%F{181}%~ $%f%b '
 
 # to print {{{1
 lsmod | grep uvcvideo

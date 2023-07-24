@@ -107,6 +107,7 @@ c.url.searchengines = {
     'mc': 'https://minecraft.fandom.com/wiki/{}',
     'sd': 'https://stardewvalleywiki.com/{}',
     'f': 'https://wiki.factorio.com/{}',
+    # IRC channels
     'ns': 'https://netsplit.de/channels/?chat={}',
     # books
     'aa': 'https://annas-archive.org/search?q={}',
@@ -216,6 +217,7 @@ c.bindings.commands["normal"] = {
     "ya": "yank inline '<a href={url}>{title}</a>'",
     "yo": "yank inline '[[{url}][{title}]]'",
     "yw": "fake-key <ctrl-a>",
+    ";j": "hint links spawn sh -c 'echo {hint-url} | tee -a ~/temp'",
     ";n": "hint links spawn -d kitty nvim {hint-url}",
     ";s": "hint links spawn -d surf {hint-url}",
     "S": "spawn -d surf {url}",

@@ -39,7 +39,7 @@ covid https://www.google.com/search?hl=en&q=covid%20cases%20in%20india
 nasm https://www.cs.uaf.edu/2017/fall/cs301/reference/x86_64.html
 repo https://repology.org/repositories/statistics
 gl https://github.com/Vedant36
-lcs https://www.kernel.org/doc/html/v4.10/process/coding-style.html
+lcs https://www.kernel.org/doc/html/latest/process/coding-style.html#
 d https://discord.com/app
 packer https://github.com/wbthomason/packer.nvim
 mp3cut https://mp3cut.net/
@@ -80,7 +80,7 @@ wn https://mynoise.net/NoiseMachines/greyNoiseGenerator.php
 fergusson https://fergusson.edu/article/Junior_College_Admissions_Science.html
 mr https://mail.google.com/mail/u/0/
 dalle https://huggingface.co/spaces/dalle-mini/dalle-mini
-melpa https://melpa.org/
+melpa https://www.melpa.org/
 nf https://www.nerdfonts.com/cheat-sheet
 il https://www.isical.ac.in/~admission/Interview-List.html
 fit http://liamrosen.com/fitness.html
@@ -106,8 +106,7 @@ bw https://brainworm.rodeo/
 fcs https://factoriocheatsheet.com/
 ' https://wiki.archlinux.org/title/desktop_entries?useskinversion=1
 9a https://9anime.gs/home
-gam https://rentry.co/pgames-mega-thread
-cms https://www.cmi.ac.in/people/students.php#prephd
+cms https://www.cmi.ac.in/people/students.php
 cm2 https://www.cmi.ac.in/~govind/teaching/cm2-e23/
 cme https://wsgi.cmi.ac.in/exam_sched/
 ircs https://scripts.irssi.org/
@@ -117,3 +116,9 @@ prob https://moodle.cmi.ac.in/course/view.php?id=769
 fkm https://kirkmcdonald.github.io/calc.html#data=1-1-19&min=2&furnace=steel-furnace&items=advanced-circuit:f:1
 course https://www.cmi.ac.in//teaching/courses.php?prog=bscmp
 fz https://factorio.zone/
+a3o https://archiveofourown.org/
+gccopt https://gcc.gnu.org/onlinedocs/gcc-4.1.0/gcc/Optimize-Options.html
+fconsole https://wiki.factorio.com/Console
+ip https://wtfismyip.com/
+piracy https://rentry.co/megathread
+fl https://factoriolab.github.io/?v=9

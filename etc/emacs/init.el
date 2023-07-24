@@ -27,7 +27,7 @@
 (ido-mode 1)
 (windmove-default-keybindings)
 (electric-pair-mode 1)
-;; Save the "emacs autosaving" files to a seperate directory
+;; SYSTEM_SPECIFIC::Save the "emacs autosaving" files to a seperate directory
 (setq backup-directory-alist '(("." . "~/.local/var/lib/emacs")))
 (defun server-shutdown ()
   "Save buffers, Quit, and Shutdown (kill) server"
@@ -64,6 +64,11 @@
     (interactive)
     (highlight-lines-matching-regexp "^>" 'hi-green-b))
   (add-hook 'org-mode-hook 'u/greentext))
+(use-package org-download
+  :ensure org-download
+  :config (setq org-download-screenshot-method "xclip -selection clipboard -t image/png -o > %s")
+  :hook (dired-mode-hook . org-download-enable))
+
 ;;; themes
 (use-package gruber-darker-theme)
 (use-package gruvbox-theme
@@ -134,7 +139,7 @@
 	 ("TAB" . company-complete-selection)
 	 ("RET" . nil)))
 (use-package yasnippet
-  :commands yas-reload-all
+  :commands (yas-reload-all yas-minor-mode)
   :hook (prog-mode-hook . yas-minor-mode)
   :config
   (yas-reload-all))
@@ -243,7 +248,7 @@
       (vertical-scroll-bars)))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(idle-highlight-mode paredit helpful tree-sitter-langs tree-sitter org-drill sly-quicklisp ligature sly yasnippet company rainbow-delimiters magit use-package graphviz-dot-mode gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
+   '(sly slime org-download paredit helpful tree-sitter-langs tree-sitter org-drill ligature yasnippet company rainbow-delimiters magit use-package graphviz-dot-mode gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))

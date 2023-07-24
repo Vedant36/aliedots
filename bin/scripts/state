@@ -18,7 +18,7 @@ xcape $(pgrep -xc xcape)
 wifi $(nmcli device status | grep -c "^$INTERFACE.* connected") \
 $(nmcli connection show --active 2>&1 | grep -Po "Neema(?=.* $INTERFACE)")
 xcompmgr $(pgrep -xc xcompmgr)
-dunst(Reload)
+dunst $(pgrep -xc dunst)
 unclutter $(pgrep -xc unclutter)
 dpms $(xset q | grep -Po 'DPMS is \K\S+')
 xss-lock $(pgrep -xc xss-lock)
@@ -57,7 +57,7 @@ case $choice in
 		toggle unclutter --timeout 2 --jitter 40 \
 					--start-hidden --ignore-scrolling & ;;
 	*wallpaper)
-		feh --no-fehbg --bg-fill ~/pix/current* ;;
+		feh --no-fehbg --bg-fill ~/pix/wallpaper ;;
 	*dpms*)
 		if [ "$(xset q | grep -Po 'DPMS is \K\S+')" = "Enabled" ]; then
 			xset -dpms
@@ -72,7 +72,7 @@ case $choice in
 		toggle redshift -l 23.5:78.5 & ;;
 	*dunst*)
 		# Reload
-		killall dunst; dunst & ;;
+		toggle dunst & ;;
 	*mpdscribble*)
 		pkill mpdscribble && \
 			mpdscribble --conf "$HOME"/.local/lib/private/lastfm.conf & ;;

@@ -14,10 +14,10 @@ local ok, impatient = pcall(require, 'impatient')
 if ok then impatient.enable_profile() end -- :LuaCacheProfile
 
 -- globals {{{1
-function P(...)
+function P(...) -- pretty printing using vim-notify
   vim.notify(vim.inspect(...))
 end
-function R(module)
+function R(module) -- reloads a module
   package.loaded[module] = nil
   return require(module)
 end

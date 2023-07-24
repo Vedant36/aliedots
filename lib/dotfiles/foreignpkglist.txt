@@ -27,6 +27,7 @@ multitime
 nbtexplorer-bin
 neovim-nightly-bin
 neovim-symlinks
+netctl
 networkmanager-dispatcher-ntpd
 nq-git
 pandoc-bin

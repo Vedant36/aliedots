@@ -38,7 +38,7 @@ xset dpms 600 600 600
 # removes cursor from screen after a set itme
 xcape -e 'Control_L=Escape' -t 100
 unclutter --timeout 2 --jitter 40 --start-hidden --ignore-scrolling &
-feh --no-fehbg --bg-fill ~/pix/current* &
+feh --no-fehbg --bg-fill ~/pix/wallpaper &
 dunst &	 # notification server
 #xcompmgr &	# compositor
 xss-lock -n 'bright -i -5' -l lock &

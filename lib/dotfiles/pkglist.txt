@@ -128,7 +128,6 @@ ncmpcpp
 nemo
 neofetch
 net-tools
-netctl
 nethogs
 networkmanager
 nicotine+
@@ -148,6 +147,7 @@ pacman-contrib
 pavucontrol
 pdfjs
 pdftk
+perf
 pinta
 pipewire-alsa
 pipewire-jack
@@ -188,6 +188,7 @@ steam
 strace
 stumpwm
 subdl
+swi-prolog
 sx
 sxiv
 syncthing
