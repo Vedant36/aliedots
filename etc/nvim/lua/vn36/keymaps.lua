@@ -115,7 +115,7 @@ local bookmark_table = {
   s = '$HOME/.local/lib/dotfiles/setup.bash',
   h = '$HISTFILE',
   y = '~/dox/Python/platformer_2/Plat.py',
-  Z = '~/dox/zmisc_code/',
+  Z = '~/dox/code/random/',
 }
 local function bookmark(arg, _prefix)
   local bookmarks = arg or bookmark_table

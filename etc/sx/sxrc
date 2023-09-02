@@ -45,7 +45,7 @@ xss-lock -n 'bright -i -5' -l lock &
 # display agnostic programs
 pactl set-source-mute @DEFAULT_SOURCE@ 1
 [ ! -s "$XDG_LIB_HOME"/mpd/pid ] && mpd
-[ -S '/run/user/1000/emacs/server' ] && (emacs --daemon >"$XDG_LOG_HOME"/emacs.log 2>&1) & disown
+emacsclient -a false -e 't' || (emacs --daemon >"$XDG_LOG_HOME"/emacs.log 2>&1) & disown
 pgrep artha || artha &	# offline dictionary
 pgrep -x mpdscribble > /dev/null || \
 	mpdscribble --conf "$HOME"/.local/lib/private/lastfm.conf &

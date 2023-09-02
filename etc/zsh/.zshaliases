@@ -98,7 +98,6 @@ alias p='$PM'
 alias pf='$PM -F'
 alias pg='$PM -S'
 alias pp='$PM -Rns'
-alias pi='$PM -S'
 alias pq='$PM -Si'
 # changing directory conveniences {{{1
 alias cb='cd ~/.local/bin'

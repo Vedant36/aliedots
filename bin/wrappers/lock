@@ -32,8 +32,8 @@ lock() {
 	dunstctl set-paused true
 
 	# feels like slock is better anyway
-	# slock
-	i3lock \
+	slock
+	: i3lock \
 		--nofork \
 		--ignore-empty-password \
 		--color=00000000 \

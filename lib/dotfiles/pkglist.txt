@@ -24,9 +24,12 @@ btop
 calibre
 ccache
 ccze
+clang
 cloc
 cmake
 cmus
+cockatrice
+coq
 cppcheck
 cronie
 ctags
@@ -66,6 +69,7 @@ grub
 hashcat
 haskell-base-prelude
 haskell-random
+helvum
 hq
 hspell
 htop
@@ -115,7 +119,6 @@ moreutils
 mpc
 mpd
 mpv
-mumble
 mupdf
 mupdf-tools
 musl
@@ -125,9 +128,9 @@ nano
 nasm
 ncdu
 ncmpcpp
-nemo
 neofetch
 net-tools
+netctl
 nethogs
 networkmanager
 nicotine+
@@ -136,6 +139,7 @@ nmap
 nnn
 noise-suppression-for-voice
 noto-fonts-emoji
+npm
 ntfs-3g
 ntp
 nuspell
@@ -194,8 +198,9 @@ sxiv
 syncthing
 systemd-sysvcompat
 testdisk
+texlive-basic
 texlive-bin
-texlive-core
+texlive-latexrecommended
 thunar
 tlp
 tmux
@@ -239,6 +244,7 @@ xmonad
 xorg-xfontsel
 xsel
 xss-lock
+yarn
 youtube-dl
 yt-dlp
 zathura

@@ -8,6 +8,7 @@
 (package-initialize)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
+(package-refresh-contents)
 
 ;;; builtins
 ;;;   interface cleanup
@@ -22,13 +23,17 @@
 (setq fill-column 79)
 ;(display-line-numbers-mode)
 ;;;   convinience stuff
+(setq mouse-yank-at-point t)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
 (windmove-default-keybindings)
 (electric-pair-mode 1)
+(global-unset-key (kbd "C-z"))
+(global-set-key (kbd "C-c o") 'occur)
 ;; SYSTEM_SPECIFIC::Save the "emacs autosaving" files to a seperate directory
 (setq backup-directory-alist '(("." . "~/.local/var/lib/emacs")))
+(setq find-function-C-source-directory "~/.local/opt/emacs/src")
 (defun server-shutdown ()
   "Save buffers, Quit, and Shutdown (kill) server"
   (interactive)
@@ -51,6 +56,12 @@
   (add-hook 'dired-mode-hook 'auto-revert-mode)
   (setq dired-recursive-deletes 'always)
   (setq dired-recursive-copies 'always))
+
+;;; org-mode
+(setq org-agenda-files '("~/dox/org/"))
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
 (use-package org-mode
   :ensure nil
   :defer t
@@ -66,6 +77,7 @@
   (add-hook 'org-mode-hook 'u/greentext))
 (use-package org-download
   :ensure org-download
+  :commands (org-download-yank org-download-screenshot)
   :config (setq org-download-screenshot-method "xclip -selection clipboard -t image/png -o > %s")
   :hook (dired-mode-hook . org-download-enable))
 
@@ -80,9 +92,8 @@
 (use-package graphviz-dot-mode
   :config
   (setq graphviz-dot-indent-width 4)
-  :defer t)
-(use-package company-graphviz-dot
-  :ensure nil)
+  :defer t
+  :hook (graphviz-dot-mode-hook . company-mode))
 (use-package haskell-mode
   :commands (haskell-mode
 	     haskell-session-change
@@ -119,6 +130,13 @@
   (set-face-foreground 'rainbow-delimiters-depth-7-face "#ccc")   ; light gray
   (set-face-foreground 'rainbow-delimiters-depth-8-face "#999")   ; medium gray
   (set-face-foreground 'rainbow-delimiters-depth-9-face "#666"))  ; dark gray
+  ;; (set-face-foreground 'rainbow-delimiters-depth-1-face "#f00")   ; red
+  ;; (set-face-foreground 'rainbow-delimiters-depth-2-face "#0f0")   ; green
+  ;; (set-face-foreground 'rainbow-delimiters-depth-3-face "#00f")   ; blue
+  ;; (set-face-foreground 'rainbow-delimiters-depth-4-face "#ff0")   ; yellow
+  ;; (set-face-foreground 'rainbow-delimiters-depth-5-face "#0ff")   ; cyan
+  ;; (set-face-foreground 'rainbow-delimiters-depth-6-face "#f0f")   ; magenta
+
 (use-package sly
   :commands (sly sly-mode)
   :defer t
@@ -137,12 +155,17 @@
 	 ("M-n" . 'company-select-next)
 	 ("M-p" . 'company-select-previous)
 	 ("TAB" . company-complete-selection)
-	 ("RET" . nil)))
+	 ("RET" . nil))
+  :config (setq company-format-margin-function 'company-text-icons-margin))
 (use-package yasnippet
+  :defer nil
   :commands (yas-reload-all yas-minor-mode)
   :hook (prog-mode-hook . yas-minor-mode)
   :config
   (yas-reload-all))
+;; (require 'yasnippet)
+;; (yas-reload-all)
+;; (add-hook 'prog-mode-hook #'yas-minor-mode)
 (use-package ligature
   :config
   ;; Enable the "www" ligature in every possible major mode
@@ -187,12 +210,17 @@
   :config
   (require 'evil)
   (evil-mode -1)
-  (evil-emacs-state)
   (setq evil-default-state 'emacs))
 
-;;; lcs: from https://www.kernel.org/doc/html/v4.10/process/coding-style.html
+;; Python
+(when (executable-find "ipython")
+  (setq python-shell-interpreter "ipython"
+	python-shell-interpreter-args "-i --autocall=2 --nosep --simple-prompt"))
+
+;; C
 (add-hook 'c-mode-hook
 	            (lambda () (local-set-key (kbd "C-c C-c") #'compile)))
+;;; lcs: from https://www.kernel.org/doc/html/v4.10/process/coding-style.html
 (defvar c-syntactic-element)
 (defun c-lineup-arglist-tabs-only (ignored)
   "Line up argument lists by tabs, not spaces"
@@ -240,15 +268,15 @@
      (output-html "xdg-open")))
  '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
-   '("19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" "72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "d80952c58cf1b06d936b1392c38230b74ae1a2a6729594770762dc0779ac66b7" "fe1c13d75398b1c8fd7fdd1241a55c286b86c3e4ce513c4292d01383de152cb7" "78e6be576f4a526d212d5f9a8798e5706990216e9be10174e3f3b015b8662e27" "3d2e532b010eeb2f5e09c79f0b3a277bfc268ca91a59cdda7ffd056b868a03bc" default))
+   '("ba4ab079778624e2eadbdc5d9345e6ada531dc3febeb24d257e6d31d5ed02577" default))
  '(default-frame-alist
-    '((font . "-UKWN-Iosevka Mayukai CodePro-normal-normal-normal-*-13-*-*-*-d-0-iso10646-1")
-      (width . 137)
-      (height . 30)
-      (vertical-scroll-bars)))
+   '((font . "-UKWN-Iosevka Mayukai CodePro-normal-normal-normal-*-13-*-*-*-d-0-iso10646-1")
+     (width . 137)
+     (height . 30)
+     (vertical-scroll-bars)))
  '(display-line-numbers-type 'relative)
  '(package-selected-packages
-   '(sly slime org-download paredit helpful tree-sitter-langs tree-sitter org-drill ligature yasnippet company rainbow-delimiters magit use-package graphviz-dot-mode gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
+   '(epresent org-tree-slide rainbow-mode graphviz-dot-mode proof-general sly slime org-download paredit helpful tree-sitter-langs tree-sitter org-drill ligature yasnippet company rainbow-delimiters magit use-package gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))

@@ -1,0 +1,18 @@
+#!/bin/sh
+# Usage: mutex mpv && mpv video.mp4
+#        mutex list
+# INCOMPLETE
+
+workdir="${XDG_STATE_HOME:-~/.cache}"/mutex
+[ "$1" == "list" ] && ls -1 "$workdir" && exit
+mutex_file="$workdir/$namespace"
+namespace="$1"
+mkdir -p "$workdir"
+pushd "$workdir" >/dev/null
+if [ -e "$mutex_file" ] && [ -s "$mutex_file" ]; then
+    kill "$(cat $mutex_file)";
+else
+    echo "$PPID" > "$mutex_file";
+fi
+popd >/dev/null
+touch "$namespace"

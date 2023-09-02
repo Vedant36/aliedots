@@ -27,7 +27,6 @@ multitime
 nbtexplorer-bin
 neovim-nightly-bin
 neovim-symlinks
-netctl
 networkmanager-dispatcher-ntpd
 nq-git
 pandoc-bin
@@ -44,7 +43,6 @@ sioyek
 spotify
 stapler
 stellarium-bin
-texmacs
 tlauncher
 tor-browser
 ultimmc-bin
