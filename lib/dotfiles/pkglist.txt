@@ -6,6 +6,7 @@ alsa-utils
 amd-ucode
 amdvlk
 android-tools
+arandr
 arch-install-scripts
 archlinux-contrib
 aria2
@@ -33,6 +34,8 @@ coq
 cppcheck
 cronie
 ctags
+cups
+cups-pdf
 dash
 dialog
 discord
@@ -46,11 +49,11 @@ efibootmgr
 emacs
 ethtool
 evtest
-exa
 exfat-utils
 exiv2
 expac
 ext4magic
+eza
 fasm
 fd
 feh
@@ -81,7 +84,6 @@ ipython
 irqbalance
 irssi
 ispell
-jdk-openjdk
 john
 jq
 jre17-openjdk
@@ -90,7 +92,6 @@ jupyter-notebook
 keepassxc
 kernel-modules-hook
 kitty
-kolourpaint
 krita
 lib32-vulkan-radeon
 libnotify
@@ -128,6 +129,7 @@ nano
 nasm
 ncdu
 ncmpcpp
+nemo
 neofetch
 net-tools
 netctl
@@ -152,7 +154,6 @@ pavucontrol
 pdfjs
 pdftk
 perf
-pinta
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
@@ -196,10 +197,13 @@ swi-prolog
 sx
 sxiv
 syncthing
+system-config-printer
 systemd-sysvcompat
 testdisk
 texlive-basic
 texlive-bin
+texlive-fontsrecommended
+texlive-latexextra
 texlive-latexrecommended
 thunar
 tlp
@@ -245,7 +249,6 @@ xorg-xfontsel
 xsel
 xss-lock
 yarn
-youtube-dl
 yt-dlp
 zathura
 zathura-djvu

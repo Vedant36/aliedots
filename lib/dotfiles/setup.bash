@@ -134,6 +134,7 @@ case $1 in
             $DL 'https://raw.githubusercontent.com/xthexder/wide-github/master/build/wide-github.user.js'
             $DL 'https://greasyfork.org/scripts/438625-arch-wiki-old-skin/code/Arch%20Wiki%20old%20skin.user.js'
             $DL 'https://greasyfork.org/scripts/370246-sci-hub-button/code/Sci-hub%20button.user.js'
+            $DL 'https://greasyfork.org/scripts/475942-youtube-recommendations-be-gone-cleaner-youtube/code/YouTube%20Recommendations%20be%20Gone%EF%BC%9ACleaner%20YouTube.user.js'
             # $DL 'https://greasyfork.org/scripts/394820-mouseover-popup-image-viewer/code/Mouseover%20Popup%20Image%20Viewer.user.js'
             # 4chins
             $DL 'https://www.4chan-x.net/builds/4chan-X.user.js'

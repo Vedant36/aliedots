@@ -8,4 +8,4 @@
 
 setTimeout(function () {
     document.getElementById("hl_prog_BP2").click()
-}, 200)
+}, 10)

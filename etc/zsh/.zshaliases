@@ -40,7 +40,6 @@ alias s=rdo
 alias m=man
 alias f=fd
 alias v=nvim
-alias c='bat --paging=never'
 alias n=neofetch
 # Git {{{1
 alias g='git'

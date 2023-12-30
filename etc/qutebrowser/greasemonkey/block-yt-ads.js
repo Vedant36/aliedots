@@ -7,13 +7,13 @@
 // @exclude      *://*.youtube.com/subscribe_embed?*
 // ==/UserScript==
 setInterval(() => {
-    const btn = document.querySelector('.videoAdUiSkipButton,.ytp-ad-skip-button')
+    const btn = document.querySelector('.videoAdUiSkipButton,.ytp-ad-skip-button,.ytp-ad-skip-button-modern')
     if (btn) {
-        btn.click()
+        setTimeout(function () { btn.click() }, 10)
     }
     const ad = [...document.querySelectorAll('.ad-showing')][0];
     if (ad) {
-        document.querySelector('video').playbackRate = 16;
+        document.querySelector('video').playbackRate = 12;
         document.querySelector('video').volume = 0;
     }
 }, 50)

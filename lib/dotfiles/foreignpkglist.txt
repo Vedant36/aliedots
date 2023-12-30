@@ -52,5 +52,6 @@ xcursor-breeze
 xorg-meta
 xxd-standalone
 yay-bin
+youtube-dl
 youtube-to-mp3
 zoom

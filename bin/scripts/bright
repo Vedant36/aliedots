@@ -4,7 +4,8 @@
 ## TODO: add way to decrease gamma using xrandr for lower lit environments
 
 # SYSTEM_DEPENDENT: the backlight folder might be different
-BACKLIGHT="/sys/class/backlight/amdgpu_bl0"
+BACKLIGHT="/sys/class/backlight/amdgpu_bl1"
+[ ! -d "$BACKLIGHT" ] && echo "Directory $BACKLIGHT doesn't exist!" && exit
 MAX_BRIGHTNESS=$(cat $BACKLIGHT/max_brightness)
 BRIGHTNESS=$(cat $BACKLIGHT/brightness)
 
@@ -54,5 +55,9 @@ new="$1"
 [ "$i" ] && new="$((new + BRIGHTNESS))"
 [ "$new" -lt 0 ] && new=0
 [ "$new" -gt "$MAX_BRIGHTNESS" ] && new=$MAX_BRIGHTNESS
-echo "$new" > $BACKLIGHT/brightness
+if [ -w "$BACKLIGHT"/brightness ]; then
+	echo "$new" > "$BACKLIGHT"/brightness
+else
+	echo "I don't have permission to write to $BACKLIGHT/brightness";
+fi
 # vim: noet

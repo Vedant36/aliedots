@@ -8,7 +8,7 @@
 (package-initialize)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
-(package-refresh-contents)
+(if (daemonp) (package-refresh-contents))
 
 ;;; builtins
 ;;;   interface cleanup
@@ -69,6 +69,7 @@
   (setq org-html-validation-link nil)
   (setq org-special-ctrl-a/e t)
   (setq org-startup-indented t)
+  (setq org-agenda-span 14)
   ;; to get >greentext in org-mode documents
   (defun u/greentext ()
     "Highlight >greentext in current buffer."

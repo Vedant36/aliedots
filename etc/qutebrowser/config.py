@@ -82,6 +82,7 @@ c.url.searchengines = {
     # actual search engines
     #'DEFAULT': 'https://www.google.com/search?hl=en&q={}',
     'as': 'https://astiango.com/search.php?q={}',
+    'am': 'https://www.amazon.in/s?k={}',
     'DEFAULT': 'https://www.google.com/search?hl=en&q={}',
     'd': 'https://www.duckduckgo.com/?q={}',
     'dh': 'https://html.duckduckgo.com/html?q={}',  # nojs version of duckduckgo
@@ -96,9 +97,9 @@ c.url.searchengines = {
     'wiby': 'https://wiby.me/?q={}',
     'scp': 'https://scp-wiki.wikidot.com/scp-{}',
     'x': 'https://swag.pw/search?q={}',
-    'y': 'https://yewtu.be/search?q={}',  # invidious
+    'y': 'https://youtube.com/search?q={}',
+    'yt': 'https://yewtu.be/search?q={}',  # invidious
     'yw': 'https://yewtu.be/watch?v={}',
-    'yt': 'https://youtube.com/search?q={}',
     'sp': 'https://www.smartprix.com/products/?q={}',
     'gf': 'https://greasyfork.org/en/scripts?q={}',
     'ud': 'https://www.urbandictionary.com/define.php?term={}',
@@ -122,7 +123,7 @@ c.url.searchengines = {
     'o': 'http://oeis.org/search?q={}',
     'oa': 'http://oeis.org/A{}',
     'ob': 'http://oeis.org/b{}.txt',
-    'wa': 'https://www.wolframalpha.com/input/?i={}',
+    'wi': 'https://www.wolframalpha.com/input/?i={}',
     'wm': 'https://mathworld.wolfram.com/search/index.html?query={}',
     'sh': 'https://sci-hub.ru/{}',
     # linux
@@ -188,8 +189,8 @@ c.content.blocking.method = 'adblock'
 c.bindings.commands = {}
 c.bindings.commands["normal"] = {
     "d": "nop",
-    "!": "set-cmd-text :open !",
-    "A": "set-cmd-text :open {url:pretty}",
+    "!": "cmd-set-text :open !",
+    "A": "cmd-set-text :open {url:pretty}",
     "H": "fake-key <left>",
     "J": "back",
     "K": "forward",
@@ -241,7 +242,7 @@ c.bindings.commands["normal"] = {
     "\\": "config-cycle -t statusbar.show never always;; config-cycle tabs.show never multiple",
 
     # to change playback rate on youtube
-    ",y": "set-cmd-text -s :jseval -q document.querySelector('video').playbackRate =",
+    ",y": "cmd-set-text -s :jseval -q document.querySelector('video').playbackRate =",
 }
 c.bindings.commands["insert"] = {
     "<Ctrl-a>": "fake-key <Home>",
