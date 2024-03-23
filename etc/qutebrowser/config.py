@@ -84,6 +84,7 @@ c.url.searchengines = {
     'as': 'https://astiango.com/search.php?q={}',
     'am': 'https://www.amazon.in/s?k={}',
     'DEFAULT': 'https://www.google.com/search?hl=en&q={}',
+    'gs': 'https://scholar.google.com/scholar?hl=en&q={}',
     'd': 'https://www.duckduckgo.com/?q={}',
     'dh': 'https://html.duckduckgo.com/html?q={}',  # nojs version of duckduckgo
     '4': 'https://4chan.org/{}',
@@ -271,8 +272,9 @@ c.colors.webpage.darkmode.policy.images = 'never'
 c.colors.webpage.preferred_color_scheme = 'dark'
 c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
 c.colors.webpage.darkmode.contrast = -.022  # the lower the darker
-c.colors.webpage.darkmode.threshold.text = 150
+c.colors.webpage.darkmode.threshold.foreground = 150
 c.colors.webpage.darkmode.threshold.background = 100
+
 
 # taken from https://qutebrowser.org/doc/help/configuring.html
 # 0:black, 1:red, 2:green,, 3:yellow, 4:blue, 5:magenta, 6:cyan, 7:white

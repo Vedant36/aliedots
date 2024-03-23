@@ -17,4 +17,5 @@ RANDOM_DELAY=45
 1	5	foreignpkg.sync pacman -Qqem>"$HOME"/.local/lib/dotfiles/foreignpkglist.txt
 1	5	checkupdates.sync	checkupdates > ~/.local/var/log/packages.log
 1	5	playlists.bak	cd "$HOME"/.local/etc/mpd/playlists && git add . && git commit -m "autobackup $(command date)"
+1	5	deqns	~/dox/college/sem4/deqn/tut-qn-check.sh
 # vim: ft=crontab:noet

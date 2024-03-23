@@ -23,7 +23,7 @@ local options={
     updatetime=300, timeoutlen=300,
     number=true, relativenumber=true,
     switchbuf="usetab",
-    nrformats="alpha,bin,hex",
+    nrformats="bin,hex",
     title=true, lazyredraw=true, showmode=false, hidden=true,
     autochdir=true,
     numberwidth=4,

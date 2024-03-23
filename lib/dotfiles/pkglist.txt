@@ -202,6 +202,7 @@ systemd-sysvcompat
 testdisk
 texlive-basic
 texlive-bin
+texlive-fontsextra
 texlive-fontsrecommended
 texlive-latexextra
 texlive-latexrecommended
@@ -230,7 +231,6 @@ vnstat
 vulkan-radeon
 w3m
 webkit2gtk
-weechat
 wget
 wine
 wine-gecko
@@ -243,6 +243,7 @@ xcompmgr
 xdg-user-dirs
 xdotool
 xf86-input-synaptics
+xf86-input-wacom
 xf86-video-amdgpu
 xmonad
 xorg-xfontsel

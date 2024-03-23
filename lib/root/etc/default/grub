@@ -49,7 +49,7 @@ GRUB_DISABLE_RECOVERY=true
 
 # Uncomment one of them for the gfx desired, a image background or a gfxtheme
 #GRUB_BACKGROUND="/path/to/wallpaper"
-GRUB_THEME="/home/vn36/dl/pak/grub-themes/virtual_future/theme.txt"
+GRUB_THEME="/home/vn36/.local/opt/grub-themes/virtual_future/theme.txt"
 
 # Uncomment to get a beep at GRUB start
 #GRUB_INIT_TUNE="480 440 1"

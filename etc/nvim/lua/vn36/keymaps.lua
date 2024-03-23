@@ -154,7 +154,7 @@ local function foldrefresh(lhs, rhs)
     -- to prevent vim giving error when no fold found
     local ok, _ = pcall(vim.cmd, "norm!"..(rhs or lhs))
     if ok then
-      require 'indent_blankline'.refresh()
+      require 'ibl'.refresh()
     end
   end)
 end

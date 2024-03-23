@@ -32,7 +32,7 @@ return packer.startup {function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
   -- Custom {{{1
   use {
-    '~/dox/math/pa/editor/vim',
+    '~/dox/code/math/pa/editor/vim',
     as = 'vim-pa'
   }
   -- Non-lua Plugins {{{1
@@ -148,15 +148,12 @@ return packer.startup {function(use)
     'lukas-reineke/indent-blankline.nvim',
     config = function()
       vim.opt.listchars:append"tab:  "
-      require 'indent_blankline'.setup {
-        char = '▏',
-        -- max_indent_increase = 1,
-        show_first_indent_level = false,
-        -- show_current_context = false,
-        filetype_exclude = {
+      require 'ibl'.setup {
+        indent = { char = '▏'},
+        exclude = { filetypes = {
           "lspinfo", "packer", "checkhealth", "help", "",
           "markdown", "man", "help", "terminal",
-        }
+        }}
       }
     end
   }

@@ -24,6 +24,8 @@ alias todo='rg "TODO|FIXME" ~/.local'
 alias gcc-err='gcc -std=c11 -pedantic -Wall -Wextra -Wbad-function-cast -Wcast-align -Wcast-qual -Wconversion -Wfloat-equal -Wformat=2 -Wlogical-op -Wmissing-declarations -Wmissing-prototypes -Wpointer-arith -Wshadow -Wstrict-prototypes -Wwrite-strings -Werror'
 alias psc='ps -A --sort -pcpu -o comm,pcpu,pmem,rss | head -n 20'
 alias psr='ps -A --sort -rss -o comm,pcpu,pmem,rss | head -n 20'
+alias sth=''
+alias net='nmcli dev wifi list | sed 1d | fzf | sed -nr "s/[ *]*(\b[0-9A-F:]*\b).*/\1/p" | xargs -I{} nmcli dev wifi connect {}'
 # ls {{{1
 alias l='ls -alhgF --group-directories-first'
 alias ll='ls -lh --time-style=long-iso'
