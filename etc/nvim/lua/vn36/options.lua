@@ -6,6 +6,7 @@ local options={
     history=500,
     compatible=false,
     termguicolors=true,
+    linebreak=true,
     pastetoggle="<F10>",
     pumheight=10,
     autoread=true,

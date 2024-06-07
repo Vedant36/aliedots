@@ -1,6 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 // [How to maintain dwm configuration and customization in git](https://dwm.suckless.org/customisation/patches_in_git/)
 // appearance {{{1
+/* #include <X11/XF86keysym.h> */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int snap      = 4;       /* snap pixel */
@@ -109,8 +110,8 @@ static Key keys[] = {
 	/* Brightness {{{2 */
 	{ MODKEY,                       XK_F2,            spawn,          SHCMD("bright -ri -1") },
 	{ MODKEY,                       XK_F3,            spawn,          SHCMD("bright -ri 1") },
-	{ MODKEY|ControlMask,           XK_F2,            spawn,          SHCMD("bright -i -1") },
-	{ MODKEY|ControlMask,           XK_F3,            spawn,          SHCMD("bright -i 1") },
+	{ 0,                            XF86XK_MonBrightnessDown, spawn,  SHCMD("bright -i -1") },
+	{ 0,                            XF86XK_MonBrightnessUp, spawn,    SHCMD("bright -i 1") },
     /* Dwmblocks {{{2 */
 	{ MODKEY,                       XK_b,             togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_b,             spawn,          SHCMD("pkill sleep") },

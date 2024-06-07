@@ -1,3 +1,4 @@
+0ad
 acpi
 acpid
 age
@@ -6,6 +7,7 @@ alsa-utils
 amd-ucode
 amdvlk
 android-tools
+appstream-glib
 arandr
 arch-install-scripts
 archlinux-contrib
@@ -20,8 +22,10 @@ bat
 bc
 bind
 binwalk
+boost
 bridge-utils
 btop
+calf
 calibre
 ccache
 ccze
@@ -43,6 +47,7 @@ dmidecode
 dnsmasq
 dpkg
 dunst
+easyeffects
 ed
 edk2-ovmf
 efibootmgr
@@ -61,6 +66,7 @@ ffmpegthumbnailer
 firefox
 flake8
 fzf
+gcc-fortran
 gcr
 gdb
 ghc
@@ -69,6 +75,8 @@ gimp
 git
 gnuplot
 grub
+gst-plugin-gtk
+gst-plugins-bad
 hashcat
 haskell-base-prelude
 haskell-random
@@ -76,6 +84,7 @@ helvum
 hq
 hspell
 htop
+hwinfo
 hyperfine
 imagemagick
 inetutils
@@ -84,6 +93,7 @@ ipython
 irqbalance
 irssi
 ispell
+itstool
 john
 jq
 jre17-openjdk
@@ -101,7 +111,6 @@ linux
 linux-firmware
 linux-headers
 linux-lts
-linux-zen
 linux-zen-headers
 lostfiles
 love
@@ -115,6 +124,7 @@ macchanger
 man-db
 man-pages
 mediainfo
+meson
 mlocate
 moreutils
 mpc
@@ -135,6 +145,7 @@ net-tools
 netctl
 nethogs
 networkmanager
+nfs-utils
 nicotine+
 nm-connection-editor
 nmap
@@ -154,9 +165,11 @@ pavucontrol
 pdfjs
 pdftk
 perf
+pinta
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
+playerctl
 powertop
 pulsemixer
 pv
@@ -180,15 +193,18 @@ qjackctl
 quicklisp
 qutebrowser
 ranger
+raylib
 redshift
 ripgrep
 rlwrap
+rnnoise
 rsync
 sagemath
 sbcl
 scrot
 socat
 speedtest-cli
+sqlitebrowser
 steam
 strace
 stumpwm
@@ -251,9 +267,11 @@ xsel
 xss-lock
 yarn
 yt-dlp
+zam-plugins
 zathura
 zathura-djvu
 zathura-pdf-mupdf
 zathura-ps
 zip
+zita-convolver
 zsh

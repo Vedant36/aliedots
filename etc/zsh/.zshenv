@@ -13,6 +13,7 @@ export LESS='--RAW-CONTROL-CHARS --squeeze-blank-lines --quit-on-intr --quit-if-
 export PAGER=less
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export SSH_ASKPASS='pinentry'
+export XCURSOR_THEME='Breeze_Light'
 
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US.UTF-8'

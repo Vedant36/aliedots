@@ -35,7 +35,7 @@ es(){(
 	[ -d ${SE} ] || exit
     tar c ${SE} | gpg -r "Vedant Neema" -e>${SE}.tar.gpg
 	rm -rf $SE
-    cp ${SE}.tar.gpg ~/.local/lib/private/${SE}-post.tar.gpg
+    cp -f ${SE}.tar.gpg ~/.local/lib/private/${SE}-post.tar.gpg
 	popd
 )}
 # package manager wrapper(s) {{{1
@@ -70,33 +70,3 @@ exdir(){
     [[ -d "$i" ]] && mv $i/*(D) . && rmdir $i
   done
 }
-# touch woman {{{1
-touch(){
-    if [[ "$1" =~ "wom[ae]n" ]]; then
-        cat <<EOF
-Hello, I noticed you have a profile picture of a very beautiful (but also intelligent looking!) female, and I am under the presumption that this goddess is you?
-
-It is quite astonishing to see a female here in the Pakistan Official discord. I am quite popular around here in this server, so if you require guidance, please throw me a mention. I will assist you at any hour, day or night. And, before you are mistaken, I do not seek your hand in a romantic way; although I am not opposed in the event you are interested in me, as many women often are. I am a man of standard, and I do not bow to just any female that comes my way, unlike my peers...
-
-So rest assured that I will not be in the way of your gaming and socializing experience. Consider me a Player 2. A companion, a partner, and perhaps we can enjoy some video games together some time.
-
-I see you play mini games? I am a mini-game aficionado, so I would be happy to assist you in games. Platonically of course, unless you (like many others) change your mind on that. I look forward to our future together (as friends of course.)
-EOF
-        echo "\e[1;91mFATAL ERROR: Can't touch woman\e[m"
-        return 1
-    elif [[ "$1" == "grass" ]]; then
-        echo "GO OUT AND TOUCH SOME FUCKING GRASS"
-        echo "\e[1;91mFATAL ERROR: Can't touch grass\e[m"
-        return 1
-    else
-        command touch $@
-    fi
-}
-# # troll rm version {{{1
-# rm(){
-#   if [[ $@ = '-rf qwe' ]];then
-#     mpv 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' 2>/dev/null 1>/dev/null
-#   else
-#     /bin/rm $@
-#   fi
-# }

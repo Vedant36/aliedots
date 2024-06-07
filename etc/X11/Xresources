@@ -1,7 +1,7 @@
 ! Vedant36 Xresources
 ! all themes are now seperated into seperate files
 #include "themes/tokyonight"
-Xcursor.theme: Breeze_Snow
+Xcursor.theme: Breeze_Light
 !! Only way Ive found to set the cursor theme
 ! Appearence {{{1
 *.fading: 5

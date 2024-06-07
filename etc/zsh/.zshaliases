@@ -107,6 +107,7 @@ alias ct='cd ~/dox/textfiles/'
 alias cy='cd ~/dox/Python'
 alias cx='cd ~/dox'
 alias cz='cd $ZDOTDIR'
+alias co='cd ~/.local/opt'
 # vim editing files {{{1
 vv(){ nvim "$1"_"$(date '+%F_%H%M%S')"; }
 alias vh='nvim $HISTFILE'

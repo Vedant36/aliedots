@@ -80,17 +80,17 @@ c.aliases["sleep"] = "later"
 # Search Engines {{{1
 c.url.searchengines = {
     # actual search engines
-    #'DEFAULT': 'https://www.google.com/search?hl=en&q={}',
     'as': 'https://astiango.com/search.php?q={}',
     'am': 'https://www.amazon.in/s?k={}',
     'DEFAULT': 'https://www.google.com/search?hl=en&q={}',
+    'g': 'https://www.google.com/search?hl=en&q={}',
     'gs': 'https://scholar.google.com/scholar?hl=en&q={}',
     'd': 'https://www.duckduckgo.com/?q={}',
     'dh': 'https://html.duckduckgo.com/html?q={}',  # nojs version of duckduckgo
     '4': 'https://4chan.org/{}',
     'l': 'https://www.lainchan.org/{}',
     'mw': 'https://www.merriam-webster.com/dictionary/{}',
-    'ly': 'https://lyrics.com/lyrics/{}',  # lyric finding engine
+    'ly': 'https://www.lyrics.com/lyrics/{}',  # lyric finding engine
     'r': 'https://old.reddit.com/r/{}',
     's': 'https://open.spotify.com/search/{}',
     'st': 'https://startpage.com/do/metasearch.pl?query={}',
@@ -109,6 +109,7 @@ c.url.searchengines = {
     'mc': 'https://minecraft.fandom.com/wiki/{}',
     'sd': 'https://stardewvalleywiki.com/{}',
     'f': 'https://wiki.factorio.com/{}',
+    'ug': 'https://www.ultimate-guitar.com/search.php?search_type=title&value={}',
     # IRC channels
     'ns': 'https://netsplit.de/channels/?chat={}',
     # books
@@ -118,7 +119,7 @@ c.url.searchengines = {
     'bf': 'https://libgen.is/fiction/?q={}',
     'b2': 'https://1lib.in/s/{}',
     'b3': 'https://www.pdfdrive.com/search?q={}',
-    'b4': 'https://libgen.rs/search?query={}',
+    'b4': 'https://libgen.rs/search?req={}',
     'b5': 'https://libgen.st/search?query={}',
     # academics
     'o': 'http://oeis.org/search?q={}',
@@ -244,6 +245,9 @@ c.bindings.commands["normal"] = {
 
     # to change playback rate on youtube
     ",y": "cmd-set-text -s :jseval -q document.querySelector('video').playbackRate =",
+
+    # enable scroll
+    ",S": "jseval -q document.body.style.overflow = 'visible'",
 }
 c.bindings.commands["insert"] = {
     "<Ctrl-a>": "fake-key <Home>",

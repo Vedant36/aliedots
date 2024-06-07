@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 # script to mount removable media using udisks and dmenu
 # we can't mount if the running kernel is not the same as the currently compiled one
-[ "$(pacman -Qi linux-zen | grep Version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')" != "$(uname -r | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')" ] \
+[ "$(pacman -Qi linux | grep Version | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')" != "$(uname -r | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')" ] \
     && notify-send -u critical 'Reboot after kernel upgrade!' && exit 1
 usb_devices=$(lsblk -nrpo "name,type,size,mountpoint" | sed -E '/(\/dev\/nvme0n1|disk)/d')
 android_devices=$(timeout 1 simple-mtpfs -l 2>/dev/null)
