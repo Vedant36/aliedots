@@ -22,7 +22,7 @@ setxkbmap -option ctrl:nocaps
 # for another mod key
 #clear mod3
 #keysym F8 = Hyper_R
-xset r rate 200 200 # key delay and repeat
+xset r rate 200 50 # key delay and repeat
 xset m 4 0 # mouse speed
 # turn off repeat for return and tab
 xset -r 36

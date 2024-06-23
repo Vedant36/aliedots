@@ -11,4 +11,6 @@
 */3 * * * * "$HOME"/.local/bin/scripts/bat_alert.sh
 */5 * * * * "$HOME"/.local/bin/experimental/bat_log.sh
 */5 * * * * "$HOME"/.local/bin/scripts/event
+*/10 * * * * "$HOME"/.local/bin/scripts/net-usage.sh
+*/30 * * * * "$HOME"/.local/bin/scripts/np4-stats.py log 530 >> "~/.local/var/log/playerdata.csv"
 

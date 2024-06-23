@@ -23,7 +23,6 @@ BASEDIR = os.getenv("XDG_CONFIG_HOME", os.path.join(os.getenv('HOME'), '.config'
 # TODO: darkmode and better-duckduckgo not working
 c.content.user_stylesheets = [
     f'{BASEDIR}/qutebrowser/fix-tooltips.qss',
-    f'{BASEDIR}/qutebrowser/wikipedia.user.css',
     # f'{BASEDIR}/qutebrowser/darkmode.qss',
     # f'{BASEDIR}/qutebrowser/better-duckduckgo.css'
 ]
