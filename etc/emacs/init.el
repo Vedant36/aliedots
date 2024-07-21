@@ -1,4 +1,4 @@
-;;;; Vedant36's emacs configuration
+/;;;; Vedant36's emacs configuration
 ;;;; TODO: undo tree
 ;;;; mods: ivy,lsp(has eldoc like thing for other langs)
 ;;;; check out for rgb highlighting: emacs-color, rainbow-mode
@@ -27,10 +27,17 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
+(setq ido-file-extensions-order '(".tex" ".org"
+				  t
+				  ".elc" ".png" ".pdf" ""))
 (windmove-default-keybindings)
 (electric-pair-mode 1)
 (global-unset-key (kbd "C-z"))
 (global-set-key (kbd "C-c o") 'occur)
+(setq bookmark-alist
+      '(("todo.org" (filename . "~/dox/org/todo.org"))
+	("schedule.org" (filename . "~/dox/org/schedule.org"))
+	("init.el" (filename . "~/.local/etc/emacs/init.el"))))
 ;; SYSTEM_SPECIFIC::Save the "emacs autosaving" files to a seperate directory
 (setq backup-directory-alist '(("." . "~/.local/var/lib/emacs")))
 (setq find-function-C-source-directory "~/.local/opt/emacs/src")
@@ -62,6 +69,10 @@
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
+(require 'org)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t)))
 (use-package org-mode
   :ensure nil
   :defer t
@@ -69,13 +80,17 @@
   (setq org-html-validation-link nil)
   (setq org-special-ctrl-a/e t)
   (setq org-startup-indented t)
+  (setq org-startup-folded 'overview)
   (setq org-agenda-span 14)
+  (setq fill-column 79)
   ;; to get >greentext in org-mode documents
   (defun u/greentext ()
     "Highlight >greentext in current buffer."
     (interactive)
     (highlight-lines-matching-regexp "^>" 'hi-green-b))
-  (add-hook 'org-mode-hook 'u/greentext))
+  (add-hook 'org-mode-hook 'u/greentext)
+  ;; redisplay images after executing org-babel
+  (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
 (use-package org-download
   :ensure org-download
   :commands (org-download-yank org-download-screenshot)
@@ -161,9 +176,10 @@
 (use-package yasnippet
   :defer nil
   :commands (yas-reload-all yas-minor-mode)
-  :hook (prog-mode-hook . yas-minor-mode)
+  ;; :hook (prog-mode-hook . yas-minor-mode)
   :config
-  (yas-reload-all))
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook #'yas-minor-mode))
 ;; (require 'yasnippet)
 ;; (yas-reload-all)
 ;; (add-hook 'prog-mode-hook #'yas-minor-mode)
@@ -273,9 +289,9 @@
  '(default-frame-alist
    '((font . "-UKWN-Iosevka Mayukai CodePro-normal-normal-normal-*-13-*-*-*-d-0-iso10646-1")
      (width . 137)
-     (height . 30)
-     (vertical-scroll-bars)))
+     (height . 30)))
  '(display-line-numbers-type 'relative)
+ '(org-startup-folded 'fold)
  '(package-selected-packages
    '(epresent org-tree-slide rainbow-mode graphviz-dot-mode proof-general sly slime org-download paredit helpful tree-sitter-langs tree-sitter org-drill ligature yasnippet company rainbow-delimiters magit use-package gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
 
@@ -316,3 +332,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'downcase-region 'disabled nil)

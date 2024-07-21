@@ -110,10 +110,10 @@ c.url.searchengines = {
     'f': 'https://wiki.factorio.com/{}',
     'ug': 'https://www.ultimate-guitar.com/search.php?search_type=title&value={}',
     # IRC channels
-    'ns': 'https://netsplit.de/channels/?chat={}',
+    'irc': 'https://netsplit.de/channels/?chat={}',
     # books
     'aa': 'https://annas-archive.org/search?q={}',
-    'lib': 'https://library.cmi.ac.in/cgi-bin/koha/opac-search.pl?q={}',
+    'cb': 'https://library.cmi.ac.in/cgi-bin/koha/opac-search.pl?q={}',
     'b': 'https://libgen.is/search.php?req={}',
     'bf': 'https://libgen.is/fiction/?q={}',
     'b2': 'https://1lib.in/s/{}',

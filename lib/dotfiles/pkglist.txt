@@ -62,6 +62,7 @@ eza
 fasm
 fd
 feh
+ffmpeg4.4
 ffmpegthumbnailer
 firefox
 flake8
@@ -158,6 +159,7 @@ ntp
 nuspell
 nyxt
 octave
+openblas
 openbsd-netcat
 p7zip
 pacman-contrib
@@ -195,6 +197,7 @@ qutebrowser
 ranger
 raylib
 redshift
+rhythmbox
 ripgrep
 rlwrap
 rnnoise
@@ -202,6 +205,7 @@ rsync
 sagemath
 sbcl
 scrot
+smartmontools
 socat
 speedtest-cli
 sqlitebrowser
@@ -240,6 +244,7 @@ unclutter
 unrar
 unzip
 upower
+valgrind
 virt-manager
 virt-viewer
 vis

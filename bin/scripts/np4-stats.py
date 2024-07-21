@@ -4,7 +4,10 @@ import json
 import sys
 import os
 import time
+import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import math
 
 apifile = os.path.join(os.getenv("XDG_LIB_HOME",
                                  os.path.join(os.getenv("HOME"),
@@ -19,22 +22,30 @@ if (len(sys.argv) < 3):
     os._exit(1)
 
 
-def fetch_data(game_number, savefile, suppress_print=0):
+def fetch_data(game_number, savefile, suppress_print=0, force_load=0):
     url = "https://np4.ironhelmet.com/api"
+    datafile = savefile.format(game_number)
 
-    with open(apifile, "r") as fp:
-        api = json.load(fp)
-    params = [i for i in api if i["game_number"] == game_number]
-    if not params:
-        print(f"I don't have an API key for game {sys.argv[2]}!")
-        os._exit(1)
+    if (not os.path.exists(datafile)
+            or (time.time() - os.path.getmtime(datafile)) > 3600
+            or force_load):
+        with open(apifile, "r") as fp:
+            api = json.load(fp)
+            params = [i for i in api if i["game_number"] == game_number]
+        if not params:
+            print(f"I don't have an API key for game {sys.argv[2]}!")
+            os._exit(1)
 
-    response = requests.post(url, params=params[0])
-    if (response.status_code == 200 and not suppress_print):
-        print(f"Fetch successful. {len(response.text)} bytes fetched")
-    data = json.loads(response.text)
-    with open(savefile.format(game_number), "w") as fp:
-        json.dump(data, fp, indent=4)
+        response = requests.post(url, params=params[0])
+        if (response.status_code == 200 and not suppress_print):
+            print(f"Fetch successful. {len(response.text)} bytes fetched")
+        data = json.loads(response.text)
+
+        with open(datafile, "w") as fp:
+            json.dump(data, fp, indent=4)
+    else:
+        with open(datafile, "r") as fp:
+            data = json.load(fp)
     return data
 
 
@@ -57,20 +68,23 @@ def alliance_stat(name, players):
 
 
 if (sys.argv[1] == "get"):
-    fetch_data(sys.argv[2], datfile)
+    fetch_data(sys.argv[2], datfile, force_load=1)
 
 elif (sys.argv[1] == "stat"):
-    if not os.path.isfile(datfile):
-        fetch_data(sys.argv[2], datfile)
-    with open(datfile.format(sys.argv[2]), "r") as fp:
-        data = json.load(fp)["scanning_data"]
-    players = data["players"]
+    scanning_data = fetch_data(sys.argv[2], datfile)["scanning_data"]
+    players = scanning_data["players"]
     data = []
-    data.append(alliance_stat("Ours",   [players["1"], players["4"]]))
-    data.append(alliance_stat("Yellow", [players["5"], players["6"]]))
-    data.append(alliance_stat("Corner", [players["3"], players["8"]]))
+    # names = ["Vedant36", "Kavanavak", "Steepen", "Kagami", "Nyanosaur", "TimThomas", "Goundry", "Steepen", "err0r"]
+    data.apeend(alliance_stat("nw", ["DG_Elusive", "Subzero", "Jacob26"]))
+    data.apeend(alliance_stat("nnw", ["Vedant36", "Kavanavak", "err0r"]))
+    # data.apeend(alliance_stat("nww", ["Vedant36", "Kavanavak", "err0r"]))
+    data.apeend(alliance_stat("nee", ["LoganVPrimus", "Kalestone", "Kaine"]))
+    names = ["Vedant36", "Leithen", "Galactic Hell Creator", "KILLDOZER", "Graymason", "Dunatis", "LoganVPrimus"]
+    for i in range(scanning_data["config"]["players"]):
+        if players[str(i+1)]["alias"] in names or len(sys.argv) > 3:
+            data.append(alliance_stat(players[str(i+1)]["alias"], [players[str(i+1)]]))
     df = pd.DataFrame(data, columns=alliance_columns)
-    print(df)
+    print(df.to_string())
 
 elif (sys.argv[1] == "log"):
     # incomplete. honestly dont wanna find their sleep schedules
@@ -101,7 +115,6 @@ elif (sys.argv[1] == "log"):
             print("{}, {}".format(i, hour - 1))
 
 elif (sys.argv[1] == "plot"):
-    import matplotlib.pyplot as plt
     df = pd.read_csv("~/.local/var/log/playerdata.csv", names=["player", "hour"])
     plt.scatter(df.player, df.hour)
     plt.show()
@@ -121,3 +134,61 @@ elif (sys.argv[1] == "diff"):
                 a["totalIndustry"] != b["totalIndustry"] or
                 a["totalScience"] != b["totalScience"]):
             print("{}, {}".format(i, sys.argv[3]))
+
+elif (sys.argv[1] == "ships"):
+    data = fetch_data(sys.argv[2], datfile)["scanning_data"];
+    num_ticks = 20 if len(sys.argv) < 4 else int(sys.argv[3])
+    ticks = np.arange(num_ticks)
+    # np4's pallette
+    colors = ["#0000ff", "#009fdf", "#40c000", "#ffc000",
+              "#df5f00", "#c00000", "#c000c0", "#6000c0"]
+    ax = plt.axes()
+    ax.set_facecolor("grey")
+    for i in data["players"]:
+        tmp = data["players"][i]
+        ships = tmp["totalStrength"]
+        X = tmp["tech"]["2"]["level"]
+        Y = tmp["totalIndustry"]
+        y = ships + (Y * (X + 4))/24 * ticks
+        plt.plot(ticks, y, color=colors[tmp["color"]], label=tmp["alias"])
+    plt.legend()
+    plt.show()
+
+elif (sys.argv[1] == "res"):
+    print("This scriptlet shows how many of each resource you can buy")
+    data = fetch_data(sys.argv[2], datfile)["scanning_data"];
+    players = data["players"]
+    me = [i for i in players if (players[i]["alias"] == "Vedant36") or ("war" in players[i])]
+    if (not me):
+        print("I'm not there in this game")
+        os._exit(1)
+    me = int(me[0])
+    cash = players[str(me)]["cash"] if len(sys.argv) < 4 else int(sys.argv[3])
+    print(f"I have {cash} credits")
+    stars = []
+    for n,c in enumerate(data["stars"]):
+        i = data["stars"][c]
+        if i["puid"] == me:
+            stars.append([int(c), i["r"], i["e"], i["i"], i["s"]])
+    stars = np.asarray(stars)
+    cost = [500, 1000, 4000]
+    bought = [0, 0, 0]
+    for j in [2,3,4]:
+        cashtmp = cash
+        startmp = stars.copy()
+        while cashtmp > 0:
+            minval, minidx = np.inf, 0
+            for n,i in enumerate(startmp):
+                val = cost[j-2] * (i[j] + 1) / i[1]
+                if val < minval:
+                    minval = val
+                    minidx = n
+            print(f'cost:{math.floor(minval):>3}, name:{data["stars"][str(stars[minidx][0])]["n"]}')
+            if minval < cashtmp:
+                startmp[minidx][j] += 1
+                cashtmp -= math.floor(minval)
+                bought[j-2] += 1
+            else:
+                break
+        print(f"Bought {bought[j-2]}, left {cashtmp}")
+    print(f"Bought max E{bought[0]} I{bought[1]} S{bought[2]}")

@@ -35,7 +35,7 @@ now_time="$(date +%s)"
 grep -vE '(^/\*.*\*/|^$)' "$EVENT_FILE" | \
 	while read -r i;do
 	# send a notification if $i is greater than today's date in epoch time
-	[ "$now_time" -gt "$(date +%s -d "$(field 1 "$i")")" ] && \
+	[ "$now_time" -ge "$(date +%s -d "$(field 1 "$i")")" ] && \
 		# a space after the summary allows sending the notification even when
 		# no second field is specified
 		notify-send -u critical "$(field 2 "$i"| xargs -0) $(date '+%H.%M.%S %d.%b')" "$(field 1,3- "$i")"

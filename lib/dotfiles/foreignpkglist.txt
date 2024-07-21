@@ -14,9 +14,9 @@ ds9-bin
 f2c
 ferium-bin
 ffmpeg-compat-54
-ffmpeg-compat-58
 find-the-command
 fingerpaint
+fortune-mod-off
 gcc-arm-none-eabi-bin
 geogebra-5
 i3lock-color-git
@@ -48,11 +48,13 @@ simple-mtpfs
 spotify
 stapler
 stellarium-bin
+texmacs
 tlauncher
 tor-browser
 windscribe-cli
 wolfram-js-frontend-bin
 wolframengine
+xclicker
 xcursor-breeze
 xorg-meta
 xxd-standalone
@@ -60,3 +62,4 @@ yay-bin
 youtube-dl
 youtube-to-mp3
 zoom
+zotero-bin

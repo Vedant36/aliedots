@@ -23,14 +23,15 @@ setxkbmap -option ctrl:nocaps
 #clear mod3
 #keysym F8 = Hyper_R
 xset r rate 200 50 # key delay and repeat
-xset m 4 0 # mouse speed
+xset m 0 0 # mouse speed
 # turn off repeat for return and tab
 xset -r 36
 # screen deactivate and turn off times
-xset s expose
-xset s noblank
-xset s 450 0
-xset dpms 600 600 600
+# xset s expose
+# xset s noblank
+# xset s 600
+# xset dpms 600 600 600
+xset default
 
 # startup programs {{{1
 # X only programs

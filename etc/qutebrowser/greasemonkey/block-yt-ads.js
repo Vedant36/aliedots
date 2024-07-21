@@ -14,9 +14,9 @@ setInterval(() => {
     const ad = [...document.querySelectorAll('.ad-showing')][0];
     if (ad) {
         document.querySelector('video').volume = 0;
-        for (let i = 2; i < 16; i++) {
-            document.querySelector('video').playbackRate = i;
-        }
+        // for (let i = 2; i < 8; i++) {
+        //     document.querySelector('video').playbackRate = i;
+        // }
     }
-}, 50)
+}, 100)
 
