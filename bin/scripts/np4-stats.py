@@ -53,17 +53,18 @@ def alliance_stat(name, players):
     fields = list(0 for i in alliance_columns)
     fields[0] = name
     for i in players:
-        fields[1] += i["totalStars"]
-        fields[2] += i["totalStrength"]
-        fields[3] += i["totalFleets"]
-        fields[4] += i["totalEconomy"]
-        fields[5] += i["totalIndustry"]
-        fields[6] += i["totalScience"]
-        fields[7]  = max(i["tech"]["0"]["level"], fields[7])
-        fields[8]  = max(i["tech"]["1"]["level"], fields[8])
-        fields[9]  = max(i["tech"]["2"]["level"], fields[9])
-        fields[10] = max(i["tech"]["3"]["level"], fields[10])
-        fields[11] = max(i["tech"]["5"]["level"], fields[11])
+        tmp = i
+        fields[1] += tmp["totalStars"]
+        fields[2] += tmp["totalStrength"]
+        fields[3] += tmp["totalFleets"]
+        fields[4] += tmp["totalEconomy"]
+        fields[5] += tmp["totalIndustry"]
+        fields[6] += tmp["totalScience"]
+        fields[7]  = max(tmp["tech"]["0"]["level"], fields[7])
+        fields[8]  = max(tmp["tech"]["1"]["level"], fields[8])
+        fields[9]  = max(tmp["tech"]["2"]["level"], fields[9])
+        fields[10] = max(tmp["tech"]["3"]["level"], fields[10])
+        fields[11] = max(tmp["tech"]["5"]["level"], fields[11])
     return fields
 
 
@@ -74,14 +75,10 @@ elif (sys.argv[1] == "stat"):
     scanning_data = fetch_data(sys.argv[2], datfile)["scanning_data"]
     players = scanning_data["players"]
     data = []
-    # names = ["Vedant36", "Kavanavak", "Steepen", "Kagami", "Nyanosaur", "TimThomas", "Goundry", "Steepen", "err0r"]
-    data.apeend(alliance_stat("nw", ["DG_Elusive", "Subzero", "Jacob26"]))
-    data.apeend(alliance_stat("nnw", ["Vedant36", "Kavanavak", "err0r"]))
-    # data.apeend(alliance_stat("nww", ["Vedant36", "Kavanavak", "err0r"]))
-    data.apeend(alliance_stat("nee", ["LoganVPrimus", "Kalestone", "Kaine"]))
-    names = ["Vedant36", "Leithen", "Galactic Hell Creator", "KILLDOZER", "Graymason", "Dunatis", "LoganVPrimus"]
+    data.append(alliance_stat("good", [players["1"], players["2"]]))
+    data.append(alliance_stat("evil", [players["7"]]))
     for i in range(scanning_data["config"]["players"]):
-        if players[str(i+1)]["alias"] in names or len(sys.argv) > 3:
+        if len(sys.argv) > 3:
             data.append(alliance_stat(players[str(i+1)]["alias"], [players[str(i+1)]]))
     df = pd.DataFrame(data, columns=alliance_columns)
     print(df.to_string())

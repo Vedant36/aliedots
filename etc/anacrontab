@@ -16,5 +16,5 @@ RANDOM_DELAY=45
 1	5	pkglist.sync	pacman -Qqen>"$HOME"/.local/lib/dotfiles/pkglist.txt
 1	5	foreignpkg.sync pacman -Qqem>"$HOME"/.local/lib/dotfiles/foreignpkglist.txt
 1	5	checkupdates.sync	checkupdates > ~/.local/var/log/packages.log
-1	5	playlists.bak	echo start$RANDOM > "$HOME"/start && cd "$HOME"/.local/etc/mpd/playlists && echo mid$RANDOM>"$HOME"/mid && git add . && echo midstill>"$HOME"/midstill && git commit -m "autobackup" && echo end$RANDOM > "$HOME"/end
+1	5	playlists.bak	echo start$RANDOM > "$HOME"/start && cd "$HOME"/.local/etc/mpd/playlists && echo mid$RANDOM>"$HOME"/mid && git add . && echo midstill>"$HOME"/midstill && git commit -m "autobackup" 2>&1 > "$HOME"/comlog
 # vim: ft=crontab:noet

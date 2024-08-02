@@ -20,12 +20,12 @@ fortune-mod-off
 gcc-arm-none-eabi-bin
 geogebra-5
 i3lock-color-git
+ladybird
 liberica-jre-8-full-bin
 lua-inspect
 magicrescue
 minecraft-launcher
 mkmm
-mpdscribble
 multitime
 nbtexplorer-bin
 neovim-nightly-bin
@@ -48,6 +48,7 @@ simple-mtpfs
 spotify
 stapler
 stellarium-bin
+sublime-text-3
 texmacs
 tlauncher
 tor-browser

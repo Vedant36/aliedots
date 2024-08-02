@@ -96,7 +96,6 @@ c.url.searchengines = {
     'su': 'https://steamunlocked.net/?s={}',
     'wiby': 'https://wiby.me/?q={}',
     'scp': 'https://scp-wiki.wikidot.com/scp-{}',
-    'x': 'https://swag.pw/search?q={}',
     'y': 'https://youtube.com/search?q={}',
     'yt': 'https://yewtu.be/search?q={}',  # invidious
     'yw': 'https://yewtu.be/watch?v={}',
@@ -205,7 +204,7 @@ c.bindings.commands["normal"] = {
 
     # pass fake key to qutebrowser
     **{f"e{i}": f"fake-key {i}"
-        for i in "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"},
+        for i in "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM`1234567890~!@#$%^&*()"},
     "e<space>": "fake-key <esc>",
 
     # like gi but clears text too(on most sites)

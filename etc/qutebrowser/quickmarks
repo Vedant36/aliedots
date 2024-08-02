@@ -28,7 +28,7 @@ bf https://brainfuck-visualizer.herokuapp.com/
 lua https://www.lua.org/manual/5.4/manual.html
 xdg https://wiki.archlinux.org/title/XDG_Base_Directory
 tpbp https://thepirateproxybay.com/
-syscall https://chromium.googlesource.com/chromiumos/docs/+/HEAD/constants/syscalls.md
+syscall https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/syscalls/
 gb https://godbolt.org/
 mt https://monkeytype.com/
 gwa https://wiki.installgentoo.com/wiki/List_of_recommended_Android_software
@@ -135,7 +135,8 @@ rs https://researchseminars.org/
 scal https://pma.caltech.edu/courses
 smit https://catalog.mit.edu/subjects/
 ps https://papersizes.io/
-ruler https://www.piliapp.com/actual-size/cm-ruler/
+ruler https://www.ginifab.com/feeds/cm_to_inch/actual_size_ruler.html
 type https://www.keybr.com/
 latex2 https://arachnoid.com/latex/
 lib https://www.gutenberg.org/files/12513/12513-h/12513-h.htm
+raymath https://www.raylib.com/cheatsheet/raymath_cheatsheet.html

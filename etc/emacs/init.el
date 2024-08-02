@@ -1,4 +1,4 @@
-/;;;; Vedant36's emacs configuration
+;;;; Vedant36's emacs configuration
 ;;;; TODO: undo tree
 ;;;; mods: ivy,lsp(has eldoc like thing for other langs)
 ;;;; check out for rgb highlighting: emacs-color, rainbow-mode
@@ -16,6 +16,8 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
+(add-to-list 'default-frame-alist
+             '(vertical-scroll-bars . nil))
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
 (idle-highlight-mode 1)
@@ -235,6 +237,7 @@
 	python-shell-interpreter-args "-i --autocall=2 --nosep --simple-prompt"))
 
 ;; C
+(setq compilation-auto-jump-to-first-error 'first-known)
 (add-hook 'c-mode-hook
 	            (lambda () (local-set-key (kbd "C-c C-c") #'compile)))
 ;;; lcs: from https://www.kernel.org/doc/html/v4.10/process/coding-style.html
@@ -293,7 +296,7 @@
  '(display-line-numbers-type 'relative)
  '(org-startup-folded 'fold)
  '(package-selected-packages
-   '(epresent org-tree-slide rainbow-mode graphviz-dot-mode proof-general sly slime org-download paredit helpful tree-sitter-langs tree-sitter org-drill ligature yasnippet company rainbow-delimiters magit use-package gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
+   '(yafolding smooth-scroll epresent org-tree-slide rainbow-mode graphviz-dot-mode proof-general sly slime org-download paredit helpful tree-sitter-langs tree-sitter org-drill ligature yasnippet company rainbow-delimiters magit use-package gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))

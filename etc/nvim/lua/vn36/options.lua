@@ -36,6 +36,8 @@ local options={
     sessionoptions="buffers,curdir,folds,tabpages,globals",
     foldmethod="marker", fillchars="fold:-",
     mouse="",
+    wrap=true,
+    smoothscroll=true,
 }
 
 for k, v in pairs(options) do

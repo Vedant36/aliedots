@@ -120,7 +120,7 @@ setopt hist_no_store
 # sourcings(7) fastest to slowest {{{1
 export FZF_DEFAULT_COMMAND="fd -H -E '\.git/'"
 export  FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export   FZF_ALT_C_COMMAND='fd -H --type d -E "\.git/"'
+export   FZF_ALT_C_COMMAND='fd -H -I --type d -E "\.git/"'
 export FZF_DEFAULT_OPTS="--height=20 -m --reverse --info=inline --tiebreak=index"
 export  FZF_CTRL_T_OPTS="--tiebreak=begin --preview 'preview {}'"
 export   FZF_ALT_C_OPTS="--tiebreak=begin --preview 'preview {}'"

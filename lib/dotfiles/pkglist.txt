@@ -75,6 +75,7 @@ ghc-static
 gimp
 git
 gnuplot
+gparted
 grub
 gst-plugin-gtk
 gst-plugins-bad
@@ -125,11 +126,13 @@ macchanger
 man-db
 man-pages
 mediainfo
+memtester
 meson
 mlocate
 moreutils
 mpc
 mpd
+mpdscribble
 mpv
 mupdf
 mupdf-tools
@@ -158,6 +161,7 @@ ntfs-3g
 ntp
 nuspell
 nyxt
+obs-studio
 octave
 openblas
 openbsd-netcat
@@ -205,6 +209,7 @@ rsync
 sagemath
 sbcl
 scrot
+sdparm
 smartmontools
 socat
 speedtest-cli
@@ -238,6 +243,7 @@ ttf-arphic-uming
 ttf-indic-otf
 ttf-iosevka-nerd
 ttf-nerd-fonts-symbols
+udiskie
 udisks2
 ufw
 unclutter
@@ -253,6 +259,7 @@ vulkan-radeon
 w3m
 webkit2gtk
 wget
+whois
 wine
 wine-gecko
 wine-mono
