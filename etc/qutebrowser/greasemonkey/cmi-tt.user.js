@@ -7,5 +7,5 @@
 // ==/UserScript==
 
 setTimeout(function () {
-    document.getElementById("hl_prog_BP2").click()
+    document.getElementById("hl_prog_OPP").click()
 }, 10)

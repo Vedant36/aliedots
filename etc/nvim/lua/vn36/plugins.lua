@@ -197,23 +197,23 @@ return packer.startup {function(use)
     },
     config = function() require 'vn36.telescope' end
   }
-  -- Treesitter {{{1
-  local treesitter_ft = {
-    -- "bash", "c", "cpp", "css", "go", "haskell", "html", "javascript", "java",
-    -- "json", "lua", "make", "python", "rust", "sh", "vim", "yaml", "lisp"
-  }
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-    ft = treesitter_ft,
-    cmd = ':TSInstall',
-    requires = {
-      -- reverse-dependencies
-      { 'p00f/nvim-ts-rainbow', ft = treesitter_ft }, -- rainbow brackets
-      { 'JoosepAlviste/nvim-ts-context-commentstring', ft = treesitter_ft }
-    },
-    config = function() require 'vn36.treesitter' end
-  }
+  -- -- Treesitter {{{1
+  -- local treesitter_ft = {
+  --   -- "bash", "c", "cpp", "css", "go", "haskell", "html", "javascript", "java",
+  --   -- "json", "lua", "make", "python", "rust", "sh", "vim", "yaml", "lisp"
+  -- }
+  -- use {
+  --   'nvim-treesitter/nvim-treesitter',
+  --   run = ':TSUpdate',
+  --   ft = treesitter_ft,
+  --   cmd = ':TSInstall',
+  --   requires = {
+  --     -- reverse-dependencies
+  --     { 'p00f/nvim-ts-rainbow', ft = treesitter_ft }, -- rainbow brackets
+  --     { 'JoosepAlviste/nvim-ts-context-commentstring', ft = treesitter_ft }
+  --   },
+  --   config = function() require 'vn36.treesitter' end
+  -- }
 
   use {
     'windwp/nvim-autopairs',

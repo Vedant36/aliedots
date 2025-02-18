@@ -5,7 +5,6 @@ GRUB_DEFAULT=saved
 GRUB_TIMEOUT=1
 GRUB_DISTRIBUTOR="Arch"
 GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 acpi_osi=Linux video.use_native_backlight=1 CONFIG_FW_LOADER_COMPRESS page_alloc.shuffle=1"
-# GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 acpi_osi=Linux acpi_backlight=video CONFIG_FW_LOADER_COMPRESS mitigations=off page_alloc.shuffle=1"
 # kernel parameters: quiet splash nouveau.noaccel=1 acpi_sleep=nonvs
 # mitigations=off: makes processing ~10% faster but makes laptop vulnerable to
 # CVE-2017-5753, CVE-2017-5715, CVE-2018-3639

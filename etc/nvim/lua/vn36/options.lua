@@ -7,7 +7,7 @@ local options={
     compatible=false,
     termguicolors=true,
     linebreak=true,
-    pastetoggle="<F10>",
+    -- pastetoggle="<F10>",
     pumheight=10,
     autoread=true,
     modelines=1,
@@ -35,7 +35,7 @@ local options={
     omnifunc="syntaxcomplete#Complete",
     sessionoptions="buffers,curdir,folds,tabpages,globals",
     foldmethod="marker", fillchars="fold:-",
-    mouse="",
+    mouse="a",
     wrap=true,
     smoothscroll=true,
 }

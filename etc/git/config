@@ -26,3 +26,5 @@
 	tool = vimdiff
 [advice]
 	detachedHead = false
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/

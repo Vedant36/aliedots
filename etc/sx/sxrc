@@ -27,11 +27,13 @@ xset m 0 0 # mouse speed
 # turn off repeat for return and tab
 xset -r 36
 # screen deactivate and turn off times
-# xset s expose
-# xset s noblank
-# xset s 600
-# xset dpms 600 600 600
-xset default
+xset s expose
+xset s noblank
+xset s 3600
+xset s off
+xset dpms 3600 3600 3600
+xset -dpms
+xset s default
 
 # startup programs {{{1
 # X only programs
@@ -66,7 +68,7 @@ dwm_bar() {
 # loop until X dies
 while xset q &>/dev/null; do
 	dwm_bar &
-	ssh-agent dwm >"$XDG_LOG_HOME"/dwm.log 2>&1 || exit
+	ssh-agent dwm >"$XDG_LOG_HOME"/dwm.log 2>&1
 done
 trap 'pkill "$SSH_AGENT_PID";' EXIT HUP TERM QUIT
 

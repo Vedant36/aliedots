@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+cd /home/vn36/.local/opt/zulu21.32.17-ca-fx-jre21.0.2-linux_x64/bin/
+./java -jar /home/vn36/.local/opt/mcaselector-2.4.2.jar

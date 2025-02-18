@@ -60,15 +60,29 @@ ce(){
 # Subcommands' implementation
 case $1 in
     backup) # {{{1
+        no-root
+
+        ce "Backing up crontab"
         crontab -l > "$PREFIX"/lib/dotfiles/crontab
-        mkdir -p ~/dl/tocopy/zsh/
+
+        HARDDRIVE_DIR="$HOME/dl/tocopy/zsh/"
+        ce "Adding Hard drive backups to $HARDDRIVE_DIR"
+        mkdir -p "$HARDDRIVE_DIR"
         cp -f "$PREFIX"/share/zsh/.zsh_history ~/dl/tocopy/zsh/.zsh_history-"$(date +%s)"
         grep -v "^':" "$PREFIX"/share/ranger/bookmarks \
             | sort -t: -k2 -V > "$PREFIX"/lib/dotfiles/bookmarks
+
+        ce "Updating Package lists"
+        pushd "$PREFIX"
+        pacman -Qqen>lib/dotfiles/pkglist.txt
+        pacman -Qqem>lib/dotfiles/foreignpkglist.txt
+        popd
+
         ;;
 
     check) # {{{1
         no-root
+
         ce "Checking repositories in opt..."
         pushd "$PREFIX"/opt
             for i in dmenu dwm scroll slock st surf tabbed;do
@@ -79,7 +93,7 @@ case $1 in
 
     install) # {{{1
         # TODO: convert subcommands into a funciton for more modularity
-        command "$0" backup
+        #command "$0" backup
         no-root
         pushd "$PREFIX"
         # Linking {{{2
@@ -152,8 +166,8 @@ case $1 in
         popd
 
         # Neovim {{{2
-        ce "Installing Neovim plugins..."
-        nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+        #ce "Installing Neovim plugins..."
+        #nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
         # Ranger {{{2
         ce "Updating ranger plugins..."
@@ -164,10 +178,6 @@ case $1 in
         ce "Copying youtube-to-mp3 config..."
         mkdir -p etc/MediaHuman
         cp "$PREFIX/lib/dotfiles/YouTube to MP3.conf" etc/MediaHuman/
-
-        ce "Updating Package lists..."
-        pacman -Qqen>lib/dotfiles/pkglist.txt
-        pacman -Qqem>lib/dotfiles/foreignpkglist.txt
 
         # End }}}2
         popd

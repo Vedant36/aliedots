@@ -1,4 +1,11 @@
 # Vedant36's zsh functions
+# mkcd and extract {{{1
+mkcd () {
+    mkdir -p "$1" && cd "$1"
+}
+extract () {
+    mv "$1"/* .
+}
 # simple recursive cd that matches the directory name(really inconsistent) {{{1
 j () {
     if [ "$1" ]; then

@@ -20,7 +20,7 @@ bat_state="$(upower -i "$(cat "$XDG_STATE_HOME"/BAT)" \
 state="▲"; [[ "$bat_state" =~ discharging ]] && state="▼"
 bat="${state} $(tail -n2 <<< "$bat_state" | tac | paste -sd ' ')"
 
-volume="$(if pactl list sinks | grep 'Mute: yes' >/dev/null; then echo "婢"; else echo "墳"; fi) $(pactl list sinks | grep -Po '^\s*Volume:.*/\s*\K.*?(?=\s*/)')"
+volume="$(if pactl get-sink-mute @DEFAULT_SINK@ | grep 'Mute: yes' >/dev/null; then echo "婢"; else echo "墳"; fi) $(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '^\s*Volume:.*/\s*\K.*?(?=\s*/)')"
 
 time=" $(date '+%H:%M')"
 date=" $(date '+%a %F')"

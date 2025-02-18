@@ -1,17 +1,12 @@
 ## Arch Linux mirrorlist
-# With:       rankmirrors -m 1 -v $(curl https://archlinux.org/mirrorlist/all/https/)
-# On:         2022-01-22 01:34:51 UTC
-# By:         Vedant36
+# Command: curl -s "https://archlinux.org/mirrorlist/?protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -m 2 -v -
+# On: Tue Jan 28 02:14:06 PM IST 2025
+
+# India
+Server = https://mirror.fossindia.ovh/archlinux/$repo/os/$arch
+Server = https://in.mirrors.cicku.me/archlinux/$repo/os/$arch
+Server = https://mirror.albony.in/archlinux/$repo/os/$arch
+Server = https://mirrors.piconets.webwerks.in/archlinux-mirror/$repo/os/$arch
 
 # Sweden
 Server = https://mirror.osbeck.com/archlinux/$repo/os/$arch
-
-# India
-Server = https://mirrors.piconets.webwerks.in/archlinux-mirror/$repo/os/$arch
-
-# Germany
-Server = https://appuals.com/archlinux/$repo/os/$arch
-
-# Australia
-Server = https://arch.lucassymons.net/$repo/os/$arch
-

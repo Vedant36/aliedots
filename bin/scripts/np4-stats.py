@@ -76,7 +76,7 @@ elif (sys.argv[1] == "stat"):
     players = scanning_data["players"]
     data = []
     data.append(alliance_stat("good", [players["1"], players["2"]]))
-    data.append(alliance_stat("evil", [players["7"]]))
+    data.append(alliance_stat("evil", [players["7"], players["8"]]))
     for i in range(scanning_data["config"]["players"]):
         if len(sys.argv) > 3:
             data.append(alliance_stat(players[str(i+1)]["alias"], [players[str(i+1)]]))

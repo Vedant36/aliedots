@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-pushd "$HOME/dox" >/dev/null || exit "$ENOTDIR";
-book="$(find {oldbooks,allbooks,college} -type f | dmenu -i)"
+pushd "$HOME" >/dev/null || exit "$ENOTDIR";
+book="$(find dox/{allbooks,college,oldbooks} pix/{cheatsheets,documents} -type f | sort -n | dmenu -i)"
 popd >/dev/null || exit "$ENOTDIR";
-[ "$book" ] && zathura ~/dox/"$book"
+[ "$book" ] && xdg-open ~/"$book"

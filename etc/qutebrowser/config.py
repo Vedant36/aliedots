@@ -34,6 +34,7 @@ c.editor.command = [*TERMCMD, 'nvim', '-c', 'norm {line}G{column0}l', '{file}']
 c.hints.border = '0'
 c.hints.chars = 'asdfjkl;ghnmxcvbziowerut'
 c.hints.padding = {"bottom": 1, "left": 1, "right": 1, "top": 1}
+c.completion.open_categories = ["history", "searchengines", "quickmarks", "bookmarks"]
 c.input.insert_mode.auto_load = True
 c.scrolling.bar = 'when-searching'
 c.scrolling.smooth = True
@@ -108,11 +109,13 @@ c.url.searchengines = {
     'sd': 'https://stardewvalleywiki.com/{}',
     'f': 'https://wiki.factorio.com/{}',
     'ug': 'https://www.ultimate-guitar.com/search.php?search_type=title&value={}',
+    'gog': 'https://gog-games.to/?q={}',
     # IRC channels
     'irc': 'https://netsplit.de/channels/?chat={}',
     # books
     'aa': 'https://annas-archive.org/search?q={}',
-    'cb': 'https://library.cmi.ac.in/cgi-bin/koha/opac-search.pl?q={}',
+    'lib': 'https://library.cmi.ac.in/cgi-bin/koha/opac-search.pl?q={}',
+    'imscl': 'https://library.cmi.ac.in/cgi-bin/koha/opac-search.pl?q={}',
     'b': 'https://libgen.is/search.php?req={}',
     'bf': 'https://libgen.is/fiction/?q={}',
     'b2': 'https://1lib.in/s/{}',
@@ -146,7 +149,7 @@ c.url.searchengines = {
     'hw': 'https://wiki.haskell.org/{}',
     'hb': 'https://en.wikibooks.org/wiki/Haskell/{}',
     'nlab': 'https://www.google.com/search?as_q={}&as_sitesearch=https://ncatlab.org/nlab',
-    'cl': 'https://en.cppreference.com/w/c/language/{}',
+    'Cl': 'https://en.cppreference.com/w/c/language/{}',
     'dd': 'https://devdocs.io/{}',
     'gh': 'https://github.com/{}',
     'gl': 'https://github.com/Vedant36/{}',
@@ -157,7 +160,7 @@ c.url.searchengines = {
     'xy': 'https://learnxinyminutes.com/docs/{}',  # learning new prog.lang.
     # films and shows
     'an': 'https://zoro.to/search?keyword={}',  # anime
-    'mr': 'https://mangareader.to/search?keyword={}',
+    'mr': 'https://mangadex.org/search?q={}',
     'p': 'https://thepiratebay.org/search.php?q={}',
     'p2': 'https://tpb.one/search.php?q={}',
 }

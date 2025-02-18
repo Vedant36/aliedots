@@ -6,21 +6,22 @@
 # Commit: 82d1a72
 # Modified by : Vedant36
 
+primary=#ffffffff
+secondary=#2460A3ff
 # Configurable settings
-insidecolor=#a9b1d6ff
-ringcolor=#ffffffff
-keyhlcolor=#9ece6aee
-bshlcolor=#9ece6aee
-separatorcolor=#9ece6aee
-insidevercolor=#9ece6aee
-insidewrongcolor=#9ece6aee
-ringvercolor=#ffffffff
-ringwrongcolor=#ffffffff
-verifcolor=#ffffffff
-timecolor=#ffffffff
-datecolor=#ffffffff
+insidecolor=#a9b1d600
+ringcolor=$primary
+keyhlcolor=$secondary
+bshlcolor=$secondary
+separatorcolor=$secondary
+insidevercolor=$secondary
+insidewrongcolor=$secondary
+ringvercolor=$primary
+ringwrongcolor=$primary
+verifcolor=$primary
+timecolor=$primary
+datecolor=$primary
 
-loginbox=#7aa2f733
 font="iosevka mayukai codepro"
 locktext="100 seconds to midnight"
 time_format='%H:%M:%S'
@@ -32,8 +33,9 @@ lock() {
 	dunstctl set-paused true
 
 	# feels like slock is better anyway
-	slock
-	: i3lock \
+	# are you crazy? it's literally blank. stop sucklessing
+	# slock
+	i3lock \
 		--nofork \
 		--ignore-empty-password \
 		--color=00000000 \
@@ -60,32 +62,21 @@ lock() {
 update() {
 	# DONTUSE: incomplete
     work_dir="$XDG_CACHE_HOME"/alie
-	converted="$XDG_CACHE_HOME"/alie/lockscreen.png
-    [ -d "$work_dir" ] || \
-        [ "$(stat -c '%Y' "$converted")" -gt "$(stat -c '%Y' "$1")" ] && return
+	converted="$XDG_CACHE_HOME"/alie/"$(basename ${1%.*}.jpg)"
+    # [ -d "$work_dir" ] || \
+    #     [ "$(stat -c '%Y' "$converted")" -gt "$(stat -c '%Y' "$1")" ] && return
 	mkdir -p "$XDG_CACHE_HOME"/alie/
 	res=$(xdpyinfo | grep -Po 'dimensions:\s*\K\d+x\d+')
 
-	rectangles=" "
-	RES=$(xrandr --query | grep -Po ' connected.*?\K\d+x\d+\S*')
-	SRA="${RES//[x+]/ }"
-	CX=$((SRA[2] + $(logical_px 25)))
-	CY=$((SRA[1] - $(logical_px 30)))
-	rectangles+="rectangle $CX,$CY $((CX+$(logical_px 300))),$((CY-$(logical_px 80))) "
-
-	# resize image
-	convert "$orig_wall" -resize "$res""^" -gravity center -extent "$res" "$resized"
-
-	echo
-	echo 'Caching images for faster screen locking'
-	# resized
-	convert "$resized" -draw "fill #$loginbox $rectangles" "$l_resized"
+	# resize and blur image
+	convert "$1" -resize "$res""^" -gravity center -extent "$res" -blur 4x4 "$converted"
+	echo "New image at: $converted"
 }
 
 case "$1" in
-	# -u|--update)
-	# 	update "$2"
-	# 	;;
+	-u|--update)
+		update "$2"
+		;;
 	*)
 		lock
 		;;

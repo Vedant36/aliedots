@@ -99,13 +99,14 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_p,             spawn,          SHCMD(TERMLIGHT " pulsemixer") },
 	{ MODKEY|ControlMask,           XK_b,             spawn,          SHCMD(TERMLIGHT " bc -l") },
 	{ MODKEY|ShiftMask|ControlMask, XK_b,             spawn,          SHCMD("books.sh") },
-	{ MODKEY,                       XK_F1,            spawn,          SHCMD(TERMLIGHT " nvim ~/.local/opt/dwm/config.h") },
+	{ MODKEY|ShiftMask|ControlMask, XK_F1,            spawn,          SHCMD(TERMLIGHT " nvim ~/.local/opt/dwm/config.h") },
 	{ MODKEY,                       XK_s,             spawn,          SHCMD("cd $HOME/dox/textfiles && " TERM " -T textfiles nvim todo.md data.md sites.md autocmd.md math.md") },
     /* Custom Scripts {{{2 */
 	{ MODKEY|ShiftMask,             XK_r,             spawn,          SHCMD("notify-send -u low \"$(mpc|head -n1)\" \"$(mpc |awk 'NR==2')\"") },
 	{ MODKEY,                       XK_g,             spawn,          SHCMD("xdotool type \"$(grep -v '^#' ~/.local/lib/dotfiles/shortcuts | dmenu -i -l 50 | cut -d';' -f2-)\"") },
 	{ MODKEY|ShiftMask,             XK_s,             spawn,          SHCMD("state") },
 	{ MODKEY|ShiftMask,             XK_m,             spawn,          SHCMD("dmenu_mount") },
+	{ MODKEY,                       XK_x,             spawn,          SHCMD("xmouseless") },
 	{ MODKEY,                       XK_z,             spawn,          SHCMD("boomer") },
 	/* Brightness {{{2 */
 	{ MODKEY,                       XK_F2,            spawn,          SHCMD("bright -ri -1") },
@@ -123,7 +124,7 @@ static Key keys[] = {
     /* Other Apps {{{2 */
 	{ MODKEY,                       XK_d,             spawn,          SHCMD("discord") },
 	{ MODKEY,                       XK_e,             spawn,          SHCMD("emacsclient --create-frame --alternate-editor=") },
-	{ MODKEY|ShiftMask,             XK_e,             spawn,          SHCMD("lock") },
+	{ MODKEY|ShiftMask,             XK_l,             spawn,          SHCMD("lock") },
 	{ MODKEY|ControlMask,           XK_e,             spawn,          SHCMD("event") },
     /* Stack/Layout {{{2 */
 	{ MODKEY,                       XK_j,             focusstack,     {.i = +1 } },
@@ -159,6 +160,16 @@ static Key keys[] = {
 	{ MODKEY,                       XK_comma,         spawn,          SHCMD("mpc -q seek -1") },
 	{ MODKEY,                       XK_period,        spawn,          SHCMD("mpc -q seek +1") },
 	{ MODKEY,                       XK_BackSpace,     spawn,          SHCMD("mpc -q seek 0") },
+	{ 0,                            XF86XK_AudioMute, spawn,          SHCMD("playerctl volume 0") },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn,   SHCMD("playerctl volume 0.01-") },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn,   SHCMD("playerctl volume 0.01+") },
+	{ 0,                            XF86XK_AudioPrev, spawn,          SHCMD("playerctl previous") },
+	{ ShiftMask,                    XF86XK_AudioPrev, spawn,          SHCMD("playerctl position 5-") },
+	{ ControlMask,                  XF86XK_AudioPrev, spawn,          SHCMD("playerctl shuffle Toggle") },
+	{ 0,                            XF86XK_AudioPlay, spawn,          SHCMD("playerctl play-pause") },
+	{ 0,                            XF86XK_AudioNext, spawn,          SHCMD("playerctl next") },
+	{ ShiftMask,                    XF86XK_AudioNext, spawn,          SHCMD("playerctl position 5+") },
+	{ ControlMask,                  XF86XK_AudioNext, spawn,          SHCMD("playerctl loop Track") },
     /* Switching between tags {{{2 */
     // toggles with the last layout
 	{ MODKEY,                       XK_0,             view,           {.ui = ~0 } },

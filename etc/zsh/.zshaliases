@@ -31,6 +31,9 @@ alias l='ls -alhgF --group-directories-first'
 alias ll='ls -lh --time-style=long-iso'
 alias ls='ls -A --color=auto --quoting-style=literal'
 alias lt='ll -t'
+# superuser {{{1
+alias sgrub='sudoedit /etc/default/grub && sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias shup='sudoedit /etc/systemd/logind.conf && sudo systemctl kill -s HUP systemd-logind'
 # rootdo {{{1
 alias rdo='rdo '
 alias sudo='rdo'

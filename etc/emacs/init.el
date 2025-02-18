@@ -16,8 +16,6 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
-(add-to-list 'default-frame-alist
-             '(vertical-scroll-bars . nil))
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
 (idle-highlight-mode 1)
@@ -36,6 +34,7 @@
 (electric-pair-mode 1)
 (global-unset-key (kbd "C-z"))
 (global-set-key (kbd "C-c o") 'occur)
+(desktop-save-mode 1)
 (setq bookmark-alist
       '(("todo.org" (filename . "~/dox/org/todo.org"))
 	("schedule.org" (filename . "~/dox/org/schedule.org"))
@@ -178,13 +177,13 @@
 (use-package yasnippet
   :defer nil
   :commands (yas-reload-all yas-minor-mode)
-  ;; :hook (prog-mode-hook . yas-minor-mode)
   :config
   (yas-reload-all)
   (add-hook 'prog-mode-hook #'yas-minor-mode))
-;; (require 'yasnippet)
-;; (yas-reload-all)
-;; (add-hook 'prog-mode-hook #'yas-minor-mode)
+(use-package undo-fu-session
+  :config
+  (undo-fu-session-global-mode))
+
 (use-package ligature
   :config
   ;; Enable the "www" ligature in every possible major mode
@@ -232,6 +231,7 @@
   (setq evil-default-state 'emacs))
 
 ;; Python
+;; (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
 (when (executable-find "ipython")
   (setq python-shell-interpreter "ipython"
 	python-shell-interpreter-args "-i --autocall=2 --nosep --simple-prompt"))
@@ -239,7 +239,7 @@
 ;; C
 (setq compilation-auto-jump-to-first-error 'first-known)
 (add-hook 'c-mode-hook
-	            (lambda () (local-set-key (kbd "C-c C-c") #'compile)))
+	  (lambda () (local-set-key (kbd "C-c C-c") #'compile)))
 ;;; lcs: from https://www.kernel.org/doc/html/v4.10/process/coding-style.html
 (defvar c-syntactic-element)
 (defun c-lineup-arglist-tabs-only (ignored)
@@ -272,6 +272,32 @@
 	    (setq show-trailing-whitespace t)
 	    (c-set-style "linux-tabs-only")))
 
+;; C++
+(add-hook 'c++-mode-hook
+	  (lambda () (local-set-key (kbd "C-c C-c") #'compile)))
+(add-hook 'c++-mode-common-hook
+	  (lambda ()
+	    ;; Add kernel style
+	    (c-add-style
+	     "linux-tabs-only"
+	     '("linux" (c-offsets-alist
+			(arglist-cont-nonempty
+			 c-lineup-gcc-asm-reg
+			 c-lineup-arglist-tabs-only))))))
+
+(add-hook 'c++-mode-hook
+	  (lambda ()
+	    ;(let ((filename (buffer-file-name)))
+	    ;  ;; Enable kernel mode for the appropriate files
+	    ;  (when (and filename
+	    ;             (string-match (expand-file-name "~/src/linux-trees")
+	    ;                           filename))
+	    (setq indent-tabs-mode t)
+	    (setq show-trailing-whitespace t)
+	    (c-set-style "linux-tabs-only")))
+
+
+
 ; Emacs sets shit below this line
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -292,11 +318,12 @@
  '(default-frame-alist
    '((font . "-UKWN-Iosevka Mayukai CodePro-normal-normal-normal-*-13-*-*-*-d-0-iso10646-1")
      (width . 137)
-     (height . 30)))
+     (height . 30)
+     (vertical-scroll-bars)))
  '(display-line-numbers-type 'relative)
  '(org-startup-folded 'fold)
  '(package-selected-packages
-   '(yafolding smooth-scroll epresent org-tree-slide rainbow-mode graphviz-dot-mode proof-general sly slime org-download paredit helpful tree-sitter-langs tree-sitter org-drill ligature yasnippet company rainbow-delimiters magit use-package gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
+   '(rust-mode undo-fu-session markdown-mode yafolding smooth-scroll epresent org-tree-slide rainbow-mode graphviz-dot-mode proof-general sly slime org-download paredit helpful tree-sitter-langs tree-sitter org-drill ligature yasnippet company rainbow-delimiters magit use-package gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
 
 ;;; function to check free keys
 (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))
@@ -336,3 +363,4 @@
  ;; If there is more than one, they won't work right.
  )
 (put 'downcase-region 'disabled nil)
+(put 'set-goal-column 'disabled nil)
