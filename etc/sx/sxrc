@@ -28,7 +28,7 @@ xset m 0 0 # mouse speed
 xset -r 36
 # screen deactivate and turn off times
 xset s expose
-xset s noblank
+xset s blank
 xset s 3600
 xset s off
 xset dpms 3600 3600 3600

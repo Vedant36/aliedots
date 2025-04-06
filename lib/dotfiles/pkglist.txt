@@ -50,6 +50,7 @@ discord
 dmidecode
 dnsmasq
 dpkg
+drawing
 dunst
 easyeffects
 ed

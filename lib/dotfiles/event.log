@@ -1,6 +1,5 @@
 /* just put timestamps for daily reminder */
 /* Long term */
-01 Mar 2025 0800 = miraculous s6
 
 /* celestial event */
 /*   lunar eclispe: https://www.timeanddate.com/eclipse/list.html?region=indian-ocean */
@@ -8,10 +7,11 @@
 03 Mar 2026 = Total Lunar Eclipse
 
 /* library */
-22 Feb 2025 1750 = sat library thing 1800-1830
+29 Feb 2025 1750 = sat library thing 1800-1830
 
 /* other */
-13 Mar 2025 0800 = Nonlinear PDEs Conference in IITM
+24 Mar 2025 0800 deal with the piano stuff
+09 Apr 2025 0800 = jest = https://www.jest.org.in/
 
 /* set from commandline */
 

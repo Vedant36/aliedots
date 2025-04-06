@@ -10,6 +10,8 @@ ccze
 chromium-widevine
 colorpicker
 dietlibc
+dl-librescore
+dnd-tools
 ds9-bin
 ext4magic
 f2c
@@ -55,8 +57,8 @@ texmacs
 tlauncher
 tor-browser
 ttf-comic-sans
-winamp2
 windscribe-cli
+wine-ge-custom-bin-opt
 wolfram-js-frontend-bin
 wolframengine
 xclicker
