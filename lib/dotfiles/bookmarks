@@ -2,11 +2,11 @@ l:/home/vn36/.local
 j:/home/vn36/dl
 V:/home/vn36/dl/games/Stardew.Valley.v1.5.5-modded-doesntwork/Stardew.Valley.v1.5.5.1860937376/Mods
 d:/home/vn36/dox
+B:/home/vn36/dox/00-library/#math
+u:/home/vn36/dox/00-library/#math
+C:/home/vn36/dox/10-Code/CPlus/c/learn
 y:/home/vn36/dox/Python
-B:/home/vn36/dox/allbooks/#math
-u:/home/vn36/dox/allbooks/#math
-C:/home/vn36/dox/code/CPlus/c/learn
-a:/home/vn36/dox/college/sem6/matm
+a:/home/vn36/dox/college/sem8
 I:/home/vn36/dox/oldbooks/imp_docs/2022-2023
 t:/home/vn36/dox/textfiles
 Z:/home/vn36/dox/zmisc_code
@@ -20,7 +20,6 @@ b:/home/vn36/.local/bin/scripts
 e:/home/vn36/.local/etc
 x:/home/vn36/.local/etc/X11
 k:/home/vn36/.local/etc/kitty
-n:/home/vn36/.local/etc/nvim
 q:/home/vn36/.local/etc/qutebrowser
 f:/home/vn36/.local/etc/ranger
 z:/home/vn36/.local/etc/zsh
@@ -31,5 +30,6 @@ o:/home/vn36/.local/opt/dwm
 s:/home/vn36/.local/share
 i:/home/vn36/.local/share/ultimmc/instances
 c:/home/vn36/.local/var/cache
+n:/home/vn36/.local/var/cache/nvim
 P:/home/vn36/.local/var/lib/Popcorn Time
 h:/media/vn36/Seagate Expansion Drive/36Vedant

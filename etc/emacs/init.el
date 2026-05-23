@@ -18,9 +18,13 @@
 (scroll-bar-mode 0)
 (column-number-mode 1)
 (global-display-line-numbers-mode 1)
+(set-face-attribute 'line-number nil :foreground "#404040")
+(set-face-attribute 'line-number-current-line nil :foreground "#808040")
 (idle-highlight-mode 1)
+(setq sentence-end-double-space nil)
+
 (setq display-line-numbers 'relative)
-(setq fill-column 79)
+(setq-default fill-column 79)
 ;(display-line-numbers-mode)
 ;;;   convinience stuff
 (setq mouse-yank-at-point t)
@@ -90,6 +94,7 @@
     (interactive)
     (highlight-lines-matching-regexp "^>" 'hi-green-b))
   (add-hook 'org-mode-hook 'u/greentext)
+  (add-hook 'org-mode-hook 'auto-fill-mode)
   ;; redisplay images after executing org-babel
   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
 (use-package org-download
@@ -241,7 +246,9 @@
 ;; C
 (setq compilation-auto-jump-to-first-error 'first-known)
 (add-hook 'c-mode-hook
-	  (lambda () (local-set-key (kbd "C-c C-c") #'compile)))
+	  (lambda ()
+	    (local-set-key (kbd "C-c C-c") #'compile)
+	    (local-set-key (kbd "C-c C-e") #'outline-toggle-children)))
 ;;; lcs: from https://www.kernel.org/doc/html/v4.10/process/coding-style.html
 (defvar c-syntactic-element)
 (defun c-lineup-arglist-tabs-only (ignored)
@@ -298,7 +305,10 @@
 	    (setq show-trailing-whitespace t)
 	    (c-set-style "linux-tabs-only")))
 
-
+(add-hook 'python-mode-hook (lambda ()
+                              (setq indent-tabs-mode t)
+                              (setq python-indent 4) ; Or your preferred tab width
+                              (setq tab-width 4)))  ; How wide tabs appear visually
 
 ; Emacs sets shit below this line
 (custom-set-variables
@@ -307,25 +317,28 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(TeX-view-program-selection
-   '(((output-dvi has-no-display-manager)
-      "dvi2tty")
-     ((output-dvi style-pstricks)
-      "dvips and gv")
-     (output-dvi "xdvi")
-     (output-pdf "Zathura")
-     (output-html "xdg-open")))
+   '(((output-dvi has-no-display-manager) "dvi2tty")
+     ((output-dvi style-pstricks) "dvips and gv") (output-dvi "xdvi")
+     (output-pdf "Zathura") (output-html "xdg-open")))
  '(custom-enabled-themes '(gruber-darker))
  '(custom-safe-themes
-   '("ba4ab079778624e2eadbdc5d9345e6ada531dc3febeb24d257e6d31d5ed02577" default))
+   '("e27c9668d7eddf75373fa6b07475ae2d6892185f07ebed037eedf783318761d7"
+     "a5270d86fac30303c5910be7403467662d7601b821af2ff0c4eb181153ebfc0a"
+     "ba4ab079778624e2eadbdc5d9345e6ada531dc3febeb24d257e6d31d5ed02577" default))
  '(default-frame-alist
-   '((font . "-UKWN-Iosevka Mayukai CodePro-normal-normal-normal-*-13-*-*-*-d-0-iso10646-1")
-     (width . 137)
-     (height . 30)
-     (vertical-scroll-bars)))
+   '((font
+      . "-UKWN-Iosevka Mayukai CodePro-normal-normal-normal-*-13-*-*-*-d-0-iso10646-1")
+     (width . 137) (height . 30) (vertical-scroll-bars)))
  '(display-line-numbers-type 'relative)
  '(org-startup-folded 'fold)
  '(package-selected-packages
-   '(rust-mode undo-fu-session markdown-mode yafolding smooth-scroll epresent org-tree-slide rainbow-mode graphviz-dot-mode proof-general sly slime org-download paredit helpful tree-sitter-langs tree-sitter org-drill ligature yasnippet company rainbow-delimiters magit use-package gruvbox-theme cdlatex flycheck evil auctex haskell-mode lua-mode highlight-indent-guides multiple-cursors smex gruber-darker-theme)))
+   '(rust-mode undo-fu-session markdown-mode yafolding smooth-scroll epresent
+	       org-tree-slide rainbow-mode graphviz-dot-mode proof-general sly
+	       slime org-download paredit helpful tree-sitter-langs tree-sitter
+	       org-drill ligature yasnippet company rainbow-delimiters magit
+	       use-package gruvbox-theme cdlatex flycheck evil auctex
+	       haskell-mode lua-mode highlight-indent-guides multiple-cursors
+	       smex gruber-darker-theme)))
 
 ;;; function to check free keys
 (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))

@@ -23,7 +23,7 @@ timecolor=$primary
 datecolor=$primary
 
 font="iosevka mayukai codepro"
-locktext="100 seconds to midnight"
+locktext="bleh"
 time_format='%H:%M:%S'
 converted="$HOME"/pix/lockscreen
 

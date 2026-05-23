@@ -60,7 +60,8 @@ pgrep -x redshift > /dev/null || redshift -l 23.5:78.5 -m randr &
 dwm_bar() {
     while xsetroot -name "$(bar.sh)"; do
         # synchronize dwmblocks with the time
-        sleep $((60-$(date +%s)%60)) &
+        # sleep $((60-$(date +%s)%60)) &
+        sleep 1 &
         echo $! > "$XDG_STATE_HOME"/sleep_pid
         wait $!
     done

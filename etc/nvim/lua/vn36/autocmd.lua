@@ -19,6 +19,7 @@ vim.cmd [[
   augroup _custom_filetype_setting
     au!
     au Bufnewfile,Bufread *.log* setf log
+    au Bufnewfile,Bufread *.log* setlocal commentstring=/*\ %s\ */
     au Bufnewfile,Bufread *.conf* setf cfg
     au Bufnewfile,Bufread .zsh* setf zsh
     au Bufnewfile,Bufread .gitignore setlocal commentstring=#\ %s

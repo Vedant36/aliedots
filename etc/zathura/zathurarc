@@ -37,4 +37,5 @@ map , navigate next
 map . navigate previous
 map D set first-page-column\ 1
 set pages-per-row 2
+set database sqlite
 # vim: ft=conf

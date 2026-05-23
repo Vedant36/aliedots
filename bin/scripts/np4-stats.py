@@ -13,7 +13,7 @@ apifile = os.path.join(os.getenv("XDG_LIB_HOME",
                                  os.path.join(os.getenv("HOME"),
                                               ".local/lib")),
                        "private/neptune4_api.json")
-datfile = os.getenv("HOME")+"/dox/_Other/datasets/np4/game_{}.json"
+datfile = os.getenv("HOME")+"/dox/oldbooks/datasets/np4/game_{}.json"
 alliance_columns = ["Team Name", "Stars", "Ships", "Fleets",
                     "Eco", "Ind", "Sci", "B", "E", "M", "R", "W"]
 
@@ -75,8 +75,9 @@ elif (sys.argv[1] == "stat"):
     scanning_data = fetch_data(sys.argv[2], datfile)["scanning_data"]
     players = scanning_data["players"]
     data = []
-    data.append(alliance_stat("good", [players["1"], players["2"]]))
-    data.append(alliance_stat("evil", [players["7"], players["8"]]))
+    data.append(alliance_stat("main", [players["1"], players["2"]]))
+    data.append(alliance_stat("north", [players["7"], players["8"]]))
+    data.append(alliance_stat("west", [players["8"], players["8"]]))
     for i in range(scanning_data["config"]["players"]):
         if len(sys.argv) > 3:
             data.append(alliance_stat(players[str(i+1)]["alias"], [players[str(i+1)]]))
@@ -134,7 +135,7 @@ elif (sys.argv[1] == "diff"):
 
 elif (sys.argv[1] == "ships"):
     data = fetch_data(sys.argv[2], datfile)["scanning_data"];
-    num_ticks = 20 if len(sys.argv) < 4 else int(sys.argv[3])
+    num_ticks = 24 if len(sys.argv) < 4 else int(sys.argv[3])
     ticks = np.arange(num_ticks)
     # np4's pallette
     colors = ["#0000ff", "#009fdf", "#40c000", "#ffc000",
@@ -165,7 +166,7 @@ elif (sys.argv[1] == "res"):
     stars = []
     for n,c in enumerate(data["stars"]):
         i = data["stars"][c]
-        if i["puid"] == me:
+        if i["puid"] == me or i["n"] == "Arneb" or i["n"] == "White Haldus":
             stars.append([int(c), i["r"], i["e"], i["i"], i["s"]])
     stars = np.asarray(stars)
     cost = [500, 1000, 4000]
@@ -180,7 +181,7 @@ elif (sys.argv[1] == "res"):
                 if val < minval:
                     minval = val
                     minidx = n
-            print(f'cost:{math.floor(minval):>3}, name:{data["stars"][str(stars[minidx][0])]["n"]}')
+            print(f'count: {bought[j-2]}, cost:{math.floor(minval):>3}, name:{data["stars"][str(stars[minidx][0])]["n"]}, left:{cashtmp}')
             if minval < cashtmp:
                 startmp[minidx][j] += 1
                 cashtmp -= math.floor(minval)

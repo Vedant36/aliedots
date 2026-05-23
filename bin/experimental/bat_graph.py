@@ -3,7 +3,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-x, y = np.loadtxt(os.getenv("HOME")+'/.local/var/log/batinfo.log', dtype=int)[-1000:,:].T
+x, y = np.loadtxt(os.getenv("HOME")+'/.local/var/log/batinfo.log', dtype=int)[-10000:,:].T
 
 events = list()
 fig, ax = plt.subplots()

@@ -22,8 +22,8 @@ bat="${state} $(tail -n2 <<< "$bat_state" | tac | paste -sd ' ')"
 
 volume="$(if pactl get-sink-mute @DEFAULT_SINK@ | grep 'Mute: yes' >/dev/null; then echo "婢"; else echo "墳"; fi) $(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '^\s*Volume:.*/\s*\K.*?(?=\s*/)')"
 
-time=" $(date '+%H:%M')"
-date=" $(date '+%a %F')"
+time="  $(date '+%H:%M:%S')"
+date="  $(date '+%a %F')"
 
 music="$(mpc status | grep -q playing && \
     mpc -f " %artist% - %title%" | sed -n 1p)"
@@ -39,7 +39,7 @@ sections=(
 	"$time"
 )
 
-echo -en " "
+# echo -en " "
 for i in "${sections[@]}";do
 	[ "$i" ] && echo -en "| $i "
 done

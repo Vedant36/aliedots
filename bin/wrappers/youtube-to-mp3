@@ -1,2 +1,2 @@
 #!/bin/bash
-exec env LD_LIBRARY_PATH=/usr/local/lib unwrap youtube-to-mp3
+exec env LD_LIBRARY_PATH=/usr/lib /opt/youtube-to-mp3/YouTubeToMP3

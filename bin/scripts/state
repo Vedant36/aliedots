@@ -12,8 +12,8 @@
 INTERFACE=wlo1
 choice=$(echo "\
 redshift $(pgrep -xc redshift)
-emacs $(! test -S /run/user/1000/emacs/server; echo $?)
 wallpaper
+emacs $(! test -S /run/user/1000/emacs/server; echo $?)
 xcape $(pgrep -xc xcape)
 wifi $(nmcli device status | grep -c "^$INTERFACE.* connected") \
 $(nmcli connection show --active 2>&1 | grep -Po "Neema(?=.* $INTERFACE)")
