@@ -22,6 +22,11 @@
 (set-face-attribute 'line-number-current-line nil :foreground "#808040")
 (idle-highlight-mode 1)
 (setq sentence-end-double-space nil)
+(setq redisplay-dont-pause t
+  scroll-margin 1
+  scroll-step 1
+  scroll-conservatively 10000
+  scroll-preserve-screen-position 1)
 
 (setq display-line-numbers 'relative)
 (setq-default fill-column 79)
@@ -34,6 +39,8 @@
 (setq ido-file-extensions-order '(".tex" ".org"
 				  t
 				  ".elc" ".png" ".pdf" ""))
+;; Enable current line highlighting only in programming modes
+(add-hook 'prog-mode-hook #'hl-line-mode)
 (windmove-default-keybindings)
 (electric-pair-mode 1)
 (global-unset-key (kbd "C-z"))
@@ -102,6 +109,15 @@
   :commands (org-download-yank org-download-screenshot)
   :config (setq org-download-screenshot-method "xclip -selection clipboard -t image/png -o > %s")
   :hook (dired-mode-hook . org-download-enable))
+
+;;; compilation-mode
+(use-package compile
+  :ensure nil
+  :init
+  (setq compilation-scroll-output t)
+  (setq compilation-auto-jump-to-first-error t)
+  (setq compilation-max-output-line-length nil)
+  (add-hook 'compilation-filter-hook #'ansi-color-compilation-filter))
 
 ;;; themes
 (use-package gruber-darker-theme)
@@ -320,9 +336,14 @@
    '(((output-dvi has-no-display-manager) "dvi2tty")
      ((output-dvi style-pstricks) "dvips and gv") (output-dvi "xdvi")
      (output-pdf "Zathura") (output-html "xdg-open")))
- '(custom-enabled-themes '(gruber-darker))
+ '(custom-enabled-themes '(leuven-dark))
  '(custom-safe-themes
-   '("e27c9668d7eddf75373fa6b07475ae2d6892185f07ebed037eedf783318761d7"
+   '("871b064b53235facde040f6bdfa28d03d9f4b966d8ce28fb1725313731a2bcc8"
+     "d445c7b530713eac282ecdeea07a8fa59692c83045bf84dd112dd738c7bcad1d"
+     "7b8f5bbdc7c316ee62f271acf6bcd0e0b8a272fdffe908f8c920b0ba34871d98"
+     "ba323a013c25b355eb9a0550541573d535831c557674c8d59b9ac6aa720c21d3"
+     "98ef36d4487bf5e816f89b1b1240d45755ec382c7029302f36ca6626faf44bbd"
+     "e27c9668d7eddf75373fa6b07475ae2d6892185f07ebed037eedf783318761d7"
      "a5270d86fac30303c5910be7403467662d7601b821af2ff0c4eb181153ebfc0a"
      "ba4ab079778624e2eadbdc5d9345e6ada531dc3febeb24d257e6d31d5ed02577" default))
  '(default-frame-alist
@@ -332,13 +353,13 @@
  '(display-line-numbers-type 'relative)
  '(org-startup-folded 'fold)
  '(package-selected-packages
-   '(rust-mode undo-fu-session markdown-mode yafolding smooth-scroll epresent
-	       org-tree-slide rainbow-mode graphviz-dot-mode proof-general sly
-	       slime org-download paredit helpful tree-sitter-langs tree-sitter
-	       org-drill ligature yasnippet company rainbow-delimiters magit
-	       use-package gruvbox-theme cdlatex flycheck evil auctex
-	       haskell-mode lua-mode highlight-indent-guides multiple-cursors
-	       smex gruber-darker-theme)))
+   '(auctex cdlatex company csv-mode epresent evil flycheck graphviz-dot-mode
+	    gruber-darker-theme gruvbox-theme haskell-mode helpful
+	    highlight-indent-guides ligature lua-mode magit markdown-mode
+	    multiple-cursors org-download org-drill org-tree-slide paredit
+	    proof-general rainbow-delimiters rainbow-mode rust-mode slime sly
+	    smex smooth-scroll tree-sitter tree-sitter-langs undo-fu-session
+	    use-package vimish-fold yafolding yasnippet)))
 
 ;;; function to check free keys
 (setq free-keys-modifiers (list "C" "M" "C-M" "C-c C" "C-x C"))

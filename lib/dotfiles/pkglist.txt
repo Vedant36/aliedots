@@ -176,6 +176,7 @@ obsidian
 octave
 openblas
 openbsd-netcat
+openmp
 pacman-contrib
 pavucontrol
 pdfjs
@@ -187,6 +188,7 @@ pipewire-pulse
 playerctl
 plocate
 powertop
+proton-vpn-cli
 pulsemixer
 pv
 pwgen
@@ -194,12 +196,14 @@ pypy3
 python-adblock
 python-astropy
 python-flake8
+python-graphviz
 python-matplotlib
 python-numpy
 python-pandas
 python-pillow
 python-pip
 python-pipx
+python-plotly
 python-pwntools
 python-pycodestyle
 python-pygame
@@ -211,7 +215,6 @@ qemu-desktop
 qjackctl
 qt5-networkauth
 quicklisp
-qutebrowser
 radeontop
 ranger
 raylib

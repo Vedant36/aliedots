@@ -79,7 +79,6 @@ xclicker
 xcursor-breeze
 xmouseless-git
 xorg-meta
-xsane
 xxd-standalone
 yay-bin
 yay-bin-debug
